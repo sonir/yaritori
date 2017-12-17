@@ -1,13 +1,14 @@
 #include "ofApp.h"
 
 //--------------------------------------------------------------
-void ofApp::setup(){
+void ofApp::setup(){        
     
     ofSetEscapeQuitsApp(false);
     ofSetVerticalSync(true);
 //    ofEnableSmoothing();
     vsyn.initWindowSize();
     vsyn.setup();
+    
 }
 
 //--------------------------------------------------------------

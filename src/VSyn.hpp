@@ -9,19 +9,32 @@
 #ifndef VSyn_hpp
 #define VSyn_hpp
 
+//Basics
 #include <stdio.h>
+#include <cassert>
 #include "ofMain.h"
 #include "ofxOsc.h"
+
+//Addons
+#include "ofxGismo.h"
+
+//vSyn
 #include "shape.h"
 #include "osc2shape.hpp"
 #include "drawer.hpp"
 #include "cam_func.hpp"
 #include "Particle.hpp"
 
+//Gismo
+#include "drawAgents.hpp"
+
+
+
 #define PORT 57139
 #define NUM_MSG_STRINGS 20
 
-#define CONTAINER_MAX 128 //Size of Buffer for Shapes
+//#define CONTAINER_MAX 128 //Size of Buffer for Shapes
+#define CONTAINER_MAX AG_MAX //Size of Buffer for Shapes
 
 
 class VSyn {
@@ -51,6 +64,9 @@ class VSyn {
     private:
         void initShapes(int max_num);
         void initColors(int max_num);
+        void test(); //Method for Any Test
+        //Variables
+        GismoManager& gismo = GismoManager::getInstance(); //Pointer for gismoManager instance
     
 };
 

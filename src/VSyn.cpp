@@ -30,12 +30,22 @@ void VSyn::setup(){
     //Init Buffers for Graphics
     initColors(CONTAINER_MAX);
     initShapes(CONTAINER_MAX);
+    
+    
+    //Do Test Code
+    this->test();
 
 }
 
 
 void VSyn::update(){
+    
+    sync();
 
+    gismo.addSync();
+    makeInteracts(&gismo.agents);
+
+    
     // hide old messages
     for(int i = 0; i < NUM_MSG_STRINGS; i++){
         if(timers[i] < ofGetElapsedTimef()){
@@ -295,6 +305,7 @@ void VSyn::initShapes(int max_num){
 void VSyn::draw(){
     
     
+    
     //CAM CONTROL
     if(cam_flg){
         
@@ -312,7 +323,8 @@ void VSyn::draw(){
     //drawing particle
     particle.draw();
 
-    
+    //drawAgents
+    drawAgents(&gismo);
     
     for(int i=0; i<CONTAINER_MAX; i++){
         
@@ -382,4 +394,214 @@ void VSyn::initWindowSize(){
     particle.screen_height = tmp_h;
     
     
+}
+
+
+void VSyn::test(){
+    
+    //Draw Your Test Code. This method was invoked when the end of setup().
+    std::cout << "test method is starting..." << std::endl;
+
+    //Define an agent
+    ag_t ag;
+    
+    //Test GismoManager.getAgents()
+    ag_t *agents = gismo.getAgents();
+    agents[0].posi.x = 0.13f;
+    agents[0].posi.y = 0.2f;
+    assert(agents[0].posi.x == 0.13f);
+    assert(agents[0].posi.y == 0.2f);
+    cout << "GismoManager:getAgent() is OK." << endl;
+    
+    //Test GismoLibrary distance()
+    posi_t tmp1, tmp2;
+    tmp1.x = 0.0f;
+    tmp1.y = 0.0f;
+    tmp2.x = 3.0f;
+    tmp2.y = 4.0f;
+    assert(distance(tmp1, tmp2) == 5.0f);
+    cout << "GismoLibrary:distance() is OK." << endl;
+    
+    
+    //Test Init AgentActive
+    initAgentActive(&ag);
+    assert(ag.size == 0.005f);
+    assert(ag.active==true);
+    cout << "GismoLibrary:initAgentActive() is OK." << endl;
+
+    //TestAgentAdd
+    initAgentActive(&ag);
+    ag.view = 0.23f;
+    ag.posi.x = 0.2f; ag.posi.y=0.2f;
+    gismo.addAgent(ag);
+    assert (gismo.add.buf[0].view == 0.23f);
+    assert (gismo.add.count == 1);
+    cout << "GismoManager:addAgent() is OK." << endl;
+    
+    //TestSync
+    ag_t ag2;
+    initAgentActive(&ag2);
+    ag2.view = 0.34f;
+    gismo.addAgent(ag2);
+    gismo.addSync(); //Finally gismo requires sync to avoid direct agent addition when processing agents.
+    assert(gismo.add.count==0 && gismo.agents.count==2);
+    assert(agents[0].active && agents[1].active);
+    assert(agents[0].view==0.23f && agents[1].view==0.34f);
+    cout << "gismoLibrary:addSync() is OK." << endl;
+    
+    //Test gismo Library seekNearest();
+    agents[0].posi.x = 0.0f;
+    agents[0].posi.y = 0.0f;
+    agents[1].posi.x = 0.5f;
+    agents[1].posi.y = 0.5f;
+    ag_t ag3;
+    initAgentActive(&ag3);
+    ag3.posi.x = 0.5f;
+    ag3.posi.y = 0.49f;
+    gismo.addAgent(ag3); //add the new agent to addBuffer
+    ag_t ag4;
+    ag4.posi.x = 0.7f;
+    ag4.posi.y = 0.49f;
+    gismo.addAgent(ag3); //add the new agent to addBuffer
+    gismo.addSync(); //refrect the add buffer to actual buffer
+    int nearest_agent = seekNearest(0, &gismo.agents); //seek the nearest agent of agent[0]
+    cout << nearest_agent << endl;
+    assert(nearest_agent==2);
+    cout << "gismoManager:seekNearest() is OK."<<endl;
+    
+    //Test random
+    for(int i=0; i<(SEED_MAX-3); i++){
+        
+                gismo.random();
+        
+    }
+    cout << gismo.random()<< endl;
+    assert( gismo.random()==0.2f );
+    assert( gismo.random()==0.4f );
+    assert( gismo.random()==0.3f );
+    assert( gismo.random()==0.5f );
+    cout << "gismoManager::randmom() is OK."<<endl;
+    
+    
+    //Test isViewRange
+    ag_t ag5;
+    ag5.view = 0.5f;
+    assert( isViewRange(&ag5,0.3f)==true );
+    assert( isViewRange(&ag5,0.51f)==false );
+    cout << "gismoLibrary::isViewRange() is OK" << endl;
+    
+    //Test isLarge
+    assert( isLarge(0.5 , 0.4)==true );
+    assert( isLarge(0.5, 0.501)==false);
+    cout << "gismoLibrary::isaLarge is OK" <<endl;
+    
+    //Test Move
+    ag_t ag6;
+    posi_t tmp;
+    tmp.x=1.0; tmp.y=0.0;
+    initAgent(&ag6);
+    ag6.posi.x=0.5; ag6.posi.y=0.5;
+    gismo.random_count = 0;
+    move(&ag6,&tmp);
+    assert(ag6.posi.x == 0.515f);
+    assert(ag6.posi.y == 0.475f);
+    cout << "gismoLibrary::move() is OK." << endl;
+
+    //TestRandomMove
+    ag_t ag7;
+    initAgent(&ag7);
+    ag7.posi.x = 0.5f; ag7.posi.y = 0.5f;
+    gismo.random_count = 0;
+    randomMove(&ag7);
+    assert(ag7.posi.x == 0.485f);
+    assert(ag7.posi.y == 0.475f);
+    cout << "GismoLibrary::randomMove is OK" << endl;
+    
+    //Test interactWith()
+    ag_t ag8 , ag9;
+    initAgent(&ag8);
+    initAgent(&ag9);
+    ag8.size = 1.0f;
+    ag8.posi.x = 0.0f; ag8.posi.y = 0.0f;
+    ag9.posi.x = 1.0f; ag9.posi.y = 1.0f;
+    ag8.view = 1.5;
+    gismo.random_count = 0;
+    interactWith(&ag8 , &ag9);
+//    cout << ag8.posi.x << endl;
+//    cout << ag8.posi.y << endl;
+//    assert(ag8.posi.x==0.015f);
+//    assert(ag8.posi.y==0.025f);
+    
+    //TestReset
+    agents[0].active=true;
+    agents[1].active=true;
+    agBuffReset(&gismo.agents);
+    assert(agents[0].active==false);
+    assert(agents[1].active==false);
+    assert(gismo.agents.count == 0);
+    
+    //TestLogistic
+    float fval=0.5;
+    fval = logistic(fval);
+    assert(fval==0.75f);
+    fval = logistic(fval);
+    cout << "GismoLibrary::logistic() is OK." << endl;
+
+    //Test positionLoop()
+    posi_t pos;
+    pos.x = 1.1; pos.y = -0.01;
+    positionLoop(&pos);
+    assert (pos.x == 0.0f);
+    assert (pos.y == 1.0f);
+    pos.x = -0.1; pos.y = 1.4;
+    positionLoop(&pos);
+    assert (pos.x == 1.0f);
+    assert (pos.y == 0.0f);
+    pos.x = 0.0f; pos.y = 1.0f;
+    positionLoop(&pos);
+    assert (pos.x == 0.0f);
+    assert (pos.y == 1.0f);
+    cout << "GismoLibrary::positionLoop() is OK" << endl;
+    
+    
+    gismo.random_count = 0;
+    agBuffReset(&gismo.agents);
+     
+     
+    ag_t act1, act2, act3, act4, act5, act6, act7, act8;
+    float seed = 0.5;
+    seed = initAgentActive(&act1, seed);
+    act1.size = gismo.random()*0.03f;
+    gismo.addAgent(act1);
+    seed = initAgentActive(&act2, seed);
+    act2.size = gismo.random()*0.03f;
+    gismo.addAgent(act2);
+
+    seed = initAgentActive(&act3, seed);
+    act3.size = gismo.random()*0.03f;
+    gismo.addAgent(act3);
+
+    seed = initAgentActive(&act4, seed);
+    act4.size = gismo.random()*0.03f;
+    gismo.addAgent(act4);
+
+    seed = initAgentActive(&act5, seed);
+    act5.size = gismo.random()*0.03f;
+    gismo.addAgent(act5);
+
+    seed = initAgentActive(&act6, seed);
+    act6.size = gismo.random()*0.03f;
+    gismo.addAgent(act6);
+
+    seed = initAgentActive(&act7, seed);
+    act7.size = gismo.random()*0.03f;
+    gismo.addAgent(act7);
+
+    seed = initAgentActive(&act8, seed);
+    act8.size = gismo.random()*0.03f;
+    gismo.addAgent(act2);
+
+    
+    std::cout << "test method has finished." << std::endl;
+
 }
