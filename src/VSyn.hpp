@@ -59,6 +59,11 @@ class VSyn {
         int current_msg_string;
         string msg_strings[NUM_MSG_STRINGS];
         float timers[NUM_MSG_STRINGS];
+    
+        //ScreenManagement
+        int screen_w;
+        int screen_h;
+    
         //Particle
         Particle particle;
     
