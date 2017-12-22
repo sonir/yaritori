@@ -9,7 +9,7 @@ float initAgent(ag_t *tmp, float fval){
     tmp->active = false;
     tmp->posi.x = logistic(fval);
     tmp->posi.y = logistic(tmp->posi.x);
-    tmp->size = 0.005f;
+    tmp->size = AG_DEF_SIZE;
     tmp->view = 0.05f;
     tmp->mov = 0.05f;
 
@@ -250,13 +250,25 @@ float logistic(float fval){
     
 }
 
+void setSeed(int seed){
+    
+    srand(seed);
+    
+}
+
+float frandom(){
+    
+    return ( ( (float)( rand()%10 ) ) * 0.1 );
+    
+}
+
 
 
 //Definication of GismoManager :::::::::::
 
 GismoManager::GismoManager() //Constructor
 {
-
+    setSeed(137);
     initAgents(agents.buf);
     agents.count = 0;
     put_buf_t add;

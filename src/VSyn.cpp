@@ -489,7 +489,7 @@ void VSyn::test(){
     
     //Test Init AgentActive
     initAgentActive(&ag);
-    assert(ag.size == 0.005f);
+    assert(ag.size == AG_DEF_SIZE);
     assert(ag.active==true);
     cout << "GismoLibrary:initAgentActive() is OK." << endl;
 
@@ -656,6 +656,19 @@ void VSyn::test(){
     cout << "GismoLibrary::positionLoop() is OK" << endl;
     
     
+    //TestRandom
+    cout << "RND:: " << frandom() << endl;
+    cout << "RND:: " << frandom() << endl;
+    cout << "RND:: " << frandom() << endl;
+    cout << "RND:: " << frandom() << endl;
+    cout << "RND:: " << frandom() << endl;
+    cout << "RND:: " << frandom() << endl;
+    cout << "RND:: " << frandom() << endl;
+    cout << "RND:: " << frandom() << endl;
+    cout << "RND:: " << frandom() << endl;
+    cout << "RND:: " << frandom() << endl;
+    
+    
     gismo.random_count = 0;
     agBuffReset(&gismo.agents);
      
@@ -668,8 +681,8 @@ void VSyn::test(){
     act1.view = 0.0f;
     gismo.addAgent(act1);
     seed = initAgentActive(&act2, seed);
-    act2.size = gismo.random()*0.03f;
-    //act2.view = 0.0f;
+    act2.size = 0.01f;
+    act2.view = 0.05f;
     gismo.addAgent(act2);
 
     seed = initAgentActive(&act3, seed);

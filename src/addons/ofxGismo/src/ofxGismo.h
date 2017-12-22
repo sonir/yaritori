@@ -13,11 +13,14 @@
 #define AG_MAX 3000
 #define SEED_MAX 63
 
+#define AG_DEF_SIZE 0.002f
+
 
 ///
 
 #include <iostream>
 #include <math.h>
+#include <stdlib.h>
 #include "agTypes.h"
 #include "Event.hpp"
 #include "EventHandler.hpp"
@@ -48,6 +51,8 @@ void interactWith(ag_t *focus , ag_t *target);
 void makeInteracts(agent_buf_t *agents);
 void positionLoop(posi_t *position);
 float logistic(float fval=0.5);
+void setSeed(int seed);
+float frandom();
 
 
 
