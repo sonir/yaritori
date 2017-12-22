@@ -11,6 +11,10 @@
 
 #define AG_BUF_MAX 2500
 
+
+//ENUM CONDITIONS
+typedef enum {CALM, CHASE, RUN, DMG, DEATH} condition_t;
+
 //Define Structs
 typedef struct posi_t {
     
@@ -27,7 +31,7 @@ typedef struct ag_t {
     float size;
     float view;
     float mov;
-    
+    condition_t condition;
     
 } ag_t;
 

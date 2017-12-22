@@ -31,7 +31,8 @@ void VSyn::setup(){
     initColors(CONTAINER_MAX);
     initShapes(CONTAINER_MAX);
     
-    
+    //Setup Gismo
+    gismo.setup(&sound);
     //Do Test Code
     this->test();
 
@@ -252,6 +253,7 @@ void VSyn::update(){
     
     particle.update();
 
+
 }
 
 
@@ -322,9 +324,11 @@ void VSyn::draw(){
 
     //drawing particle
     particle.draw();
-
+    
+#ifndef DEBUG_MODE
     //drawAgents
     drawAgents(&gismo);
+#endif
     
     for(int i=0; i<CONTAINER_MAX; i++){
         
@@ -375,6 +379,66 @@ void VSyn::draw(){
         
         
     }
+
+    
+#ifdef DEBUG_MODE
+    /// DRAW_AGENTS_CONDITIONS
+    int count = gismo.agents.count;
+    ag_t *agents = gismo.getAgents(); //sets agents pointer
+    ag_t *ag;
+    string cond_flg;
+    
+    for(int i =0; i<count; i++){
+        
+        ag = agents; //Set agent address
+        
+        if(ag->active){
+
+            int tmp_x = (int)( ag->posi.x * (float)ofGetWidth() );
+            int tmp_y = (int)( ag->posi.y * (float)ofGetHeight() );
+            
+            switch(ag->condition){
+                    
+                case CALM:
+                    cond_flg = "+";
+                    ofSetColor(50,255,50);
+                    break;
+                    
+                case CHASE:
+                    cond_flg = "C";
+                    ofSetColor(255,255, 50);
+                    break;
+                    
+                case RUN:
+                    cond_flg = "R";
+                    ofSetColor(200, 50, 50);
+                    break;
+                    
+                case DMG:
+                    cond_flg = "D";
+                    ofSetColor(255, 100, 100);
+                    break;
+                    
+                case DEATH:
+                    cond_flg = "x";
+                    ofSetColor(100, 100, 100);
+                    break;
+                    
+                default:
+                    break;
+                    
+                    
+            }
+            
+            ofDrawBitmapString( cond_flg, tmp_x, tmp_y);
+            ofSetColor(255,255,255);
+        }
+        agents++;
+        
+    }
+    ///
+#endif
+    
     
     if(cam_flg){
         ofPopMatrix();
@@ -546,7 +610,35 @@ void VSyn::test(){
     assert(fval==0.75f);
     fval = logistic(fval);
     cout << "GismoLibrary::logistic() is OK." << endl;
+    
+    //Test Sound Trigger with OSC
+    sound.set(1);
+    sound.set(3);
+    sound.set(7);
+    assert (sound.update() == 0 );
+    sound.update(); //test don't send when the event buffer was vacant.
+    cout << "CLASS Sound is ok.(check the receive yourself.)" << endl;
 
+    
+    //TestEventHandler
+    EventHandler eventHandler;
+    EvTest evTest;
+    eventHandler.eventAdd("/snd" , &sound);
+    eventHandler.eventAdd("/t01" , &evTest);
+    sound.set(2);
+    sound.set(4);
+    sound.set(6);    
+    assert( eventHandler.bang("/snd") == 0 );
+    int args[] = {0,1,2};
+    assert ( eventHandler.bang("/t01", args) == 138 );
+    assert ( eventHandler.bang("/t01") == 137 );
+    cout << "GismoBundledClass::eventHandler is OK." << endl;
+    //Test EventHandler with Gismo
+    gismo.eventAdd("/t01" , &evTest);
+    gismo.bang("/t01" , args);
+    cout << "GismoManager::eventHandler with Gismo is OK." << endl;
+
+    
     //Test positionLoop()
     posi_t pos;
     pos.x = 1.1; pos.y = -0.01;
@@ -572,9 +664,12 @@ void VSyn::test(){
     float seed = 0.5;
     seed = initAgentActive(&act1, seed);
     act1.size = gismo.random()*0.03f;
+    act1.mov = 0.0f;
+    act1.view = 0.0f;
     gismo.addAgent(act1);
     seed = initAgentActive(&act2, seed);
     act2.size = gismo.random()*0.03f;
+    //act2.view = 0.0f;
     gismo.addAgent(act2);
 
     seed = initAgentActive(&act3, seed);
@@ -600,6 +695,8 @@ void VSyn::test(){
     seed = initAgentActive(&act8, seed);
     act8.size = gismo.random()*0.03f;
     gismo.addAgent(act2);
+    
+    for(int i=0;i<100;i++) gismo.addAgent(act2);
 
     
     std::cout << "test method has finished." << std::endl;

@@ -6,15 +6,14 @@ using namespace std;
 
 float initAgent(ag_t *tmp, float fval){
     
-//        tmp->active = true;
     tmp->active = false;
-//    tmp->posi.x = 0.5f;
-//    tmp->posi.y = 0.5f;
     tmp->posi.x = logistic(fval);
     tmp->posi.y = logistic(tmp->posi.x);
     tmp->size = 0.005f;
-    tmp->view = 0.03f;
+    tmp->view = 0.05f;
     tmp->mov = 0.05f;
+
+    tmp->condition = CALM;
     
     return tmp->posi.y; //Return final fval to next randomize in initAgent[s]()
     
@@ -36,7 +35,7 @@ void initAgents(ag_t *ags){ //Init all agents with default paramas
     for (int i=0; i<AG_MAX; i++){
         
         position_ramdom_seed = initAgent(ags,position_ramdom_seed); //set the agent buf
-        cout << position_ramdom_seed << endl;
+//        cout << position_ramdom_seed << endl;
         ags++; //Increment the index
         
     }
@@ -184,25 +183,25 @@ void interactWith(ag_t *focus , ag_t *target){
     if (isViewRange(focus, dist)){
         
         if( isLarge(focus->size, target->size) ){
-#ifdef DEBUG_MODE
-            cout << "chase" << endl;
-#endif
+
             move(focus, &target->posi);
+            focus->condition=CHASE;
+            
         } else {
-#ifdef DEBUG_MODE
-            cout << "run" << endl;
-#endif
+
             posi_t tmp = target->posi; //set invert position for running
             tmp.x = tmp.x*(-1);
             tmp.y = tmp.y*(-1);
             move(focus, &tmp);
+            focus->condition=RUN;
+
         }
         
     }else{
-#ifdef DEBUG_MODE
-        cout << "random" << endl;
-#endif
+
         randomMove(focus);
+        focus->condition=CALM;
+        
     }
     
     //Loop of World
@@ -264,7 +263,15 @@ GismoManager::GismoManager() //Constructor
     initPutBuff(&add);
     
 }
+
+void GismoManager::setup(Event *pSound){
     
+    cout << "GismoManager setup" <<endl;
+    sound = pSound; //Store the pounter of the object
+}
+
+
+
 ag_t* GismoManager::getAgents()
 {
     

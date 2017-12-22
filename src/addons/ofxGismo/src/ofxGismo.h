@@ -8,8 +8,6 @@
 
 #pragma once
 
-//Set running mode
-//#define DEBUG_MODE
 
 // PARAMS SET MACROS
 #define AG_MAX 3000
@@ -21,6 +19,8 @@
 #include <iostream>
 #include <math.h>
 #include "agTypes.h"
+#include "Event.hpp"
+#include "EventHandler.hpp"
 
 
 //Function Prototypes
@@ -53,7 +53,7 @@ float logistic(float fval=0.5);
 
 //Class for Data management
 
-class GismoManager{
+class GismoManager : public EventHandler {
     
     public:
         //Kill methods related with duplication of instance
@@ -76,8 +76,10 @@ class GismoManager{
         put_buf_t add;
         int random_count = 0;
         float seed[SEED_MAX] = {0.3000,0.5000,0.5000,0.4000,0.3000,0.2000,0.1000,0.8000,0.6000,0.9000,0.7000,0.4000,0.8000,0.3000,0.7000,0.5000,0.9000,0.2000,0.1000,0.6000,0.8000,0.1000,0.3000,0.6000,0.9000,0.2000,0.7000,0.4000,0.5000,0.5000,0.6000,0.4000,0.2000,0.7000,0.3000,0.1000,0.8000,0.9000,0.8000,0.2000,0.3000,0.7000,0.4000,0.6000,0.5000,0.9000,0.1000,0.1000,0.8000,0.3000,0.7000,0.2000,0.9000,0.4000,0.5000,0.6000,0.5000,0.3000,0.7000,0.8000,0.1000,0.2000,0.4000};
+        Event *sound;
 
         //Methods
+        void setup(Event *pSound);
         ag_t* getAgents();
         void addAgent(ag_t tmp);
         void addSync(); //Sync actual agent array and add_buffer

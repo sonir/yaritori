@@ -9,6 +9,10 @@
 #ifndef VSyn_hpp
 #define VSyn_hpp
 
+//Set running mode
+#define DEBUG_MODE
+
+
 //Basics
 #include <stdio.h>
 #include <cassert>
@@ -27,6 +31,9 @@
 
 //Gismo
 #include "drawAgents.hpp"
+
+//AudioTriger with OSC
+#include "Sound.hpp"
 
 
 
@@ -67,6 +74,7 @@ class VSyn {
         void test(); //Method for Any Test
         //Variables
         GismoManager& gismo = GismoManager::getInstance(); //Pointer for gismoManager instance
+        Sound sound; //AudioTrigger with OSC
     
 };
 
