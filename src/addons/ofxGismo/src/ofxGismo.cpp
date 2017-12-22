@@ -4,26 +4,24 @@ using namespace std;
 
 //Imlementations of C Functions
 
-float initAgent(ag_t *tmp, float fval){
+void initAgent(ag_t *tmp, float fval){
     
     tmp->active = false;
-    tmp->posi.x = logistic(fval);
-    tmp->posi.y = logistic(tmp->posi.x);
+    tmp->posi.x = frand();
+    tmp->posi.y = frand();
     tmp->size = AG_DEF_SIZE;
     tmp->view = 0.05f;
     tmp->mov = 0.05f;
 
     tmp->condition = CALM;
     
-    return tmp->posi.y; //Return final fval to next randomize in initAgent[s]()
     
 }
 
-float initAgentActive(ag_t *tmp,  float fval){
+void initAgentActive(ag_t *tmp,  float fval){
     
-    float fval2 = initAgent(tmp, fval);
+    initAgent(tmp, fval);
     tmp->active = true;
-    return fval2;
     
 }
 
@@ -31,16 +29,12 @@ float initAgentActive(ag_t *tmp,  float fval){
 void initAgents(ag_t *ags){ //Init all agents with default paramas
     
     printf("initAgents\n");
-    float position_ramdom_seed = 0.5;
     for (int i=0; i<AG_MAX; i++){
         
-        position_ramdom_seed = initAgent(ags,position_ramdom_seed); //set the agent buf
-//        cout << position_ramdom_seed << endl;
         ags++; //Increment the index
         
     }
-    
-    
+        
     
 }
 
@@ -144,11 +138,11 @@ void move(ag_t *ag, posi_t *posi){
     GismoManager& gismo = GismoManager::getInstance();
     
     //decision X
-    if ( isLarge(ag->posi.x, posi->x) ) ag->posi.x = ag->posi.x - (gismo.random()*ag->mov);
-    else ag->posi.x = ag->posi.x + ( gismo.random() * ag->mov );
+    if ( isLarge(ag->posi.x, posi->x) ) ag->posi.x = ag->posi.x - (frand()*ag->mov);
+    else ag->posi.x = ag->posi.x + ( frand() * ag->mov );
     //decision y
-    if ( isLarge(ag->posi.y, posi->y) ) ag->posi.y = ag->posi.y - (gismo.random()*ag->mov);
-    else ag->posi.y = ag->posi.y + ( gismo.random() *ag->mov);
+    if ( isLarge(ag->posi.y, posi->y) ) ag->posi.y = ag->posi.y - (frand()*ag->mov);
+    else ag->posi.y = ag->posi.y + ( frand() *ag->mov);
     
 }
 
@@ -158,7 +152,7 @@ void randomMove(ag_t *ag){
     GismoManager& gismo = GismoManager::getInstance();
 
     //for X
-    float fval = gismo.random();
+    float fval = frand();
     //invert sign randomly
     if( fmod(fval, 2.0) == 0.0 )fval *= 1;
     else fval *= -1;
@@ -166,7 +160,7 @@ void randomMove(ag_t *ag){
     ag->posi.x = ag->posi.x + (ag->mov*fval);
 
     //for Y
-    fval = gismo.random();
+    fval = frand();
     //invert sign randomly
     if( fmod(fval, 2.0) == 0.0 )fval *= 1;
     else fval *= -1;
@@ -256,7 +250,7 @@ void setSeed(int seed){
     
 }
 
-float frandom(){
+float frand(){
     
     return ( ( (float)( rand()%10 ) ) * 0.1 );
     
@@ -276,10 +270,10 @@ GismoManager::GismoManager() //Constructor
     
 }
 
-void GismoManager::setup(Event *pSound){
+void GismoManager::setup(){
     
     cout << "GismoManager setup" <<endl;
-    sound = pSound; //Store the pounter of the object
+
 }
 
 
@@ -291,11 +285,13 @@ ag_t* GismoManager::getAgents()
     
 }
 
+
 void GismoManager::addAgent(ag_t tmp){
     
     addAgentToBuff(tmp, &add);
     
 }
+
 
 void GismoManager::addSync(){
     
@@ -309,20 +305,4 @@ void GismoManager::addSync(){
     add.count = 0; //reset add_buf count
     
 }
-
-float GismoManager::random(){
-    
-    float fval = seed[random_count];
-    random_count+=1;
-    if(random_count>=SEED_MAX){
-        
-        random_count=0;
-        
-    }
-    return fval;
-    
-}
-
-
-
 
