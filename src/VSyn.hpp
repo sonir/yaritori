@@ -31,7 +31,6 @@
 
 //Gismo
 #include "drawAgents.hpp"
-#include "VisualManager.hpp"
 
 //AudioTriger with OSC
 #include "Sound.hpp"
@@ -82,7 +81,7 @@ class VSyn {
         GismoManager& gismo = GismoManager::getInstance(); //Pointer for gismoManager instance
         Sound sound; //AudioTrigger with OSC
     
-    VisualManager visualManager;
+    motion_manager_t motionManager;
     
 };
 
