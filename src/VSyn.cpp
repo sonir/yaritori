@@ -654,38 +654,38 @@ void VSyn::test(){
      
      
     ag_t act1, act2, act3, act4, act5, act6, act7, act8;
-    float seed = 0.5;
-    initAgentActive(&act1, seed);
-    act1.size = frand()*0.03f;
-    act1.mov = 0.0f;
-    act1.view = 0.0f;
-    gismo.addAgent(act1);
-    initAgentActive(&act2, seed);
-    act2.size = 0.01f;
-    act2.view = 0.05f;
-    gismo.addAgent(act2);
+//    float seed = 0.5;
+//    initAgentActive(&act1, seed);
+//    act1.size = frand()*0.03f;
+//    act1.mov = 0.0f;
+//    act1.view = 0.0f;
+//    gismo.addAgent(act1);
+//    initAgentActive(&act2, seed);
+//    act2.size = 0.01f;
+//    act2.view = 0.05f;
+//    gismo.addAgent(act2);
+//
+//    initAgentActive(&act3, seed);
+//    act3.size = frand()*AG_DEF_SIZE_FIX;
+//    gismo.addAgent(act3);
+//
+//    initAgentActive(&act4, seed);
+//    act4.size = frand()*AG_DEF_SIZE_FIX;
+//    gismo.addAgent(act4);
+//
+//    initAgentActive(&act5, seed);
+//    act5.size = frand()*AG_DEF_SIZE_FIX;
+//    gismo.addAgent(act5);
+//
+//    initAgentActive(&act6, seed);
+//    act6.size = frand()*AG_DEF_SIZE_FIX;
+//    gismo.addAgent(act6);
+//
+//    initAgentActive(&act7, seed);
+//    act7.size = frand()*AG_DEF_SIZE_FIX;
+//    gismo.addAgent(act7);
 
-    initAgentActive(&act3, seed);
-    act3.size = frand()*AG_DEF_SIZE_FIX;
-    gismo.addAgent(act3);
-
-    initAgentActive(&act4, seed);
-    act4.size = frand()*AG_DEF_SIZE_FIX;
-    gismo.addAgent(act4);
-
-    initAgentActive(&act5, seed);
-    act5.size = frand()*AG_DEF_SIZE_FIX;
-    gismo.addAgent(act5);
-
-    initAgentActive(&act6, seed);
-    act6.size = frand()*AG_DEF_SIZE_FIX;
-    gismo.addAgent(act6);
-
-    initAgentActive(&act7, seed);
-    act7.size = frand()*AG_DEF_SIZE_FIX;
-    gismo.addAgent(act7);
-
-    initAgentActive(&act8, seed);
+    initAgentActive(&act8);
     act8.size = frand()*AG_DEF_SIZE_FIX;
     gismo.addAgent(act8);
     

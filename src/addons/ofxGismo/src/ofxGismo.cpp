@@ -4,7 +4,7 @@ using namespace std;
 
 //Imlementations of C Functions
 
-void initAgent(ag_t *tmp, float fval){
+void initAgent(ag_t *tmp){
     
     tmp->active = false;
     tmp->posi.x = frand();
@@ -18,9 +18,9 @@ void initAgent(ag_t *tmp, float fval){
     
 }
 
-void initAgentActive(ag_t *tmp,  float fval){
+void initAgentActive(ag_t *tmp){
     
-    initAgent(tmp, fval);
+    initAgent(tmp);
     tmp->active = true;
     
 }

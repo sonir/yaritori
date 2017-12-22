@@ -29,8 +29,8 @@
 
 //Function Prototypes
 //Inits
-void initAgent(ag_t *ags, float fval=0.5);
-void initAgentActive(ag_t *ags, float fval=0.5);
+void initAgent(ag_t *ags);
+void initAgentActive(ag_t *ags);
 void initAgents(ag_t *ags);
 void initPutBuff(put_buf_t *put_buf);
 //AgentOperation
