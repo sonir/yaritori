@@ -327,7 +327,7 @@ void VSyn::draw(){
     
 #ifndef DEBUG_MODE
     //drawAgents
-    drawAgents(&gismo, &visualManager);
+    drawAgents(&gismo, &motionManager);
 #endif
     
     for(int i=0; i<CONTAINER_MAX; i++){
@@ -457,6 +457,9 @@ void VSyn::initWindowSize(){
     particle.screen_width = tmp_w;
     particle.screen_height = tmp_h;
     
+    //For Agent Motion
+    motionManager.width = tmp_w;
+    motionManager.height = tmp_h;
     
 }
 

@@ -9,12 +9,19 @@
 #ifndef drawAgents_h
 #define drawAgents_h
 
+#include <assert.h>
 #include "ofMain.h"
 #include "ofxGismo.h"
-#include "VisualManager.hpp"
+#include "AgentMotion.hpp"
 
-void drawAgents(GismoManager *gismo,VisualManager *visualManager){
-    
+struct motion_manager_t {
+    int width;
+    int height;
+    AgentMotion agentMotion[AG_MAX];
+};
+
+
+void drawAgents(GismoManager *gismo, motion_manager_t *motion){
     int count = gismo->agents.count;
     ag_t *agents = gismo->getAgents(); //sets agents pointer
     ag_t *ag;
@@ -24,7 +31,7 @@ void drawAgents(GismoManager *gismo,VisualManager *visualManager){
         ag = agents; //Set agent address
 
 //        string condition = "a";
-        //            ofDrawBitmapString( condition, ag->posi.x, ag->posi.y);
+//        ofDrawBitmapString( condition, ag->posi.x, ag->posi.y);
 //        int tmp_x = (int)( ag->posi.x * (float)ofGetScreenWidth() );
 //        int tmp_y = (int)( ag->posi.y * (float)ofGetScreenHeight() );
 //        std::cout << tmp_x << " , " << tmp_y << std::endl;
@@ -32,13 +39,17 @@ void drawAgents(GismoManager *gismo,VisualManager *visualManager){
         
         if(ag->active){
             //square(ag->posi.x, ag->posi.y, ag->size, 0.0f, true);
-            visualManager->setAgent(i, ag->posi.x, ag->posi.y, ag->size);
+            motion->agentMotion[i].nodes.scale_x = ag->posi.x;
+            motion->agentMotion[i].nodes.scale_y = ag->posi.y;
+            motion->agentMotion[i].nodes.size = ag->size;
+           
+            motion->agentMotion[i].update(motion->width);
+            motion->agentMotion[i].draw();
+            
         }
         agents++;
-        
     }
-    visualManager->draw();
-    
 }
+
 
 #endif /* drawAgents_h */
