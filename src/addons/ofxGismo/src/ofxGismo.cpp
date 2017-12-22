@@ -161,6 +161,16 @@ void move(ag_t *ag, posi_t *posi){
 }
 
 
+bool conditionCheck(condition_e cond1, condition_e cond2){
+    
+    if (cond1==cond2) return true;
+    else return false;
+    
+    
+}
+
+
+
 void randomMove(ag_t *ag){
 
     GismoManager& gismo = GismoManager::getInstance();
@@ -185,14 +195,23 @@ void randomMove(ag_t *ag){
 
 
 void interactWith(ag_t *focus , ag_t *target){
-    
+
+    //Get singleton
+    GismoManager& gismo = GismoManager::getInstance();
+
     float dist = distance(focus->posi, target->posi);
     if (isViewRange(focus, dist)){
         
         if( isLarge(focus->size, target->size) ){
 
             move(focus, &target->posi);
-            focus->condition=CHASE;
+            
+            if( !conditionCheck(focus->condition, CHASE) ){
+                
+//                int tmp = 101;
+//                gismo.bang("/snd" , &tmp);                
+                focus->condition=CHASE;
+            }
             
         } else {
 
@@ -281,6 +300,19 @@ bool brand(){
     else return false;
     
 }
+
+int setSound(int sound_id){
+    
+    //Get singleton
+    GismoManager& gismo = GismoManager::getInstance();
+    
+    int tmp = sound_id;
+    gismo.bang("/snd" , &tmp);
+    return tmp;
+
+    
+}
+
 
 //Definication of GismoManager :::::::::::
 

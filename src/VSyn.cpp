@@ -571,15 +571,14 @@ void VSyn::test(){
     assert(ag6.posi.x >= 0.5f);
     assert(ag6.posi.y <= 0.5f);
     cout << "gismoLibrary::move() is OK." << endl;
-
-//    //TestRandomMove
-//    ag_t ag7;
-//    initAgent(&ag7);
-//    ag7.posi.x = 0.5f; ag7.posi.y = 0.5f;
-//    randomMove(&ag7);
-//    assert(ag7.posi.x == 0.485f);
-//    assert(ag7.posi.y == 0.475f);
-//    cout << "GismoLibrary::randomMove is OK" << endl;
+    
+    
+    //TestConditionCheck
+    condition_e cond1 = CALM;
+    condition_e cond2 = RUN;
+    assert ( conditionCheck(cond1, cond2) == false );
+    cond2 = CALM;
+    assert ( conditionCheck(cond1, cond2) == true );
     
     //Test interactWith()
     ag_t ag8 , ag9;
@@ -600,6 +599,7 @@ void VSyn::test(){
     assert(agents[1].active==false);
     assert(gismo.agents.count == 0);
     
+    
     //TestLogistic
     float fval=0.5;
     fval = logistic(fval);
@@ -607,7 +607,11 @@ void VSyn::test(){
     fval = logistic(fval);
     cout << "GismoLibrary::logistic() is OK." << endl;
     
+    
     //Test Sound Trigger with OSC
+    sound.set(9);
+    sound.reset();
+    assert(sound.count==0);
     sound.set(1);
     sound.set(3);
     sound.set(7);
@@ -623,8 +627,9 @@ void VSyn::test(){
     eventHandler.eventAdd("/t01" , &evTest);
     sound.set(2);
     sound.set(4);
-    sound.set(6);    
-    assert( eventHandler.bang("/snd") == 0 );
+    int val = 6;
+//    int *pVal = &val;
+//    assert( eventHandler.bang("/snd", pVal) == 6 );
     int args[] = {0,1,2};
     assert ( eventHandler.bang("/t01", args) == 138 );
     assert ( eventHandler.bang("/t01") == 137 );
@@ -632,8 +637,20 @@ void VSyn::test(){
     //Test EventHandler with Gismo
     gismo.eventAdd("/t01" , &evTest);
     gismo.bang("/t01" , args);
+    //Sound Trigger
+    sound.reset();
+    gismo.eventAdd("/snd" , &sound);
+    int snd_id = 137;
+    assert( gismo.bang("/snd" , &snd_id) == 137);
+    sound.update();
+    //Test sending via setSound;
+    assert(setSound(2355)==2355);
+    assert(setSound(2356)==2356);
+    sound.update();
+    
     cout << "GismoManager::eventHandler with Gismo is OK." << endl;
 
+    
     
     //Test positionLoop()
     posi_t pos;
@@ -694,6 +711,8 @@ void VSyn::test(){
     initAgentActive(&act8);
     //act8.mov = 0.000f;
 //    act8.size = frand()*AG_DEF_SIZE_FIX;
+    gismo.addAgent(act8);
+    gismo.addAgent(act8);
     gismo.addAgent(act8);
     gismo.addAgent(act8);
     gismo.addAgent(act8);

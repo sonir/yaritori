@@ -56,10 +56,17 @@ int Sound::update(){
     
 }
 
-int Sound::trigger(){
+int Sound::trigger(void* arg){
     
-    update();
-    return 0;
+    int *audio_id = (int *)arg;
+    this->set(*audio_id);
+    
+    return *audio_id;
     
 }
 
+void Sound::reset(){
+    
+    count = 0;
+    
+}

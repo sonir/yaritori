@@ -15,7 +15,7 @@
 //Agent Default Parameters
 #define AG_DEF_SIZE 0.0034f
 #define AG_DEF_MOV 0.002f
-#define AG_DEF_VIEW 0.2f
+#define AG_DEF_VIEW 0.3f
 #define AG_DEF_SIZE_FIX 0.005f //Scaling factor for frand(0.0-1.0)
 
 
@@ -44,6 +44,7 @@ int seekNearest(int ag_id, agent_buf_t *agbuf);
 bool isViewRange(ag_t *ag, float distance);
 bool isLarge(float f1, float f2);
 void move(ag_t *ag, posi_t *posi);
+bool conditionCheck(condition_e cond1, condition_e cond2);
 void randomMove(ag_t *ag);
 void interactWith(ag_t *focus , ag_t *target);
 void makeInteracts(agent_buf_t *agents);
@@ -53,7 +54,8 @@ void setSeed(int seed);
 float frand();
 int irand();
 bool brand();
-
+//SetSound
+int setSound(int sound_id);
 
 //Class for Data management
 
