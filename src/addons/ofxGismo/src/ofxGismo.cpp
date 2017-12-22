@@ -10,8 +10,8 @@ void initAgent(ag_t *tmp){
     tmp->posi.x = frand();
     tmp->posi.y = frand();
     tmp->size = AG_DEF_SIZE;
-    tmp->view = 0.05f;
-    tmp->mov = 0.05f;
+    tmp->view = AG_DEF_VIEW;
+    tmp->mov = AG_DEF_MOV;
 
     tmp->condition = CALM;
     
@@ -133,6 +133,20 @@ bool isViewRange(ag_t *ag, float distance){
 }
 
 
+bool isLarge(float f1, float f2){
+    
+    if (f1>f2)return true;
+    else if (f1<f2) return false;
+    else if (f1==f2){
+     
+        if( brand() ) return true;
+        else return false;
+        
+    }
+    
+}
+
+
 void move(ag_t *ag, posi_t *posi){
     
     GismoManager& gismo = GismoManager::getInstance();
@@ -152,17 +166,16 @@ void randomMove(ag_t *ag){
     GismoManager& gismo = GismoManager::getInstance();
 
     //for X
-    float fval = frand();
     //invert sign randomly
-    if( fmod(fval, 2.0) == 0.0 )fval *= 1;
+    float fval=1.0f;
+    if( irand()<50 )fval *= 1;
     else fval *= -1;
     //Set the next X
     ag->posi.x = ag->posi.x + (ag->mov*fval);
 
     //for Y
-    fval = frand();
     //invert sign randomly
-    if( fmod(fval, 2.0) == 0.0 )fval *= 1;
+    if( irand()<50 )fval *= 1;
     else fval *= -1;
     //Set the next X
     ag->posi.y = ag->posi.y + (ag->mov*fval);
@@ -228,10 +241,10 @@ void makeInteracts(agent_buf_t *agents){
 void positionLoop(posi_t *position){
     
     if(position->x > 1.0f) position->x = 0.0f;
-    else if (position->x < 0.0f) position->x = 1.0f;
+    else if (position->x <= 0.0f) position->x = 1.0f;
     
     if(position->y > 1.0f) position->y = 0.0f;
-    else if (position->y < 0.0f) position->y = 1.0f;
+    else if (position->y <= 0.0f) position->y = 1.0f;
     
 }
 
@@ -256,7 +269,18 @@ float frand(){
     
 }
 
+int irand(){
+    
+    return ( ( rand()%100 ) );
+    
+}
 
+bool brand(){
+    
+    if (rand()%2==0)return true;
+    else return false;
+    
+}
 
 //Definication of GismoManager :::::::::::
 

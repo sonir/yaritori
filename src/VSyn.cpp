@@ -405,6 +405,7 @@ void VSyn::draw(){
                     
                 case CALM:
                     cond_flg = "+";
+                    //cond_flg = to_string(ag->mov);
                     ofSetColor(50,255,50);
                     break;
                     
@@ -435,6 +436,7 @@ void VSyn::draw(){
             }
             
             ofDrawBitmapString( cond_flg, tmp_x, tmp_y);
+            circle(ag->posi.x+0.0078f, ag->posi.y+0.00078f, ag->size*10.0f,false);
             ofSetColor(255,255,255);
         }
         agents++;
@@ -645,51 +647,59 @@ void VSyn::test(){
     assert (pos.y == 0.0f);
     pos.x = 0.0f; pos.y = 1.0f;
     positionLoop(&pos);
-    assert (pos.x == 0.0f);
+    assert (pos.x == 1.0f);
     assert (pos.y == 1.0f);
     cout << "GismoLibrary::positionLoop() is OK" << endl;
     
     
+    
+    //Reset all agents
     agBuffReset(&gismo.agents);
      
      
     ag_t act1, act2, act3, act4, act5, act6, act7, act8;
 //    float seed = 0.5;
-//    initAgentActive(&act1, seed);
+//    initAgentActive(&act1);
 //    act1.size = frand()*0.03f;
 //    act1.mov = 0.0f;
+//    act1.posi.x = 0.75;
+//    act1.posi.y = 0.25;
 //    act1.view = 0.0f;
 //    gismo.addAgent(act1);
-//    initAgentActive(&act2, seed);
+//    initAgentActive(&act2);
 //    act2.size = 0.01f;
 //    act2.view = 0.05f;
 //    gismo.addAgent(act2);
 //
-//    initAgentActive(&act3, seed);
+//    initAgentActive(&act3);
 //    act3.size = frand()*AG_DEF_SIZE_FIX;
 //    gismo.addAgent(act3);
 //
-//    initAgentActive(&act4, seed);
+//    initAgentActive(&act4);
 //    act4.size = frand()*AG_DEF_SIZE_FIX;
 //    gismo.addAgent(act4);
 //
-//    initAgentActive(&act5, seed);
+//    initAgentActive(&act5);
 //    act5.size = frand()*AG_DEF_SIZE_FIX;
 //    gismo.addAgent(act5);
 //
-//    initAgentActive(&act6, seed);
+//    initAgentActive(&act6);
 //    act6.size = frand()*AG_DEF_SIZE_FIX;
 //    gismo.addAgent(act6);
 //
-//    initAgentActive(&act7, seed);
+//    initAgentActive(&act7);
 //    act7.size = frand()*AG_DEF_SIZE_FIX;
 //    gismo.addAgent(act7);
-
+//    
     initAgentActive(&act8);
-    act8.size = frand()*AG_DEF_SIZE_FIX;
+    //act8.mov = 0.000f;
+//    act8.size = frand()*AG_DEF_SIZE_FIX;
+    gismo.addAgent(act8);
+    gismo.addAgent(act8);
     gismo.addAgent(act8);
     
-    for(int i=0;i<100;i++) gismo.addAgent(act8);
+//    for(int i=0;i<500;i++) gismo.addAgent(act8);
+    
 
     
     std::cout << "test method has finished." << std::endl;
