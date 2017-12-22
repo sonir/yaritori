@@ -577,4 +577,6 @@ dependencies: \
   /Users/hana/Development/openFrameworks/of_v0.9.8_osx_release/apps/myApps/yaritori/src/cam_func.hpp \
   /Users/hana/Development/openFrameworks/of_v0.9.8_osx_release/apps/myApps/yaritori/src/Particle.hpp \
   /Users/hana/Development/openFrameworks/of_v0.9.8_osx_release/apps/myApps/yaritori/src/drawAgents.hpp \
+  /Users/hana/Development/openFrameworks/of_v0.9.8_osx_release/apps/myApps/yaritori/src/VisualManager.hpp \
+  /Users/hana/Development/openFrameworks/of_v0.9.8_osx_release/apps/myApps/yaritori/src/VisualAgent.hpp \
   /Users/hana/Development/openFrameworks/of_v0.9.8_osx_release/apps/myApps/yaritori/src/Sound.hpp

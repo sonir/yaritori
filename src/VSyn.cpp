@@ -12,7 +12,7 @@ using namespace std;
 
 void VSyn::setup(){
     
-    ofBackground(0, 0, 0);
+    ofBackground(255);
     ofSetCircleResolution(50);
 
     //CAM SETUP
@@ -327,7 +327,7 @@ void VSyn::draw(){
     
 #ifndef DEBUG_MODE
     //drawAgents
-    drawAgents(&gismo);
+    drawAgents(&gismo, &visualManager);
 #endif
     
     for(int i=0; i<CONTAINER_MAX; i++){
@@ -676,10 +676,11 @@ void VSyn::test(){
     ag_t act1, act2, act3, act4, act5, act6, act7, act8;
     float seed = 0.5;
     seed = initAgentActive(&act1, seed);
-    act1.size = gismo.random()*0.03f;
-    act1.mov = 0.0f;
+    act1.size = 0.1f;
     act1.view = 0.0f;
+    act1.mov = 0.0f;
     gismo.addAgent(act1);
+    
     seed = initAgentActive(&act2, seed);
     act2.size = 0.01f;
     act2.view = 0.05f;
@@ -687,27 +688,28 @@ void VSyn::test(){
 
     seed = initAgentActive(&act3, seed);
     act3.size = gismo.random()*0.03f;
+    act3.mov = 0.0f;
     gismo.addAgent(act3);
 
-    seed = initAgentActive(&act4, seed);
-    act4.size = gismo.random()*0.03f;
-    gismo.addAgent(act4);
-
-    seed = initAgentActive(&act5, seed);
-    act5.size = gismo.random()*0.03f;
-    gismo.addAgent(act5);
-
-    seed = initAgentActive(&act6, seed);
-    act6.size = gismo.random()*0.03f;
-    gismo.addAgent(act6);
-
-    seed = initAgentActive(&act7, seed);
-    act7.size = gismo.random()*0.03f;
-    gismo.addAgent(act7);
-
-    seed = initAgentActive(&act8, seed);
-    act8.size = gismo.random()*0.03f;
-    gismo.addAgent(act2);
+//    seed = initAgentActive(&act4, seed);
+//    act4.size = gismo.random()*0.03f;
+//    gismo.addAgent(act4);
+//
+//    seed = initAgentActive(&act5, seed);
+//    act5.size = gismo.random()*0.03f;
+//    gismo.addAgent(act5);
+//
+//    seed = initAgentActive(&act6, seed);
+//    act6.size = gismo.random()*0.03f;
+//    gismo.addAgent(act6);
+//
+//    seed = initAgentActive(&act7, seed);
+//    act7.size = gismo.random()*0.03f;
+//    gismo.addAgent(act7);
+//
+//    seed = initAgentActive(&act8, seed);
+//    act8.size = gismo.random()*0.03f;
+//    gismo.addAgent(act8);
     
     for(int i=0;i<100;i++) gismo.addAgent(act2);
 

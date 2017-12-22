@@ -11,8 +11,9 @@
 
 #include "ofMain.h"
 #include "ofxGismo.h"
+#include "VisualManager.hpp"
 
-void drawAgents(GismoManager *gismo){
+void drawAgents(GismoManager *gismo,VisualManager *visualManager){
     
     int count = gismo->agents.count;
     ag_t *agents = gismo->getAgents(); //sets agents pointer
@@ -30,11 +31,13 @@ void drawAgents(GismoManager *gismo){
 //        ofDrawBitmapString( "f", 100, 200);
         
         if(ag->active){
-            square(ag->posi.x, ag->posi.y, ag->size, 0.0f, true);
+            //square(ag->posi.x, ag->posi.y, ag->size, 0.0f, true);
+            visualManager->setAgent(i, ag->posi.x, ag->posi.y, ag->size);
         }
         agents++;
         
     }
+    visualManager->draw();
     
 }
 
