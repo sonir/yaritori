@@ -3,11 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>BuildMachineOSBuild</key>
-<<<<<<< HEAD
-	<string>15G17023</string>
-=======
 	<string>16G1114</string>
->>>>>>> visual
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
@@ -31,19 +27,6 @@
 	<key>DTCompiler</key>
 	<string>com.apple.compilers.llvm.clang.1_0</string>
 	<key>DTPlatformBuild</key>
-<<<<<<< HEAD
-	<string>8C1002</string>
-	<key>DTPlatformVersion</key>
-	<string>GM</string>
-	<key>DTSDKBuild</key>
-	<string>16C58</string>
-	<key>DTSDKName</key>
-	<string>macosx10.12</string>
-	<key>DTXcode</key>
-	<string>0821</string>
-	<key>DTXcodeBuild</key>
-	<string>8C1002</string>
-=======
 	<string>8E3004b</string>
 	<key>DTPlatformVersion</key>
 	<string>GM</string>
@@ -55,6 +38,5 @@
 	<string>0833</string>
 	<key>DTXcodeBuild</key>
 	<string>8E3004b</string>
->>>>>>> visual
 </dict>
 </plist>

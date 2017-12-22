@@ -719,17 +719,17 @@ void VSyn::test(){
 //    for(int i=0;i<100;i++) gismo.addAgent(act2);
 //=======
 //    float seed = 0.5;
-//    initAgentActive(&act1);
-//    act1.size = frand()*0.03f;
-//    act1.mov = 0.0f;
-//    act1.posi.x = 0.75;
-//    act1.posi.y = 0.25;
-//    act1.view = 0.0f;
-//    gismo.addAgent(act1);
-//    initAgentActive(&act2);
-//    act2.size = 0.01f;
-//    act2.view = 0.05f;
-//    gismo.addAgent(act2);
+    initAgentActive(&act1);
+    act1.size = frand()*0.03f;
+    act1.mov = 0.0f;
+    act1.posi.x = 0.75;
+    act1.posi.y = 0.25;
+    act1.view = 0.0f;
+    gismo.addAgent(act1);
+    initAgentActive(&act2);
+    act2.size = 0.3f;
+    act2.view = 0.05f;
+    gismo.addAgent(act2);
 //
 //    initAgentActive(&act3);
 //    act3.size = frand()*AG_DEF_SIZE_FIX;
