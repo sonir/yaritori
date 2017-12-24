@@ -9,12 +9,15 @@ void ofApp::setup(){
     vsyn.initWindowSize();
     vsyn.setup();
     
+    network.setup();
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
 
     vsyn.update();
+    network.update();
     
 }
 
