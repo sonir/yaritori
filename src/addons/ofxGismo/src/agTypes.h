@@ -13,7 +13,7 @@
 
 
 //ENUM CONDITIONS
-typedef enum {CALM, CHASE, RUN, DMG, DEATH} condition_t;
+typedef enum {CALM, CHASE, RUN, DMG, DEATH} condition_e;
 
 //Define Structs
 typedef struct posi_t {
@@ -31,7 +31,7 @@ typedef struct ag_t {
     float size;
     float view;
     float mov;
-    condition_t condition;
+    condition_e condition;
     
 } ag_t;
 

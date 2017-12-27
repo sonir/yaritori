@@ -42,6 +42,8 @@
 		F27A52FE1FEC78FE00942A31 /* Event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F27A52FC1FEC78FE00942A31 /* Event.cpp */; };
 		F27A53011FEC82DA00942A31 /* EventHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F27A52FF1FEC82DA00942A31 /* EventHandler.cpp */; };
 		F285EB3169F1566CA3D93C20 /* ofxPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E112B3AEBEA2C091BF2B40AE /* ofxPanel.cpp */; };
+		F28AF43D1FF35DC200D48FEB /* Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F28AF43B1FF35DC200D48FEB /* Test.cpp */; };
+		F2ABF1281FEFF227006773CE /* Network.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2ABF1261FEFF227006773CE /* Network.cpp */; };
 		F2C099001FDD12400075255C /* ofxGismo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2C098E51FDD12400075255C /* ofxGismo.cpp */; };
 		F2FFCEB11F62A27D00E71BAA /* VSyn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2FFCEAF1F62A27D00E71BAA /* VSyn.cpp */; };
 		F2FFCEB41F62AFF800E71BAA /* osc2shape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2FFCEB21F62AFF800E71BAA /* osc2shape.cpp */; };
@@ -157,6 +159,10 @@
 		F27A52FD1FEC78FE00942A31 /* Event.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Event.hpp; sourceTree = "<group>"; };
 		F27A52FF1FEC82DA00942A31 /* EventHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventHandler.cpp; sourceTree = "<group>"; };
 		F27A53001FEC82DA00942A31 /* EventHandler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EventHandler.hpp; sourceTree = "<group>"; };
+		F28AF43B1FF35DC200D48FEB /* Test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Test.cpp; sourceTree = "<group>"; };
+		F28AF43C1FF35DC200D48FEB /* Test.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Test.hpp; sourceTree = "<group>"; };
+		F2ABF1261FEFF227006773CE /* Network.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Network.cpp; sourceTree = "<group>"; };
+		F2ABF1271FEFF227006773CE /* Network.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Network.hpp; sourceTree = "<group>"; };
 		F2C098E51FDD12400075255C /* ofxGismo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxGismo.cpp; sourceTree = "<group>"; };
 		F2C098E61FDD12400075255C /* ofxGismo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxGismo.h; sourceTree = "<group>"; };
 		F2C099011FDD7DB30075255C /* drawAgents.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = drawAgents.hpp; sourceTree = "<group>"; };
@@ -388,14 +394,18 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				F28AF43B1FF35DC200D48FEB /* Test.cpp */,
+				F28AF43C1FF35DC200D48FEB /* Test.hpp */,
+				F2FFCEB01F62A27D00E71BAA /* VSyn.hpp */,
+				F2FFCEAF1F62A27D00E71BAA /* VSyn.cpp */,
+				F2ABF1261FEFF227006773CE /* Network.cpp */,
+				F2ABF1271FEFF227006773CE /* Network.hpp */,
 				F26D88141F6B638600AC27FE /* cam_func.hpp */,
 				F27A52F61FEC634F00942A31 /* Sound.cpp */,
 				F27A52F71FEC634F00942A31 /* Sound.hpp */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
-				F2FFCEB01F62A27D00E71BAA /* VSyn.hpp */,
-				F2FFCEAF1F62A27D00E71BAA /* VSyn.cpp */,
 				F2FFCEB21F62AFF800E71BAA /* osc2shape.cpp */,
 				F2FFCEB31F62AFF800E71BAA /* osc2shape.hpp */,
 				F2FFCEB91F62C5FC00E71BAA /* drawer.hpp */,
@@ -565,7 +575,9 @@
 				483908258D00B98B4BE69F07 /* ofxLabel.cpp in Sources */,
 				F285EB3169F1566CA3D93C20 /* ofxPanel.cpp in Sources */,
 				837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */,
+				F28AF43D1FF35DC200D48FEB /* Test.cpp in Sources */,
 				B56FE57CC35806596D38118C /* ofxSliderGroup.cpp in Sources */,
+				F2ABF1281FEFF227006773CE /* Network.cpp in Sources */,
 				1CD33E884D9E3358252E82A1 /* ofxToggle.cpp in Sources */,
 				72A929D3561B8232A182ABFC /* ofxOscBundle.cpp in Sources */,
 				5864AD82E20F15536D054EA3 /* ofxOscMessage.cpp in Sources */,

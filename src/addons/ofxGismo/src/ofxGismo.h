@@ -8,13 +8,19 @@
 
 #pragma once
 
-
-// PARAMS SET MACROS
+//AG BUF SETUPS
 #define AG_MAX 3000
 #define SEED_MAX 63
 
-#define AG_DEF_SIZE 0.002f
+//Agent Default Parameters
+#define AG_DEF_SIZE 0.0034f
+#define AG_DEF_MOV 0.002f//0.002f
+#define AG_DEF_VIEW 0.3f
+#define AG_DEF_SIZE_FIX 0.005f //Scaling factor for frand(0.0-1.0)
 
+// PARAMS SET MACROS
+#define AG_DMG 0.0034f
+#define ATK_DIST AG_DEF_SIZE
 
 ///
 
@@ -28,8 +34,8 @@
 
 //Function Prototypes
 //Inits
-float initAgent(ag_t *ags, float fval=0.5);
-float initAgentActive(ag_t *ags, float fval=0.5);
+void initAgent(ag_t *ags);
+void initAgentActive(ag_t *ags);
 void initAgents(ag_t *ags);
 void initPutBuff(put_buf_t *put_buf);
 //AgentOperation
@@ -39,22 +45,22 @@ void agBuffReset(agent_buf_t *agents);
 float distance(posi_t p1, posi_t p2);
 int seekNearest(int ag_id, agent_buf_t *agbuf);
 bool isViewRange(ag_t *ag, float distance);
-bool isLarge(float f1, float f2){
-    
-    if (f1>f2)return true;
-    else return false;
-    
-}
+bool isLarge(float f1, float f2);
 void move(ag_t *ag, posi_t *posi);
+bool conditionCheck(condition_e cond1, condition_e cond2);
 void randomMove(ag_t *ag);
+void attackCheck(float distance, float *f_param);
 void interactWith(ag_t *focus , ag_t *target);
 void makeInteracts(agent_buf_t *agents);
-void positionLoop(posi_t *position);
+//void positionLoop(posi_t *position);
+void positionLoop(posi_t *position, float w_max, float h_max);
 float logistic(float fval=0.5);
 void setSeed(int seed);
-float frandom();
-
-
+float frand();
+int irand();
+bool brand();
+//SetSound
+int setSound(int sound_id);
 
 //Class for Data management
 
@@ -79,16 +85,17 @@ class GismoManager : public EventHandler {
         //Variables
         agent_buf_t agents;
         put_buf_t add;
-        int random_count = 0;
-        float seed[SEED_MAX] = {0.3000,0.5000,0.5000,0.4000,0.3000,0.2000,0.1000,0.8000,0.6000,0.9000,0.7000,0.4000,0.8000,0.3000,0.7000,0.5000,0.9000,0.2000,0.1000,0.6000,0.8000,0.1000,0.3000,0.6000,0.9000,0.2000,0.7000,0.4000,0.5000,0.5000,0.6000,0.4000,0.2000,0.7000,0.3000,0.1000,0.8000,0.9000,0.8000,0.2000,0.3000,0.7000,0.4000,0.6000,0.5000,0.9000,0.1000,0.1000,0.8000,0.3000,0.7000,0.2000,0.9000,0.4000,0.5000,0.6000,0.5000,0.3000,0.7000,0.8000,0.1000,0.2000,0.4000};
         Event *sound;
-
+        float width_rate = 1.0f;
+        float height_rate = 1.0f;
+    
         //Methods
-        void setup(Event *pSound);
+        void setup();
         ag_t* getAgents();
+        ag_t* getAgent(int aid);
         void addAgent(ag_t tmp);
         void addSync(); //Sync actual agent array and add_buffer
-        float random();
+        //float random();
 
 
     

@@ -4,26 +4,24 @@ using namespace std;
 
 //Imlementations of C Functions
 
-float initAgent(ag_t *tmp, float fval){
+void initAgent(ag_t *tmp){
     
     tmp->active = false;
-    tmp->posi.x = logistic(fval);
-    tmp->posi.y = logistic(tmp->posi.x);
+    tmp->posi.x = frand();
+    tmp->posi.y = frand();
     tmp->size = AG_DEF_SIZE;
-    tmp->view = 0.05f;
-    tmp->mov = 0.05f;
+    tmp->view = AG_DEF_VIEW;
+    tmp->mov = AG_DEF_MOV;
 
     tmp->condition = CALM;
     
-    return tmp->posi.y; //Return final fval to next randomize in initAgent[s]()
     
 }
 
-float initAgentActive(ag_t *tmp,  float fval){
+void initAgentActive(ag_t *tmp){
     
-    float fval2 = initAgent(tmp, fval);
+    initAgent(tmp);
     tmp->active = true;
-    return fval2;
     
 }
 
@@ -31,16 +29,12 @@ float initAgentActive(ag_t *tmp,  float fval){
 void initAgents(ag_t *ags){ //Init all agents with default paramas
     
     printf("initAgents\n");
-    float position_ramdom_seed = 0.5;
     for (int i=0; i<AG_MAX; i++){
         
-        position_ramdom_seed = initAgent(ags,position_ramdom_seed); //set the agent buf
-//        cout << position_ramdom_seed << endl;
         ags++; //Increment the index
         
     }
-    
-    
+        
     
 }
 
@@ -86,16 +80,16 @@ void agBuffReset(agent_buf_t *agents){
 //Interaction Tool Kits
 float distance(posi_t p1, posi_t p2){
     
-    posi_t tmp;
+    posi_t tmp1, tmp2;
     // calc differences
-    tmp.x = p2.x - p1.x;
-    tmp.y = p2.y = p2.y;
+    tmp1.x = p2.x - p1.x;
+    tmp1.y = p2.y - p1.y;
     
-    tmp.x = tmp.x*tmp.x;
-    tmp.y = tmp.y*tmp.y;
+    tmp2.x = tmp1.x*tmp1.x;
+    tmp2.y = tmp1.y*tmp1.y;
     
     //	pythagoras theorem
-    return (float)( sqrt(tmp.x+tmp.y) );
+    return (float)( sqrt(tmp2.x+tmp2.y) );
     
     
 }
@@ -139,18 +133,42 @@ bool isViewRange(ag_t *ag, float distance){
 }
 
 
+bool isLarge(float f1, float f2){
+    
+    if (f1>f2)return true;
+    else if (f1<f2) return false;
+    else if (f1==f2){
+     
+        if( brand() ) return true;
+        else return false;
+        
+    }
+    
+}
+
+
 void move(ag_t *ag, posi_t *posi){
     
     GismoManager& gismo = GismoManager::getInstance();
     
     //decision X
-    if ( isLarge(ag->posi.x, posi->x) ) ag->posi.x = ag->posi.x - (gismo.random()*ag->mov);
-    else ag->posi.x = ag->posi.x + ( gismo.random() * ag->mov );
+    if ( isLarge(ag->posi.x, posi->x) ) ag->posi.x = ag->posi.x - (frand()*ag->mov);
+    else ag->posi.x = ag->posi.x + ( frand() * ag->mov );
     //decision y
-    if ( isLarge(ag->posi.y, posi->y) ) ag->posi.y = ag->posi.y - (gismo.random()*ag->mov);
-    else ag->posi.y = ag->posi.y + ( gismo.random() *ag->mov);
+    if ( isLarge(ag->posi.y, posi->y) ) ag->posi.y = ag->posi.y - (frand()*ag->mov);
+    else ag->posi.y = ag->posi.y + ( frand() *ag->mov);
     
 }
+
+
+bool conditionCheck(condition_e cond1, condition_e cond2){
+    
+    if (cond1==cond2) return true;
+    else return false;
+    
+    
+}
+
 
 
 void randomMove(ag_t *ag){
@@ -158,17 +176,16 @@ void randomMove(ag_t *ag){
     GismoManager& gismo = GismoManager::getInstance();
 
     //for X
-    float fval = gismo.random();
     //invert sign randomly
-    if( fmod(fval, 2.0) == 0.0 )fval *= 1;
+    float fval=1.0f;
+    if( irand()<50 )fval *= 1;
     else fval *= -1;
     //Set the next X
     ag->posi.x = ag->posi.x + (ag->mov*fval);
 
     //for Y
-    fval = gismo.random();
     //invert sign randomly
-    if( fmod(fval, 2.0) == 0.0 )fval *= 1;
+    if( irand()<50 )fval *= 1;
     else fval *= -1;
     //Set the next X
     ag->posi.y = ag->posi.y + (ag->mov*fval);
@@ -177,15 +194,31 @@ void randomMove(ag_t *ag){
 }
 
 
-void interactWith(ag_t *focus , ag_t *target){
+void attackCheck(float distance, float *f_param){
     
+    if(distance <= ATK_DIST) *f_param -= AG_DMG;
+    
+}
+
+
+void interactWith(ag_t *focus , ag_t *target){
+
+    //Get singleton
+    GismoManager& gismo = GismoManager::getInstance();
+
     float dist = distance(focus->posi, target->posi);
     if (isViewRange(focus, dist)){
         
         if( isLarge(focus->size, target->size) ){
 
             move(focus, &target->posi);
-            focus->condition=CHASE;
+            
+            if( !conditionCheck(focus->condition, CHASE) ){
+                
+//                int tmp = 101;
+//                gismo.bang("/snd" , &tmp);                
+                focus->condition=CHASE;
+            }
             
         } else {
 
@@ -205,7 +238,7 @@ void interactWith(ag_t *focus , ag_t *target){
     }
     
     //Loop of World
-    positionLoop(&focus->posi); //rest by some of memory bug
+    positionLoop(&focus->posi, gismo.width_rate, gismo.height_rate); //rest by some of memory bug
 
 }
 
@@ -231,13 +264,13 @@ void makeInteracts(agent_buf_t *agents){
 }
 
 
-void positionLoop(posi_t *position){
+void positionLoop(posi_t *position, float w_max, float h_max){
     
-    if(position->x > 1.0f) position->x = 0.0f;
-    else if (position->x < 0.0f) position->x = 1.0f;
+    if(position->x > w_max) position->x = 0.0f;
+    else if (position->x <= 0.0f) position->x = w_max;
     
-    if(position->y > 1.0f) position->y = 0.0f;
-    else if (position->y < 0.0f) position->y = 1.0f;
+    if(position->y > h_max) position->y = 0.0f;
+    else if (position->y <= 0.0f) position->y = h_max;
     
 }
 
@@ -256,12 +289,36 @@ void setSeed(int seed){
     
 }
 
-float frandom(){
+float frand(){
     
     return ( ( (float)( rand()%10 ) ) * 0.1 );
     
 }
 
+int irand(){
+    
+    return ( ( rand()%100 ) );
+    
+}
+
+bool brand(){
+    
+    if (rand()%2==0)return true;
+    else return false;
+    
+}
+
+int setSound(int sound_id){
+    
+    //Get singleton
+    GismoManager& gismo = GismoManager::getInstance();
+    
+    int tmp = sound_id;
+    gismo.bang("/snd" , &tmp);
+    return tmp;
+
+    
+}
 
 
 //Definication of GismoManager :::::::::::
@@ -276,10 +333,10 @@ GismoManager::GismoManager() //Constructor
     
 }
 
-void GismoManager::setup(Event *pSound){
+void GismoManager::setup(){
     
     cout << "GismoManager setup" <<endl;
-    sound = pSound; //Store the pounter of the object
+
 }
 
 
@@ -291,11 +348,19 @@ ag_t* GismoManager::getAgents()
     
 }
 
+ag_t* GismoManager::getAgent(int aid)
+{
+    
+    return &agents.buf[aid];
+    
+}
+
 void GismoManager::addAgent(ag_t tmp){
     
     addAgentToBuff(tmp, &add);
     
 }
+
 
 void GismoManager::addSync(){
     
@@ -309,20 +374,4 @@ void GismoManager::addSync(){
     add.count = 0; //reset add_buf count
     
 }
-
-float GismoManager::random(){
-    
-    float fval = seed[random_count];
-    random_count+=1;
-    if(random_count>=SEED_MAX){
-        
-        random_count=0;
-        
-    }
-    return fval;
-    
-}
-
-
-
 

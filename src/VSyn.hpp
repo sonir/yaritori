@@ -29,6 +29,9 @@
 #include "cam_func.hpp"
 #include "Particle.hpp"
 
+//Test Class
+#include "Test.hpp"
+
 //Gismo
 #include "drawAgents.hpp"
 
@@ -36,7 +39,11 @@
 #include "Sound.hpp"
 
 
+//SCREEN SETUP
+#define SC_WITDH 1024
+#define SC_HEIGHT 768
 
+//OSC
 #define PORT 57139
 #define NUM_MSG_STRINGS 20
 
@@ -58,6 +65,11 @@ class VSyn {
         int current_msg_string;
         string msg_strings[NUM_MSG_STRINGS];
         float timers[NUM_MSG_STRINGS];
+    
+        //ScreenManagement
+        int screen_w;
+        int screen_h;
+    
         //Particle
         Particle particle;
     
@@ -73,6 +85,7 @@ class VSyn {
         void initColors(int max_num);
         void test(); //Method for Any Test
         //Variables
+        Test *myTest; //Test Instance
         GismoManager& gismo = GismoManager::getInstance(); //Pointer for gismoManager instance
         Sound sound; //AudioTrigger with OSC
     
