@@ -29,6 +29,9 @@
 #include "cam_func.hpp"
 #include "Particle.hpp"
 
+//Test Class
+#include "Test.hpp"
+
 //Gismo
 #include "drawAgents.hpp"
 
@@ -78,6 +81,7 @@ class VSyn {
         void initColors(int max_num);
         void test(); //Method for Any Test
         //Variables
+        Test *myTest; //Test Instance
         GismoManager& gismo = GismoManager::getInstance(); //Pointer for gismoManager instance
         Sound sound; //AudioTrigger with OSC
     

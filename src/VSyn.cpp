@@ -12,6 +12,10 @@ using namespace std;
 
 void VSyn::setup(){
     
+    
+    //Create TestClass
+    myTest = new Test(&sound);
+    
     ofBackground(0, 0, 0);
     ofSetCircleResolution(50);
     screen_w = ofGetWidth();
@@ -473,156 +477,8 @@ void VSyn::test(){
     //Draw Your Test Code. This method was invoked when the end of setup().
     std::cout << "test method is starting..." << std::endl;
     
-    
-    //Test frand
-    assert( frand()==0.1f );
-    assert( frand()==0.7f );
-    assert( frand()==0.7f );
-    assert( frand()==0.1f );
-    cout << "gismoManager::randmom() is OK."<<endl;
-
-    
-    //Define an agent
-    ag_t ag;
-    
-    //Test GismoManager.getAgents()
-    ag_t *agents = gismo.getAgents();
-    agents[0].posi.x = 0.13f;
-    agents[0].posi.y = 0.2f;
-    assert(agents[0].posi.x == 0.13f);
-    assert(agents[0].posi.y == 0.2f);
-    cout << "GismoManager:getAgent() is OK." << endl;
-    
-    //Test GismoLibrary distance()
-    posi_t tmp1, tmp2;
-    tmp1.x = 0.0f;
-    tmp1.y = 0.0f;
-    tmp2.x = 3.0f;
-    tmp2.y = 4.0f;
-    assert(distance(tmp1, tmp2) == 5.0f);
-    tmp1.x = 0.5f;
-    tmp1.y = 0.5f;
-    tmp2.x = -0.5f;
-    tmp2.y = -0.5f;
-    assert(distance(tmp1, tmp2)==(float)sqrt(2.0f));
-    tmp1.x = 3.0f;
-    tmp1.y = 4.0f;
-    tmp2.x = 0.0f;
-    tmp2.y = 0.0f;
-    assert(distance(tmp1, tmp2) == 5.0f);
-    tmp1.x = 5.0f;
-    tmp1.y = 12.0f;
-    tmp2.x = 0.0f;
-    tmp2.y = 0.0f;
-    assert(distance(tmp1, tmp2) == 13.0f);
-    cout << "GismoLibrary:distance() is OK." << endl;
-    
-    
-    //Test Init AgentActive
-    initAgentActive(&ag);
-    assert(ag.size == AG_DEF_SIZE);
-    assert(ag.active==true);
-    cout << "GismoLibrary:initAgentActive() is OK." << endl;
-
-    //TestAgentAdd
-    initAgentActive(&ag);
-    ag.view = 0.23f;
-    ag.posi.x = 0.2f; ag.posi.y=0.2f;
-    gismo.addAgent(ag);
-    assert (gismo.add.buf[0].view == 0.23f);
-    assert (gismo.add.count == 1);
-    cout << "GismoManager:addAgent() is OK." << endl;
-    
-    //TestSync
-    ag_t ag2;
-    initAgentActive(&ag2);
-    ag2.view = 0.34f;
-    gismo.addAgent(ag2);
-    gismo.addSync(); //Finally gismo requires sync to avoid direct agent addition when processing agents.
-    assert(gismo.add.count==0 && gismo.agents.count==2);
-    assert(agents[0].active && agents[1].active);
-    assert(agents[0].view==0.23f && agents[1].view==0.34f);
-    cout << "gismoLibrary:addSync() is OK." << endl;
-    
-    //Test gismo Library seekNearest();
-    agents[0].posi.x = 0.0f;
-    agents[0].posi.y = 0.0f;
-    agents[1].posi.x = 0.5f;
-    agents[1].posi.y = 0.5f;
-    ag_t ag3;
-    initAgentActive(&ag3);
-    ag3.posi.x = 0.5f;
-    ag3.posi.y = 0.49f;
-    gismo.addAgent(ag3); //add the new agent to addBuffer
-    ag_t ag4;
-    ag4.posi.x = 0.7f;
-    ag4.posi.y = 0.49f;
-    gismo.addAgent(ag3); //add the new agent to addBuffer
-    gismo.addSync(); //refrect the add buffer to actual buffer
-    int nearest_agent = seekNearest(0, &gismo.agents); //seek the nearest agent of agent[0]
-    cout << nearest_agent << endl;
-    assert(nearest_agent==2);
-    cout << "gismoManager:seekNearest() is OK."<<endl;
-    
-    
-    //Test isViewRange
-    ag_t ag5;
-    ag5.view = 0.5f;
-    assert( isViewRange(&ag5,0.3f)==true );
-    assert( isViewRange(&ag5,0.51f)==false );
-    cout << "gismoLibrary::isViewRange() is OK" << endl;
-    
-    //Test isLarge
-    assert( isLarge(0.5 , 0.4)==true );
-    assert( isLarge(0.5, 0.501)==false);
-    cout << "gismoLibrary::isaLarge is OK" <<endl;
-    
-    //Test Move
-    ag_t ag6;
-    posi_t tmp;
-    tmp.x=1.0; tmp.y=0.0;
-    initAgent(&ag6);
-    ag6.posi.x=0.5; ag6.posi.y=0.5;
-    move(&ag6,&tmp);
-    assert(ag6.posi.x >= 0.5f);
-    assert(ag6.posi.y <= 0.5f);
-    cout << "gismoLibrary::move() is OK." << endl;
-    
-    
-    //TestConditionCheck
-    condition_e cond1 = CALM;
-    condition_e cond2 = RUN;
-    assert ( conditionCheck(cond1, cond2) == false );
-    cond2 = CALM;
-    assert ( conditionCheck(cond1, cond2) == true );
-    
-    //Test interactWith()
-    ag_t ag8 , ag9;
-    initAgent(&ag8);
-    initAgent(&ag9);
-    ag8.size = 1.0f;
-    ag8.posi.x = 0.0f; ag8.posi.y = 0.0f;
-    ag9.posi.x = 1.0f; ag9.posi.y = 1.0f;
-    ag8.view = 1.5;
-    interactWith(&ag8 , &ag9);
-
-    
-    //TestReset
-    agents[0].active=true;
-    agents[1].active=true;
-    agBuffReset(&gismo.agents);
-    assert(agents[0].active==false);
-    assert(agents[1].active==false);
-    assert(gismo.agents.count == 0);
-    
-    
-    //TestLogistic
-    float fval=0.5;
-    fval = logistic(fval);
-    assert(fval==0.75f);
-    fval = logistic(fval);
-    cout << "GismoLibrary::logistic() is OK." << endl;
-    
+    //Run Test Class
+    myTest->run();
     
     //Test Sound Trigger with OSC
     sound.set(9);
@@ -635,21 +491,6 @@ void VSyn::test(){
     sound.update(); //test don't send when the event buffer was vacant.
     cout << "CLASS Sound is ok.(check the receive yourself.)" << endl;
     
-    
-    //Test
-    agBuffReset(&gismo.agents);
-    ag_t ag1;
-    initAgent(&ag1);
-    ag1.view = 256.0f;
-    gismo.agents.buf[0] = ag1;
-    ag1.view = 356.0f;
-    gismo.agents.buf[1] = ag1;
-    ag_t *pAg1 = gismo.getAgent(0);
-    assert(pAg1->view == 256.0f);
-    ag_t *pAg2 = gismo.getAgent(1);
-    assert(pAg2->view == 356.0f);
-    
-    
     //TestEventHandler
     EventHandler eventHandler;
     EvTest evTest;
@@ -658,8 +499,8 @@ void VSyn::test(){
     sound.set(2);
     sound.set(4);
     int val = 6;
-//    int *pVal = &val;
-//    assert( eventHandler.bang("/snd", pVal) == 6 );
+    //    int *pVal = &val;
+    //    assert( eventHandler.bang("/snd", pVal) == 6 );
     int args[] = {0,1,2};
     assert ( eventHandler.bang("/t01", args) == 138 );
     assert ( eventHandler.bang("/t01") == 137 );
@@ -679,75 +520,23 @@ void VSyn::test(){
     sound.update();
     
     cout << "GismoManager::eventHandler with Gismo is OK." << endl;
-
     
-    
-    //Test positionLoop()
-    posi_t pos;
-    pos.x = 1.1; pos.y = -0.01;
-    positionLoop(&pos);
-    assert (pos.x == 0.0f);
-    assert (pos.y == 1.0f);
-    pos.x = -0.1; pos.y = 1.4;
-    positionLoop(&pos);
-    assert (pos.x == 1.0f);
-    assert (pos.y == 0.0f);
-    pos.x = 0.0f; pos.y = 1.0f;
-    positionLoop(&pos);
-    assert (pos.x == 1.0f);
-    assert (pos.y == 1.0f);
-    cout << "GismoLibrary::positionLoop() is OK" << endl;
     
     
     
     //Reset all agents
     agBuffReset(&gismo.agents);
-     
-     
+    
+    //Set Agents
     ag_t act1, act2, act3, act4, act5, act6, act7, act8;
-//    float seed = 0.5;
-//    initAgentActive(&act1);
-//    act1.size = frand()*0.03f;
-//    act1.mov = 0.0f;
-//    act1.posi.x = 0.75;
-//    act1.posi.y = 0.25;
-//    act1.view = 0.0f;
-//    gismo.addAgent(act1);
-//    initAgentActive(&act2);
-//    act2.size = 0.01f;
-//    act2.view = 0.05f;
-//    gismo.addAgent(act2);
-//
-//    initAgentActive(&act3);
-//    act3.size = frand()*AG_DEF_SIZE_FIX;
-//    gismo.addAgent(act3);
-//
-//    initAgentActive(&act4);
-//    act4.size = frand()*AG_DEF_SIZE_FIX;
-//    gismo.addAgent(act4);
-//
-//    initAgentActive(&act5);
-//    act5.size = frand()*AG_DEF_SIZE_FIX;
-//    gismo.addAgent(act5);
-//
-//    initAgentActive(&act6);
-//    act6.size = frand()*AG_DEF_SIZE_FIX;
-//    gismo.addAgent(act6);
-//
-//    initAgentActive(&act7);
-//    act7.size = frand()*AG_DEF_SIZE_FIX;
-//    gismo.addAgent(act7);
-//    
+
     initAgentActive(&act8);
     act8.posi.x = 0.25f; act8.posi.y = 0.5f;
     gismo.addAgent(act8);
     act8.posi.x = 0.75f; act8.posi.y = 0.5f;
     gismo.addAgent(act8);
-//    gismo.addAgent(act8);
-//    gismo.addAgent(act8);
-//    gismo.addAgent(act8);
-//    
-    for(int i=0;i<2000;i++) gismo.addAgent(act8);
+
+    for(int i=0;i<1000;i++) gismo.addAgent(act8);
     
 
     
