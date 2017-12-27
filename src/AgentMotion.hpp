@@ -10,23 +10,12 @@
 #define AgentMotion_hpp
 
 #include "ofMain.h"
+#include "ScreenManager.hpp"
 
-//Constant Values
-constexpr float NODE_LENGTH_RANGE = 0.005;   //0.003
-constexpr float NODE_LENGTH_MIN = 0.003;
-constexpr float MOVE_SIZE = 0.1;
-constexpr float M_2XPI = M_PI * 2.0;
+//Static Values
 constexpr int CONNECTION_MAX = 5;
 constexpr int NODES_MAX = 20;
 constexpr int LINE_VERTICES_MAX = NODES_MAX * CONNECTION_MAX * 2;
-constexpr float STEP_MAX = M_2XPI * 0.005;
-constexpr float STEP_MIN = M_2XPI * 0.003;
-
-constexpr float LINE_WIDTH = 0.5;
-constexpr float NODE_SIZE = 4.0;
-constexpr float TREMOR_RATIO = 0.125;
-constexpr float STAY_RATIO = 1.0 - TREMOR_RATIO;
-
 
 //Each node
 struct Node {
@@ -47,6 +36,7 @@ struct Nodes {
     float size;
     Node node[NODES_MAX];
     int nodeNum;
+    float mov;
 };
 
 
@@ -57,9 +47,15 @@ public:
     void initModulation(int index);
     
     void draw();
-    void update(int &screenWidth);
+    void update();
+    void update(int &canvasWidth);
+    void update(int canvasWidth, int canvasHeight);
     void updatePhase(int index);
-    void updatePosition(int index, int &screenWidth);
+    void updatePosition(int index);
+    void updatePosition(int index, int &scale);
+    void updatePosition(int index, int &canvasWidth, int &canvasHeight);
+    float getPointSize();
+    float getLineWidth();
     
     //Variables
     Nodes nodes;

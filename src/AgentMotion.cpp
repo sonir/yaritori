@@ -9,12 +9,27 @@
 #include "AgentMotion.hpp"
 
 
+//Constant Values
+constexpr float NODE_LENGTH_RANGE = 0.005;   //0.003
+constexpr float NODE_LENGTH_MIN = 0.003;
+constexpr float MOVE_SIZE = 0.1;
+constexpr float M_2XPI = M_PI * 2.0;
+
+constexpr float STEP_MAX = M_2XPI * 5.0;
+constexpr float STEP_MIN = M_2XPI * 3.0;
+
+constexpr float LINE_WIDTH = 0.5;
+constexpr float NODE_SIZE = 4.0;
+constexpr float TREMOR_RATIO = 0.125;
+constexpr float STAY_RATIO = 1.0 - TREMOR_RATIO;
+
 AgentMotion::AgentMotion() {
     nodes.scale_x = 0.0;
     nodes.scale_y = 0.0;
     
     //nodes.nodeNum = int(ofRandom(10, MAX_NODES));
     nodes.nodeNum = NODES_MAX;
+    nodes.mov = 0.5;
     
     /* Set Node pos and connection */
     for(int i = 0; i < nodes.nodeNum; i++) {
@@ -82,21 +97,25 @@ void AgentMotion::draw() {
     glHint(GL_POINT_SMOOTH_HINT, GL_NICEST);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
-    glPointSize(NODE_SIZE);
+    glPointSize(getPointSize());
     nodeVbo.draw(GL_POINTS, 0, nodes.nodeNum);
     
-    glLineWidth(LINE_WIDTH);
+    
+    glEnable(GL_LINE_SMOOTH);
+    glLineWidth(getLineWidth());
     lineVbo.drawElements(GL_LINES, lineNum);
 }
 
+/////////////////// UPDATE POSITION /////////////////////
+
 void AgentMotion::updatePhase(int index) {
     /* Update Phases */
-    nodes.node[index].carPhase += nodes.node[index].carStep;    //Carrier
+    nodes.node[index].carPhase += nodes.node[index].carStep * nodes.mov;    //Carrier
     if(M_2XPI < nodes.node[index].carPhase) {
         nodes.node[index].carPhase = 0.0;
     }
     
-    nodes.node[index].modPhase += nodes.node[index].modStep;    //Modulater
+    nodes.node[index].modPhase += nodes.node[index].modStep * nodes.mov;    //Modulater
     if(M_2XPI < nodes.node[index].modPhase) {
         nodes.node[index].modPhase = 0.0;
     }
@@ -106,25 +125,54 @@ void AgentMotion::updatePhase(int index) {
 
 
 
-void AgentMotion::updatePosition(int index, int &screenWidth) {
+/////////////////// UPDATE POSITION /////////////////////
+void AgentMotion::updatePosition(int index) {
     /* Update Position */
     ofVec2f nextPos;
     nodeX = (nodes.node[index].velocityX * phase + nodes.node[index].x * STAY_RATIO) * nodes.size;
     nodeY = (nodes.node[index].velocityY * phase + nodes.node[index].y * STAY_RATIO) * nodes.size;
     
     /* Position on Screen */
-    nextPos.x = screenWidth * (nodeX + nodes.scale_x);
-    nextPos.y = screenWidth * (nodeY + nodes.scale_y);
+    nextPos.x = nodeX * SCREEN_WIDTH + nodes.scale_x * CANVAS_WIDTH;
+    nextPos.y = nodeY * SCREEN_WIDTH + nodes.scale_y * CANVAS_HEIGHT;
     
     nodePos[index] = nextPos; //Set position onto Array
 }
 
-void AgentMotion::update(int &screenWidth) {
+void AgentMotion::updatePosition(int index, int &scale) {
+    /* Update Position */
+    ofVec2f nextPos;
+    nodeX = (nodes.node[index].velocityX * phase + nodes.node[index].x * STAY_RATIO) * nodes.size;
+    nodeY = (nodes.node[index].velocityY * phase + nodes.node[index].y * STAY_RATIO) * nodes.size;
+    
+    /* Position on Screen */
+    nextPos.x = scale * (nodeX + nodes.scale_x);
+    nextPos.y = scale * (nodeY + nodes.scale_y);
+    
+    nodePos[index] = nextPos; //Set position onto Array
+}
+
+void AgentMotion::updatePosition(int index, int &canvasWidth, int &canvasHeight) {
+    /* Update Position */
+    ofVec2f nextPos;
+    nodeX = (nodes.node[index].velocityX * phase + nodes.node[index].x * STAY_RATIO) * nodes.size;
+    nodeY = (nodes.node[index].velocityY * phase + nodes.node[index].y * STAY_RATIO) * nodes.size;
+    
+    /* Position on Screen */
+    nextPos.x = canvasWidth * (nodeX + nodes.scale_x);
+    nextPos.y = canvasHeight * (nodeY + nodes.scale_y);
+    
+    nodePos[index] = nextPos; //Set position onto Array
+}
+
+/////////////////// UPDATE /////////////////////
+
+void AgentMotion::update() {
     /* Update Node, Position Array */
     for(int i = 0; i < nodes.nodeNum; i++) {
         /*** on each node ***/
         updatePhase(i);
-        updatePosition(i, screenWidth);
+        updatePosition(i);
     }
     
     
@@ -133,6 +181,36 @@ void AgentMotion::update(int &screenWidth) {
     lineVbo.updateVertexData(nodePos, nodes.nodeNum);
 }
 
+void AgentMotion::update(int &canvasWidth) {
+    /* Update Node, Position Array */
+    for(int i = 0; i < nodes.nodeNum; i++) {
+        /*** on each node ***/
+        updatePhase(i);
+        updatePosition(i, canvasWidth);
+    }
+    
+    
+    /* Update VBO*/
+    nodeVbo.updateVertexData(nodePos, nodes.nodeNum);
+    lineVbo.updateVertexData(nodePos, nodes.nodeNum);
+}
+
+
+void AgentMotion::update(int canvasWidth, int canvasHeight) {
+    /* Update Node, Position Array */
+    for(int i = 0; i < nodes.nodeNum; i++) {
+        /*** on each node ***/
+        updatePhase(i);
+        updatePosition(i, canvasWidth, canvasHeight);
+    }
+    
+    
+    /* Update VBO*/
+    nodeVbo.updateVertexData(nodePos, nodes.nodeNum);
+    lineVbo.updateVertexData(nodePos, nodes.nodeNum);
+}
+
+/////////////////// INIT /////////////////////
 
 void AgentMotion::initModulation(int index) {
     ofVec2f vel = ofVec2f(ofRandom(-1.0, 1.0), ofRandom(-1.0, 1.0)).getNormalized();
@@ -147,3 +225,32 @@ void AgentMotion::initModulation(int index) {
     nodes.node[index].carPhase = 0.0;
 }
 
+float AgentMotion::getPointSize() {
+    float pointSize = 4.0;
+    if(nodes.size < 0.02) {
+        pointSize = 2.0;
+    } else if (0.02 <= nodes.size && nodes.size < 0.03) {
+        pointSize = 2.5;
+    } else if(0.03 <= nodes.size && nodes.size < 0.04) {
+        pointSize = 3.0;
+    } else if(0.04 <= nodes.size && nodes.size < 0.05) {
+        pointSize = 3.5;
+    } else {
+        pointSize += 8.0 * nodes.size;
+    }
+    
+    
+    return pointSize;
+}
+
+float AgentMotion::getLineWidth() {
+    float lineWidth = 0.5;
+    if(nodes.size <= 0.01) {
+        lineWidth = 0.05;
+    } else if (0.01 < nodes.size && nodes.size < 0.02) {
+        lineWidth = 0.1;
+    } else if(0.02 <= nodes.size && nodes.size < 0.05) {
+        lineWidth = 0.25;
+    }
+    return lineWidth;
+}

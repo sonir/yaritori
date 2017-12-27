@@ -551,4 +551,5 @@ dependencies: \
   ../../../libs/openFrameworks/video/ofVideoPlayer.h \
   ../../../libs/openFrameworks/video/ofAVFoundationPlayer.h \
   ../../../libs/openFrameworks/3d/ofCamera.h \
-  ../../../libs/openFrameworks/3d/ofEasyCam.h
+  ../../../libs/openFrameworks/3d/ofEasyCam.h \
+  /Users/hana/Development/openFrameworks/of_v0.9.8_osx_release/apps/1802_CCMA/yaritori/src/ScreenManager.hpp

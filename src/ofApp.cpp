@@ -40,7 +40,17 @@ void ofApp::keyReleased(int key){
         case 'f':
             ofToggleFullscreen();
             break;
-    
+            
+            
+        case '1':
+            setScreenPos(SCREEN_POS_LEFT);
+            break;
+        case '2':
+            setScreenPos(SCREEN_POS_CENTER);
+            break;
+        case '3':
+            setScreenPos(SCREEN_POS_RIGHT);
+            break;
     }
     
 

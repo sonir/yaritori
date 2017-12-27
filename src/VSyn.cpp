@@ -679,19 +679,24 @@ void VSyn::test(){
     ag_t act1, act2, act3, act4, act5, act6, act7, act8;
     float seed = 0.5;
     seed = initAgentActive(&act1, seed);
-    act1.size = 0.1f;
+    act1.posi.x = 0.1;
+    act1.size = 0.02f;
     act1.view = 0.0f;
     act1.mov = 0.0f;
     gismo.addAgent(act1);
     
     seed = initAgentActive(&act2, seed);
-    act2.size = 0.01f;
-    act2.view = 0.05f;
+    act2.size = 0.03f;
+    act2.posi.x = 0.2;
+    act2.view = 0.02f;
+    act2.mov = 0.0f;
     gismo.addAgent(act2);
 
     seed = initAgentActive(&act3, seed);
     act3.size = gismo.random()*0.03f;
-    act3.mov = 0.0f;
+    act3.size = 0.04f;
+    act3.mov = 0.01f;
+    act3.posi.x = 0.3;
     gismo.addAgent(act3);
 
 //    seed = initAgentActive(&act4, seed);
@@ -714,7 +719,7 @@ void VSyn::test(){
 //    act8.size = gismo.random()*0.03f;
 //    gismo.addAgent(act8);
     
-    for(int i=0;i<100;i++) gismo.addAgent(act2);
+    //for(int i=0;i<100;i++) gismo.addAgent(act2);
 
     
     std::cout << "test method has finished." << std::endl;
