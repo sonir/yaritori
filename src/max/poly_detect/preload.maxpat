@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 1006.0, 117.0, 640.0, 480.0 ],
+		"rect" : [ 672.0, 308.0, 640.0, 480.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -37,6 +37,44 @@
 		"style" : "",
 		"subpatcher_template" : "",
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-3",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 89.416687, 534.166687, 98.0, 22.0 ],
+					"style" : "",
+					"text" : "s sfplay_preload"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-14",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"outlettype" : [ "bang", "bang", "" ],
+					"patching_rect" : [ 70.416687, 129.0, 43.0, 22.0 ],
+					"style" : "",
+					"text" : "t b b s"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-6",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 70.416687, 90.0, 87.0, 22.0 ],
+					"style" : "",
+					"text" : "r genre_select"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-46",
 					"maxclass" : "newobj",
@@ -77,27 +115,14 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-4",
-					"linecount" : 2,
+					"linecount" : 3,
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 201.416687, 527.666687, 418.0, 35.0 ],
+					"patching_rect" : [ 201.416687, 527.666687, 432.0, 49.0 ],
 					"style" : "",
-					"text" : "preload 5 \"Macintosh HD:/Users/rin/Desktop/poly_detect/snd/4.wav\" 21666.258 21966.258"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-16",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 121.416687, 497.0, 34.0, 22.0 ],
-					"style" : "",
-					"text" : "print"
+					"text" : "preload 3 \"Macintosh HD:/Users/rin/Desktop/poly_detect_genre/classic/Art_Of_Escapism_-_Against_Time.mp3\" 10196.644 10496.644"
 				}
 
 			}
@@ -123,20 +148,6 @@
 					"patching_rect" : [ 209.916748, 184.666687, 54.0, 20.0 ],
 					"style" : "",
 					"text" : "audioID"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-10",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 121.416687, 527.666687, 78.0, 22.0 ],
-					"save" : [ "#N", "sflist~", "test01", 483840, ";" ],
-					"style" : "",
-					"text" : "sflist~ test01"
 				}
 
 			}
@@ -200,7 +211,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 165.666748, 102.0, 29.5, 22.0 ],
 					"style" : "",
-					"text" : "5"
+					"text" : "2"
 				}
 
 			}
@@ -239,7 +250,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 367.750061, 184.666687, 30.0, 30.0 ],
+					"patching_rect" : [ 371.416687, 179.666687, 30.0, 30.0 ],
 					"style" : ""
 				}
 
@@ -285,27 +296,15 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-43",
-					"maxclass" : "newobj",
-					"numinlets" : 0,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 51.0, 90.0, 26.0, 22.0 ],
-					"style" : "",
-					"text" : "r lb"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-34",
+					"linecount" : 6,
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 51.0, 184.666687, 62.0, 22.0 ],
+					"patching_rect" : [ 19.416687, 184.666687, 90.0, 89.0 ],
 					"style" : "",
-					"text" : "prefix snd"
+					"text" : "prefix \"Macintosh HD:/Users/rin/Desktop/poly_detect_genre/classic\""
 				}
 
 			}
@@ -313,14 +312,14 @@
 				"box" : 				{
 					"autopopulate" : 1,
 					"id" : "obj-41",
-					"items" : [ "1.wav", ",", "2.wav", ",", "3.wav", ",", "4.wav", ",", "test.wav" ],
+					"items" : [ "Aitua_-_12_-_The_Gray_Forest_-_I_Welcome.mp3", ",", "Art_Of_Escapism_-_Against_Time.mp3", ",", "Axletree_-_02_-_Rock_pools_poetic_interlude.mp3", ",", "Dee_Yan-Key_-_01_-_Irish_Fog.mp3", ",", "Dee_Yan-Key_-_02_-_lent.mp3", ",", "Kai_Engel_-_01_-_Brand_New_World.mp3", ",", "New_Millennium_String_Band_-_01_-_Rock_for_the_new_Millenium.mp3", ",", "Podington_Bear_-_Lens_Flare.mp3" ],
 					"maxclass" : "umenu",
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "int", "", "" ],
 					"parameter_enable" : 0,
 					"patching_rect" : [ 203.083374, 271.666687, 157.666687, 22.0 ],
-					"prefix" : "Macintosh HD:/Users/rin/Desktop/poly_detect/snd/",
+					"prefix" : "Macintosh HD:/Users/rin/Desktop/poly_detect_genre/classic/",
 					"style" : ""
 				}
 
@@ -362,6 +361,27 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-34", 1 ],
+					"source" : [ "obj-14", 2 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-34", 0 ],
+					"source" : [ "obj-14", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-79", 0 ],
+					"source" : [ "obj-14", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
 					"midpoints" : [ 196.166748, 382.166687, 219.416748, 382.166687 ],
 					"order" : 1,
@@ -395,13 +415,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-10", 0 ],
-					"source" : [ "obj-16", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-47", 4 ],
 					"source" : [ "obj-27", 1 ]
 				}
@@ -417,7 +430,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-41", 0 ],
-					"midpoints" : [ 60.5, 253.000015, 212.583374, 253.000015 ],
+					"midpoints" : [ 28.916687, 318.0, 189.0, 318.0, 189.0, 267.0, 212.583374, 267.0 ],
 					"source" : [ "obj-34", 0 ]
 				}
 
@@ -453,23 +466,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-34", 0 ],
-					"order" : 1,
-					"source" : [ "obj-43", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-79", 0 ],
-					"midpoints" : [ 60.5, 130.666694, 128.916687, 130.666694 ],
-					"order" : 0,
-					"source" : [ "obj-43", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-8", 1 ],
 					"source" : [ "obj-45", 0 ]
 				}
@@ -477,7 +473,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-10", 0 ],
+					"destination" : [ "obj-3", 0 ],
 					"order" : 1,
 					"source" : [ "obj-46", 1 ]
 				}
@@ -509,6 +505,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-11", 0 ],
 					"source" : [ "obj-5", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-14", 0 ],
+					"source" : [ "obj-6", 0 ]
 				}
 
 			}
