@@ -10,6 +10,7 @@
 #define Test_hpp
 
 #include <stdio.h>
+#include <cassert>
 #include "ofxGismo.h"
 #include "Sound.hpp"
 

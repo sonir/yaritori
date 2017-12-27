@@ -189,18 +189,37 @@ void Test :: run(){
     //Test positionLoop()
     posi_t pos;
     pos.x = 1.1; pos.y = -0.01;
-    positionLoop(&pos);
+    positionLoop(&pos, 1.0f, 1.0f);
     assert (pos.x == 0.0f);
     assert (pos.y == 1.0f);
     pos.x = -0.1; pos.y = 1.4;
-    positionLoop(&pos);
+    positionLoop(&pos, 1.0f, 1.0f);
     assert (pos.x == 1.0f);
     assert (pos.y == 0.0f);
     pos.x = 0.0f; pos.y = 1.0f;
-    positionLoop(&pos);
+    positionLoop(&pos, 1.0f, 1.0f);
     assert (pos.x == 1.0f);
     assert (pos.y == 1.0f);
     cout << "GismoLibrary::positionLoop() is OK" << endl;
+    
+    
+    //Test attackCheck
+    float fval2 = 0.0f;
+    float size2 = 1.0f;
+    attackCheck(fval2, &size2);
+    bool size_test2 = true;
+    if ( size2 != (1.0f-AG_DMG) ) size_test2 = false;
+    assert(size_test2);
+    assert(size2 == 1.0f-AG_DMG);
+    size2 = 1.0f;
+    fval2 = ATK_DIST+0.1;
+    attackCheck(fval2, &size2);
+    assert(size2 == 1.0f);
+
+    size2 = 1.0f;
+    fval2 = ATK_DIST;
+    attackCheck(fval2, &size2);
+    assert(size2 == 1.0f-AG_DMG);
     
     
 }

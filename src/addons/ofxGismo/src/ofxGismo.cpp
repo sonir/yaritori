@@ -194,6 +194,13 @@ void randomMove(ag_t *ag){
 }
 
 
+void attackCheck(float distance, float *f_param){
+    
+    if(distance <= ATK_DIST) *f_param -= AG_DMG;
+    
+}
+
+
 void interactWith(ag_t *focus , ag_t *target){
 
     //Get singleton
@@ -231,7 +238,7 @@ void interactWith(ag_t *focus , ag_t *target){
     }
     
     //Loop of World
-    positionLoop(&focus->posi); //rest by some of memory bug
+    positionLoop(&focus->posi, gismo.width_rate, gismo.height_rate); //rest by some of memory bug
 
 }
 
@@ -257,13 +264,13 @@ void makeInteracts(agent_buf_t *agents){
 }
 
 
-void positionLoop(posi_t *position){
+void positionLoop(posi_t *position, float w_max, float h_max){
     
-    if(position->x > 1.0f) position->x = 0.0f;
-    else if (position->x <= 0.0f) position->x = 1.0f;
+    if(position->x > w_max) position->x = 0.0f;
+    else if (position->x <= 0.0f) position->x = w_max;
     
-    if(position->y > 1.0f) position->y = 0.0f;
-    else if (position->y <= 0.0f) position->y = 1.0f;
+    if(position->y > h_max) position->y = 0.0f;
+    else if (position->y <= 0.0f) position->y = h_max;
     
 }
 

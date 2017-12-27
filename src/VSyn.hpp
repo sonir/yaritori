@@ -39,7 +39,11 @@
 #include "Sound.hpp"
 
 
+//SCREEN SETUP
+#define SC_WITDH 1024
+#define SC_HEIGHT 768
 
+//OSC
 #define PORT 57139
 #define NUM_MSG_STRINGS 20
 
