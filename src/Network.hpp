@@ -43,6 +43,7 @@ class Network {
     
     private:
         GismoManager& gismo = GismoManager::getInstance(); //Pointer for gismoManager instance
+        //GismoManager& gismo = GismoManager::getInstance(); //Pointer for gismoManager instance
     
     
 };

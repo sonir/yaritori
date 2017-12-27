@@ -14,11 +14,7 @@ void Network :: setup(){
     cout << "network:setup()" << endl;
     
     receiver.setup(IN_PORT);
-    
     current_msg_string = 0;
-    mouseX = 0;
-    mouseY = 0;
-    mouseButtonState = "";
     
 }
 
@@ -41,48 +37,32 @@ void Network :: update(){
         
         // check for mouse moved message
         if(m.getAddress() == "/agent_control"){
+            
             string adr = m.getArgAsString(0);
+            int agid = m.getArgAsInt(1);
+            ag_t *pAg = gismo.getAgent(agid);
             
             if(adr == "/position"){
                 
-                int agid = m.getArgAsInt(1);
-                float posx = m.getArgAsFloat(2);
-                float posy = m.getArgAsFloat(3);
-                cout << "POS :: " <<  posx << " , " << posy << endl;
+                pAg->posi.x = m.getArgAsFloat(2);
+                pAg->posi.y = m.getArgAsFloat(3);
+                cout << "POS :: " <<  pAg->posi.x << " , " << pAg->posi.y << endl;
             
             }else if(adr=="/view"){
                 
-                int agid = m.getArgAsInt(1);
-                float view = m.getArgAsFloat(2);
-                cout << "VIEW:: " << view << endl;
+                 pAg->view = m.getArgAsFloat(2);
+                cout << "VIEW:: " << pAg->view << endl;
                 
                 
             }else if(adr=="/mov"){
                 
-                int agid = m.getArgAsInt(1);
-                float mov = m.getArgAsFloat(2);
-                cout << "MOV:: " << mov << endl;
-                
+                 pAg->mov = m.getArgAsFloat(2);
+                cout << "MOV:: " << pAg->mov << endl;
                 
             }
             
             
             
-        }
-        else if(m.getAddress() == "/mouse/position"){
-            // both the arguments are int32's
-            mouseX = m.getArgAsInt32(0);
-            mouseY = m.getArgAsInt32(1);
-        }
-        // check for mouse button message
-        else if(m.getAddress() == "/mouse/button"){
-            // the single argument is a string
-            mouseButtonState = m.getArgAsString(0);
-        }
-        // check for an image being sent (note: the size of the image depends greatly on your network buffer sizes - if an image is too big the message won't come through )
-        else if(m.getAddress() == "/image" ){
-            ofBuffer buffer = m.getArgAsBlob(0);
-            receivedImage.load(buffer);
         }
         else{
             // unrecognized message: display on the bottom of the screen

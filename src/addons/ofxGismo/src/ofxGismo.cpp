@@ -80,16 +80,16 @@ void agBuffReset(agent_buf_t *agents){
 //Interaction Tool Kits
 float distance(posi_t p1, posi_t p2){
     
-    posi_t tmp;
+    posi_t tmp1, tmp2;
     // calc differences
-    tmp.x = p2.x - p1.x;
-    tmp.y = p2.y = p2.y;
+    tmp1.x = p2.x - p1.x;
+    tmp1.y = p2.y - p1.y;
     
-    tmp.x = tmp.x*tmp.x;
-    tmp.y = tmp.y*tmp.y;
+    tmp2.x = tmp1.x*tmp1.x;
+    tmp2.y = tmp1.y*tmp1.y;
     
     //	pythagoras theorem
-    return (float)( sqrt(tmp.x+tmp.y) );
+    return (float)( sqrt(tmp2.x+tmp2.y) );
     
     
 }
@@ -341,6 +341,12 @@ ag_t* GismoManager::getAgents()
     
 }
 
+ag_t* GismoManager::getAgent(int aid)
+{
+    
+    return &agents.buf[aid];
+    
+}
 
 void GismoManager::addAgent(ag_t tmp){
     

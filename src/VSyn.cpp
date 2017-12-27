@@ -435,8 +435,9 @@ void VSyn::draw(){
                     
             }
             
+            square(ag->posi.x, ag->posi.y, 0.01, 0.0f, false);
             ofDrawBitmapString( cond_flg, tmp_x, tmp_y);
-            circle(ag->posi.x+0.0078f, ag->posi.y+0.00078f, ag->size*10.0f,false);
+            circle(ag->posi.x+0.0078f, ag->posi.y+0.00078f, ag->view,false);
             ofSetColor(255,255,255);
         }
         agents++;
@@ -499,6 +500,21 @@ void VSyn::test(){
     tmp2.x = 3.0f;
     tmp2.y = 4.0f;
     assert(distance(tmp1, tmp2) == 5.0f);
+    tmp1.x = 0.5f;
+    tmp1.y = 0.5f;
+    tmp2.x = -0.5f;
+    tmp2.y = -0.5f;
+    assert(distance(tmp1, tmp2)==(float)sqrt(2.0f));
+    tmp1.x = 3.0f;
+    tmp1.y = 4.0f;
+    tmp2.x = 0.0f;
+    tmp2.y = 0.0f;
+    assert(distance(tmp1, tmp2) == 5.0f);
+    tmp1.x = 5.0f;
+    tmp1.y = 12.0f;
+    tmp2.x = 0.0f;
+    tmp2.y = 0.0f;
+    assert(distance(tmp1, tmp2) == 13.0f);
     cout << "GismoLibrary:distance() is OK." << endl;
     
     
@@ -618,7 +634,21 @@ void VSyn::test(){
     assert (sound.update() == 0 );
     sound.update(); //test don't send when the event buffer was vacant.
     cout << "CLASS Sound is ok.(check the receive yourself.)" << endl;
-
+    
+    
+    //Test
+    agBuffReset(&gismo.agents);
+    ag_t ag1;
+    initAgent(&ag1);
+    ag1.view = 256.0f;
+    gismo.agents.buf[0] = ag1;
+    ag1.view = 356.0f;
+    gismo.agents.buf[1] = ag1;
+    ag_t *pAg1 = gismo.getAgent(0);
+    assert(pAg1->view == 256.0f);
+    ag_t *pAg2 = gismo.getAgent(1);
+    assert(pAg2->view == 356.0f);
+    
     
     //TestEventHandler
     EventHandler eventHandler;
@@ -709,15 +739,15 @@ void VSyn::test(){
 //    gismo.addAgent(act7);
 //    
     initAgentActive(&act8);
-    //act8.mov = 0.000f;
-//    act8.size = frand()*AG_DEF_SIZE_FIX;
+    act8.posi.x = 0.25f; act8.posi.y = 0.5f;
     gismo.addAgent(act8);
+    act8.posi.x = 0.75f; act8.posi.y = 0.5f;
     gismo.addAgent(act8);
-    gismo.addAgent(act8);
-    gismo.addAgent(act8);
-    gismo.addAgent(act8);
-    
-//    for(int i=0;i<500;i++) gismo.addAgent(act8);
+//    gismo.addAgent(act8);
+//    gismo.addAgent(act8);
+//    gismo.addAgent(act8);
+//    
+    for(int i=0;i<2000;i++) gismo.addAgent(act8);
     
 
     

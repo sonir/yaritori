@@ -14,7 +14,7 @@
 #define SEED_MAX 63
 //Agent Default Parameters
 #define AG_DEF_SIZE 0.0034f
-#define AG_DEF_MOV 0.002f
+#define AG_DEF_MOV 0.002f//0.002f
 #define AG_DEF_VIEW 0.3f
 #define AG_DEF_SIZE_FIX 0.005f //Scaling factor for frand(0.0-1.0)
 
@@ -85,6 +85,7 @@ class GismoManager : public EventHandler {
         //Methods
         void setup();
         ag_t* getAgents();
+        ag_t* getAgent(int aid);
         void addAgent(ag_t tmp);
         void addSync(); //Sync actual agent array and add_buffer
         //float random();

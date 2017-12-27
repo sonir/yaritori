@@ -25,8 +25,9 @@ void ofApp::update(){
 void ofApp::draw(){
 
     vsyn.draw();
-//    ofDrawBitmapString("fps = " + ofToString(ofGetFrameRate()), 10, 20);
-
+#ifdef DEBUG_MODE
+    ofDrawBitmapString("fps = " + ofToString(ofGetFrameRate()), 10, 20);
+#endif
     
 }
 
