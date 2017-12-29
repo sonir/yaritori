@@ -353,10 +353,14 @@ GismoManager::GismoManager() //Constructor
 void GismoManager::setup(){
     
     cout << "GismoManager setup" <<endl;
-
+    
 }
 
 
+void GismoManager::setRippleEvent(Event* pRipple) {
+    ripple = pRipple;
+    this->eventAdd("/ripple", ripple);
+}
 
 ag_t* GismoManager::getAgents()
 {
@@ -375,6 +379,10 @@ ag_t* GismoManager::getAgent(int aid)
 void GismoManager::addAgent(ag_t tmp){
     
     addAgentToBuff(tmp, &add);
+    
+    //Bang ripple
+    float args[] = {tmp.posi.x, tmp.posi.y};
+    this->bang("/ripple", args);
     
 }
 

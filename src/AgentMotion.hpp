@@ -49,12 +49,12 @@ public:
     
     void draw();
     void update();
-    void update(int &canvasWidth);
-    void update(int canvasWidth, int canvasHeight);
+    //void update(int &canvasWidth);
+    //void update(int canvasWidth, int canvasHeight);
     void updatePhase(int index);
     void updatePosition(int index);
-    void updatePosition(int index, int &scale);
-    void updatePosition(int index, int &canvasWidth, int &canvasHeight);
+    //void updatePosition(int index, int &scale);
+    //void updatePosition(int index, int &canvasWidth, int &canvasHeight);
     float getPointSize();
     float getLineWidth();
     

@@ -143,31 +143,31 @@ void AgentMotion::updatePosition(int index) {
     nodePos[index] = nextPos; //Set position onto Array
 }
 
-void AgentMotion::updatePosition(int index, int &scale) {
-    /* Update Position */
-    ofVec2f nextPos;
-    nodeX = (nodes.node[index].velocityX * phase + nodes.node[index].x * STAY_RATIO) * nodes.size;
-    nodeY = (nodes.node[index].velocityY * phase + nodes.node[index].y * STAY_RATIO) * nodes.size;
-    
-    /* Position on Screen */
-    nextPos.x = scale * (nodeX + nodes.scale_x);
-    nextPos.y = scale * (nodeY + nodes.scale_y);
-    
-    nodePos[index] = nextPos; //Set position onto Array
-}
-
-void AgentMotion::updatePosition(int index, int &canvasWidth, int &canvasHeight) {
-    /* Update Position */
-    ofVec2f nextPos;
-    nodeX = (nodes.node[index].velocityX * phase + nodes.node[index].x * STAY_RATIO) * nodes.size;
-    nodeY = (nodes.node[index].velocityY * phase + nodes.node[index].y * STAY_RATIO) * nodes.size;
-    
-    /* Position on Screen */
-    nextPos.x = canvasWidth * (nodeX + nodes.scale_x);
-    nextPos.y = canvasHeight * (nodeY + nodes.scale_y);
-    
-    nodePos[index] = nextPos; //Set position onto Array
-}
+//void AgentMotion::updatePosition(int index, int &scale) {
+//    /* Update Position */
+//    ofVec2f nextPos;
+//    nodeX = (nodes.node[index].velocityX * phase + nodes.node[index].x * STAY_RATIO) * nodes.size;
+//    nodeY = (nodes.node[index].velocityY * phase + nodes.node[index].y * STAY_RATIO) * nodes.size;
+//    
+//    /* Position on Screen */
+//    nextPos.x = scale * (nodeX + nodes.scale_x);
+//    nextPos.y = scale * (nodeY + nodes.scale_y);
+//    
+//    nodePos[index] = nextPos; //Set position onto Array
+//}
+//
+//void AgentMotion::updatePosition(int index, int &canvasWidth, int &canvasHeight) {
+//    /* Update Position */
+//    ofVec2f nextPos;
+//    nodeX = (nodes.node[index].velocityX * phase + nodes.node[index].x * STAY_RATIO) * nodes.size;
+//    nodeY = (nodes.node[index].velocityY * phase + nodes.node[index].y * STAY_RATIO) * nodes.size;
+//    
+//    /* Position on Screen */
+//    nextPos.x = canvasWidth * (nodeX + nodes.scale_x);
+//    nextPos.y = canvasHeight * (nodeY + nodes.scale_y);
+//    
+//    nodePos[index] = nextPos; //Set position onto Array
+//}
 
 /////////////////// UPDATE /////////////////////
 
@@ -185,34 +185,35 @@ void AgentMotion::update() {
     lineVbo.updateVertexData(nodePos, nodes.nodeNum);
 }
 
-void AgentMotion::update(int &canvasWidth) {
-    /* Update Node, Position Array */
-    for(int i = 0; i < nodes.nodeNum; i++) {
-        /*** on each node ***/
-        updatePhase(i);
-        updatePosition(i, canvasWidth);
-    }
-    
-    
-    /* Update VBO*/
-    nodeVbo.updateVertexData(nodePos, nodes.nodeNum);
-    lineVbo.updateVertexData(nodePos, nodes.nodeNum);
-}
+//void AgentMotion::update(int &canvasWidth) {
+//    /* Update Node, Position Array */
+//    for(int i = 0; i < nodes.nodeNum; i++) {
+//        /*** on each node ***/
+//        updatePhase(i);
+//        updatePosition(i, canvasWidth);
+//    }
+//    
+//    
+//    /* Update VBO*/
+//    nodeVbo.updateVertexData(nodePos, nodes.nodeNum);
+//    lineVbo.updateVertexData(nodePos, nodes.nodeNum);
+//}
+//
+//
+//void AgentMotion::update(int canvasWidth, int canvasHeight) {
+//    /* Update Node, Position Array */
+//    for(int i = 0; i < nodes.nodeNum; i++) {
+//        /*** on each node ***/
+//        updatePhase(i);
+//        updatePosition(i, canvasWidth, canvasHeight);
+//    }
+//    
+//    
+//    /* Update VBO*/
+//    nodeVbo.updateVertexData(nodePos, nodes.nodeNum);
+//    lineVbo.updateVertexData(nodePos, nodes.nodeNum);
+//}
 
-
-void AgentMotion::update(int canvasWidth, int canvasHeight) {
-    /* Update Node, Position Array */
-    for(int i = 0; i < nodes.nodeNum; i++) {
-        /*** on each node ***/
-        updatePhase(i);
-        updatePosition(i, canvasWidth, canvasHeight);
-    }
-    
-    
-    /* Update VBO*/
-    nodeVbo.updateVertexData(nodePos, nodes.nodeNum);
-    lineVbo.updateVertexData(nodePos, nodes.nodeNum);
-}
 
 /////////////////// INIT /////////////////////
 

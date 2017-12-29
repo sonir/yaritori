@@ -24,7 +24,7 @@ public:
 private:
     static constexpr float lineWidth = 0.8; //pixel
     
-    static const int NUM = 128; //max num of ripples that can be drawn at once
+    static const int NUM = 3000; //max num of ripples that can be drawn at once
     
     RippleDrawer ripples[NUM];
 };

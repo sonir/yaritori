@@ -8,10 +8,10 @@
 
 #include "Test.hpp"
 
-Test :: Test(Sound *pSnd){
+Test :: Test(Sound *pSnd, RippleManager *pRipple ){
     
    sound = pSnd;
-    
+    ripple = pRipple;
 }
 
 
@@ -282,19 +282,14 @@ void Test :: update(){
 }
 
 
-void Test::runVisualTest(RippleManager *pRipple) {
+void Test::runVisualTest() {
     std::cout << "Visual test methods are starting..." << std::endl;
-    ripple = pRipple;
     
-    //TestEventHandler
-    EventHandler eventHandler;
-    eventHandler.eventAdd("/ripple" , ripple);
-    
+    //Test Bang Ripple
     float args[] = {0.25 ,0.5};
-    assert ( eventHandler.bang("/ripple", args) == 1.0 );
+    assert ( gismo.bang("/ripple", args) == 1.0 );
     
     cout << "RippleManager::ripple.triger() is OK." << endl;
-    
     
     std::cout << "Visual test methods has finished." << std::endl;
     

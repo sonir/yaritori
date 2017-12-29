@@ -14,7 +14,7 @@ void VSyn::setup(){
     
     
     //Create TestClass
-    myTest = new Test(&sound);
+    myTest = new Test(&sound, &ripple);
     
     ofBackground(255);
     ofSetCircleResolution(50);
@@ -39,6 +39,7 @@ void VSyn::setup(){
     
     //Setup Gismo
     gismo.setup();
+    gismo.setRippleEvent(&ripple);
     
     //Do Test Code
     this->test();
@@ -487,7 +488,7 @@ void VSyn::test(){
     
     //Run test codes
     myTest->run();
-    myTest->runVisualTest(&ripple);
+    myTest->runVisualTest();
     
     
     //Reset all agents

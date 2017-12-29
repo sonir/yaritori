@@ -20,10 +20,10 @@
 class Test {
 
     public:
-        Test(Sound *pSnd);
+        Test(Sound *pSnd, RippleManager *pRipple);
         void setup();
         void run();
-        void runVisualTest(RippleManager *pRipple);
+        void runVisualTest();
         void update();
     
         GismoManager& gismo = GismoManager::getInstance(); //Pointer for gismoManager instance

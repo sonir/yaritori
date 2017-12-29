@@ -88,12 +88,15 @@ class GismoManager : public EventHandler {
         agent_buf_t agents;
         put_buf_t add;
         Event *sound;
+        Event *ripple;
+    
         //Store the screen rate
         float width_rate = 1.0f;
         float height_rate = 3.0f;
     
         //Methods
         void setup();
+        void setRippleEvent(Event* pRipple);
         ag_t* getAgents();
         ag_t* getAgent(int aid);
         void addAgent(ag_t tmp);
