@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "VSyn.hpp"
+#include "Network.hpp"
 
 
 class ofApp : public ofBaseApp{
@@ -24,5 +25,6 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
     
         VSyn vsyn;
+        Network network;
 		
 };

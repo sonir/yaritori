@@ -80,16 +80,16 @@ void agBuffReset(agent_buf_t *agents){
 //Interaction Tool Kits
 float distance(posi_t p1, posi_t p2){
     
-    posi_t tmp;
+    posi_t tmp1, tmp2;
     // calc differences
-    tmp.x = p2.x - p1.x;
-    tmp.y = p2.y = p2.y;
+    tmp1.x = p2.x - p1.x;
+    tmp1.y = p2.y - p1.y;
     
-    tmp.x = tmp.x*tmp.x;
-    tmp.y = tmp.y*tmp.y;
+    tmp2.x = tmp1.x*tmp1.x;
+    tmp2.y = tmp1.y*tmp1.y;
     
     //	pythagoras theorem
-    return (float)( sqrt(tmp.x+tmp.y) );
+    return (float)( sqrt(tmp2.x+tmp2.y) );
     
     
 }
@@ -194,10 +194,30 @@ void randomMove(ag_t *ag){
 }
 
 
+void attackCheck(float distance, float *f_param){
+    
+    if(distance <= ATK_DIST) *f_param -= AG_DMG;
+    
+}
+
+
+void deadCheck(float *size, bool *active){
+    
+    if(*size < DEAD_THREATH ){
+        
+        *size = 0.0f;
+        *active = false;
+        
+    }
+    
+}
+
+
 void interactWith(ag_t *focus , ag_t *target){
 
+    
     //Get singleton
-    GismoManager& gismo = GismoManager::getInstance();
+    //GismoManager& gismo = GismoManager::getInstance();
 
     float dist = distance(focus->posi, target->posi);
     if (isViewRange(focus, dist)){
@@ -205,11 +225,13 @@ void interactWith(ag_t *focus , ag_t *target){
         if( isLarge(focus->size, target->size) ){
 
             move(focus, &target->posi);
+            attackCheck( distance(focus->posi, target->posi) , &target->size);
+            deadCheck(&target->size, &target->active);
             
             if( !conditionCheck(focus->condition, CHASE) ){
                 
-//                int tmp = 101;
-//                gismo.bang("/snd" , &tmp);                
+                //WORK137
+                setSound( (int)focus->condition );
                 focus->condition=CHASE;
             }
             
@@ -231,7 +253,7 @@ void interactWith(ag_t *focus , ag_t *target){
     }
     
     //Loop of World
-    positionLoop(&focus->posi); //rest by some of memory bug
+    //positionLoop(&focus->posi, gismo.width_rate, gismo.height_rate); //rest by some of memory bug
 
 }
 
@@ -254,16 +276,18 @@ void makeInteracts(agent_buf_t *agents){
         
     }
     
+    
+    
 }
 
 
-void positionLoop(posi_t *position){
+void positionLoop(posi_t *position, float w_max, float h_max){
     
-    if(position->x > 1.0f) position->x = 0.0f;
-    else if (position->x <= 0.0f) position->x = 1.0f;
+    if(position->x > w_max) position->x = 0.0f;
+    else if (position->x <= 0.0f) position->x = w_max;
     
-    if(position->y > 1.0f) position->y = 0.0f;
-    else if (position->y <= 0.0f) position->y = 1.0f;
+    if(position->y > h_max) position->y = 0.0f;
+    else if (position->y <= 0.0f) position->y = h_max;
     
 }
 
@@ -305,13 +329,13 @@ int setSound(int sound_id){
     
     //Get singleton
     GismoManager& gismo = GismoManager::getInstance();
-    
-    int tmp = sound_id;
-    gismo.bang("/snd" , &tmp);
-    return tmp;
+    gismo.bang("/snd" , &sound_id);
+
+    return sound_id;
 
     
 }
+
 
 
 //Definication of GismoManager :::::::::::
@@ -341,6 +365,12 @@ ag_t* GismoManager::getAgents()
     
 }
 
+ag_t* GismoManager::getAgent(int aid)
+{
+    
+    return &agents.buf[aid];
+    
+}
 
 void GismoManager::addAgent(ag_t tmp){
     
