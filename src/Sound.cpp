@@ -11,7 +11,6 @@
 Sound::Sound(){
     
     sender.setup(SOUND_HOST,SOUND_PORT);
-    count = 0;
     
     //InitAudioBank
     for(int i=0; i<AUDIO_BANK_MAX; i++){
@@ -24,15 +23,11 @@ Sound::Sound(){
 
 
 void Sound::set(int audio_id){
-    
-    if(count >= AUDIO_BANK_MAX){
-
-        update();
         
-    }
+    //Check audio_id is available
+    if (audio_id >= AUDIO_BANK_MAX) return;
+    else bank[audio_id] = 1;
     
-    bank[count]=audio_id;
-    count++;
     
 }
 
@@ -42,16 +37,14 @@ int Sound::update(){
     m.setAddress("/sound_trg");
     
     
-    for(int i=0; i<count; i++){
+    for(int i=0; i<AUDIO_BANK_MAX; i++){
         
         m.addIntArg(bank[i]);
         
     }
     
-    if(count !=0){
-        count = 0; //reset count
-        sender.sendMessage(m,false);
-    }
+    sender.sendMessage(m,false);
+    resetBank();
     return 0;
     
 }
@@ -59,14 +52,35 @@ int Sound::update(){
 int Sound::trigger(void* arg){
     
     int *audio_id = (int *)arg;
-    this->set(*audio_id);
+    int tmp = *audio_id;
+    this->set(tmp);
     
     return *audio_id;
     
 }
 
+
+void Sound::resetBank(){
+    
+    for(int i=0;i<AUDIO_BANK_MAX; i++){
+        
+        bank[i]=0;
+        
+    }
+    
+}
+
 void Sound::reset(){
     
-    count = 0;
+    
+}
+
+
+bool Sound::bankIsEmpty(){
+    
+    
+    for(int i=0; i<AUDIO_BANK_MAX;i++) if(bank[i]!=0) return false;
+
+    return true;
     
 }

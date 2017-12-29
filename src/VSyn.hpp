@@ -88,6 +88,7 @@ class VSyn {
         Test *myTest; //Test Instance
         GismoManager& gismo = GismoManager::getInstance(); //Pointer for gismoManager instance
         Sound sound; //AudioTrigger with OSC
+        
     
 };
 

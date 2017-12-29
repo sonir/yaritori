@@ -201,10 +201,23 @@ void attackCheck(float distance, float *f_param){
 }
 
 
+void deadCheck(float *size, bool *active){
+    
+    if(*size < DEAD_THREATH ){
+        
+        *size = 0.0f;
+        *active = false;
+        
+    }
+    
+}
+
+
 void interactWith(ag_t *focus , ag_t *target){
 
+    
     //Get singleton
-    GismoManager& gismo = GismoManager::getInstance();
+    //GismoManager& gismo = GismoManager::getInstance();
 
     float dist = distance(focus->posi, target->posi);
     if (isViewRange(focus, dist)){
@@ -212,11 +225,13 @@ void interactWith(ag_t *focus , ag_t *target){
         if( isLarge(focus->size, target->size) ){
 
             move(focus, &target->posi);
+            attackCheck( distance(focus->posi, target->posi) , &target->size);
+            deadCheck(&target->size, &target->active);
             
             if( !conditionCheck(focus->condition, CHASE) ){
                 
-//                int tmp = 101;
-//                gismo.bang("/snd" , &tmp);                
+                //WORK137
+                setSound( (int)focus->condition );
                 focus->condition=CHASE;
             }
             
@@ -238,7 +253,7 @@ void interactWith(ag_t *focus , ag_t *target){
     }
     
     //Loop of World
-    positionLoop(&focus->posi, gismo.width_rate, gismo.height_rate); //rest by some of memory bug
+    //positionLoop(&focus->posi, gismo.width_rate, gismo.height_rate); //rest by some of memory bug
 
 }
 
@@ -260,6 +275,8 @@ void makeInteracts(agent_buf_t *agents){
         if(nearest != -1) interactWith(&agents->buf[i], &agents->buf[nearest]);
         
     }
+    
+    
     
 }
 
@@ -312,13 +329,13 @@ int setSound(int sound_id){
     
     //Get singleton
     GismoManager& gismo = GismoManager::getInstance();
-    
-    int tmp = sound_id;
-    gismo.bang("/snd" , &tmp);
-    return tmp;
+    gismo.bang("/snd" , &sound_id);
+
+    return sound_id;
 
     
 }
+
 
 
 //Definication of GismoManager :::::::::::

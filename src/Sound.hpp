@@ -25,10 +25,11 @@ public:
     void set(int audio_id); //Set audio_trigger in event buffer
     int update(); //send all trigger in event buffer and refresh event buffer
     int trigger(void* arg);
+    void resetBank();
     void reset();
     ofxOscSender sender;
     int bank[AUDIO_BANK_MAX];
-    int count;
+    bool bankIsEmpty();
     
 private:
     

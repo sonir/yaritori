@@ -6,8 +6,9 @@
 //
 //
 
-#ifndef EventHandler_hpp
-#define EventHandler_hpp
+#pragma once
+//#ifndef EventHandler_hpp
+//#define EventHandler_hpp
 
 #include <stdio.h>
 #include <iostream>
@@ -57,4 +58,4 @@ class EvTest : public Event {
     
 };
 
-#endif /* EventHandler_hpp */
+//#endif /* EventHandler_hpp */
