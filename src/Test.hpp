@@ -20,6 +20,7 @@ class Test {
         Test(Sound *pSnd);
         void setup();
         void run();
+        void runVisualTest();
         void update();
     
         GismoManager& gismo = GismoManager::getInstance(); //Pointer for gismoManager instance

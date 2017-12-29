@@ -10,6 +10,7 @@
 		0546D1A38E13BD319CC9755B /* OscReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BF3AA0D4FAA89D0F8A0E545 /* OscReceivedElements.cpp */; };
 		1CD33E884D9E3358252E82A1 /* ofxToggle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 907C5B5E104864A2D3A25745 /* ofxToggle.cpp */; };
 		33A4AC321FED676500AB157B /* AgentMotion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33A4AC301FED676500AB157B /* AgentMotion.cpp */; };
+		33CF45D01FF0A05E00695FAA /* ScreenManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33CF45CE1FF0A05E00695FAA /* ScreenManager.cpp */; };
 		483908258D00B98B4BE69F07 /* ofxLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78D67A00EB899FAC09430597 /* ofxLabel.cpp */; };
 		4ADB88E2FB52E76A471065DE /* ofxOscParameterSync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AED834CE4DEC5260AF302A2 /* ofxOscParameterSync.cpp */; };
 		510CAFE035E576A4E1502D52 /* UdpSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6DEF695B88BA5FAACEAA937 /* UdpSocket.cpp */; };
@@ -96,6 +97,8 @@
 		318ABED90EADFB757FFDCCAF /* ofxVectorGraphics.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxVectorGraphics.cpp; path = ../../../addons/ofxVectorGraphics/src/ofxVectorGraphics.cpp; sourceTree = SOURCE_ROOT; };
 		33A4AC301FED676500AB157B /* AgentMotion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AgentMotion.cpp; sourceTree = "<group>"; };
 		33A4AC311FED676500AB157B /* AgentMotion.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AgentMotion.hpp; sourceTree = "<group>"; };
+		33CF45CE1FF0A05E00695FAA /* ScreenManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScreenManager.cpp; sourceTree = "<group>"; };
+		33CF45CF1FF0A05E00695FAA /* ScreenManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ScreenManager.hpp; sourceTree = "<group>"; };
 		34BF591C646B5F6EF968D620 /* CreEPS.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = CreEPS.cpp; path = ../../../addons/ofxVectorGraphics/libs/CreEPS.cpp; sourceTree = SOURCE_ROOT; };
 		3B361208CD4107E479F04E7B /* NetworkingUtils.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = NetworkingUtils.cpp; path = ../../../addons/ofxOsc/libs/oscpack/src/ip/posix/NetworkingUtils.cpp; sourceTree = SOURCE_ROOT; };
 		444657A12E59D0ED86981498 /* TimerListener.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = TimerListener.h; path = ../../../addons/ofxOsc/libs/oscpack/src/ip/TimerListener.h; sourceTree = SOURCE_ROOT; };
@@ -398,7 +401,6 @@
 				F2ABF1261FEFF227006773CE /* Network.cpp */,
 				F2ABF1271FEFF227006773CE /* Network.hpp */,
 				F26D88141F6B638600AC27FE /* cam_func.hpp */,
-				F2C099011FDD7DB30075255C /* drawAgents.hpp */,
 				F27A52F61FEC634F00942A31 /* Sound.cpp */,
 				F27A52F71FEC634F00942A31 /* Sound.hpp */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
@@ -411,8 +413,11 @@
 				F2FFCEB51F62B3EA00E71BAA /* shape.h */,
 				F2545E8C1F99B73F0029709A /* Particle.hpp */,
 				F2545E8D1F99B73F0029709A /* Particle.cpp */,
-				33A4AC301FED676500AB157B /* AgentMotion.cpp */,
+				F2C099011FDD7DB30075255C /* drawAgents.hpp */,
 				33A4AC311FED676500AB157B /* AgentMotion.hpp */,
+				33A4AC301FED676500AB157B /* AgentMotion.cpp */,
+				33CF45CF1FF0A05E00695FAA /* ScreenManager.hpp */,
+				33CF45CE1FF0A05E00695FAA /* ScreenManager.cpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -596,6 +601,7 @@
 				933A2227713C720CEFF80FD9 /* tinyxml.cpp in Sources */,
 				33A4AC321FED676500AB157B /* AgentMotion.cpp in Sources */,
 				F27A52F81FEC634F00942A31 /* Sound.cpp in Sources */,
+				33CF45D01FF0A05E00695FAA /* ScreenManager.cpp in Sources */,
 				9D44DC88EF9E7991B4A09951 /* tinyxmlerror.cpp in Sources */,
 				5A4349E9754D6FA14C0F2A3A /* tinyxmlparser.cpp in Sources */,
 			);

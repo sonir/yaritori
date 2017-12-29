@@ -46,7 +46,6 @@ int Sound::update(){
     sender.sendMessage(m,false);
     resetBank();
     return 0;
-    
 }
 
 int Sound::trigger(void* arg){
@@ -56,7 +55,9 @@ int Sound::trigger(void* arg){
     this->set(tmp);
     
     return *audio_id;
-    
+
+//    update();
+//    return 0;
 }
 
 
