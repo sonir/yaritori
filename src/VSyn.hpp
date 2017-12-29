@@ -32,16 +32,21 @@
 //Test Class
 #include "Test.hpp"
 
+////Visuals
+//SCREEN SETUP
+#define SC_WITDH 1024
+#define SC_HEIGHT 768
+
 //Gismo
 #include "drawAgents.hpp"
+
+//Ripple
+#include "RippleManager.hpp"
+
 
 //AudioTriger with OSC
 #include "Sound.hpp"
 
-
-//SCREEN SETUP
-#define SC_WITDH 1024
-#define SC_HEIGHT 768
 
 //OSC
 #define PORT 57139
@@ -90,7 +95,9 @@ class VSyn {
         Sound sound; //AudioTrigger with OSC
         
     
-    motion_manager_t motionManager;
+        motion_manager_t motionManager; //To draw agent
+        RippleManager ripple;
+    
     
 };
 

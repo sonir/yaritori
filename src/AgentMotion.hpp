@@ -11,6 +11,7 @@
 
 #include "ofMain.h"
 #include "ScreenManager.hpp"
+#include "ofxGismo.h"
 
 //Static Values
 constexpr int CONNECTION_MAX = 5;
@@ -61,7 +62,7 @@ public:
     Nodes nodes;
     int screenWidth, screenHeight;
     bool isActive;
-    float width_rate;
+    float* width_rate;
     
 private:
     //VBO

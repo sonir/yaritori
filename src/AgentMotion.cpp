@@ -15,9 +15,10 @@ constexpr float NODE_LENGTH_MIN = 0.003;
 constexpr float MOVE_SIZE = 0.1;
 constexpr float M_2XPI = M_PI * 2.0;
 
-constexpr float STEP_MAX = M_2XPI * 5.0;
-constexpr float STEP_MIN = M_2XPI * 3.0;
+constexpr float STEP_MAX = M_2XPI * 6.0f;
+constexpr float STEP_MIN = M_2XPI * 4.0f;
 
+//About length
 constexpr float LINE_WIDTH = 0.5;
 constexpr float NODE_SIZE = 4.0;
 constexpr float TREMOR_RATIO = 0.125;
@@ -30,7 +31,7 @@ AgentMotion::AgentMotion() {
     //nodes.nodeNum = int(ofRandom(10, MAX_NODES));
     nodes.nodeNum = NODES_MAX;
     nodes.mov = 0.5;
-    width_rate = 1.0;
+    //width_rate = 1.0;
     
     
     /* Set Node pos and connection */
@@ -38,8 +39,8 @@ AgentMotion::AgentMotion() {
         nodes.node[i].id = i;
         
         //Set Position
-        nodes.node[i].x = ofRandom(-0.5, 0.5);    //Position of each node is currently random
-        nodes.node[i].y = ofRandom(-0.5, 0.5);    //Prev :: -0.01, 0.01
+        nodes.node[i].x = frand() - 0.5;    //Position of each node is currently random
+        nodes.node[i].y = frand() - 0.5;    //Prev :: -0.01, 0.01
         
         //Set Connection
         if(nodes.nodeNum < 3) { //Connections are also random
@@ -136,7 +137,7 @@ void AgentMotion::updatePosition(int index) {
     
     /* Position on Screen */
     //nextPos.x = (nodeX + nodes.scale_x) * SCREEN_HEIGHT * width_rate;
-    nextPos.x = (nodeX * CANVAS_HEIGHT) + (nodes.scale_x * CANVAS_WIDTH);
+    nextPos.x = (nodeX * CANVAS_HEIGHT) + (nodes.scale_x * CANVAS_HEIGHT * *width_rate);
     nextPos.y = (nodeY + nodes.scale_y) * CANVAS_HEIGHT;
     
     nodePos[index] = nextPos; //Set position onto Array
@@ -216,13 +217,16 @@ void AgentMotion::update(int canvasWidth, int canvasHeight) {
 /////////////////// INIT /////////////////////
 
 void AgentMotion::initModulation(int index) {
-    ofVec2f vel = ofVec2f(ofRandom(-1.0, 1.0), ofRandom(-1.0, 1.0)).getNormalized();
+    ofVec2f vel = ofVec2f(frand() * 2.0 - 1.0, frand() * 2.0 - 1.0).getNormalized();
     
     nodes.node[index].velocityX = vel.x;
     nodes.node[index].velocityY = vel.y;
     
-    nodes.node[index].modStep = ofRandom(STEP_MIN, STEP_MAX);
-    nodes.node[index].carStep = ofRandom(STEP_MIN, STEP_MAX);
+    //nodes.node[index].modStep = ofRandom(STEP_MIN, STEP_MAX);
+    //nodes.node[index].carStep = ofRandom(STEP_MIN, STEP_MAX);
+    
+    nodes.node[index].modStep = (STEP_MAX - STEP_MIN) * frand() + STEP_MIN;
+    nodes.node[index].carStep = (STEP_MAX - STEP_MIN) * frand() + STEP_MIN;
     
     nodes.node[index].modPhase = 0.0;
     nodes.node[index].carPhase = 0.0;

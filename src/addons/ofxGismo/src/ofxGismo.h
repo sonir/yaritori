@@ -90,7 +90,7 @@ class GismoManager : public EventHandler {
         Event *sound;
         //Store the screen rate
         float width_rate = 1.0f;
-        float height_rate = 1.0f;
+        float height_rate = 3.0f;
     
         //Methods
         void setup();

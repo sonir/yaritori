@@ -282,6 +282,20 @@ void Test :: update(){
 }
 
 
-void runVisualTest() {
+void Test::runVisualTest(RippleManager *pRipple) {
+    std::cout << "Visual test methods are starting..." << std::endl;
+    ripple = pRipple;
+    
+    //TestEventHandler
+    EventHandler eventHandler;
+    eventHandler.eventAdd("/ripple" , ripple);
+    
+    float args[] = {0.25 ,0.5};
+    assert ( eventHandler.bang("/ripple", args) == 1.0 );
+    
+    cout << "RippleManager::ripple.triger() is OK." << endl;
+    
+    
+    std::cout << "Visual test methods has finished." << std::endl;
     
 }
