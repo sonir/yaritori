@@ -16,7 +16,7 @@ void VSyn::setup(){
     //Create TestClass
     myTest = new Test(&sound);
     
-    ofBackground(255);
+    ofBackground(0, 0, 0);
     ofSetCircleResolution(50);
     screen_w = ofGetWidth();
     screen_h = ofGetHeight();
@@ -39,6 +39,7 @@ void VSyn::setup(){
     
     //Setup Gismo
     gismo.setup();
+    
     //Do Test Code
     this->test();
 
@@ -46,6 +47,10 @@ void VSyn::setup(){
 
 
 void VSyn::update(){
+    
+    myTest->update();
+    if( !sound.bankIsEmpty()) sound.update();
+        
     
     sync();
 
@@ -335,7 +340,7 @@ void VSyn::draw(){
     
 #ifndef DEBUG_MODE
     //drawAgents
-    drawAgents(&gismo, &motionManager);
+    drawAgents(&gismo);
 #endif
     
     for(int i=0; i<CONTAINER_MAX; i++){
@@ -439,7 +444,7 @@ void VSyn::draw(){
                     
             }
             
-            square(ag->posi.x, ag->posi.y, 0.01, 0.0f, false);
+            square(ag->posi.x, ag->posi.y, ag->size*10.0f, 0.0f, false);
             ofDrawBitmapString( cond_flg, tmp_x, tmp_y);
             circle(ag->posi.x+0.0078f, ag->posi.y+0.00078f, ag->view,false);
             ofSetColor(255,255,255);
@@ -477,51 +482,8 @@ void VSyn::test(){
     //Draw Your Test Code. This method was invoked when the end of setup().
     std::cout << "test method is starting..." << std::endl;
     
-    //Run Test Class
+    //Run test codes
     myTest->run();
-    
-    //Test Sound Trigger with OSC
-    sound.set(9);
-    sound.reset();
-    assert(sound.count==0);
-    sound.set(1);
-    sound.set(3);
-    sound.set(7);
-    assert (sound.update() == 0 );
-    sound.update(); //test don't send when the event buffer was vacant.
-    cout << "CLASS Sound is ok.(check the receive yourself.)" << endl;
-    
-    //TestEventHandler
-    EventHandler eventHandler;
-    EvTest evTest;
-    eventHandler.eventAdd("/snd" , &sound);
-    eventHandler.eventAdd("/t01" , &evTest);
-    sound.set(2);
-    sound.set(4);
-    int val = 6;
-    //    int *pVal = &val;
-    //    assert( eventHandler.bang("/snd", pVal) == 6 );
-    int args[] = {0,1,2};
-    assert ( eventHandler.bang("/t01", args) == 138 );
-    assert ( eventHandler.bang("/t01") == 137 );
-    cout << "GismoBundledClass::eventHandler is OK." << endl;
-    //Test EventHandler with Gismo
-    gismo.eventAdd("/t01" , &evTest);
-    gismo.bang("/t01" , args);
-    //Sound Trigger
-    sound.reset();
-    gismo.eventAdd("/snd" , &sound);
-    int snd_id = 137;
-    assert( gismo.bang("/snd" , &snd_id) == 137);
-    sound.update();
-    //Test sending via setSound;
-    assert(setSound(2355)==2355);
-    assert(setSound(2356)==2356);
-    sound.update();
-     
-    cout << "GismoManager::eventHandler with Gismo is OK." << endl;
-    
-    
     
     
     //Reset all agents
@@ -534,12 +496,12 @@ void VSyn::test(){
     act8.posi.x = 0.25f; act8.posi.y = 0.5f;
     gismo.addAgent(act8);
     act8.posi.x = 0.75f; act8.posi.y = 0.5f;
+    act8.mov = 0.0f;
     gismo.addAgent(act8);
 
-    for(int i=0;i<1000;i++) gismo.addAgent(act8);
+    //for(int i=0;i<1000;i++) gismo.addAgent(act8);
     
-    act8.posi.x = 0.5f; act8.posi.y = 0.5f;
-    gismo.addAgent(act8);
+
     
     std::cout << "test method has finished." << std::endl;
 

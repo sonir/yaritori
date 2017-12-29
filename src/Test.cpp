@@ -10,7 +10,7 @@
 
 Test :: Test(Sound *pSnd){
     
-   // sound = pSnd;
+   sound = pSnd;
     
 }
 
@@ -24,12 +24,47 @@ void Test :: setup(){
 void Test :: run(){
     
     
+    
     //Test frand
 //    assert( frand()==0.1f );
 //    assert( frand()==0.7f );
 //    assert( frand()==0.7f );
 //    assert( frand()==0.1f );
     cout << "gismoManager::randmom() is OK."<<endl;
+    
+    
+    //Test Sound Trigger with OSC
+    for(int i=0; i<AUDIO_BANK_MAX;i++){
+        
+        sound->set(i);
+        
+    }
+    sound->update(); //test don't send when the event buffer was vacant.
+    cout << "CLASS Sound is ok.(check the receive yourself.)" << endl;
+
+    
+    //TestEventHandler
+    EventHandler eventHandler;
+    EvTest evTest;
+    eventHandler.eventAdd("/snd" , sound);
+    eventHandler.eventAdd("/t01" , &evTest);
+    int args[] = {0,1,2};
+    assert ( eventHandler.bang("/t01", args) == 138 );
+    assert ( eventHandler.bang("/t01") == 137 );
+    cout << "GismoBundledClass::eventHandler is OK." << endl;
+    //Test EventHandler with Gismo
+    gismo.eventAdd("/t01" , &evTest);
+    assert ( gismo.bang("/t01" , args) == 138 );
+    //Sound Trigger
+    sound->reset();
+    gismo.eventAdd("/snd" , sound);
+    int snd_id = 0;
+    setSound(0);
+    setSound(2);
+    setSound(4);
+    sound->update();
+    cout << "GismoManager::eventHandler with Gismo is OK." << endl;
+    
     
     
     //Define an agent
@@ -221,11 +256,28 @@ void Test :: run(){
     attackCheck(fval2, &size2);
     assert(size2 == 1.0f-AG_DMG);
     
+    //Test deadCheck
+    float dummy_size = 0.0001f;
+    bool active = true;
+    deadCheck( &dummy_size , &active );
+    assert(active == false);
+    assert(dummy_size == 0.0f);
+    dummy_size = 1.0f;
+    active = true;
+    deadCheck( &dummy_size , &active );
+    assert(active == true);
+    
+
     
 }
 
 void Test :: update(){
     
-    
+    //Size print
+//    ag_t *ag1 = gismo.getAgent(0);
+//    ag_t *ag2 = gismo.getAgent(1);
+//    
+//    std::cout << ag1->size << "," << ag2->size << std::endl;
+
     
 }

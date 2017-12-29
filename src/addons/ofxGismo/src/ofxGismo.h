@@ -17,9 +17,10 @@
 #define AG_DEF_MOV 0.002f//0.002f
 #define AG_DEF_VIEW 0.3f
 #define AG_DEF_SIZE_FIX 0.005f //Scaling factor for frand(0.0-1.0)
+#define DEAD_THREATH 0.0005f
 
 // PARAMS SET MACROS
-#define AG_DMG 0.0034f
+#define AG_DMG 0.000034f
 #define ATK_DIST AG_DEF_SIZE
 
 ///
@@ -50,6 +51,7 @@ void move(ag_t *ag, posi_t *posi);
 bool conditionCheck(condition_e cond1, condition_e cond2);
 void randomMove(ag_t *ag);
 void attackCheck(float distance, float *f_param);
+void deadCheck(float *size, bool *active);
 void interactWith(ag_t *focus , ag_t *target);
 void makeInteracts(agent_buf_t *agents);
 //void positionLoop(posi_t *position);
@@ -86,6 +88,7 @@ class GismoManager : public EventHandler {
         agent_buf_t agents;
         put_buf_t add;
         Event *sound;
+        //Store the screen rate
         float width_rate = 1.0f;
         float height_rate = 1.0f;
     
