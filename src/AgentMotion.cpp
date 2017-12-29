@@ -136,8 +136,8 @@ void AgentMotion::updatePosition(int index) {
     
     /* Position on Screen */
     //nextPos.x = (nodeX + nodes.scale_x) * SCREEN_HEIGHT * width_rate;
-    nextPos.x = (nodeX * SCREEN_HEIGHT) + (nodes.scale_x * CANVAS_WIDTH);
-    nextPos.y = (nodeY + nodes.scale_y) * SCREEN_HEIGHT;
+    nextPos.x = (nodeX * CANVAS_HEIGHT) + (nodes.scale_x * CANVAS_WIDTH);
+    nextPos.y = (nodeY + nodes.scale_y) * CANVAS_HEIGHT;
     
     nodePos[index] = nextPos; //Set position onto Array
 }

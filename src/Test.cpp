@@ -279,5 +279,9 @@ void Test :: update(){
 //    
 //    std::cout << ag1->size << "," << ag2->size << std::endl;
 
+}
+
+
+void runVisualTest() {
     
 }

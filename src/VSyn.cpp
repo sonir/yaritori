@@ -16,7 +16,7 @@ void VSyn::setup(){
     //Create TestClass
     myTest = new Test(&sound);
     
-    ofBackground(0, 0, 0);
+    ofBackground(255);
     ofSetCircleResolution(50);
     screen_w = ofGetWidth();
     screen_h = ofGetHeight();
@@ -340,7 +340,7 @@ void VSyn::draw(){
     
 #ifndef DEBUG_MODE
     //drawAgents
-    drawAgents(&gismo);
+    drawAgents(&gismo, &motionManager);
 #endif
     
     for(int i=0; i<CONTAINER_MAX; i++){
