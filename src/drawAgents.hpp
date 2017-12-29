@@ -27,7 +27,6 @@ void drawAgents(GismoManager *gismo, motion_manager_t *motion){
     ag_t *agents = gismo->getAgents(); //sets agents pointer
     ag_t *ag;
     //gismo->agents.count = 1000;
-    
     screenBegin();
     
     for(int i =0; i<count; i++){
@@ -47,11 +46,9 @@ void drawAgents(GismoManager *gismo, motion_manager_t *motion){
             motion->agentMotion[i].nodes.scale_y = ag->posi.y;
             motion->agentMotion[i].nodes.size = ag->size;
             motion->agentMotion[i].nodes.mov = ag->mov;
+            //motion->agentMotion[i].width_rate = gismo->width_rate;
            
-            //motion->agentMotion[i].update(motion->width);
             motion->agentMotion[i].update();
-//            motion->agentMotion[i].update(CANVAS_WIDTH, CANVAS_HEIGHT);
-            
             motion->agentMotion[i].draw();
             
         }

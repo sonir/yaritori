@@ -16,7 +16,7 @@ void VSyn::setup(){
     //Create TestClass
     myTest = new Test(&sound);
     
-    ofBackground(0, 0, 0);
+    ofBackground(255);
     ofSetCircleResolution(50);
     screen_w = ofGetWidth();
     screen_h = ofGetHeight();
@@ -335,7 +335,7 @@ void VSyn::draw(){
     
 #ifndef DEBUG_MODE
     //drawAgents
-    drawAgents(&gismo);
+    drawAgents(&gismo, &motionManager);
 #endif
     
     for(int i=0; i<CONTAINER_MAX; i++){
@@ -518,7 +518,7 @@ void VSyn::test(){
     assert(setSound(2355)==2355);
     assert(setSound(2356)==2356);
     sound.update();
-    
+     
     cout << "GismoManager::eventHandler with Gismo is OK." << endl;
     
     
@@ -538,7 +538,8 @@ void VSyn::test(){
 
     for(int i=0;i<1000;i++) gismo.addAgent(act8);
     
-
+    act8.posi.x = 0.5f; act8.posi.y = 0.5f;
+    gismo.addAgent(act8);
     
     std::cout << "test method has finished." << std::endl;
 

@@ -215,8 +215,8 @@ void interactWith(ag_t *focus , ag_t *target){
             
             if( !conditionCheck(focus->condition, CHASE) ){
                 
-//                int tmp = 101;
-//                gismo.bang("/snd" , &tmp);                
+                int tmp = 101;
+                gismo.bang("/snd" , &tmp);
                 focus->condition=CHASE;
             }
             

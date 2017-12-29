@@ -53,7 +53,6 @@ int Sound::update(){
         sender.sendMessage(m,false);
     }
     return 0;
-    
 }
 
 int Sound::trigger(void* arg){
@@ -62,7 +61,9 @@ int Sound::trigger(void* arg){
     this->set(*audio_id);
     
     return *audio_id;
-    
+
+//    update();
+//    return 0;
 }
 
 void Sound::reset(){

@@ -32,6 +32,11 @@ void screenBegin() {
 
 
 void screenEnd() {
+    
     ofPopMatrix();
+    
+    ofSetColor(0);
+    ofDrawRectangle(DISPLAY_MARGIN_X, 0, DISPLAY_MARGIN_W, SCREEN_HEIGHT);
+    
 }
 

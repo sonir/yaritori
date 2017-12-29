@@ -61,6 +61,7 @@ public:
     Nodes nodes;
     int screenWidth, screenHeight;
     bool isActive;
+    float width_rate;
     
 private:
     //VBO
@@ -74,6 +75,7 @@ private:
     //Variables
     int lineNum;
     float phase, nodeX, nodeY;
+
 };
 
 

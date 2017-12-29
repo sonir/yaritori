@@ -30,6 +30,8 @@ AgentMotion::AgentMotion() {
     //nodes.nodeNum = int(ofRandom(10, MAX_NODES));
     nodes.nodeNum = NODES_MAX;
     nodes.mov = 0.5;
+    width_rate = 1.0;
+    
     
     /* Set Node pos and connection */
     for(int i = 0; i < nodes.nodeNum; i++) {
@@ -133,8 +135,9 @@ void AgentMotion::updatePosition(int index) {
     nodeY = (nodes.node[index].velocityY * phase + nodes.node[index].y * STAY_RATIO) * nodes.size;
     
     /* Position on Screen */
-    nextPos.x = nodeX * SCREEN_WIDTH + nodes.scale_x * CANVAS_WIDTH;
-    nextPos.y = nodeY * SCREEN_WIDTH + nodes.scale_y * CANVAS_HEIGHT;
+    //nextPos.x = (nodeX + nodes.scale_x) * SCREEN_HEIGHT * width_rate;
+    nextPos.x = (nodeX * SCREEN_HEIGHT) + (nodes.scale_x * CANVAS_WIDTH);
+    nextPos.y = (nodeY + nodes.scale_y) * SCREEN_HEIGHT;
     
     nodePos[index] = nextPos; //Set position onto Array
 }
