@@ -9,7 +9,8 @@
 
 RippleDrawer::RippleDrawer(){
     //Set default duration
-    dur = (durMax - durMin) * frand() + durMin;
+    //dur = (durMax - durMin) * frand() + durMin;
+    dur = durMax;
     
     //set indices
     int n = 0;
@@ -43,12 +44,15 @@ RippleDrawer::RippleDrawer(){
     vbo.setVertexData(verts, res * rippleNum, GL_DYNAMIC_DRAW);
     
     interpolation.bang(dur);    //msec
+    
+    GismoManager& gismo = GismoManager::getInstance();
+    aspect = gismo.width_rate;
 }
 
 void RippleDrawer::setup(){
     for(int j = 0; j < rippleNum; j++){
         for(int i = 0; i < res; i++){
-            verts[res * j + i].set(ofVec2f(centerX * CANVAS_HEIGHT, centerY * CANVAS_HEIGHT));
+            verts[res * j + i].set(ofVec2f(centerX * CANVAS_HEIGHT, centerY * CANVAS_HEIGHT * aspect));
         }
     }
 }

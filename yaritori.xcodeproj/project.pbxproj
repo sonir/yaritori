@@ -780,7 +780,9 @@
 					"$(PROJECT_DIR)/src/addons/ofxGismo/libs/necessaryLib/lib/osx",
 					"$(PROJECT_DIR)/src/addons/ofxGismo/libs/necessaryLib/lib/win_cb",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = yaritoriDebug;
+				SDKROOT = macosx10.9;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -828,7 +830,9 @@
 					"$(PROJECT_DIR)/src/addons/ofxGismo/libs/necessaryLib/lib/osx",
 					"$(PROJECT_DIR)/src/addons/ofxGismo/libs/necessaryLib/lib/win_cb",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = yaritori;
+				SDKROOT = macosx10.9;
 				WRAPPER_EXTENSION = app;
 				baseConfigurationReference = E4EB6923138AFD0F00A09F29;
 			};

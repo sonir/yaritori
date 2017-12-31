@@ -39,7 +39,6 @@ void VSyn::setup(){
     
     //Setup Gismo
     gismo.setup();
-    gismo.setRippleEvent(&ripple);
     
     //Do Test Code
     this->test();
@@ -340,11 +339,16 @@ void VSyn::draw(){
     particle.draw();
     
 #ifndef DEBUG_MODE
+    screenBegin();
+
+    
     //drawAgents
     drawAgents(&gismo, &motionManager);
     
     //Ripple
     ripple.draw();
+    
+    screenEnd();
 #endif
     
     for(int i=0; i<CONTAINER_MAX; i++){
@@ -506,11 +510,11 @@ void VSyn::test(){
     act8.mov = 0.001;
     gismo.addAgent(act8);
 
-    for(int i=0;i<1000;i++) {
-        act8.posi.x = frand();
-        act8.posi.y = frand();
-        gismo.addAgent(act8);
-    }
+//    for(int i=0;i<500;i++) {
+//        act8.posi.x = frand();
+//        act8.posi.y = frand();
+//        gismo.addAgent(act8);
+//    }
     
 
     

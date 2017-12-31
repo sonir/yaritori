@@ -27,7 +27,7 @@ void drawAgents(GismoManager *gismo, motion_manager_t *motion){
     ag_t *agents = gismo->getAgents(); //sets agents pointer
     ag_t *ag;
     //gismo->agents.count = 1000;
-    screenBegin();
+
     
     for(int i =0; i<count; i++){
         
@@ -54,8 +54,6 @@ void drawAgents(GismoManager *gismo, motion_manager_t *motion){
         }
         agents++;
     }
-    
-    screenEnd();
 }
 
 

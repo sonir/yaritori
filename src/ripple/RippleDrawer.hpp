@@ -45,7 +45,7 @@ private:
     static constexpr float speed = 4.;  //pixel
     
     static constexpr float durMin = 700; //msec
-    static constexpr float durMax = 1800;   //1300
+    static constexpr float durMax = 2800;   //1300
     
     float dur;  //Duration
     
@@ -61,6 +61,8 @@ private:
     
     TimedInterpolation interpolation;
     float currentTime;
+    
+    float aspect;   //aspect ratio
 };
 
 #endif /* RippleDrawer_hpp */
