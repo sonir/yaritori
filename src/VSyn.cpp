@@ -14,7 +14,7 @@ void VSyn::setup(){
     
     
     //Create TestClass
-    myTest = new Test(&sound);
+    myTest = new Test(&sound, &ripple);
     
     ofBackground(255);
     ofSetCircleResolution(50);
@@ -339,8 +339,16 @@ void VSyn::draw(){
     particle.draw();
     
 #ifndef DEBUG_MODE
+    screenBegin();
+
+    
     //drawAgents
     drawAgents(&gismo, &motionManager);
+    
+    //Ripple
+    ripple.draw();
+    
+    screenEnd();
 #endif
     
     for(int i=0; i<CONTAINER_MAX; i++){
@@ -484,6 +492,7 @@ void VSyn::test(){
     
     //Run test codes
     myTest->run();
+    myTest->runVisualTest();
     
     
     //Reset all agents
@@ -493,13 +502,19 @@ void VSyn::test(){
     ag_t act1, act2, act3, act4, act5, act6, act7, act8;
 
     initAgentActive(&act8);
-    act8.posi.x = 0.25f; act8.posi.y = 0.5f;
+    act8.posi.x = 0.25f; act8.posi.y = 0.75f;
     gismo.addAgent(act8);
-    act8.posi.x = 0.75f; act8.posi.y = 0.5f;
+    act8.posi.x = frand(); act8.posi.y = 0.25f;
     act8.mov = 0.0f;
+    act8.size = 0.03f;
+    act8.mov = 0.001;
     gismo.addAgent(act8);
 
-    //for(int i=0;i<1000;i++) gismo.addAgent(act8);
+//    for(int i=0;i<500;i++) {
+//        act8.posi.x = frand();
+//        act8.posi.y = frand();
+//        gismo.addAgent(act8);
+//    }
     
 
     

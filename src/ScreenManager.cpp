@@ -8,7 +8,6 @@
 
 #include "ScreenManager.hpp"
 
-
 void setScreenPos(screen_pos_e screenPos) {
     switch (screenPos) {
         case SCREEN_POS_LEFT:
@@ -26,17 +25,17 @@ void setScreenPos(screen_pos_e screenPos) {
 }
 
 void screenBegin() {
+    ofBackground(0, 0, 0);
+    ofSetColor(255);
+    ofDrawRectangle(0, 0, WINDOW_HEIGHT, WINDOW_HEIGHT);
+    
+    
     ofPushMatrix();
     ofTranslate(targetScreen);
 }
 
 
 void screenEnd() {
-    
     ofPopMatrix();
-    
-    ofSetColor(0);
-    ofDrawRectangle(DISPLAY_MARGIN_X, 0, DISPLAY_MARGIN_W, SCREEN_HEIGHT);
-    
 }
 

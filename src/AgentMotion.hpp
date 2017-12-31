@@ -11,6 +11,7 @@
 
 #include "ofMain.h"
 #include "ScreenManager.hpp"
+#include "ofxGismo.h"
 
 //Static Values
 constexpr int CONNECTION_MAX = 5;
@@ -48,12 +49,12 @@ public:
     
     void draw();
     void update();
-    void update(int &canvasWidth);
-    void update(int canvasWidth, int canvasHeight);
+    //void update(int &canvasWidth);
+    //void update(int canvasWidth, int canvasHeight);
     void updatePhase(int index);
     void updatePosition(int index);
-    void updatePosition(int index, int &scale);
-    void updatePosition(int index, int &canvasWidth, int &canvasHeight);
+    //void updatePosition(int index, int &scale);
+    //void updatePosition(int index, int &canvasWidth, int &canvasHeight);
     float getPointSize();
     float getLineWidth();
     
@@ -61,7 +62,7 @@ public:
     Nodes nodes;
     int screenWidth, screenHeight;
     bool isActive;
-    float width_rate;
+    float* width_rate;
     
 private:
     //VBO

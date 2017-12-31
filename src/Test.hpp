@@ -13,11 +13,14 @@
 #include <cassert>
 #include "ofxGismo.h"
 #include "Sound.hpp"
+#include "drawAgents.hpp"
+#include "RippleManager.hpp"
+
 
 class Test {
 
     public:
-        Test(Sound *pSnd);
+        Test(Sound *pSnd, RippleManager *pRipple);
         void setup();
         void run();
         void runVisualTest();
@@ -25,6 +28,8 @@ class Test {
     
         GismoManager& gismo = GismoManager::getInstance(); //Pointer for gismoManager instance
         Sound *sound;
+    
+        RippleManager *ripple;
     
 };
 
