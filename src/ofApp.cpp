@@ -28,7 +28,8 @@ void ofApp::draw(){
 #ifdef DEBUG_MODE
     ofDrawBitmapString("fps = " + ofToString(ofGetFrameRate()), 10, 20);
 #endif
-    
+    ofSetColor(255, 0, 0);
+    ofDrawBitmapString("fps = " + ofToString(ofGetFrameRate()), 10, 20);
 }
 
 //--------------------------------------------------------------
@@ -55,6 +56,7 @@ void ofApp::keyReleased(int key){
         case '3':
             setScreenPos(SCREEN_POS_RIGHT);
             break;
+            
     }
     
 

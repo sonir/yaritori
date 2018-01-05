@@ -296,6 +296,6 @@ void Test::runVisualTest() {
     
     cout << "RippleManager::ripple.triger() is OK." << endl;
     
-    std::cout << "Visual test methods has finished." << std::endl;
+    std::cout << "Visual test method has finished." << std::endl;
     
 }

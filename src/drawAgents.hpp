@@ -18,7 +18,14 @@
 struct motion_manager_t {
     int width;
     int height;
+    //int soloCount = 0;
+    //int soloID[AG_MAX];
     AgentMotion agentMotion[AG_MAX];
+    void invertColor() {
+        for(int i = 0; i < AG_MAX; i++){
+            agentMotion[i].invertColor();
+        }
+    }
 };
 
 
@@ -28,33 +35,64 @@ void drawAgents(GismoManager *gismo, motion_manager_t *motion){
     ag_t *ag;
     //gismo->agents.count = 1000;
 
-    
-    for(int i =0; i<count; i++){
-        
-        ag = agents; //Set agent address
+   // if(motion->soloCount < 1) { //if solo is not enable
+        for(int i =0; i<count; i++){
+            
+            ag = agents; //Set agent address
 
-//        string condition = "a";
-//        ofDrawBitmapString( condition, ag->posi.x, ag->posi.y);
-//        int tmp_x = (int)( ag->posi.x * (float)ofGetScreenWidth() );
-//        int tmp_y = (int)( ag->posi.y * (float)ofGetScreenHeight() );
-//        std::cout << tmp_x << " , " << tmp_y << std::endl;
-//        ofDrawBitmapString( "f", 100, 200);
-        
-        if(ag->active){
-            //square(ag->posi.x, ag->posi.y, ag->size, 0.0f, true);
-            motion->agentMotion[i].nodes.scale_x = ag->posi.x;
-            motion->agentMotion[i].nodes.scale_y = ag->posi.y;
-            motion->agentMotion[i].nodes.size = ag->size;
-            motion->agentMotion[i].nodes.mov = ag->mov;
-            motion->agentMotion[i].width_rate = &gismo->width_rate;
-           
-            motion->agentMotion[i].update();
-            motion->agentMotion[i].draw();
+    //        string condition = "a";
+    //        ofDrawBitmapString( condition, ag->posi.x, ag->posi.y);
+    //        int tmp_x = (int)( ag->posi.x * (float)ofGetScreenWidth() );
+    //        int tmp_y = (int)( ag->posi.y * (float)ofGetScreenHeight() );
+    //        std::cout << tmp_x << " , " << tmp_y << std::endl;
+    //        ofDrawBitmapString( "f", 100, 200);
 
+            if(ag->active){
+                    //square(ag->posi.x, ag->posi.y, ag->size, 0.0f, true);
+                        
+//                    motion->agentMotion[i].nodes.scale_x = ag->posi.x;
+//                    motion->agentMotion[i].nodes.scale_y = ag->posi.y;
+//                    motion->agentMotion[i].nodes.size = ag->size;
+//                    motion->agentMotion[i].nodes.mov = ag->mov;
+//                    motion->agentMotion[i].width_rate = &gismo->width_rate;
+                
+                    
+                    motion->agentMotion[i].update();
+                    motion->agentMotion[i].draw();
+            }
+                agents++;
         }
-        agents++;
-    }
+   // } else {
+//        for(int i =0; i< motion->soloCount; i++){
+//            int ag_id = motion->soloID[i];
+//            ag = &agents[ag_id]; //Set agent address
+    
+            //        string condition = "a";
+            //        ofDrawBitmapString( condition, ag->posi.x, ag->posi.y);
+            //        int tmp_x = (int)( ag->posi.x * (float)ofGetScreenWidth() );
+            //        int tmp_y = (int)( ag->posi.y * (float)ofGetScreenHeight() );
+            //        std::cout << tmp_x << " , " << tmp_y << std::endl;
+            //        ofDrawBitmapString( "f", 100, 200);
+//
+//            if(ag->active){
+                //square(ag->posi.x, ag->posi.y, ag->size, 0.0f, true);
+                
+//                motion->agentMotion[i].nodes.scale_x = ag->posi.x;
+//                motion->agentMotion[i].nodes.scale_y = ag->posi.y;
+//                motion->agentMotion[i].nodes.size = ag->size;
+//                motion->agentMotion[i].nodes.mov = ag->mov;
+//                motion->agentMotion[i].width_rate = &gismo->width_rate;
+                
+                
+//                motion->agentMotion[ag_id].update();
+//                motion->agentMotion[ag_id].draw();
+           // }
+            //agents++;
+       // }
+    //}
 }
+
+
 
 
 #endif /* drawAgents_h */

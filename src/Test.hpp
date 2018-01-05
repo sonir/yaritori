@@ -25,6 +25,7 @@ class Test {
         void run();
         void runVisualTest();
         void update();
+    void invert();
     
         GismoManager& gismo = GismoManager::getInstance(); //Pointer for gismoManager instance
         Sound *sound;
