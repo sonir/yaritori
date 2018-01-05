@@ -39,6 +39,8 @@ void VSyn::setup(){
     
     //Setup Gismo
     gismo.setup();
+    //SetupEvents
+    gismo.eventAdd("/addShape", this);
     
     //Do Test Code
     this->test();
@@ -47,6 +49,7 @@ void VSyn::setup(){
 
 
 void VSyn::update(){
+    
     
     myTest->update();
     if( !sound.bankIsEmpty()) sound.update();
@@ -485,6 +488,22 @@ void VSyn::initWindowSize(){
 }
 
 
+void VSyn::addAgShape(ag_shape_t shape){
+    
+    //Count exceeding check
+    if( ag_shapes_count >= AG_MAX ){
+        
+        ag_shapes_count = 0;
+        
+    }
+    
+    ag_shapes[ag_shapes_count] = shape;
+    ag_shapes_count += 1;
+    
+}
+
+
+
 void VSyn::test(){
     
     //Draw Your Test Code. This method was invoked when the end of setup().
@@ -493,6 +512,17 @@ void VSyn::test(){
     //Run test codes
     myTest->run();
     myTest->runVisualTest();
+    
+    //Test addAgShape
+    ag_shape_t shape;
+    shape.node_count = 137;
+    shape.edges[1].node_id_a = 138;
+    gismo.bang("/addShape" , &shape);
+    //addAgShape(shape); //Add the shapoe
+    assert(ag_shapes_count == 1);
+    assert( ag_shapes[0].node_count == 137 );
+    assert (ag_shapes[0].edges[1].node_id_a == 138);
+    std::cout << "VSyn:: addAgShape is ok." << std::endl;
     
     
     //Reset all agents
