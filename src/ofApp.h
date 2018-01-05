@@ -2,7 +2,6 @@
 
 #include "ofMain.h"
 #include "VSyn.hpp"
-#include "Network.hpp"
 
 
 class ofApp : public ofBaseApp{

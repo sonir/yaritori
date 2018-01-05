@@ -64,6 +64,34 @@ void Network :: update(){
             
             
         }
+        else if( m.getAddress() == "/que" ){ //Receiving Agents
+            
+            cout << "FOOOOO" << endl;
+            shape.node_count = m.getArgAsInt32(0);
+            int index_of_edge_count = (shape.node_count*2)+1;
+            shape.edge_count = m.getArgAsInt32( index_of_edge_count );
+            
+            int node_index = 0;
+            
+            for(int i=1; i<(shape.node_count*2)+1; i=i+2){
+                shape.nodes[node_index].x = m.getArgAsFloat(i);
+                shape.nodes[node_index].y = m.getArgAsFloat(i+1);
+                node_index+=1;
+            }
+            
+            int edge_index = 0;
+            for(int i=0;i<( (shape.edge_count*2) );i=i+2){
+                cout << i << endl;
+                shape.edges[edge_index].node_id_a = m.getArgAsInt32( i + (index_of_edge_count+1) );
+                shape.edges[edge_index].node_id_b = m.getArgAsInt32( i + (index_of_edge_count+1) + 1 );
+                edge_index+=1;
+            }
+            
+            gismo.bang("/addShape" , &shape);
+            dispParams(shape);
+            
+            
+        }
         else{
             // unrecognized message: display on the bottom of the screen
             string msg_string;
@@ -98,3 +126,33 @@ void Network :: update(){
     }
     
 }
+
+
+
+void Network::dispParams(ag_shape_t shape){
+    
+    
+    using namespace std;
+    cout<< "nodes x " << shape.node_count << endl;
+    
+    
+    for(int i=0;i<shape.node_count;i++){
+        
+        cout << i << " :  x=" << shape.nodes[i].x << " y=" << shape.nodes[i].y << endl;
+        
+        
+    }
+    
+    cout<< "edges x " << shape.edge_count << endl;
+    for(int i=0;i<shape.edge_count;i++){
+        
+        cout << i << " :  x=" << shape.edges[i].node_id_a << " y=" << shape.edges[i].node_id_b << endl;
+        
+        
+    }
+    
+    cout << "----" << endl;
+    
+    
+}
+

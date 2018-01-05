@@ -160,6 +160,7 @@
 		F2C098E51FDD12400075255C /* ofxGismo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxGismo.cpp; sourceTree = "<group>"; };
 		F2C098E61FDD12400075255C /* ofxGismo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxGismo.h; sourceTree = "<group>"; };
 		F2C099011FDD7DB30075255C /* drawAgents.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = drawAgents.hpp; sourceTree = "<group>"; };
+		F2D2DCF81FFF2746004513CB /* ag_shape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ag_shape.h; sourceTree = "<group>"; };
 		F2FFCEAF1F62A27D00E71BAA /* VSyn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VSyn.cpp; sourceTree = "<group>"; };
 		F2FFCEB01F62A27D00E71BAA /* VSyn.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = VSyn.hpp; sourceTree = "<group>"; };
 		F2FFCEB21F62AFF800E71BAA /* osc2shape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = osc2shape.cpp; sourceTree = "<group>"; };
@@ -388,6 +389,7 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				F2D2DCF81FFF2746004513CB /* ag_shape.h */,
 				F28AF43B1FF35DC200D48FEB /* Test.cpp */,
 				F28AF43C1FF35DC200D48FEB /* Test.hpp */,
 				F2FFCEB01F62A27D00E71BAA /* VSyn.hpp */,
