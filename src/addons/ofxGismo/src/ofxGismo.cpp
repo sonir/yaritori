@@ -14,6 +14,7 @@ void initAgent(ag_t *tmp){
     tmp->mov = AG_DEF_MOV;
 
     tmp->condition = CALM;
+    tmp->interact_with = DEFAULT_INTERACT_WITH;
     
     
 }
@@ -233,6 +234,7 @@ void interactWith(ag_t *focus , ag_t *target){
                 //WORK137
                 setSound( (int)focus->condition );
                 focus->condition=CHASE;
+//                focus->interact_with = 
             }
             
         } else {
@@ -272,7 +274,14 @@ void makeInteracts(agent_buf_t *agents){
     for(int i=0; i<agents->count;i++){
                 
         nearest = seekNearest(i, agents);
-        if(nearest != -1) interactWith(&agents->buf[i], &agents->buf[nearest]);
+        if(nearest != -1)
+        {
+            interactWith(&agents->buf[i], &agents->buf[nearest]);
+            
+            if(agents->buf[i].condition != CALM) agents->buf[i].interact_with = nearest;
+            else agents->buf[i].interact_with = DEFAULT_INTERACT_WITH;
+        
+        }
         
     }
     

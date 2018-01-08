@@ -50,6 +50,8 @@ void VSyn::setup(){
 
 void VSyn::update(){
     
+    cout << gismo.agents.buf[1].interact_with << endl;
+    
     
     myTest->update();
     if( !sound.bankIsEmpty()) sound.update();

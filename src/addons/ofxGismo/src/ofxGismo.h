@@ -18,6 +18,7 @@
 #define AG_DEF_VIEW 0.3f
 #define AG_DEF_SIZE_FIX 0.005f //Scaling factor for frand(0.0-1.0)
 #define DEAD_THREATH 0.0005f
+#define DEFAULT_INTERACT_WITH -1
 
 // PARAMS SET MACROS
 #define AG_DMG 0.000034f
