@@ -24,7 +24,8 @@
 #define AG_DMG 0.000034f
 #define ATK_DIST AG_DEF_SIZE
 #define SPD_LIMIT 0.02f //0.03f
-#define SPD_FIX 0.05f //0.01f
+#define SPD_FIX 0.01f //0.01f
+#define SPD_RANDOM_WALK_FIX 0.1f
 
 #include <iostream>
 #include <math.h>

@@ -171,31 +171,35 @@ void move(ag_t *ag, posi_t *posi){
     ag->posi.y += ag->spd.y; //Move with the refleshed sppd
 
     
-    cout << ag->spd.x << " , " << ag->spd.y << endl;
-    
 }
 
 
 
 void randomMove(ag_t *ag){
 
-    GismoManager& gismo = GismoManager::getInstance();
+    //Set next target position with random
+    posi_t rand;
+    rand.x = frand();
+    rand.y = frand();
+    
+    //decision X
+    float x_move = frand()*ag->mov*SPD_FIX*SPD_RANDOM_WALK_FIX;
+    if ( isLarge(ag->posi.x, rand.x) ) ag->spd.x -= x_move; //WHEN LARGE change xspd to negative
+    else ag->spd.x += x_move; //WHEN SMALL change xspd to negative
+    
+    ag->spd.x = limitter(ag->spd.x, SPD_LIMIT*SPD_RANDOM_WALK_FIX); //LimitCheck
+    ag->posi.x += ag->spd.x; //Move with the refleshed sppd
+    
+    
+    //decision Y
+    float y_move = frand()*ag->mov*SPD_FIX*SPD_RANDOM_WALK_FIX;
+    if ( isLarge(ag->posi.y, rand.y) ) ag->spd.y -= y_move; //WHEN LARGE change xspd to negative
+    else ag->spd.y += y_move; //WHEN SMALL change xspd to negative
+    
+    ag->spd.y = limitter(ag->spd.y, SPD_LIMIT*SPD_RANDOM_WALK_FIX); //LimitCheck
+    ag->posi.y += ag->spd.y; //Move with the refleshed sppd
 
-    //for X
-    //invert sign randomly
-    float fval=1.0f;
-    if( irand()<50 )fval *= 1;
-    else fval *= -1;
-    //Set the next X
-    ag->posi.x = ag->posi.x + (ag->mov*fval);
-
-    //for Y
-    //invert sign randomly
-    if( irand()<50 )fval *= 1;
-    else fval *= -1;
-    //Set the next X
-    ag->posi.y = ag->posi.y + (ag->mov*fval);
-
+    
     
 }
 
@@ -204,12 +208,21 @@ float limitter(float val, float limit){
     
     //get abs
     float abs;
-    if (val < 0) abs= val * (-1);
-    else abs = val;
+    if (val < 0)
+    {
+        
+        abs= val * (-1);
+        
+    } else
+    {
+        
+        abs = val;
+        
+    }
     
-    printf("abs :: %f\n", abs);
     
     if ( abs<limit ){
+
         return val;
         
     }else{
