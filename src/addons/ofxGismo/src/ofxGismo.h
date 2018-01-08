@@ -14,8 +14,8 @@
 
 //Agent Default Parameters
 #define AG_DEF_SIZE 0.0034f
-#define AG_DEF_MOV 0.002f//0.002f
-#define AG_DEF_VIEW 0.3f
+#define AG_DEF_MOV 0.2f//0.002f
+#define AG_DEF_VIEW 0.3f//0.3f
 #define AG_DEF_SIZE_FIX 0.005f //Scaling factor for frand(0.0-1.0)
 #define DEAD_THREATH 0.0005f
 #define DEFAULT_INTERACT_WITH -1
@@ -23,8 +23,8 @@
 // PARAMS SET MACROS
 #define AG_DMG 0.000034f
 #define ATK_DIST AG_DEF_SIZE
-
-///
+#define SPD_LIMIT 0.02f //0.03f
+#define SPD_FIX 0.05f //0.01f
 
 #include <iostream>
 #include <math.h>
@@ -49,8 +49,9 @@ int seekNearest(int ag_id, agent_buf_t *agbuf);
 bool isViewRange(ag_t *ag, float distance);
 bool isLarge(float f1, float f2);
 void move(ag_t *ag, posi_t *posi);
-bool conditionCheck(condition_e cond1, condition_e cond2);
 void randomMove(ag_t *ag);
+float limitter(float val, float limit);
+bool conditionCheck(condition_e cond1, condition_e cond2);
 void attackCheck(float distance, float *f_param);
 void deadCheck(float *size, bool *active);
 void interactWith(ag_t *focus , ag_t *target);

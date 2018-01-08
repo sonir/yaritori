@@ -50,7 +50,6 @@ void VSyn::setup(){
 
 void VSyn::update(){
     
-    cout << gismo.agents.buf[1].interact_with << endl;
     
     
     myTest->update();
@@ -61,6 +60,11 @@ void VSyn::update(){
 
     gismo.addSync();
     makeInteracts(&gismo.agents);
+
+    //test for move
+//    posi_t tmp;
+//    tmp.x=0.5f; tmp.y=0.5f;
+//    move(&gismo.agents.buf[0],&tmp);
 
     
     // hide old messages

@@ -13,6 +13,9 @@ void initAgent(ag_t *tmp){
     tmp->view = AG_DEF_VIEW;
     tmp->mov = AG_DEF_MOV;
 
+    tmp->spd.x = 0.0f;
+    tmp->spd.y = 0.0f;
+    
     tmp->condition = CALM;
     tmp->interact_with = DEFAULT_INTERACT_WITH;
     
@@ -148,25 +151,27 @@ bool isLarge(float f1, float f2){
 }
 
 
+
 void move(ag_t *ag, posi_t *posi){
-    
-    GismoManager& gismo = GismoManager::getInstance();
-    
+
     //decision X
-    if ( isLarge(ag->posi.x, posi->x) ) ag->posi.x = ag->posi.x - (frand()*ag->mov);
-    else ag->posi.x = ag->posi.x + ( frand() * ag->mov );
-    //decision y
-    if ( isLarge(ag->posi.y, posi->y) ) ag->posi.y = ag->posi.y - (frand()*ag->mov);
-    else ag->posi.y = ag->posi.y + ( frand() *ag->mov);
+    float x_move = frand()*ag->mov*SPD_FIX;
+    if ( isLarge(ag->posi.x, posi->x) ) ag->spd.x -= x_move; //WHEN LARGE change xspd to negative
+    else ag->spd.x += x_move; //WHEN SMALL change xspd to negative
     
-}
+    ag->spd.x = limitter(ag->spd.x, SPD_LIMIT); //LimitCheck
+    ag->posi.x += ag->spd.x; //Move with the refleshed sppd
 
+    //decision X
+    float y_move = frand()*ag->mov*SPD_FIX;
+    if ( isLarge(ag->posi.y, posi->y) ) ag->spd.y -= y_move; //WHEN LARGE change xspd to negative
+    else ag->spd.y += y_move; //WHEN SMALL change xspd to negative
+    
+    ag->spd.y = limitter(ag->spd.y, SPD_LIMIT); //LimitCheck
+    ag->posi.y += ag->spd.y; //Move with the refleshed sppd
 
-bool conditionCheck(condition_e cond1, condition_e cond2){
     
-    if (cond1==cond2) return true;
-    else return false;
-    
+    cout << ag->spd.x << " , " << ag->spd.y << endl;
     
 }
 
@@ -195,6 +200,39 @@ void randomMove(ag_t *ag){
 }
 
 
+float limitter(float val, float limit){
+    
+    //get abs
+    float abs;
+    if (val < 0) abs= val * (-1);
+    else abs = val;
+    
+    printf("abs :: %f\n", abs);
+    
+    if ( abs<limit ){
+        return val;
+        
+    }else{
+        
+        if ( val < 0 ) return ( limit * (-1) ); //val was negative, return negative abs
+        else return limit; // val was positive, return positive abs
+        
+    }
+    
+}
+
+
+
+bool conditionCheck(condition_e cond1, condition_e cond2){
+    
+    if (cond1==cond2) return true;
+    else return false;
+    
+    
+}
+
+
+
 void attackCheck(float distance, float *f_param){
     
     if(distance <= ATK_DIST) *f_param -= AG_DMG;
@@ -217,9 +255,6 @@ void deadCheck(float *size, bool *active){
 void interactWith(ag_t *focus , ag_t *target){
 
     
-    //Get singleton
-    //GismoManager& gismo = GismoManager::getInstance();
-
     float dist = distance(focus->posi, target->posi);
     if (isViewRange(focus, dist)){
         
@@ -234,7 +269,6 @@ void interactWith(ag_t *focus , ag_t *target){
                 //WORK137
                 setSound( (int)focus->condition );
                 focus->condition=CHASE;
-//                focus->interact_with = 
             }
             
         } else {
@@ -262,6 +296,11 @@ void interactWith(ag_t *focus , ag_t *target){
 
 void makeInteracts(agent_buf_t *agents){
 
+    
+    //Get singleton to get width rate
+    GismoManager& gismo = GismoManager::getInstance();
+
+    
     int nearest = -1;
     
     if (agents->count==1){
@@ -276,8 +315,11 @@ void makeInteracts(agent_buf_t *agents){
         nearest = seekNearest(i, agents);
         if(nearest != -1)
         {
+            //Interact
             interactWith(&agents->buf[i], &agents->buf[nearest]);
-            
+            //Loop of World
+            positionLoop(&agents->buf[i].posi, gismo.width_rate, gismo.height_rate);
+            //Set who is interacted agent
             if(agents->buf[i].condition != CALM) agents->buf[i].interact_with = nearest;
             else agents->buf[i].interact_with = DEFAULT_INTERACT_WITH;
         

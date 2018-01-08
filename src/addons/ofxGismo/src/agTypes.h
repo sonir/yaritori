@@ -32,6 +32,8 @@ typedef struct ag_t {
     float view;
     float mov;
     condition_e condition;
+    
+    posi_t spd;
     int interact_with;
     
 } ag_t;

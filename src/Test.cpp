@@ -163,15 +163,15 @@ void Test :: run(){
     cout << "gismoLibrary::isaLarge is OK" <<endl;
     
     //Test Move
-    ag_t ag6;
-    posi_t tmp;
-    tmp.x=1.0; tmp.y=0.0;
-    initAgent(&ag6);
-    ag6.posi.x=0.5; ag6.posi.y=0.5;
-    move(&ag6,&tmp);
-    assert(ag6.posi.x >= 0.5f);
-    assert(ag6.posi.y <= 0.5f);
-    cout << "gismoLibrary::move() is OK." << endl;
+//    ag_t ag6;
+//    posi_t tmp;
+//    tmp.x=1.0; tmp.y=0.0;
+//    initAgent(&ag6);
+//    ag6.posi.x=0.5; ag6.posi.y=0.5;
+//    move(&ag6,&tmp);
+//    assert(ag6.posi.x >= 0.5f);
+//    assert(ag6.posi.y <= 0.5f);
+//    cout << "gismoLibrary::move() is OK." << endl;
     
     
     //TestConditionCheck
@@ -220,6 +220,17 @@ void Test :: run(){
     assert(pAg1->view == 256.0f);
     ag_t *pAg2 = gismo.getAgent(1);
     assert(pAg2->view == 356.0f);
+    
+    //TestSpeedLimit
+    assert ( limitter(1.1f, 1.0f) == 1.0f );
+    assert ( limitter(-1.1f, 1.0f) == -1.0f );
+    assert ( limitter(0.49f, 0.5f) == 0.49f );
+    assert ( limitter(-0.49f, 0.5f) == -0.49f );
+    assert ( limitter(0.0051f, 0.005f) == 0.005f );
+    assert ( limitter(-0.00501f, 0.005f) == -0.005f );
+
+    cout << "speedLimitter is OK." << endl;
+    
     
     //Test positionLoop()
     posi_t pos;
