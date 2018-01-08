@@ -50,8 +50,7 @@ void VSyn::setup(){
 
 void VSyn::update(){
     
-    
-    
+    //Test Update
     myTest->update();
     if( !sound.bankIsEmpty()) sound.update();
         
@@ -60,11 +59,6 @@ void VSyn::update(){
 
     gismo.addSync();
     makeInteracts(&gismo.agents);
-
-    //test for move
-//    posi_t tmp;
-//    tmp.x=0.5f; tmp.y=0.5f;
-//    move(&gismo.agents.buf[0],&tmp);
 
     
     // hide old messages
@@ -453,9 +447,9 @@ void VSyn::draw(){
                     
             }
             
-            square(ag->posi.x, ag->posi.y, ag->size*10.0f, 0.0f, false);
+            //square(ag->posi.x, ag->posi.y, ag->size*10.0f, 0.0f, false);
             ofDrawBitmapString( cond_flg, tmp_x, tmp_y);
-            circle(ag->posi.x+0.0078f, ag->posi.y+0.00078f, ag->view,false);
+            //circle(ag->posi.x+0.0078f, ag->posi.y+0.00078f, ag->view,false);
             ofSetColor(255,255,255);
         }
         agents++;
@@ -532,11 +526,13 @@ void VSyn::test(){
     act8.posi.x = 0.25f; act8.posi.y = 0.5f;
     gismo.addAgent(act8);
     act8.posi.x = 0.75f; act8.posi.y = 0.5f;
-    act8.mov = 0.0f;
+//    act8.mov = 0.0f;
     gismo.addAgent(act8);
-
-    //for(int i=0;i<1000;i++) gismo.addAgent(act8);
-    
+    for(int i=0;i<600;i++) gismo.addAgent(act8);
+    act8.size *= 0.8f;
+    act8.mov *= 2.5f;
+    act8.view *= 5.0f;
+    for(int i=0;i<100;i++) gismo.addAgent(act8);
 
     
     std::cout << "test method has finished." << std::endl;

@@ -137,14 +137,13 @@ bool isViewRange(ag_t *ag, float distance){
 }
 
 
-bool isLarge(float f1, float f2){
+int isLarge(float f1, float f2){
     
-    if (f1>f2)return true;
-    else if (f1<f2) return false;
+    if (f1>f2)return 1;
+    else if (f1<f2) return 0;
     else if (f1==f2){
-     
-        if( brand() ) return true;
-        else return false;
+        
+        return -1;
         
     }
     
@@ -162,7 +161,7 @@ void move(ag_t *ag, posi_t *posi){
     ag->spd.x = limitter(ag->spd.x, SPD_LIMIT); //LimitCheck
     ag->posi.x += ag->spd.x; //Move with the refleshed sppd
 
-    //decision X
+    //decision Y
     float y_move = frand()*ag->mov*SPD_FIX;
     if ( isLarge(ag->posi.y, posi->y) ) ag->spd.y -= y_move; //WHEN LARGE change xspd to negative
     else ag->spd.y += y_move; //WHEN SMALL change xspd to negative
@@ -170,6 +169,15 @@ void move(ag_t *ag, posi_t *posi){
     ag->spd.y = limitter(ag->spd.y, SPD_LIMIT); //LimitCheck
     ag->posi.y += ag->spd.y; //Move with the refleshed sppd
 
+    
+    //Stop when mov= 0
+    if(ag->mov == 0.0f)
+    {
+        ag->spd.x = 0.0f;
+        ag->spd.y = 0.0f;
+        
+    }
+    
     
 }
 
@@ -195,13 +203,23 @@ void randomMove(ag_t *ag){
     float y_move = frand()*ag->mov*SPD_FIX*SPD_RANDOM_WALK_FIX;
     if ( isLarge(ag->posi.y, rand.y) ) ag->spd.y -= y_move; //WHEN LARGE change xspd to negative
     else ag->spd.y += y_move; //WHEN SMALL change xspd to negative
-    
+
     ag->spd.y = limitter(ag->spd.y, SPD_LIMIT*SPD_RANDOM_WALK_FIX); //LimitCheck
     ag->posi.y += ag->spd.y; //Move with the refleshed sppd
 
     
+    //Stop when mov= 0
+    if(ag->mov == 0.0f)
+    {
+        ag->spd.x = 0.0f;
+        ag->spd.y = 0.0f;
+        
+    }
+
+    
     
 }
+
 
 
 float limitter(float val, float limit){
@@ -231,6 +249,50 @@ float limitter(float val, float limit){
         else return limit; // val was positive, return positive abs
         
     }
+    
+}
+
+
+
+void running(ag_t *ag, posi_t *enemy){
+    
+    //decision X
+    float x_move = frand()*ag->mov*SPD_FIX;
+    if ( isLarge(ag->posi.x, enemy->x) )
+    {
+        ag->spd.x += x_move; //WHEN LARGE change xspd to negative
+        
+    } else {
+        ag->spd.x -= x_move; //WHEN SMALL change xspd to negative
+        
+    }
+    
+    ag->spd.x = limitter(ag->spd.x, SPD_LIMIT); //LimitCheck
+    ag->posi.x += ag->spd.x; //Move with the refleshed sppd
+    
+    //decision Y
+    float y_move = frand()*ag->mov*SPD_FIX;
+    if ( isLarge(ag->posi.y, enemy->y) )
+    {
+        ag->spd.y += y_move; //WHEN LARGE change xspd to negative
+        
+    } else {
+        ag->spd.y -= y_move; //WHEN SMALL change xspd to negative
+        
+    }
+    
+    ag->spd.y = limitter(ag->spd.y, SPD_LIMIT); //LimitCheck
+    ag->posi.y += ag->spd.y; //Move with the refleshed sppd
+    
+    
+    //Stop when mov= 0
+    if(ag->mov == 0.0f)
+    {
+        ag->spd.x = 0.0f;
+        ag->spd.y = 0.0f;
+        
+    }
+    
     
 }
 
@@ -271,7 +333,11 @@ void interactWith(ag_t *focus , ag_t *target){
     float dist = distance(focus->posi, target->posi);
     if (isViewRange(focus, dist)){
         
-        if( isLarge(focus->size, target->size) ){
+        //Check size check
+        int size_check = isLarge(focus->size, target->size);
+        
+        //Do action according to the result of size check
+        if( size_check == 1){ //Is larger
 
             move(focus, &target->posi);
             attackCheck( distance(focus->posi, target->posi) , &target->size);
@@ -284,12 +350,18 @@ void interactWith(ag_t *focus , ag_t *target){
                 focus->condition=CHASE;
             }
             
+        } else if (size_check == (-1) ) { //Is same size
+        
+            if( brand() ) target->size-=AG_DMG; //decrease the target size in 50% rate.
+            
+            
         } else {
 
-            posi_t tmp = target->posi; //set invert position for running
-            tmp.x = tmp.x*(-1);
-            tmp.y = tmp.y*(-1);
-            move(focus, &tmp);
+//            posi_t tmp = target->posi; //set invert position for running
+//            tmp.x = tmp.x*(-1);
+//            tmp.y = tmp.y*(-1);
+//            move(focus, &tmp);
+            running(focus, &target->posi);
             focus->condition=RUN;
 
         }
@@ -301,8 +373,6 @@ void interactWith(ag_t *focus , ag_t *target){
         
     }
     
-    //Loop of World
-    //positionLoop(&focus->posi, gismo.width_rate, gismo.height_rate); //rest by some of memory bug
 
 }
 

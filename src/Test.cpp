@@ -163,16 +163,50 @@ void Test :: run(){
     cout << "gismoLibrary::isaLarge is OK" <<endl;
     
     //Test Move
-//    ag_t ag6;
-//    posi_t tmp;
-//    tmp.x=1.0; tmp.y=0.0;
-//    initAgent(&ag6);
-//    ag6.posi.x=0.5; ag6.posi.y=0.5;
-//    move(&ag6,&tmp);
-//    assert(ag6.posi.x >= 0.5f);
-//    assert(ag6.posi.y <= 0.5f);
-//    cout << "gismoLibrary::move() is OK." << endl;
+    ag_t ag6;
+    posi_t tmp;
+    tmp.x=1.0; tmp.y=0.0;
+    initAgent(&ag6);
+    ag6.posi.x=0.5; ag6.posi.y=0.5;
+    move(&ag6,&tmp);
+    assert(ag6.posi.x >= 0.5f);
+    assert(ag6.posi.y <= 0.5f);
+    cout << "gismoLibrary::move() is OK." << endl;
     
+    //Test Run
+    ag_t tmpAg1, tmpAg2;
+    tmpAg1.posi.x = 0.75f;
+    tmpAg1.posi.y = 0.75f;
+    tmpAg1.mov = 0.001f;
+    tmpAg1.spd.x = 0.0f;
+    tmpAg1.spd.y = 0.0f;
+    tmpAg2.posi.x = 0.5f;
+    tmpAg2.posi.y = 0.5f;
+    running(&tmpAg1, &tmpAg2.posi);
+    assert(tmpAg1.posi.x > 0.75f);
+    assert(tmpAg1.posi.y > 0.75f);
+    tmpAg1.posi.x = 0.25f;
+    tmpAg1.posi.y = 0.75f;
+    tmpAg1.spd.x = 0.0f;
+    tmpAg1.spd.y = 0.0f;
+    running(&tmpAg1, &tmpAg2.posi);
+    assert(tmpAg1.posi.x < 0.25f);
+    assert(tmpAg1.posi.y > 0.75f);
+    tmpAg1.posi.x = 0.75f;
+    tmpAg1.posi.y = 0.45f;
+    tmpAg1.spd.x = 0.0f;
+    tmpAg1.spd.y = 0.0f;
+    running(&tmpAg1, &tmpAg2.posi);
+    assert(tmpAg1.posi.x > 0.75f);
+    assert(tmpAg1.posi.y < 0.45f);
+    tmpAg1.posi.x = 0.25f;
+    tmpAg1.posi.y = 0.25f;
+    tmpAg1.spd.x = 0.0f;
+    tmpAg1.spd.y = 0.0f;    
+    running(&tmpAg1, &tmpAg2.posi);
+    assert(tmpAg1.posi.x < 0.25f);
+    assert(tmpAg1.posi.y < 0.25f);
+    cout << "gismoLibrary::running() is OK." << endl;
     
     //TestConditionCheck
     condition_e cond1 = CALM;
