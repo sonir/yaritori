@@ -21,7 +21,7 @@
 #define DEFAULT_INTERACT_WITH -1
 
 // PARAMS SET MACROS
-#define AG_DMG 0.000034f
+#define AG_DMG 0.000017f//0.000034f
 #define ATK_DIST AG_DEF_SIZE
 #define SPD_LIMIT 0.016f //0.02f(for slow) ,, 0.03f
 #define SPD_FIX 0.007f //0.01f
@@ -59,7 +59,7 @@ void deadCheck(float *size, bool *active);
 void interactWith(ag_t *focus , ag_t *target);
 void makeInteracts(agent_buf_t *agents);
 //void positionLoop(posi_t *position);
-void positionLoop(posi_t *position, float w_max, float h_max);
+bool positionLoop(posi_t *position, float w_max, float h_max);
 float logistic(float fval=0.5);
 void setSeed(int seed);
 float frand();

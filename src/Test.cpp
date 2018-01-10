@@ -280,6 +280,23 @@ void Test :: run(){
     positionLoop(&pos, 1.0f, 1.0f);
     assert (pos.x == 1.0f);
     assert (pos.y == 1.0f);
+    //Check result check
+    pos.x = 0.5f;
+    pos.y = 0.5f;
+    bool result = positionLoop(&pos , 1.0f, 1.0f);
+    assert (result==false);
+    pos.x = 1.0f;
+    pos.y = 1.0f;
+    result = positionLoop(&pos , 1.0f, 1.0f);
+    assert (result==false);
+    pos.x = 1.05f;
+    pos.y = 1.05f;
+    result = positionLoop(&pos , 1.0f, 1.0f);
+    assert (result==true);
+    pos.x = 1.05f;
+    pos.y = 1.00f;
+    result = positionLoop(&pos , 1.0f, 1.0f);
+    assert (result==true);
     cout << "GismoLibrary::positionLoop() is OK" << endl;
     
     
