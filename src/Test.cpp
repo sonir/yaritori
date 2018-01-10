@@ -196,7 +196,7 @@ void Test :: run(){
     tmpAg1.spd.x = 0.0f;
     tmpAg1.spd.y = 0.0f;
     running(&tmpAg1, &tmpAg2.posi);
-    assert(tmpAg1.posi.x > 0.75f);
+    assert(tmpAg1.posi.x >= 0.75f);
     assert(tmpAg1.posi.y < 0.45f);
     tmpAg1.posi.x = 0.25f;
     tmpAg1.posi.y = 0.25f;

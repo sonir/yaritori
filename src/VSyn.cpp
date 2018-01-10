@@ -510,7 +510,7 @@ void VSyn::addAgShape(ag_shape_t shape){
 void VSyn::createShape(ag_shape_t &shape) {
     //Create random shape
     
-    shape.node_count = (NODE_MAX - 12) * frand() + 12;
+    shape.node_count = 10;
     shape.edge_count = shape.node_count * (1.0 + frand());
     
     for(int i = 0; i < NODE_MAX; i++) {
@@ -553,14 +553,16 @@ void VSyn::test(){
 //    gismo.bang("/addShape" , &shape);
 //    createShape(shape);
 //    gismo.bang("/addShape" , &shape);
-    
-    createShape(shape);
-    shape.edge_count = 4;
-    shape.node_count = 4;
-    shape.edges[0].node_id_a = 0; shape.edges[0].node_id_b = 1;
-    shape.edges[1].node_id_a = 1; shape.edges[1].node_id_b = 2;
-    shape.edges[2].node_id_a = 2; shape.edges[2].node_id_b = 3;
-    shape.edges[3].node_id_a = 3; shape.edges[3].node_id_b = 0;
+    for(int i=0;i<AG_MAX;i++) {
+         gismo.bang("/addShape" , &shape);
+        createShape(shape);
+    }
+//    shape.edge_count = 4;
+//    shape.node_count = 4;
+//    shape.edges[0].node_id_a = 0; shape.edges[0].node_id_b = 1;
+//    shape.edges[1].node_id_a = 1; shape.edges[1].node_id_b = 2;
+//    shape.edges[2].node_id_a = 2; shape.edges[2].node_id_b = 3;
+//    shape.edges[3].node_id_a = 3; shape.edges[3].node_id_b = 0;
     gismo.bang("/addShape" , &shape);
 
     
@@ -572,10 +574,18 @@ void VSyn::test(){
 
     initAgentActive(&act8);
     act8.posi.x = 0.25f; act8.posi.y = 0.75f;
+    act8.size = 0.03f;
     gismo.addAgent(act8);
+    createShape(shape);
+    gismo.bang("/addShape" , &shape);
+    
     act8.posi.x = 0.75f; act8.posi.y = 0.5f;
 //    act8.mov = 0.0f;
     gismo.addAgent(act8);
+    
+    createShape(shape);
+    gismo.bang("/addShape" , &shape);
+    
     for(int i=0;i<600;i++) gismo.addAgent(act8);
     act8.size *= 0.8f;
     act8.mov *= 2.5f;
