@@ -23,14 +23,22 @@ class Test {
         Test(Sound *pSnd, RippleManager *pRipple);
         void setup();
         void run();
-        void runVisualTest(visual_container_t* visual);
+
         void update();
-    void invert();
+    
+        //Visual
+        void runVisualTest(visual_container_t* visual);
+        void invert();
+        void solo();
+    
     
         GismoManager& gismo = GismoManager::getInstance(); //Pointer for gismoManager instance
         Sound *sound;
     
-        RippleManager *ripple;
+    //Visual
+    RippleManager *ripple;
+    EventHandler visEvents;
+    bool isSolo;
         
     
 };

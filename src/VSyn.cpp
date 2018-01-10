@@ -11,7 +11,7 @@
 using namespace std;
 
 void VSyn::setup(){
-    
+    ofSetFrameRate(30);
     
     //Create TestClass
     myTest = new Test(&sound, &ripple);
@@ -59,7 +59,7 @@ void VSyn::update(){
     if( !sound.bankIsEmpty()) sound.update();
         
     
-    sync();
+    //sync();
 
     gismo.addSync();
     makeInteracts(&gismo.agents);
@@ -478,6 +478,21 @@ void VSyn::draw(){
     
 }
 
+void VSyn::keyPressed(int key) {
+    switch (key) {
+        case 's':
+            myTest->solo();
+            break;
+            
+        case 'i':
+            myTest->invert();
+            break;
+            
+        default:
+            break;
+    }
+    
+}
 
 void VSyn::initWindowSize(){
     
@@ -510,7 +525,7 @@ void VSyn::addAgShape(ag_shape_t shape){
 void VSyn::createShape(ag_shape_t &shape) {
     //Create random shape
     
-    shape.node_count = (NODE_MAX - 12) * frand() + 12;
+    shape.node_count = 24 * frand() + 12;
     shape.edge_count = shape.node_count * (1.0 + frand());
     
     for(int i = 0; i < NODE_MAX; i++) {
@@ -553,15 +568,10 @@ void VSyn::test(){
 //    gismo.bang("/addShape" , &shape);
 //    createShape(shape);
 //    gismo.bang("/addShape" , &shape);
-    
-    createShape(shape);
-    shape.edge_count = 4;
-    shape.node_count = 4;
-    shape.edges[0].node_id_a = 0; shape.edges[0].node_id_b = 1;
-    shape.edges[1].node_id_a = 1; shape.edges[1].node_id_b = 2;
-    shape.edges[2].node_id_a = 2; shape.edges[2].node_id_b = 3;
-    shape.edges[3].node_id_a = 3; shape.edges[3].node_id_b = 0;
-    gismo.bang("/addShape" , &shape);
+    for(int i = 0; i < AG_MAX; i++) {
+        createShape(shape);
+        gismo.bang("/addShape" , &shape);
+    }
 
     
     //Reset all agents
@@ -571,40 +581,43 @@ void VSyn::test(){
     ag_t act1, act2, act3, act4, act5, act6, act7, act8;
 
     initAgentActive(&act8);
-    act8.posi.x = 0.25f; act8.posi.y = 0.75f;
-    gismo.addAgent(act8);
-<<<<<<< HEAD
-    act8.posi.x = frand(); act8.posi.y = 0.25f;
-    act8.mov = 0.0f;
-    act8.size = 0.03f;
-    act8.mov = 0.001;
+//    act8.mov = 0.01f;
+    act8.view = 0.3f;
+    act8.size = 0.03;
+    act8.mov = 0.05;
+    act8.posi.x = 0.1f; act8.posi.y = 0.25f;
     gismo.addAgent(act8);
     
+    act8.posi.x = 0.3f; act8.posi.y = 0.25f;
+    act8.view = 0.3;
+    gismo.addAgent(act8);
+    
+    act8.posi.x = 0.15f; act8.posi.y = 0.3f;
+    gismo.addAgent(act8);
+    
+    
+    for(int i = 0; i < 1000; i++)  gismo.addAgent(act8);
     
     act8.posi.x = frand();
     act8.posi.y = 0.5f;
     act8.mov = 0.0f;
     act8.mov = 0.001;
-    gismo.addAgent(act8);
+//    gismo.addAgent(act8);
     
     act8.posi.y = 0.75f;
     act8.mov = 0.0f;
     act8.mov = 0.001;
-    gismo.addAgent(act8);
-
+//    gismo.addAgent(act8);
     
-    
-    
-=======
     act8.posi.x = 0.75f; act8.posi.y = 0.5f;
-//    act8.mov = 0.0f;
-    gismo.addAgent(act8);
-    for(int i=0;i<600;i++) gismo.addAgent(act8);
+    act8.mov = 0.01f;
+    //gismo.addAgent(act8);
+
+//    for(int i=0;i<600;i++) gismo.addAgent(act8);
     act8.size *= 0.8f;
     act8.mov *= 2.5f;
     act8.view *= 5.0f;
-    for(int i=0;i<100;i++) gismo.addAgent(act8);
->>>>>>> origin/gismo
+//    for(int i=0;i<100;i++) gismo.addAgent(act8);
 
     
     std::cout << "test method has finished." << std::endl;

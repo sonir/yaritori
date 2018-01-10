@@ -10,9 +10,12 @@
 #include <cassert>
 
 MotionManager::MotionManager() {
+    
+    //Reset solo
     for(int i = 0; i < AG_MAX; i++) {
         soloID[i] = false;
     }
+    
 }
 
 void MotionManager::invertColor() {
@@ -21,11 +24,11 @@ void MotionManager::invertColor() {
     }
 }
 
-void MotionManager::solo(int _id) {
-    if(soloID[_id]) {
-        deleteSolo(_id);
-    } else {
+void MotionManager::solo(int _id, int act) {
+    if(act != 0) {
         addSolo(_id);
+    } else {
+        deleteSolo(_id);
     }
 }
 
@@ -44,7 +47,7 @@ void MotionManager::drawAll() {
     ag_t* agents = gismo->getAgents(); //sets agents pointer
     ag_t* ag;
     
-    for(int i =0; i < count; i++){
+    for(int i = 0; i < count; i++){
         
         ag = agents; //Set agent address
         if(ag->active){
@@ -55,18 +58,35 @@ void MotionManager::drawAll() {
             agent[i].size = ag->size;
             agent[i].mov = ag->mov;
             //motion->agent[i].width_rate = gismo->width_rate;
+            
+            if(ag->interact_with != -1) {
+                int targetID = ag->interact_with;
+                ag_t* target = gismo->getAgent(targetID);
+                
+                if(ag->condition == CHASE) {
+                    interactLine[i].myPos.x = ag->posi.x;
+                    interactLine[i].myPos.y = ag->posi.y;
+                
+                    ofSetColor(0);
+                    interactLine[i].lineTo(target->posi.x, target->posi.y);
+                }
+                
+            }
+            
             agent[i].update();
+            
+            
             agent[i].draw();
             
-            if (agent[i].interaction.node.isRunning()) {
-                agent[i].interaction.begin = ag->posi;
+//            if (agent[i].interaction.node.isRunning()) {
+//                agent[i].interaction.begin = ag->posi;
 //                agent[i].interaction.end.x = 0.5;
 //                agent[i].interaction.end.y = 0.5;
-                lines.addLine(agent[i].interaction);
+//                lines.addLine(agent[i].interaction);
 //                if(!agent[i].interaction.isRunning()){
 //                    agent[i].interaction.bang(1000);
 //                }
-            }
+//            }
             
             
         }
@@ -93,13 +113,21 @@ void MotionManager::drawSolo() {
                 agent[i].size = ag->size;
                 agent[i].mov = ag->mov;
                 //motion->agent[i].width_rate = gismo->width_rate;
+                
+                if(ag->interact_with != -1) {
+                    int targetID = ag->interact_with;
+                    float targetX = agents[targetID].posi.x;
+                    float targetY = agents[targetID].posi.y;
+                    
+                    interactLine[i].lineTo(targetX, targetY);
+                }
+                
                 agent[i].update();
                 agent[i].draw();
             }
         }
         //agents++;
     }
-
 }
 
 
@@ -111,3 +139,4 @@ void MotionManager::draw() {
     }
     lines.draw();
 }
+

@@ -12,8 +12,8 @@
 #include "ofMain.h"
 
 //Variables for screen position
-constexpr int WINDOW_WIDTH = 1280;
-constexpr int WINDOW_HEIGHT = 720;  //This is 1.0
+constexpr int WINDOW_WIDTH = 1920;
+constexpr int WINDOW_HEIGHT = 1080;  //This is 1.0
 
 //Length : real length (mm)
 constexpr int SCREEN_LENGTH_W = 4000;
@@ -21,6 +21,7 @@ constexpr int SCREEN_LENGTH_H = 4000;
 constexpr int CANVAS_LENGTH_W = 4200 * 4;
 constexpr int CANVAS_LENGTH_H = 4200;
 constexpr int MARGIN_LENGTH = (CANVAS_LENGTH_H - SCREEN_LENGTH_H) * 0.5;
+constexpr float SCREEN_RATIO = SCREEN_LENGTH_H / CANVAS_LENGTH_H;
 
 constexpr float PxPerMm = WINDOW_HEIGHT / SCREEN_LENGTH_H;
 constexpr float screen_margin =  MARGIN_LENGTH * WINDOW_HEIGHT / SCREEN_LENGTH_H;

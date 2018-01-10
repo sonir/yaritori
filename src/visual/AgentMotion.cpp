@@ -21,8 +21,9 @@ constexpr float STEP_MIN = M_2XPI * 4.0f;
 //About length
 constexpr float LINE_WIDTH = 0.5;
 constexpr float NODE_SIZE = 4.0;
-constexpr float TREMOR_RATIO = 0.125;
+constexpr float TREMOR_RATIO = 0.25;
 constexpr float STAY_RATIO = 1.0 - TREMOR_RATIO;
+constexpr float MOV_FIX = 0.0166f;
 
 
 
@@ -34,7 +35,10 @@ AgentMotion::AgentMotion() {
     pShape = &this->shape;
     
     resetShape();
+    initModulation();
     initVbo();
+    
+    
     
     shader.load("shader/shader.vert", "shader/shader.frag");
 }
@@ -63,14 +67,18 @@ void AgentMotion::resetShape() {
 }
 
 void AgentMotion::initModulation() {
-    ofVec2f vel = ofVec2f(frand() * 2.0 - 1.0, frand() * 2.0 - 1.0).getNormalized();
+//    ofVec2f vel = ofVec2f(frand() * 2.0 - 1.0, frand() * 2.0 - 1.0).getNormalized();
     
     for(int i = 0; i < NODE_MAX; i++) {
+        ofVec2f vel = ofVec2f(frand() * 2.0 - 1.0, frand() * 2.0 - 1.0).getNormalized();
         velocityX[i] = vel.x;
         velocityY[i] = vel.y;
         
         modStep[i] = (STEP_MAX - STEP_MIN) * frand() + STEP_MIN;
         carStep[i] = (STEP_MAX - STEP_MIN) * frand() + STEP_MIN;
+        
+        carPhase[i] = 0.0;
+        carStep[i] = 0.0;
     }
     t = 0.0f;
 }
@@ -117,44 +125,42 @@ void AgentMotion::updateColors() {
     edgeVbo.updateColorData(edgeColors, pShape->edge_count);
 }
 
-//void AgentMotion::updatePhase(int index) {
-//    // Update Phases
-//    nodes.node[index].carPhase += nodes.node[index].carStep * nodes.mov;    //Carrier
-//    if(M_2XPI < nodes.node[index].carPhase) {
-//        nodes.node[index].carPhase = 0.0;
-//    }
-//
-//    nodes.node[index].modPhase += nodes.node[index].modStep * nodes.mov;    //Modulater
-//    if(M_2XPI < nodes.node[index].modPhase) {
-//        nodes.node[index].modPhase = 0.0;
-//    }
-//
-//    phase = (sin(nodes.node[index].carPhase) + sin(nodes.node[index].modPhase)) * TREMOR_RATIO;   // -0.5 to 0.5
-//}
-//
-//
-//
-///////////////////// UPDATE POSITION /////////////////////
-//void AgentMotion::updatePosition(int index) {
-//    // Update Position
-//    ofVec2f nextPos;
-//    nodeX = (nodes.node[index].velocityX * phase + nodes.node[index].x * STAY_RATIO) * nodes.size;
-//    nodeY = (nodes.node[index].velocityY * phase + nodes.node[index].y * STAY_RATIO) * nodes.size;
-//
-//    //Position on Screen
-//    nextPos.x = (nodeX * CANVAS_HEIGHT) + (nodes.scale_x * CANVAS_HEIGHT * *width_rate);
-//    nextPos.y = (nodeY + nodes.scale_y) * CANVAS_HEIGHT;
-//
-//    nodePos[index] = nextPos; //Set position onto Array
-//}
+void AgentMotion::updatePhase() {
+    // Update Phases
+    for(int i = 0; i < pShape->node_count; i++) {
+        carPhase[i] += carStep[i] * mov;    //Carrier
+        if(M_2XPI < carPhase[i]) {
+            carPhase[i] = 0.0;
+        }
+
+        modPhase[i] += modStep[i] * mov;    //Modulater
+        if(M_2XPI < modPhase[i]) {
+            modPhase[i] = 0.0;
+        }
+
+        phase[i] = (sin(carPhase[i]) + sin(modPhase[i])) * TREMOR_RATIO;   // -0.5 to 0.5
+    }
+}
+
 
 
 void AgentMotion::updatePosition() {
     for(int i = 0; i < pShape->node_count; i++) {
+        //Modulation by CPU
+//        float nodeX = (velocityX[i] * phase[i] + pShape->nodes[i].x * STAY_RATIO) * size;
+//        float nodeY = (velocityY[i] * phase[i] + pShape->nodes[i].y * STAY_RATIO) * size;
+//
+//        ofVec2f pos;
+//        pos.x = (center.x + nodeX) * CANVAS_HEIGHT;
+//        pos.y = (center.y + nodeY) * CANVAS_HEIGHT;
+        
+        
+        //Modulation by Shader
         ofVec2f pos;
         pos.x = ( center.x + (pShape->nodes[i].x * size)) * CANVAS_HEIGHT;
         pos.y = ( center.y + (pShape->nodes[i].y * size)) * CANVAS_HEIGHT;
-        
+
+    
         nodePos[i] = pos;
     }
     nodeVbo.updateVertexData(nodePos, pShape->node_count);
@@ -173,17 +179,12 @@ void AgentMotion::updateIndex() {
 }
 
 void AgentMotion::update() {
-    t += mov;
-    
+    t += mov * MOV_FIX;
     if(M_2XPI < t) {
         t = 0.0f;
+        
     }
-    
-//    t += 1.0;
-//    if(30 < t) {
-//        t = 0.0;
-//    }
-    
+    updatePhase();
     updatePosition();
     updateIndex();
 }
@@ -193,11 +194,12 @@ void AgentMotion::draw() {
     shader.begin();
     shader.setUniform1f("t", t);
     shader.setUniform1f("color", color);
-    shader.setUniform1fv("carStep", carStep);
-    shader.setUniform1fv("modStep", modStep);
-    shader.setUniform1f("centerX", center.x*screenWidth);
-    shader.setUniform1f("centerY", center.y*screenWidth);
-    
+    shader.setUniform1i("CANVAS_HEIGHT", CANVAS_HEIGHT);
+    shader.setUniform1f("size", size);
+    shader.setUniform1fv("carStep", carStep, pShape->node_count);
+    shader.setUniform1fv("modStep", modStep, pShape->node_count);
+    shader.setUniform1fv("velocityX", velocityX, pShape->node_count);
+    shader.setUniform1fv("velocityY", velocityX, pShape->node_count);
     
     glEnable(GL_POINT_SMOOTH);
     glHint(GL_POINT_SMOOTH_HINT, GL_NICEST);

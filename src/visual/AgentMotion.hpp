@@ -75,8 +75,10 @@ private:
     float velocityY[NODE_MAX];
     float modStep[NODE_MAX];
     float carStep[NODE_MAX];
+    float modPhase[NODE_MAX];
+    float carPhase[NODE_MAX];
+    float phase[NODE_MAX];
     float grayScale;
-    const float dt = 0.04f;
     float t;
 };
 

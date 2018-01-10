@@ -66,6 +66,7 @@ class VSyn : public Event {
         void setup();
         void update();
         void draw();
+        void keyPressed(int key);
         void initWindowSize();
         int trigger(void *args){
             

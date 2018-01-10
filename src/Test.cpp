@@ -182,7 +182,7 @@ void Test :: run(){
     tmpAg2.posi.x = 0.5f;
     tmpAg2.posi.y = 0.5f;
     running(&tmpAg1, &tmpAg2.posi);
-    assert(tmpAg1.posi.x > 0.75f);
+    assert(tmpAg1.posi.x >= 0.75f);
     assert(tmpAg1.posi.y > 0.75f);
     tmpAg1.posi.x = 0.25f;
     tmpAg1.posi.y = 0.75f;
@@ -196,7 +196,7 @@ void Test :: run(){
     tmpAg1.spd.x = 0.0f;
     tmpAg1.spd.y = 0.0f;
     running(&tmpAg1, &tmpAg2.posi);
-    assert(tmpAg1.posi.x > 0.75f);
+    assert(tmpAg1.posi.x >= 0.75f);
     assert(tmpAg1.posi.y < 0.45f);
     tmpAg1.posi.x = 0.25f;
     tmpAg1.posi.y = 0.25f;
@@ -326,6 +326,17 @@ void Test :: update(){
 }
 
 
+void Test::invert() {
+    int invArg = 1;
+    assert(visEvents.bang("/invert", &invArg) == 1);
+}
+
+void Test::solo() {
+    isSolo = !isSolo;
+    int soloArg[] = {1, isSolo};
+    assert(visEvents.bang("/solo", soloArg) == 1);
+}
+
 void Test::runVisualTest(visual_container_t* visual) {
     std::cout << " " << std::endl;
     std::cout << "Visual test methods are starting..." << std::endl;
@@ -344,19 +355,20 @@ void Test::runVisualTest(visual_container_t* visual) {
     
     //Test solo
 //    cout << "Calling Solo....";
-//    eventHandler.eventAdd("/solo", &visual->events.solo);
-//    int soloID = 1;
-//    assert(eventHandler.bang("/solo", &soloID) == 1);
-//    assert(eventHandler.bang("/solo", &soloID) == 1);
+    visEvents.eventAdd("/solo", &visual->events.solo);
+//    isSolo = 1;
+//    int soloArg[] = {1, isSolo};
+//    assert(visEvents.bang("/solo", soloArg) == 1);
 //    std::cout << "Visual test method has finished." << std::endl;
-//    cout << "OK" << end;
+//    cout << "OK" << endl;
     
     
     //Test invert
 //    cout << "Calling Invert...";
-//    eventHandler.eventAdd("/invert", &visual->events.invert);
-//    assert(eventHandler.bang("/invert") == 1);
-//    cout << "OK" <<< endl;
+    visEvents.eventAdd("/invert", &visual->events.invert);
+//    int invArg = 1;
+//    assert(visEvents.bang("/invert", &invArg) == 1);
+//    cout << "OK" << endl;
     
     //Test line
     cout << "Calling line through event....";
@@ -385,6 +397,8 @@ void Test::runVisualTest(visual_container_t* visual) {
     nodeDuration = 2000;
     assert (eventHandler.bang("/nodeBang", &nodeDuration) == 1.0);
     cout << "OK" << endl;
+    
+    std::cout << "Visual test methods have finished" << std::endl;
 }
 
 
