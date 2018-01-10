@@ -18,6 +18,7 @@ void VSyn::setup(){
     
     ofBackground(255);
     ofSetCircleResolution(50);
+    ofSetFrameRate(30);
     screen_w = ofGetWidth();
     screen_h = ofGetHeight();
 
@@ -53,6 +54,8 @@ void VSyn::setup(){
 
 
 void VSyn::update(){
+    
+
     
     //Test Update
     myTest->update();

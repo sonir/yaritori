@@ -183,21 +183,21 @@ void Test :: run(){
     tmpAg2.posi.y = 0.5f;
     running(&tmpAg1, &tmpAg2.posi);
     assert(tmpAg1.posi.x >= 0.75f);
-    assert(tmpAg1.posi.y > 0.75f);
+    assert(tmpAg1.posi.y >= 0.75f);
     tmpAg1.posi.x = 0.25f;
     tmpAg1.posi.y = 0.75f;
     tmpAg1.spd.x = 0.0f;
     tmpAg1.spd.y = 0.0f;
     running(&tmpAg1, &tmpAg2.posi);
-    assert(tmpAg1.posi.x < 0.25f);
-    assert(tmpAg1.posi.y > 0.75f);
+    assert(tmpAg1.posi.x <= 0.25f);
+    assert(tmpAg1.posi.y >= 0.75f);
     tmpAg1.posi.x = 0.75f;
     tmpAg1.posi.y = 0.45f;
     tmpAg1.spd.x = 0.0f;
     tmpAg1.spd.y = 0.0f;
     running(&tmpAg1, &tmpAg2.posi);
     assert(tmpAg1.posi.x >= 0.75f);
-    assert(tmpAg1.posi.y < 0.45f);
+    assert(tmpAg1.posi.y <= 0.45f);
     tmpAg1.posi.x = 0.25f;
     tmpAg1.posi.y = 0.25f;
     tmpAg1.spd.x = 0.0f;
@@ -279,6 +279,23 @@ void Test :: run(){
     positionLoop(&pos, 1.0f, 1.0f);
     assert (pos.x == 1.0f);
     assert (pos.y == 1.0f);
+    //Check result check
+    pos.x = 0.5f;
+    pos.y = 0.5f;
+    bool result = positionLoop(&pos , 1.0f, 1.0f);
+    assert (result==false);
+    pos.x = 1.0f;
+    pos.y = 1.0f;
+    result = positionLoop(&pos , 1.0f, 1.0f);
+    assert (result==false);
+    pos.x = 1.05f;
+    pos.y = 1.05f;
+    result = positionLoop(&pos , 1.0f, 1.0f);
+    assert (result==true);
+    pos.x = 1.05f;
+    pos.y = 1.00f;
+    result = positionLoop(&pos , 1.0f, 1.0f);
+    assert (result==true);
     cout << "GismoLibrary::positionLoop() is OK" << endl;
     
     
