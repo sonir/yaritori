@@ -64,9 +64,9 @@ void Network :: update(){
             
             
         }
-        else if( m.getAddress() == "/que" ){ //Receiving Agents
+        else if( m.getAddress() == "/test/outline" /*"/que"*/ ){ //Receiving Agents
             
-            cout << "FOOOOO" << endl;
+            cout << "Network :: /outline received" << endl;
             shape.node_count = m.getArgAsInt32(0);
             int index_of_edge_count = (shape.node_count*2)+1;
             shape.edge_count = m.getArgAsInt32( index_of_edge_count );
@@ -81,7 +81,7 @@ void Network :: update(){
             
             int edge_index = 0;
             for(int i=0;i<( (shape.edge_count*2) );i=i+2){
-                cout << i << endl;
+                //cout << i << endl;
                 shape.edges[edge_index].node_id_a = m.getArgAsInt32( i + (index_of_edge_count+1) );
                 shape.edges[edge_index].node_id_b = m.getArgAsInt32( i + (index_of_edge_count+1) + 1 );
                 edge_index+=1;

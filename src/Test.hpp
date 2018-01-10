@@ -12,7 +12,9 @@
 #include <stdio.h>
 #include <cassert>
 #include "ofxGismo.h"
+#include "ag_shape.h"
 #include "Sound.hpp"
+#include "Shape2Agent.hpp"
 
 class Test {
 
