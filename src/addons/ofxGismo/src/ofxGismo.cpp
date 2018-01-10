@@ -401,7 +401,11 @@ void makeInteracts(agent_buf_t *agents){
             //Interact
             interactWith(&agents->buf[i], &agents->buf[nearest]);
             //Loop of World
-            positionLoop(&agents->buf[i].posi, gismo.width_rate, gismo.height_rate);
+            if ( positionLoop(&agents->buf[i].posi, gismo.width_rate, gismo.height_rate) ){
+                
+                agents->buf[i].condition = CALM;
+                
+            }
             //Set who is interacted agent
             if(agents->buf[i].condition != CALM) agents->buf[i].interact_with = nearest;
             else agents->buf[i].interact_with = DEFAULT_INTERACT_WITH;
@@ -415,13 +419,39 @@ void makeInteracts(agent_buf_t *agents){
 }
 
 
-void positionLoop(posi_t *position, float w_max, float h_max){
+bool positionLoop(posi_t *position, float w_max, float h_max){
     
-    if(position->x > w_max) position->x = 0.0f;
-    else if (position->x <= 0.0f) position->x = w_max;
+    bool looped = false;
     
-    if(position->y > h_max) position->y = 0.0f;
-    else if (position->y <= 0.0f) position->y = h_max;
+    if(position->x > w_max)
+    {
+        
+        position->x = 0.0f;
+        looped = true;
+        
+    } else if (position->x <= 0.0f)
+    {
+        
+        position->x = w_max;
+        looped = true;
+        
+    }
+    
+    if(position->y > h_max)
+    {
+        
+        position->y = 0.0f;
+        looped = true;
+        
+    } else if (position->y <= 0.0f)
+    {
+        
+        position->y = h_max;
+        looped = true;
+        
+    }
+    
+    return looped;
     
 }
 

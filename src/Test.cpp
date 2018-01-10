@@ -8,9 +8,10 @@
 
 #include "Test.hpp"
 
-Test :: Test(Sound *pSnd, RippleManager *pRipple ){
-    sound = pSnd;
-    ripple = pRipple;
+Test :: Test(Sound *pSnd){
+    
+   sound = pSnd;
+    
 }
 
 
@@ -25,10 +26,10 @@ void Test :: run(){
     
     
     //Test frand
-//    assert( frand()==0.1f );
-//    assert( frand()==0.7f );
-//    assert( frand()==0.7f );
-//    assert( frand()==0.1f );
+    assert( frand()==0.1f );
+    assert( frand()==0.7f );
+    assert( frand()==0.7f );
+    assert( frand()==0.1f );
     cout << "gismoManager::randmom() is OK."<<endl;
     
     
@@ -183,21 +184,21 @@ void Test :: run(){
     tmpAg2.posi.y = 0.5f;
     running(&tmpAg1, &tmpAg2.posi);
     assert(tmpAg1.posi.x >= 0.75f);
-    assert(tmpAg1.posi.y > 0.75f);
+    assert(tmpAg1.posi.y >= 0.75f);
     tmpAg1.posi.x = 0.25f;
     tmpAg1.posi.y = 0.75f;
     tmpAg1.spd.x = 0.0f;
     tmpAg1.spd.y = 0.0f;
     running(&tmpAg1, &tmpAg2.posi);
-    assert(tmpAg1.posi.x < 0.25f);
-    assert(tmpAg1.posi.y > 0.75f);
+    assert(tmpAg1.posi.x <= 0.25f);
+    assert(tmpAg1.posi.y >= 0.75f);
     tmpAg1.posi.x = 0.75f;
     tmpAg1.posi.y = 0.45f;
     tmpAg1.spd.x = 0.0f;
     tmpAg1.spd.y = 0.0f;
     running(&tmpAg1, &tmpAg2.posi);
     assert(tmpAg1.posi.x >= 0.75f);
-    assert(tmpAg1.posi.y < 0.45f);
+    assert(tmpAg1.posi.y <= 0.45f);
     tmpAg1.posi.x = 0.25f;
     tmpAg1.posi.y = 0.25f;
     tmpAg1.spd.x = 0.0f;
@@ -279,6 +280,23 @@ void Test :: run(){
     positionLoop(&pos, 1.0f, 1.0f);
     assert (pos.x == 1.0f);
     assert (pos.y == 1.0f);
+    //Check result check
+    pos.x = 0.5f;
+    pos.y = 0.5f;
+    bool result = positionLoop(&pos , 1.0f, 1.0f);
+    assert (result==false);
+    pos.x = 1.0f;
+    pos.y = 1.0f;
+    result = positionLoop(&pos , 1.0f, 1.0f);
+    assert (result==false);
+    pos.x = 1.05f;
+    pos.y = 1.05f;
+    result = positionLoop(&pos , 1.0f, 1.0f);
+    assert (result==true);
+    pos.x = 1.05f;
+    pos.y = 1.00f;
+    result = positionLoop(&pos , 1.0f, 1.0f);
+    assert (result==true);
     cout << "GismoLibrary::positionLoop() is OK" << endl;
     
     
@@ -323,82 +341,5 @@ void Test :: update(){
 //    
 //    std::cout << ag1->size << "," << ag2->size << std::endl;
 
+    
 }
-
-
-void Test::invert() {
-    int invArg = 1;
-    assert(visEvents.bang("/invert", &invArg) == 1);
-}
-
-void Test::solo() {
-    isSolo = !isSolo;
-    int soloArg[] = {1, isSolo};
-    assert(visEvents.bang("/solo", soloArg) == 1);
-}
-
-void Test::runVisualTest(visual_container_t* visual) {
-    std::cout << " " << std::endl;
-    std::cout << "Visual test methods are starting..." << std::endl;
-    EventHandler eventHandler;
-    eventHandler.eventAdd("/ripple", ripple);
-    
-    //Test Bang Ripple
-    cout << "Calling RippleManager::ripple.triger()....";
-    float args1[] = {0.25 ,0.5};
-    assert ( eventHandler.bang("/ripple", args1) == 1.0 );
-    float args2[] = {0.5 ,0.5};
-    assert ( eventHandler.bang("/ripple", args2) == 1.0 );
-    float args3[] = {0.75 ,0.5};
-    assert ( eventHandler.bang("/ripple", args3) == 1.0 );
-    cout << "OK." << endl;
-    
-    //Test solo
-//    cout << "Calling Solo....";
-    visEvents.eventAdd("/solo", &visual->events.solo);
-//    isSolo = 1;
-//    int soloArg[] = {1, isSolo};
-//    assert(visEvents.bang("/solo", soloArg) == 1);
-//    std::cout << "Visual test method has finished." << std::endl;
-//    cout << "OK" << endl;
-    
-    
-    //Test invert
-//    cout << "Calling Invert...";
-    visEvents.eventAdd("/invert", &visual->events.invert);
-//    int invArg = 1;
-//    assert(visEvents.bang("/invert", &invArg) == 1);
-//    cout << "OK" << endl;
-    
-    //Test line
-    cout << "Calling line through event....";
-    A2PLine line;
-    eventHandler.eventAdd("/line", &line);
-    float lineArgs[] = {0.25, 0.5, 0.75, 0.5};
-    assert ( eventHandler.bang("/line", lineArgs) == 1.0 );
-    cout << "OK" << endl;
-    
-    //Test nodebang
-    cout << "Calling node-bang through event....";
-    eventHandler.eventAdd("/lineNodeBang", &line.node);
-    float nodeDuration = 2000;
-    assert (eventHandler.bang("/lineNodeBang", &nodeDuration) == 1.0);
-    cout << "OK" << endl;
-    
-    //Test line
-    cout << "Calling visual.interaction through event....";
-    eventHandler.eventAdd("/line", &visual->motion.agent[1].interaction);
-    assert ( eventHandler.bang("/line", lineArgs) == 1.0 );
-    cout << "OK" << endl;
-    
-    //Test node bang through manager
-    cout << "Calling visual.node-bang through event....";
-    eventHandler.eventAdd("/nodeBang", &visual->motion.agent[1].interaction.node);
-    nodeDuration = 2000;
-    assert (eventHandler.bang("/nodeBang", &nodeDuration) == 1.0);
-    cout << "OK" << endl;
-    
-    std::cout << "Visual test methods have finished" << std::endl;
-}
-
-
