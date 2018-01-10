@@ -281,21 +281,65 @@ void Test :: update(){
 }
 
 
-void Test::runVisualTest() {
+void Test::runVisualTest(visual_container_t* visual) {
+    std::cout << " " << std::endl;
     std::cout << "Visual test methods are starting..." << std::endl;
     EventHandler eventHandler;
     eventHandler.eventAdd("/ripple", ripple);
     
     //Test Bang Ripple
+    cout << "Calling RippleManager::ripple.triger()....";
     float args1[] = {0.25 ,0.5};
     assert ( eventHandler.bang("/ripple", args1) == 1.0 );
     float args2[] = {0.5 ,0.5};
     assert ( eventHandler.bang("/ripple", args2) == 1.0 );
     float args3[] = {0.75 ,0.5};
     assert ( eventHandler.bang("/ripple", args3) == 1.0 );
+    cout << "OK." << endl;
     
-    cout << "RippleManager::ripple.triger() is OK." << endl;
+    //Test solo
+//    cout << "Calling Solo....";
+//    eventHandler.eventAdd("/solo", &visual->events.solo);
+//    int soloID = 1;
+//    assert(eventHandler.bang("/solo", &soloID) == 1);
+//    assert(eventHandler.bang("/solo", &soloID) == 1);
+//    std::cout << "Visual test method has finished." << std::endl;
+//    cout << "OK" << end;
     
-    std::cout << "Visual test method has finished." << std::endl;
     
+    //Test invert
+//    cout << "Calling Invert...";
+//    eventHandler.eventAdd("/invert", &visual->events.invert);
+//    assert(eventHandler.bang("/invert") == 1);
+//    cout << "OK" <<< endl;
+    
+    //Test line
+    cout << "Calling line through event....";
+    A2PLine line;
+    eventHandler.eventAdd("/line", &line);
+    float lineArgs[] = {0.25, 0.5, 0.75, 0.5};
+    assert ( eventHandler.bang("/line", lineArgs) == 1.0 );
+    cout << "OK" << endl;
+    
+    //Test nodebang
+    cout << "Calling node-bang through event....";
+    eventHandler.eventAdd("/lineNodeBang", &line.node);
+    float nodeDuration = 2000;
+    assert (eventHandler.bang("/lineNodeBang", &nodeDuration) == 1.0);
+    cout << "OK" << endl;
+    
+    //Test line
+    cout << "Calling visual.interaction through event....";
+    eventHandler.eventAdd("/line", &visual->motion.agent[1].interaction);
+    assert ( eventHandler.bang("/line", lineArgs) == 1.0 );
+    cout << "OK" << endl;
+    
+    //Test node bang through manager
+    cout << "Calling visual.node-bang through event....";
+    eventHandler.eventAdd("/nodeBang", &visual->motion.agent[1].interaction.node);
+    nodeDuration = 2000;
+    assert (eventHandler.bang("/nodeBang", &nodeDuration) == 1.0);
+    cout << "OK" << endl;
 }
+
+

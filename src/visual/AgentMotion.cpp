@@ -31,6 +31,7 @@ AgentMotion::AgentMotion() {
     width_rate = 1.0f;
     size = 0.03;
     mov = 0.01;
+    pShape = &this->shape;
     
     resetShape();
     initVbo();
@@ -39,23 +40,22 @@ AgentMotion::AgentMotion() {
 }
 
 void AgentMotion::resetShape() {
-    center.x = frand();
-    center.y = frand();
+    center.x = frand()-0.5;
+    center.y = frand()-0.5;
     
-    shape.node_count = NODE_MAX;
-    shape.edge_count = EDGE_MAX;
+
+    shape.node_count = 64;
+    shape.edge_count = 32;
     
-    for(int i = 0; i < shape.node_count; i++) {
-        shape.nodes[i].x = frand();
-        shape.nodes[i].y = frand();
+    for(int i = 0; i < NODE_MAX; i++) {
+        shape.nodes[i].x = frand() - 0.5;
+        shape.nodes[i].y = frand() - 0.5;
+
     }
     
     for (int i = 0; i <  shape.edge_count; i++) {
-        shape.edges[i].node_id_a = (i % NODE_MAX);
-        shape.edges[i].node_id_b = (irand() % NODE_MAX);
-        while (shape.edges[i].node_id_a == shape.edges[i].node_id_b) {
-            shape.edges[i].node_id_b =  irand() % NODE_MAX;
-        }
+        shape.edges[i].node_id_a = 0;
+        shape.edges[i].node_id_b = 1;
     }
     
     pShape = &this->shape;
@@ -86,20 +86,20 @@ void AgentMotion::initVbo() {
         nodeColors[i] = ofFloatColor(color);
     }
     
-    for (int i = 0; i < pShape->edge_count * 2; i += 2) {
-        int edge_index = i * 0.5;
-        edgeIndices[i] = pShape->edges[edge_index].node_id_a;
-        edgeIndices[i+1] = pShape->edges[edge_index].node_id_b;
-        edgeColors[i] = ofFloatColor(color);
-        edgeColors[i+1] = ofFloatColor(color);
+    for (int i = 0; i < pShape->edge_count; i++) {
+        int edge_index = i*2;
+        edgeIndices[edge_index] = pShape->edges[i].node_id_a;
+        edgeIndices[edge_index+1] = pShape->edges[i].node_id_b;
+        edgeColors[edge_index] = ofFloatColor(color);
+        edgeColors[edge_index+1] = ofFloatColor(color);
     }
     
-    nodeVbo.setVertexData(nodePos, pShape->node_count, GL_DYNAMIC_DRAW);
-    nodeVbo.setColorData(nodeColors, pShape->node_count, GL_DYNAMIC_DRAW);
-    
-    edgeVbo.setVertexData(nodePos, pShape->node_count, GL_DYNAMIC_DRAW);
-    edgeVbo.setColorData(edgeColors, pShape->edge_count, GL_DYNAMIC_DRAW);
-    edgeVbo.setIndexData(edgeIndices, pShape->edge_count, GL_DYNAMIC_DRAW);
+    nodeVbo.setVertexData(nodePos, NODE_MAX, GL_DYNAMIC_DRAW);
+    nodeVbo.setColorData(nodeColors, NODE_MAX, GL_DYNAMIC_DRAW);
+
+    edgeVbo.setVertexData(nodePos, NODE_MAX, GL_DYNAMIC_DRAW);
+    edgeVbo.setColorData(edgeColors, EDGE_MAX * 2, GL_DYNAMIC_DRAW);
+    edgeVbo.setIndexData(edgeIndices, EDGE_MAX*2, GL_DYNAMIC_DRAW);
 }
 
 void AgentMotion::updateColors() {
@@ -117,6 +117,60 @@ void AgentMotion::updateColors() {
     edgeVbo.updateColorData(edgeColors, pShape->edge_count);
 }
 
+//void AgentMotion::updatePhase(int index) {
+//    // Update Phases
+//    nodes.node[index].carPhase += nodes.node[index].carStep * nodes.mov;    //Carrier
+//    if(M_2XPI < nodes.node[index].carPhase) {
+//        nodes.node[index].carPhase = 0.0;
+//    }
+//
+//    nodes.node[index].modPhase += nodes.node[index].modStep * nodes.mov;    //Modulater
+//    if(M_2XPI < nodes.node[index].modPhase) {
+//        nodes.node[index].modPhase = 0.0;
+//    }
+//
+//    phase = (sin(nodes.node[index].carPhase) + sin(nodes.node[index].modPhase)) * TREMOR_RATIO;   // -0.5 to 0.5
+//}
+//
+//
+//
+///////////////////// UPDATE POSITION /////////////////////
+//void AgentMotion::updatePosition(int index) {
+//    // Update Position
+//    ofVec2f nextPos;
+//    nodeX = (nodes.node[index].velocityX * phase + nodes.node[index].x * STAY_RATIO) * nodes.size;
+//    nodeY = (nodes.node[index].velocityY * phase + nodes.node[index].y * STAY_RATIO) * nodes.size;
+//
+//    //Position on Screen
+//    nextPos.x = (nodeX * CANVAS_HEIGHT) + (nodes.scale_x * CANVAS_HEIGHT * *width_rate);
+//    nextPos.y = (nodeY + nodes.scale_y) * CANVAS_HEIGHT;
+//
+//    nodePos[index] = nextPos; //Set position onto Array
+//}
+
+
+void AgentMotion::updatePosition() {
+    for(int i = 0; i < pShape->node_count; i++) {
+        ofVec2f pos;
+        pos.x = ( center.x + (pShape->nodes[i].x * size)) * CANVAS_HEIGHT;
+        pos.y = ( center.y + (pShape->nodes[i].y * size)) * CANVAS_HEIGHT;
+        
+        nodePos[i] = pos;
+    }
+    nodeVbo.updateVertexData(nodePos, pShape->node_count);
+    edgeVbo.updateVertexData(nodePos, pShape->node_count);
+}
+
+void AgentMotion::updateIndex() {
+    for (int i = 0; i < pShape->edge_count; i++) {
+        int edge_index = i*2;
+        edgeIndices[edge_index] = pShape->edges[i].node_id_a;
+        edgeIndices[edge_index+1] = pShape->edges[i].node_id_b;
+        edgeColors[edge_index] = ofFloatColor(color);
+        edgeColors[edge_index+1] = ofFloatColor(color);
+    }
+    edgeVbo.updateIndexData(edgeIndices, pShape->edge_count*2);
+}
 
 void AgentMotion::update() {
     t += mov;
@@ -130,6 +184,8 @@ void AgentMotion::update() {
 //        t = 0.0;
 //    }
     
+    updatePosition();
+    updateIndex();
 }
 
 void AgentMotion::draw() {
@@ -153,7 +209,7 @@ void AgentMotion::draw() {
     
     glEnable(GL_LINE_SMOOTH);
     glLineWidth(getLineWidth());
-    edgeVbo.drawElements(GL_LINES, pShape->edge_count);
+    edgeVbo.drawElements(GL_LINES, pShape->edge_count * 2);
     
     shader.end();
 }
@@ -190,11 +246,16 @@ float AgentMotion::getLineWidth() {
     return lineWidth;
 }
 
+void AgentMotion::setShapePtr(ag_shape_t * shapePtr) {
+    pShape = shapePtr;
+    
+}
+
 void AgentMotion::invertColor() {
     if (color == 1.0) {
         color = 0.0f;
     } else {
-        colors = 1.0;
+        color = 1.0;
     }
     
     this->updateColors();
@@ -423,3 +484,4 @@ void AgentMotion::invertColor() {
 //}
 //
 
+//

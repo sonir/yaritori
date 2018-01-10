@@ -113,10 +113,12 @@ class VSyn : public Event {
         int ag_shapes_count = 0;
         void addAgShape(ag_shape_t shape);
     
-        motion_manager_t motionManager; //To draw agent
+
+        //AGENT VISUAL
+        void createShape(ag_shape_t &shape);    //to create filled shape(test code)
         RippleManager ripple;
     
-    
+        visual_container_t visual;
 };
 
 #endif /* VSyn_hpp */

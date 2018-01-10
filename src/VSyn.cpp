@@ -42,9 +42,13 @@ void VSyn::setup(){
     //SetupEvents
     gismo.eventAdd("/addShape", this);
     
+    //Set ag_shape_t and gismo pointer
+    visual.motion.setShapePtr(ag_shapes);
+    visual.motion.setGismoPtr(&gismo);
+    visual.events.setMotionManagerPtr(&visual.motion);
+    
     //Do Test Code
     this->test();
-
 }
 
 
@@ -345,8 +349,8 @@ void VSyn::draw(){
     screenBegin();
 
     
-    //drawAgents
-    drawAgents(&gismo, &motionManager);
+    //Draw Agents
+    drawAgents(&visual);
     
     //Ripple
     ripple.draw();
@@ -503,6 +507,24 @@ void VSyn::addAgShape(ag_shape_t shape){
 }
 
 
+void VSyn::createShape(ag_shape_t &shape) {
+    //Create random shape
+    
+    shape.node_count = (NODE_MAX - 12) * frand() + 12;
+    shape.edge_count = shape.node_count * (1.0 + frand());
+    
+    for(int i = 0; i < NODE_MAX; i++) {
+        shape.nodes[i].x = frand() - 0.5;
+        shape.nodes[i].y = frand() - 0.5;
+    }
+    
+    for (int i = 0; i <  shape.edge_count; i++) {
+        shape.edges[i].node_id_a = i % int(shape.node_count * 0.25);
+        shape.edges[i].node_id_b = i % shape.node_count;
+    }
+
+}
+
 
 void VSyn::test(){
     
@@ -511,7 +533,7 @@ void VSyn::test(){
     
     //Run test codes
     myTest->run();
-    myTest->runVisualTest();
+    myTest->runVisualTest(&visual);
     
     //Test addAgShape
     ag_shape_t shape;
@@ -524,6 +546,23 @@ void VSyn::test(){
     assert (ag_shapes[0].edges[1].node_id_a == 138);
     std::cout << "VSyn:: addAgShape is ok." << std::endl;
     
+
+
+
+//    createShape(shape);
+//    gismo.bang("/addShape" , &shape);
+//    createShape(shape);
+//    gismo.bang("/addShape" , &shape);
+    
+    createShape(shape);
+    shape.edge_count = 4;
+    shape.node_count = 4;
+    shape.edges[0].node_id_a = 0; shape.edges[0].node_id_b = 1;
+    shape.edges[1].node_id_a = 1; shape.edges[1].node_id_b = 2;
+    shape.edges[2].node_id_a = 2; shape.edges[2].node_id_b = 3;
+    shape.edges[3].node_id_a = 3; shape.edges[3].node_id_b = 0;
+    gismo.bang("/addShape" , &shape);
+
     
     //Reset all agents
     agBuffReset(&gismo.agents);
@@ -539,6 +578,18 @@ void VSyn::test(){
     act8.size = 0.03f;
     act8.mov = 0.001;
     gismo.addAgent(act8);
+    
+    
+    act8.posi.x = frand();
+    act8.posi.y = 0.5f;
+    act8.mov = 0.0f;
+    act8.mov = 0.001;
+    gismo.addAgent(act8);
+    
+    act8.posi.y = 0.75f;
+    act8.mov = 0.0f;
+    act8.mov = 0.001;
+    gismo.addAgent(act8);
 
 //    for(int i=0;i<500;i++) {
 //        act8.posi.x = frand();
@@ -546,8 +597,26 @@ void VSyn::test(){
 //        gismo.addAgent(act8);
 //    }
     
+    
+    float div = 32.0;
+    
+    for( int x = 0; x < div; x++) {
+        for(int y = 0; y < div; y++) {
+            //Create shape
+            ag_shape_t shape;
+            createShape(shape);
+            gismo.bang("/addShape" , &shape);
+            
+            //Create agent
+//            act8.posi.x = x / div;
+//            act8.posi.y = y / div;
+//            gismo.addAgent(act8);
+        }
+    }
+    
 
     
     std::cout << "test method has finished." << std::endl;
+    
 
 }

@@ -12,27 +12,9 @@
 #include "ofMain.h"
 #include "ScreenManager.hpp"
 #include "ofxGismo.h"
+#include "ag_shape.h"
+#include "A2PLine.hpp"
 
-
-constexpr int NODE_MAX = 128;
-constexpr int EDGE_MAX = NODE_MAX * 8;
-
-struct node_t {
-    float x;
-    float y;
-};
-
-struct edge_t {
-    int node_id_a;
-    int node_id_b;
-};
-
-struct ag_shape_t {
-    node_t nodes[NODE_MAX];
-    edge_t edges[EDGE_MAX];
-    int node_count;
-    int edge_count;
-};
 
 struct vec2 {
     float x;
@@ -51,9 +33,12 @@ public:
     void update();
     void updatePhase();
     void updatePosition();
+    void updateIndex();
     void updateColors();
     float getPointSize();
     float getLineWidth();
+    
+    void setShapePtr(ag_shape_t *shapePtr);
     
     //event
     void invertColor();
@@ -66,7 +51,12 @@ public:
     float size;
     float width_rate;
     float mov;
+    vec2 center;
+    float centerX ,centerY;
     
+    //Interaction
+    A2PLine interaction;
+
 private:
     //VBO
     ofVbo nodeVbo, edgeVbo;
@@ -78,8 +68,6 @@ private:
     ofShader shader;
     
     //Variables
-    vec2 center;
-    float centerX ,centerY;
     float color;
     
     //Modulation
@@ -90,7 +78,6 @@ private:
     float grayScale;
     const float dt = 0.04f;
     float t;
-
 };
 
 

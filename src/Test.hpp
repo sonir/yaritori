@@ -23,7 +23,7 @@ class Test {
         Test(Sound *pSnd, RippleManager *pRipple);
         void setup();
         void run();
-        void runVisualTest();
+        void runVisualTest(visual_container_t* visual);
         void update();
     void invert();
     
@@ -31,6 +31,7 @@ class Test {
         Sound *sound;
     
         RippleManager *ripple;
+        
     
 };
 

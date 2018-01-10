@@ -18,51 +18,52 @@ class RippleDrawer{
 public:
     RippleDrawer();
     
-    void setup();
-    void draw();
+    void initVertices();
+    void initStatus();
+    void init();
+    void update();
+    void bang(float x, float y);
     
     float centerX, centerY;
     bool isRunning;
-
-
-private:
-    void setSpeed();
-    void updateVertex(float sp);
+    bool colorState;
     
-    float r_speed;
-
     static const int res = 64;
-    static constexpr float theta = 2. * PI * 0.015625;   // / 64
-    
     static const int rippleNum = 2;
     
     ofVec2f verts[res * rippleNum];
     ofIndexType indices[res * rippleNum * 2];
     ofFloatColor cols[res * rippleNum];
-    ofVbo vbo;  //1 ripple <-> 1 vbo
+
+private:
+    void updateColor();
+    void updateVertex();
     
-    static constexpr float fadeOutRatio = 0.4;
-    static constexpr float speed = 4.;  //pixel
+    static constexpr float theta = 2. * PI * 0.015625;   // / 64
     
-    static constexpr float durMin = 700; //msec
-    static constexpr float durMax = 2800;   //1300
+    float radius;    //1. <-> CANVAS_HEIGHT
+    static constexpr float r_Min = 0.5;
+    static constexpr float r_Max = 0.55;
     
-    float dur;  //Duration
+    float duration; //sec
+    static constexpr float durMin = 0.5;
+    static constexpr float durMax = 1.2;
     
-    float lag[rippleNum];
+    float lag[rippleNum];    //1. <-> duration
+    static constexpr float lagMin = 0.1;
+    static constexpr float lagMax = 0.25;
     
-    static constexpr float lagMin = 0.1;    //1. <-> dur
-    static constexpr float lagMax = 0.15;
-    
-    float sp_noise[rippleNum];
-    
+    float sp_noise[rippleNum];   //conf of speed for second ripple
     static constexpr float sp_noiseMin = 1.5;
     static constexpr float sp_noiseMax = 1.7;
     
-    TimedInterpolation interpolation;
-    float currentTime;
+    static constexpr float fadeOutRatio = 0.4;  //1 <-> duration
     
-    float aspect;   //aspect ratio
+    TimedInterpolation interpolation;   //return 0. to 1. during "duration"
+    float currentTime;
+    float currentRadius;
+    
+    float aspect;   //aspect ratio, acquired from gismomanager
 };
 
 #endif /* RippleDrawer_hpp */

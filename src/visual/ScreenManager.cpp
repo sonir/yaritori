@@ -29,7 +29,7 @@ void setScreenPos(screen_pos_e screenPos) {
 void screenBegin() {
 
     ofBackground(0);
-    
+
     //Masking
     if(drawWhiteBack) {
         ofSetColor(255);
@@ -38,6 +38,7 @@ void screenBegin() {
     
     ofPushMatrix();
     ofTranslate(targetScreen);
+
 }
 
 
