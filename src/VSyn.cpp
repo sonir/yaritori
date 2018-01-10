@@ -54,7 +54,7 @@ void VSyn::setup(){
 
 void VSyn::update(){
     
-    
+    //Test Update
     myTest->update();
     if( !sound.bankIsEmpty()) sound.update();
         
@@ -459,9 +459,9 @@ void VSyn::draw(){
                     
             }
             
-            square(ag->posi.x, ag->posi.y, ag->size*10.0f, 0.0f, false);
+            //square(ag->posi.x, ag->posi.y, ag->size*10.0f, 0.0f, false);
             ofDrawBitmapString( cond_flg, tmp_x, tmp_y);
-            circle(ag->posi.x+0.0078f, ag->posi.y+0.00078f, ag->view,false);
+            //circle(ag->posi.x+0.0078f, ag->posi.y+0.00078f, ag->view,false);
             ofSetColor(255,255,255);
         }
         agents++;
@@ -573,6 +573,7 @@ void VSyn::test(){
     initAgentActive(&act8);
     act8.posi.x = 0.25f; act8.posi.y = 0.75f;
     gismo.addAgent(act8);
+<<<<<<< HEAD
     act8.posi.x = frand(); act8.posi.y = 0.25f;
     act8.mov = 0.0f;
     act8.size = 0.03f;
@@ -591,29 +592,19 @@ void VSyn::test(){
     act8.mov = 0.001;
     gismo.addAgent(act8);
 
-//    for(int i=0;i<500;i++) {
-//        act8.posi.x = frand();
-//        act8.posi.y = frand();
-//        gismo.addAgent(act8);
-//    }
     
     
-    float div = 32.0;
     
-    for( int x = 0; x < div; x++) {
-        for(int y = 0; y < div; y++) {
-            //Create shape
-            ag_shape_t shape;
-            createShape(shape);
-            gismo.bang("/addShape" , &shape);
-            
-            //Create agent
-//            act8.posi.x = x / div;
-//            act8.posi.y = y / div;
-//            gismo.addAgent(act8);
-        }
-    }
-    
+=======
+    act8.posi.x = 0.75f; act8.posi.y = 0.5f;
+//    act8.mov = 0.0f;
+    gismo.addAgent(act8);
+    for(int i=0;i<600;i++) gismo.addAgent(act8);
+    act8.size *= 0.8f;
+    act8.mov *= 2.5f;
+    act8.view *= 5.0f;
+    for(int i=0;i<100;i++) gismo.addAgent(act8);
+>>>>>>> origin/gismo
 
     
     std::cout << "test method has finished." << std::endl;

@@ -13,7 +13,11 @@ void initAgent(ag_t *tmp){
     tmp->view = AG_DEF_VIEW;
     tmp->mov = AG_DEF_MOV;
 
+    tmp->spd.x = 0.0f;
+    tmp->spd.y = 0.0f;
+    
     tmp->condition = CALM;
+    tmp->interact_with = DEFAULT_INTERACT_WITH;
     
     
 }
@@ -133,32 +137,165 @@ bool isViewRange(ag_t *ag, float distance){
 }
 
 
-bool isLarge(float f1, float f2){
+int isLarge(float f1, float f2){
     
-    if (f1>f2)return true;
-    else if (f1<f2) return false;
+    if (f1>f2)return 1;
+    else if (f1<f2) return 0;
     else if (f1==f2){
-     
-        if( brand() ) return true;
-        else return false;
+        
+        return -1;
         
     }
     
 }
 
 
+
 void move(ag_t *ag, posi_t *posi){
-    
-    GismoManager& gismo = GismoManager::getInstance();
-    
+
     //decision X
-    if ( isLarge(ag->posi.x, posi->x) ) ag->posi.x = ag->posi.x - (frand()*ag->mov);
-    else ag->posi.x = ag->posi.x + ( frand() * ag->mov );
-    //decision y
-    if ( isLarge(ag->posi.y, posi->y) ) ag->posi.y = ag->posi.y - (frand()*ag->mov);
-    else ag->posi.y = ag->posi.y + ( frand() *ag->mov);
+    float x_move = frand()*ag->mov*SPD_FIX;
+    if ( isLarge(ag->posi.x, posi->x) ) ag->spd.x -= x_move; //WHEN LARGE change xspd to negative
+    else ag->spd.x += x_move; //WHEN SMALL change xspd to negative
+    
+    ag->spd.x = limitter(ag->spd.x, SPD_LIMIT); //LimitCheck
+    ag->posi.x += ag->spd.x; //Move with the refleshed sppd
+
+    //decision Y
+    float y_move = frand()*ag->mov*SPD_FIX;
+    if ( isLarge(ag->posi.y, posi->y) ) ag->spd.y -= y_move; //WHEN LARGE change xspd to negative
+    else ag->spd.y += y_move; //WHEN SMALL change xspd to negative
+    
+    ag->spd.y = limitter(ag->spd.y, SPD_LIMIT); //LimitCheck
+    ag->posi.y += ag->spd.y; //Move with the refleshed sppd
+
+    
+    //Stop when mov= 0
+    if(ag->mov == 0.0f)
+    {
+        ag->spd.x = 0.0f;
+        ag->spd.y = 0.0f;
+        
+    }
+    
     
 }
+
+
+
+void randomMove(ag_t *ag){
+
+    //Set next target position with random
+    posi_t rand;
+    rand.x = frand();
+    rand.y = frand();
+    
+    //decision X
+    float x_move = frand()*ag->mov*SPD_FIX*SPD_RANDOM_WALK_FIX;
+    if ( isLarge(ag->posi.x, rand.x) ) ag->spd.x -= x_move; //WHEN LARGE change xspd to negative
+    else ag->spd.x += x_move; //WHEN SMALL change xspd to negative
+    
+    ag->spd.x = limitter(ag->spd.x, SPD_LIMIT*SPD_RANDOM_WALK_FIX); //LimitCheck
+    ag->posi.x += ag->spd.x; //Move with the refleshed sppd
+    
+    
+    //decision Y
+    float y_move = frand()*ag->mov*SPD_FIX*SPD_RANDOM_WALK_FIX;
+    if ( isLarge(ag->posi.y, rand.y) ) ag->spd.y -= y_move; //WHEN LARGE change xspd to negative
+    else ag->spd.y += y_move; //WHEN SMALL change xspd to negative
+
+    ag->spd.y = limitter(ag->spd.y, SPD_LIMIT*SPD_RANDOM_WALK_FIX); //LimitCheck
+    ag->posi.y += ag->spd.y; //Move with the refleshed sppd
+
+    
+    //Stop when mov= 0
+    if(ag->mov == 0.0f)
+    {
+        ag->spd.x = 0.0f;
+        ag->spd.y = 0.0f;
+        
+    }
+
+    
+    
+}
+
+
+
+float limitter(float val, float limit){
+    
+    //get abs
+    float abs;
+    if (val < 0)
+    {
+        
+        abs= val * (-1);
+        
+    } else
+    {
+        
+        abs = val;
+        
+    }
+    
+    
+    if ( abs<limit ){
+
+        return val;
+        
+    }else{
+        
+        if ( val < 0 ) return ( limit * (-1) ); //val was negative, return negative abs
+        else return limit; // val was positive, return positive abs
+        
+    }
+    
+}
+
+
+
+void running(ag_t *ag, posi_t *enemy){
+    
+    //decision X
+    float x_move = frand()*ag->mov*SPD_FIX;
+    if ( isLarge(ag->posi.x, enemy->x) )
+    {
+        ag->spd.x += x_move; //WHEN LARGE change xspd to negative
+        
+    } else {
+        ag->spd.x -= x_move; //WHEN SMALL change xspd to negative
+        
+    }
+    
+    ag->spd.x = limitter(ag->spd.x, SPD_LIMIT); //LimitCheck
+    ag->posi.x += ag->spd.x; //Move with the refleshed sppd
+    
+    //decision Y
+    float y_move = frand()*ag->mov*SPD_FIX;
+    if ( isLarge(ag->posi.y, enemy->y) )
+    {
+        ag->spd.y += y_move; //WHEN LARGE change xspd to negative
+        
+    } else {
+        ag->spd.y -= y_move; //WHEN SMALL change xspd to negative
+        
+    }
+    
+    ag->spd.y = limitter(ag->spd.y, SPD_LIMIT); //LimitCheck
+    ag->posi.y += ag->spd.y; //Move with the refleshed sppd
+    
+    
+    //Stop when mov= 0
+    if(ag->mov == 0.0f)
+    {
+        ag->spd.x = 0.0f;
+        ag->spd.y = 0.0f;
+        
+    }
+    
+    
+}
+
 
 
 bool conditionCheck(condition_e cond1, condition_e cond2){
@@ -169,29 +306,6 @@ bool conditionCheck(condition_e cond1, condition_e cond2){
     
 }
 
-
-
-void randomMove(ag_t *ag){
-
-    GismoManager& gismo = GismoManager::getInstance();
-
-    //for X
-    //invert sign randomly
-    float fval=1.0f;
-    if( irand()<50 )fval *= 1;
-    else fval *= -1;
-    //Set the next X
-    ag->posi.x = ag->posi.x + (ag->mov*fval);
-
-    //for Y
-    //invert sign randomly
-    if( irand()<50 )fval *= 1;
-    else fval *= -1;
-    //Set the next X
-    ag->posi.y = ag->posi.y + (ag->mov*fval);
-
-    
-}
 
 
 void attackCheck(float distance, float *f_param){
@@ -216,13 +330,14 @@ void deadCheck(float *size, bool *active){
 void interactWith(ag_t *focus , ag_t *target){
 
     
-    //Get singleton
-    //GismoManager& gismo = GismoManager::getInstance();
-
     float dist = distance(focus->posi, target->posi);
     if (isViewRange(focus, dist)){
         
-        if( isLarge(focus->size, target->size) ){
+        //Check size check
+        int size_check = isLarge(focus->size, target->size);
+        
+        //Do action according to the result of size check
+        if( size_check == 1){ //Is larger
 
             move(focus, &target->posi);
             attackCheck( distance(focus->posi, target->posi) , &target->size);
@@ -235,12 +350,18 @@ void interactWith(ag_t *focus , ag_t *target){
                 focus->condition=CHASE;
             }
             
+        } else if (size_check == (-1) ) { //Is same size
+        
+            if( brand() ) target->size-=AG_DMG; //decrease the target size in 50% rate.
+            
+            
         } else {
 
-            posi_t tmp = target->posi; //set invert position for running
-            tmp.x = tmp.x*(-1);
-            tmp.y = tmp.y*(-1);
-            move(focus, &tmp);
+//            posi_t tmp = target->posi; //set invert position for running
+//            tmp.x = tmp.x*(-1);
+//            tmp.y = tmp.y*(-1);
+//            move(focus, &tmp);
+            running(focus, &target->posi);
             focus->condition=RUN;
 
         }
@@ -252,14 +373,17 @@ void interactWith(ag_t *focus , ag_t *target){
         
     }
     
-    //Loop of World
-    //positionLoop(&focus->posi, gismo.width_rate, gismo.height_rate); //rest by some of memory bug
 
 }
 
 
 void makeInteracts(agent_buf_t *agents){
 
+    
+    //Get singleton to get width rate
+    GismoManager& gismo = GismoManager::getInstance();
+
+    
     int nearest = -1;
     
     if (agents->count==1){
@@ -272,7 +396,17 @@ void makeInteracts(agent_buf_t *agents){
     for(int i=0; i<agents->count;i++){
                 
         nearest = seekNearest(i, agents);
-        if(nearest != -1) interactWith(&agents->buf[i], &agents->buf[nearest]);
+        if(nearest != -1)
+        {
+            //Interact
+            interactWith(&agents->buf[i], &agents->buf[nearest]);
+            //Loop of World
+            positionLoop(&agents->buf[i].posi, gismo.width_rate, gismo.height_rate);
+            //Set who is interacted agent
+            if(agents->buf[i].condition != CALM) agents->buf[i].interact_with = nearest;
+            else agents->buf[i].interact_with = DEFAULT_INTERACT_WITH;
+        
+        }
         
     }
     
