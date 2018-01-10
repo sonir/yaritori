@@ -8,6 +8,8 @@
 
 #include "ScreenManager.hpp"
 
+bool drawWhiteBack = true;
+
 void setScreenPos(screen_pos_e screenPos) {
     switch (screenPos) {
         case SCREEN_POS_LEFT:
@@ -25,13 +27,18 @@ void setScreenPos(screen_pos_e screenPos) {
 }
 
 void screenBegin() {
-    ofBackground(0, 0, 0);
-    ofSetColor(255);
-    ofDrawRectangle(0, 0, WINDOW_HEIGHT, WINDOW_HEIGHT);
-    
+
+    ofBackground(0);
+
+    //Masking
+    if(drawWhiteBack) {
+        ofSetColor(255);
+        ofDrawRectangle(0, 0, WINDOW_HEIGHT, WINDOW_HEIGHT);
+    }
     
     ofPushMatrix();
     ofTranslate(targetScreen);
+
 }
 
 
@@ -39,3 +46,6 @@ void screenEnd() {
     ofPopMatrix();
 }
 
+void invertBackground() {
+    drawWhiteBack = !drawWhiteBack;
+}

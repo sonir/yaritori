@@ -23,13 +23,15 @@ class Test {
         Test(Sound *pSnd, RippleManager *pRipple);
         void setup();
         void run();
-        void runVisualTest();
+        void runVisualTest(visual_container_t* visual);
         void update();
+    void invert();
     
         GismoManager& gismo = GismoManager::getInstance(); //Pointer for gismoManager instance
         Sound *sound;
     
         RippleManager *ripple;
+        
     
 };
 
