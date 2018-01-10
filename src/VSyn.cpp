@@ -39,6 +39,8 @@ void VSyn::setup(){
     
     //Setup Gismo
     gismo.setup();
+    //SetupEvents
+    gismo.eventAdd("/addShape", this);
     
     //Do Test Code
     this->test();
@@ -48,6 +50,7 @@ void VSyn::setup(){
 
 void VSyn::update(){
     
+    //Test Update
     myTest->update();
     if( !sound.bankIsEmpty()) sound.update();
         
@@ -452,9 +455,9 @@ void VSyn::draw(){
                     
             }
             
-            square(ag->posi.x, ag->posi.y, ag->size*10.0f, 0.0f, false);
+            //square(ag->posi.x, ag->posi.y, ag->size*10.0f, 0.0f, false);
             ofDrawBitmapString( cond_flg, tmp_x, tmp_y);
-            circle(ag->posi.x+0.0078f, ag->posi.y+0.00078f, ag->view,false);
+            //circle(ag->posi.x+0.0078f, ag->posi.y+0.00078f, ag->view,false);
             ofSetColor(255,255,255);
         }
         agents++;
@@ -485,6 +488,22 @@ void VSyn::initWindowSize(){
 }
 
 
+void VSyn::addAgShape(ag_shape_t shape){
+    
+    //Count exceeding check
+    if( ag_shapes_count >= AG_MAX ){
+        
+        ag_shapes_count = 0;
+        
+    }
+    
+    ag_shapes[ag_shapes_count] = shape;
+    ag_shapes_count += 1;
+    
+}
+
+
+
 void VSyn::test(){
     
     //Draw Your Test Code. This method was invoked when the end of setup().
@@ -493,6 +512,17 @@ void VSyn::test(){
     //Run test codes
     myTest->run();
     myTest->runVisualTest();
+    
+    //Test addAgShape
+    ag_shape_t shape;
+    shape.node_count = 137;
+    shape.edges[1].node_id_a = 138;
+    gismo.bang("/addShape" , &shape);
+    //addAgShape(shape); //Add the shapoe
+    assert(ag_shapes_count == 1);
+    assert( ag_shapes[0].node_count == 137 );
+    assert (ag_shapes[0].edges[1].node_id_a == 138);
+    std::cout << "VSyn:: addAgShape is ok." << std::endl;
     
     
     //Reset all agents
@@ -504,18 +534,14 @@ void VSyn::test(){
     initAgentActive(&act8);
     act8.posi.x = 0.25f; act8.posi.y = 0.75f;
     gismo.addAgent(act8);
-    act8.posi.x = frand(); act8.posi.y = 0.25f;
-    act8.mov = 0.0f;
-    act8.size = 0.03f;
-    act8.mov = 0.001;
+    act8.posi.x = 0.75f; act8.posi.y = 0.5f;
+//    act8.mov = 0.0f;
     gismo.addAgent(act8);
-
-//    for(int i=0;i<500;i++) {
-//        act8.posi.x = frand();
-//        act8.posi.y = frand();
-//        gismo.addAgent(act8);
-//    }
-    
+    for(int i=0;i<600;i++) gismo.addAgent(act8);
+    act8.size *= 0.8f;
+    act8.mov *= 2.5f;
+    act8.view *= 5.0f;
+    for(int i=0;i<100;i++) gismo.addAgent(act8);
 
     
     std::cout << "test method has finished." << std::endl;

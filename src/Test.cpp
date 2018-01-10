@@ -172,6 +172,40 @@ void Test :: run(){
     assert(ag6.posi.y <= 0.5f);
     cout << "gismoLibrary::move() is OK." << endl;
     
+    //Test Run
+    ag_t tmpAg1, tmpAg2;
+    tmpAg1.posi.x = 0.75f;
+    tmpAg1.posi.y = 0.75f;
+    tmpAg1.mov = 0.001f;
+    tmpAg1.spd.x = 0.0f;
+    tmpAg1.spd.y = 0.0f;
+    tmpAg2.posi.x = 0.5f;
+    tmpAg2.posi.y = 0.5f;
+    running(&tmpAg1, &tmpAg2.posi);
+    assert(tmpAg1.posi.x > 0.75f);
+    assert(tmpAg1.posi.y > 0.75f);
+    tmpAg1.posi.x = 0.25f;
+    tmpAg1.posi.y = 0.75f;
+    tmpAg1.spd.x = 0.0f;
+    tmpAg1.spd.y = 0.0f;
+    running(&tmpAg1, &tmpAg2.posi);
+    assert(tmpAg1.posi.x < 0.25f);
+    assert(tmpAg1.posi.y > 0.75f);
+    tmpAg1.posi.x = 0.75f;
+    tmpAg1.posi.y = 0.45f;
+    tmpAg1.spd.x = 0.0f;
+    tmpAg1.spd.y = 0.0f;
+    running(&tmpAg1, &tmpAg2.posi);
+    assert(tmpAg1.posi.x > 0.75f);
+    assert(tmpAg1.posi.y < 0.45f);
+    tmpAg1.posi.x = 0.25f;
+    tmpAg1.posi.y = 0.25f;
+    tmpAg1.spd.x = 0.0f;
+    tmpAg1.spd.y = 0.0f;    
+    running(&tmpAg1, &tmpAg2.posi);
+    assert(tmpAg1.posi.x < 0.25f);
+    assert(tmpAg1.posi.y < 0.25f);
+    cout << "gismoLibrary::running() is OK." << endl;
     
     //TestConditionCheck
     condition_e cond1 = CALM;
@@ -219,6 +253,17 @@ void Test :: run(){
     assert(pAg1->view == 256.0f);
     ag_t *pAg2 = gismo.getAgent(1);
     assert(pAg2->view == 356.0f);
+    
+    //TestSpeedLimit
+    assert ( limitter(1.1f, 1.0f) == 1.0f );
+    assert ( limitter(-1.1f, 1.0f) == -1.0f );
+    assert ( limitter(0.49f, 0.5f) == 0.49f );
+    assert ( limitter(-0.49f, 0.5f) == -0.49f );
+    assert ( limitter(0.0051f, 0.005f) == 0.005f );
+    assert ( limitter(-0.00501f, 0.005f) == -0.005f );
+
+    cout << "speedLimitter is OK." << endl;
+    
     
     //Test positionLoop()
     posi_t pos;

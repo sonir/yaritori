@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "ofxOsc.h"
 #include "ofxGismo.h"
+#include "ag_shape.h"
 
 // listen on port 12345
 #define IN_PORT 56138
@@ -43,7 +44,8 @@ class Network {
     
     private:
         GismoManager& gismo = GismoManager::getInstance(); //Pointer for gismoManager instance
-        //GismoManager& gismo = GismoManager::getInstance(); //Pointer for gismoManager instance
-    
+        ag_shape_t shape; // for shape receiving
+        void dispParams(ag_shape_t shape); //For receiving test of shape from server
+
     
 };

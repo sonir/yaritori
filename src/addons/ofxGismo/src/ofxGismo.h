@@ -13,17 +13,19 @@
 #define SEED_MAX 63
 
 //Agent Default Parameters
-#define AG_DEF_SIZE 0.0034f
-#define AG_DEF_MOV 0.002f//0.002f
-#define AG_DEF_VIEW 0.3f
+#define AG_DEF_SIZE 0.001f//0.0034f
+#define AG_DEF_MOV 0.2f//0.002f
+#define AG_DEF_VIEW 0.01f//0.07f//0.03f //0.05f(for slow) //0.3f(for test)
 #define AG_DEF_SIZE_FIX 0.005f //Scaling factor for frand(0.0-1.0)
 #define DEAD_THREATH 0.0005f
+#define DEFAULT_INTERACT_WITH -1
 
 // PARAMS SET MACROS
 #define AG_DMG 0.000034f
 #define ATK_DIST AG_DEF_SIZE
-
-///
+#define SPD_LIMIT 0.016f //0.02f(for slow) ,, 0.03f
+#define SPD_FIX 0.007f //0.01f
+#define SPD_RANDOM_WALK_FIX 0.1f
 
 #include <iostream>
 #include <math.h>
@@ -46,10 +48,12 @@ void agBuffReset(agent_buf_t *agents);
 float distance(posi_t p1, posi_t p2);
 int seekNearest(int ag_id, agent_buf_t *agbuf);
 bool isViewRange(ag_t *ag, float distance);
-bool isLarge(float f1, float f2);
+int isLarge(float f1, float f2);
 void move(ag_t *ag, posi_t *posi);
-bool conditionCheck(condition_e cond1, condition_e cond2);
 void randomMove(ag_t *ag);
+float limitter(float val, float limit);
+void running(ag_t *ag, posi_t *enemy);
+bool conditionCheck(condition_e cond1, condition_e cond2);
 void attackCheck(float distance, float *f_param);
 void deadCheck(float *size, bool *active);
 void interactWith(ag_t *focus , ag_t *target);

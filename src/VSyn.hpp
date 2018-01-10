@@ -29,6 +29,10 @@
 #include "cam_func.hpp"
 #include "Particle.hpp"
 
+// Receiving message from network
+#include "Network.hpp"
+
+
 //Test Class
 #include "Test.hpp"
 
@@ -53,16 +57,24 @@
 #define NUM_MSG_STRINGS 20
 
 //#define CONTAINER_MAX 128 //Size of Buffer for Shapes
-#define CONTAINER_MAX AG_MAX //Size of Buffer for Shapes
+#define CONTAINER_MAX AG_MAX*128 //Size of Buffer for Shapes
 
 
-class VSyn {
+class VSyn : public Event {
  
     public:
         void setup();
         void update();
         void draw();
         void initWindowSize();
+        int trigger(void *args){
+            
+            ag_shape_t *tmp = (ag_shape_t *)args;
+            ag_shape_t tmp2 = *tmp;
+            addAgShape(tmp2);
+            
+        }
+
     
         shapeContainer shapes[CONTAINER_MAX];
         ofColor colors[CONTAINER_MAX];
@@ -83,6 +95,7 @@ class VSyn {
         bool cam_flg;
         ofVec3f pov;
         ofVec3f look;
+        
     
     
     private:
@@ -93,7 +106,12 @@ class VSyn {
         Test *myTest; //Test Instance
         GismoManager& gismo = GismoManager::getInstance(); //Pointer for gismoManager instance
         Sound sound; //AudioTrigger with OSC
-        
+    
+        //CCMA
+        //To store the received shape
+        ag_shape_t ag_shapes[AG_MAX];
+        int ag_shapes_count = 0;
+        void addAgShape(ag_shape_t shape);
     
         motion_manager_t motionManager; //To draw agent
         RippleManager ripple;
