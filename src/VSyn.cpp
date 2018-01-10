@@ -18,6 +18,7 @@ void VSyn::setup(){
     
     ofBackground(0, 0, 0);
     ofSetCircleResolution(50);
+    ofSetFrameRate(30);
     screen_w = ofGetWidth();
     screen_h = ofGetHeight();
 
@@ -55,7 +56,7 @@ void VSyn::update(){
     if( !sound.bankIsEmpty()) sound.update();
         
     
-    sync();
+    //sync();
 
     gismo.addSync();
     makeInteracts(&gismo.agents);
