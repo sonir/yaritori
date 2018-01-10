@@ -55,6 +55,7 @@ void VSyn::setup(){
 
 void VSyn::update(){
     
+    
     //Test Update
     myTest->update();
     if( !sound.bankIsEmpty()) sound.update();
@@ -505,6 +506,8 @@ void VSyn::addAgShape(ag_shape_t shape){
     ag_shapes[ag_shapes_count] = shape;
     ag_shapes_count += 1;
     
+    gismo.addAgent( shape2Agent(shape) );
+    
 }
 
 
@@ -581,20 +584,15 @@ void VSyn::test(){
     gismo.bang("/addShape" , &shape);
     
     act8.posi.x = 0.75f; act8.posi.y = 0.5f;
-//    act8.mov = 0.0f;
     gismo.addAgent(act8);
     
-    createShape(shape);
-    gismo.bang("/addShape" , &shape);
-    
+    /*
     for(int i=0;i<600;i++) gismo.addAgent(act8);
     act8.size *= 0.8f;
     act8.mov *= 2.5f;
-    act8.view *= 5.0f;
-    for(int i=0;i<100;i++) gismo.addAgent(act8);
-    
-    
-
+    act8.view *= 1.0f;
+    for(int i=0;i<1000;i++) gismo.addAgent(act8);
+    */
     
     std::cout << "test method has finished." << std::endl;
     

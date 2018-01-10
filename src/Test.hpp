@@ -12,10 +12,11 @@
 #include <stdio.h>
 #include <cassert>
 #include "ofxGismo.h"
+#include "ag_shape.h"
 #include "Sound.hpp"
 #include "drawAgents.hpp"
 #include "RippleManager.hpp"
-
+#include "Shape2Agent.hpp"
 
 class Test {
 
