@@ -147,18 +147,18 @@ void AgentMotion::updatePhase() {
 void AgentMotion::updatePosition() {
     for(int i = 0; i < pShape->node_count; i++) {
         //Modulation by CPU
-//        float nodeX = (velocityX[i] * phase[i] + pShape->nodes[i].x * STAY_RATIO) * size;
-//        float nodeY = (velocityY[i] * phase[i] + pShape->nodes[i].y * STAY_RATIO) * size;
-//
-//        ofVec2f pos;
-//        pos.x = (center.x + nodeX) * CANVAS_HEIGHT;
-//        pos.y = (center.y + nodeY) * CANVAS_HEIGHT;
+        float nodeX = (velocityX[i] * phase[i] + pShape->nodes[i].x * STAY_RATIO) * size;
+        float nodeY = (velocityY[i] * phase[i] + pShape->nodes[i].y * STAY_RATIO) * size;
+
+        ofVec2f pos;
+        pos.x = (center.x + nodeX) * CANVAS_HEIGHT;
+        pos.y = (center.y + nodeY) * CANVAS_HEIGHT;
         
         
         //Modulation by Shader
-        ofVec2f pos;
-        pos.x = ( center.x + (pShape->nodes[i].x * size)) * CANVAS_HEIGHT;
-        pos.y = ( center.y + (pShape->nodes[i].y * size)) * CANVAS_HEIGHT;
+//        ofVec2f pos;
+//        pos.x = ( center.x + (pShape->nodes[i].x * size)) * CANVAS_HEIGHT;
+//        pos.y = ( center.y + (pShape->nodes[i].y * size)) * CANVAS_HEIGHT;
 
     
         nodePos[i] = pos;
@@ -191,15 +191,15 @@ void AgentMotion::update() {
 
 void AgentMotion::draw() {
     
-    shader.begin();
-    shader.setUniform1f("t", t);
-    shader.setUniform1f("color", color);
-    shader.setUniform1i("CANVAS_HEIGHT", CANVAS_HEIGHT);
-    shader.setUniform1f("size", size);
-    shader.setUniform1fv("carStep", carStep, pShape->node_count);
-    shader.setUniform1fv("modStep", modStep, pShape->node_count);
-    shader.setUniform1fv("velocityX", velocityX, pShape->node_count);
-    shader.setUniform1fv("velocityY", velocityX, pShape->node_count);
+//    shader.begin();
+//    shader.setUniform1f("t", t);
+//    shader.setUniform1f("color", color);
+//    shader.setUniform1i("CANVAS_HEIGHT", CANVAS_HEIGHT);
+//    shader.setUniform1f("size", size);
+//    shader.setUniform1fv("carStep", carStep, pShape->node_count);
+//    shader.setUniform1fv("modStep", modStep, pShape->node_count);
+//    shader.setUniform1fv("velocityX", velocityX, pShape->node_count);
+//    shader.setUniform1fv("velocityY", velocityX, pShape->node_count);
     
     glEnable(GL_POINT_SMOOTH);
     glHint(GL_POINT_SMOOTH_HINT, GL_NICEST);
@@ -213,7 +213,7 @@ void AgentMotion::draw() {
     glLineWidth(getLineWidth());
     edgeVbo.drawElements(GL_LINES, pShape->edge_count * 2);
     
-    shader.end();
+//    shader.end();
 }
 
 

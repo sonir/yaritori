@@ -340,19 +340,9 @@ void Test :: update(){
 //    
 //    std::cout << ag1->size << "," << ag2->size << std::endl;
 
+    
 }
 
-
-void Test::invert() {
-    int invArg = 1;
-    assert(visEvents.bang("/invert", &invArg) == 1);
-}
-
-void Test::solo() {
-    isSolo = !isSolo;
-    int soloArg[] = {1, isSolo};
-    assert(visEvents.bang("/solo", soloArg) == 1);
-}
 
 void Test::runVisualTest(visual_container_t* visual) {
     std::cout << " " << std::endl;
@@ -371,21 +361,21 @@ void Test::runVisualTest(visual_container_t* visual) {
     cout << "OK." << endl;
     
     //Test solo
-//    cout << "Calling Solo....";
+    cout << "Calling Solo....";
     visEvents.eventAdd("/solo", &visual->events.solo);
-//    isSolo = 1;
-//    int soloArg[] = {1, isSolo};
-//    assert(visEvents.bang("/solo", soloArg) == 1);
-//    std::cout << "Visual test method has finished." << std::endl;
-//    cout << "OK" << endl;
+//    int soloID[] = {1 , isSolo};
+//    assert(visEvents.bang("/solo", &soloID) == 1);
+//    assert(visEvents.bang("/solo", &soloID) == 1);
+    cout << "OK" << endl;
     
     
     //Test invert
-//    cout << "Calling Invert...";
+    cout << "Calling Invert...";
     visEvents.eventAdd("/invert", &visual->events.invert);
-//    int invArg = 1;
-//    assert(visEvents.bang("/invert", &invArg) == 1);
-//    cout << "OK" << endl;
+    int invArg = 1;
+    assert(visEvents.bang("/invert", &invArg) == 1);
+    assert(visEvents.bang("/invert", &invArg) == 1);
+    cout << "OK" << endl;
     
     //Test line
     cout << "Calling line through event....";
@@ -414,8 +404,17 @@ void Test::runVisualTest(visual_container_t* visual) {
     nodeDuration = 2000;
     assert (eventHandler.bang("/nodeBang", &nodeDuration) == 1.0);
     cout << "OK" << endl;
-    
-    std::cout << "Visual test methods have finished" << std::endl;
 }
 
 
+void Test::solo() {
+    isSolo = !isSolo;
+    int soloArgs[] = {1 , isSolo};
+    visEvents.bang("/solo", &soloArgs);
+}
+
+
+void Test::invert() {
+    int invArg = 1;
+    visEvents.bang("/invert", &invArg);
+}

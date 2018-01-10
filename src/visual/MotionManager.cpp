@@ -10,7 +10,6 @@
 #include <cassert>
 
 MotionManager::MotionManager() {
-    
     //Reset solo
     for(int i = 0; i < AG_MAX; i++) {
         soloID[i] = false;
@@ -59,23 +58,21 @@ void MotionManager::drawAll() {
             agent[i].mov = ag->mov;
             //motion->agent[i].width_rate = gismo->width_rate;
             
-            if(ag->interact_with != -1) {
-                int targetID = ag->interact_with;
-                ag_t* target = gismo->getAgent(targetID);
-                
-                if(ag->condition == CHASE) {
-                    interactLine[i].myPos.x = ag->posi.x;
-                    interactLine[i].myPos.y = ag->posi.y;
-                
-                    ofSetColor(0);
-                    interactLine[i].lineTo(target->posi.x, target->posi.y);
-                }
-                
-            }
+//            if(ag->interact_with != -1) {
+//                int targetID = ag->interact_with;
+//                ag_t* target = gismo->getAgent(targetID);
+//                
+//                if(ag->condition == CHASE && target->condition == RUN) {
+//                    interactLine[i].myPos.x = ag->posi.x;
+//                    interactLine[i].myPos.y = ag->posi.y;
+//                
+//                    ofSetColor(0);
+//                    interactLine[i].lineTo(target->posi.x, target->posi.y);
+//                }
+//                
+//            }
             
-            agent[i].update();
-            
-            
+            agent[i].update();            
             agent[i].draw();
             
 //            if (agent[i].interaction.node.isRunning()) {
@@ -114,13 +111,13 @@ void MotionManager::drawSolo() {
                 agent[i].mov = ag->mov;
                 //motion->agent[i].width_rate = gismo->width_rate;
                 
-                if(ag->interact_with != -1) {
-                    int targetID = ag->interact_with;
-                    float targetX = agents[targetID].posi.x;
-                    float targetY = agents[targetID].posi.y;
-                    
-                    interactLine[i].lineTo(targetX, targetY);
-                }
+//                if(ag->interact_with != -1) {
+//                    int targetID = ag->interact_with;
+//                    float targetX = agents[targetID].posi.x;
+//                    float targetY = agents[targetID].posi.y;
+//                    
+//                    interactLine[i].lineTo(targetX, targetY);
+//                }
                 
                 agent[i].update();
                 agent[i].draw();

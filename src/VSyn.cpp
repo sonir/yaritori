@@ -351,7 +351,6 @@ void VSyn::draw(){
 #ifndef DEBUG_MODE
     screenBegin();
 
-    
     //Draw Agents
     drawAgents(&visual);
     
@@ -599,7 +598,7 @@ void VSyn::test(){
     gismo.addAgent(act8);
     
     
-    for(int i = 0; i < 1000; i++)  gismo.addAgent(act8);
+    for(int i = 0; i < 2490; i++)  gismo.addAgent(act8);
     
     act8.posi.x = frand();
     act8.posi.y = 0.5f;
