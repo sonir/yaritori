@@ -14,7 +14,7 @@
 
 class Invert : public Event {
 public:
-    int trigger() {
+    int trigger(void *args) {
         motionManager->invertColor();
         invertBackground();
         return 1;
@@ -31,7 +31,7 @@ class Solo : public Event {
 public:
     int trigger(void *arg) {
         int* id = (int *)arg;
-        motionManager->solo(*id);
+        motionManager->solo(id[0], id[1]);
         return 1;
     };
     inline void setMotionManagerPtr(MotionManager* pMotion) {

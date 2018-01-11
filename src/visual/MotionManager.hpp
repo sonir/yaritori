@@ -13,6 +13,7 @@
 #include "ofxGismo.h"
 #include "ag_shape.h"
 #include "AgentMotion.hpp"
+#include "LineDrawer.hpp"
 //#include "SoloController.hpp"
 
 class MotionManager : public Event {
@@ -23,7 +24,7 @@ public:
     bool soloID[AG_MAX];
     
     void invertColor();
-    void solo(int _id);
+    void solo(int _id, int act);
     void addSolo(int _id);
     void deleteSolo(int _id);
     void draw();
@@ -42,6 +43,9 @@ private:
     GismoManager* gismo;
     ag_shape_t* pShapes;
     A2PLineManager lines;
+    
+    LineDrawer interactLine[AG_MAX];
+    ofShader shader;
 
 };
 

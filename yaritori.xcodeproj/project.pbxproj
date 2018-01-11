@@ -16,6 +16,7 @@
 		33B2A6F11FF6C4AE00A0CEA5 /* RippleDrawer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33B2A6EB1FF6C4AE00A0CEA5 /* RippleDrawer.cpp */; };
 		33B2A6F21FF6C4AE00A0CEA5 /* RippleManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33B2A6ED1FF6C4AE00A0CEA5 /* RippleManager.cpp */; };
 		33B2A6F31FF6C4AE00A0CEA5 /* timed_interpolation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33B2A6EF1FF6C4AE00A0CEA5 /* timed_interpolation.cpp */; };
+		33C2E391200627C10054776B /* LineDrawer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33C2E38F200627C10054776B /* LineDrawer.cpp */; };
 		483908258D00B98B4BE69F07 /* ofxLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78D67A00EB899FAC09430597 /* ofxLabel.cpp */; };
 		4ADB88E2FB52E76A471065DE /* ofxOscParameterSync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AED834CE4DEC5260AF302A2 /* ofxOscParameterSync.cpp */; };
 		510CAFE035E576A4E1502D52 /* UdpSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6DEF695B88BA5FAACEAA937 /* UdpSocket.cpp */; };
@@ -116,6 +117,8 @@
 		33B2A6EE1FF6C4AE00A0CEA5 /* RippleManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = RippleManager.hpp; path = ripple/RippleManager.hpp; sourceTree = "<group>"; };
 		33B2A6EF1FF6C4AE00A0CEA5 /* timed_interpolation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = timed_interpolation.cpp; path = ripple/timed_interpolation.cpp; sourceTree = "<group>"; };
 		33B2A6F01FF6C4AE00A0CEA5 /* timed_interpolation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = timed_interpolation.hpp; path = ripple/timed_interpolation.hpp; sourceTree = "<group>"; };
+		33C2E38F200627C10054776B /* LineDrawer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LineDrawer.cpp; path = visual/LineDrawer.cpp; sourceTree = "<group>"; };
+		33C2E390200627C10054776B /* LineDrawer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = LineDrawer.hpp; path = visual/LineDrawer.hpp; sourceTree = "<group>"; };
 		34BF591C646B5F6EF968D620 /* CreEPS.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = CreEPS.cpp; path = ../../../addons/ofxVectorGraphics/libs/CreEPS.cpp; sourceTree = SOURCE_ROOT; };
 		3B361208CD4107E479F04E7B /* NetworkingUtils.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = NetworkingUtils.cpp; path = ../../../addons/ofxOsc/libs/oscpack/src/ip/posix/NetworkingUtils.cpp; sourceTree = SOURCE_ROOT; };
 		444657A12E59D0ED86981498 /* TimerListener.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = TimerListener.h; path = ../../../addons/ofxOsc/libs/oscpack/src/ip/TimerListener.h; sourceTree = SOURCE_ROOT; };
@@ -260,6 +263,8 @@
 				339EDFAE200472C900D1AFFF /* A2PLine.cpp */,
 				339EDFB1200472C900D1AFFF /* AgentMotion.hpp */,
 				339EDFB0200472C900D1AFFF /* AgentMotion.cpp */,
+				33C2E38F200627C10054776B /* LineDrawer.cpp */,
+				33C2E390200627C10054776B /* LineDrawer.hpp */,
 			);
 			name = visual;
 			sourceTree = "<group>";
@@ -616,6 +621,7 @@
 			files = (
 				33B2A6F11FF6C4AE00A0CEA5 /* RippleDrawer.cpp in Sources */,
 				F2FFCEB41F62AFF800E71BAA /* osc2shape.cpp in Sources */,
+				33C2E391200627C10054776B /* LineDrawer.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				856AA354D08AB4B323081444 /* ofxBaseGui.cpp in Sources */,

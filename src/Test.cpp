@@ -355,6 +355,7 @@ void Test :: update(){
 
     
 
+    
 }
 
 
@@ -375,20 +376,21 @@ void Test::runVisualTest(visual_container_t* visual) {
     cout << "OK." << endl;
     
     //Test solo
-//    cout << "Calling Solo....";
-//    eventHandler.eventAdd("/solo", &visual->events.solo);
-//    int soloID = 1;
-//    assert(eventHandler.bang("/solo", &soloID) == 1);
-//    assert(eventHandler.bang("/solo", &soloID) == 1);
-//    std::cout << "Visual test method has finished." << std::endl;
-//    cout << "OK" << end;
+    cout << "Calling Solo....";
+    visEvents.eventAdd("/solo", &visual->events.solo);
+//    int soloID[] = {1 , isSolo};
+//    assert(visEvents.bang("/solo", &soloID) == 1);
+//    assert(visEvents.bang("/solo", &soloID) == 1);
+    cout << "OK" << endl;
     
     
     //Test invert
-//    cout << "Calling Invert...";
-//    eventHandler.eventAdd("/invert", &visual->events.invert);
-//    assert(eventHandler.bang("/invert") == 1);
-//    cout << "OK" <<< endl;
+    cout << "Calling Invert...";
+    visEvents.eventAdd("/invert", &visual->events.invert);
+    int invArg = 1;
+    assert(visEvents.bang("/invert", &invArg) == 1);
+    assert(visEvents.bang("/invert", &invArg) == 1);
+    cout << "OK" << endl;
     
     //Test line
     cout << "Calling line through event....";
@@ -419,4 +421,30 @@ void Test::runVisualTest(visual_container_t* visual) {
     cout << "OK" << endl;
 }
 
+void Test::solo() {
+    isSolo = !isSolo;
+    int soloArgs[] = {1 , isSolo};
+    visEvents.bang("/solo", &soloArgs);
+}
 
+
+void Test::invert() {
+    int invArg = 1;
+}
+void Test::createShape(ag_shape_t* shape) {
+    //Create random shape
+    
+    shape->node_count = 10;
+    shape->edge_count = shape->node_count * (1.0 + frand());
+    
+    for(int i = 0; i < NODE_MAX; i++) {
+        shape->nodes[i].x = frand() - 0.5;
+        shape->nodes[i].y = frand() - 0.5;
+    }
+    
+    for (int i = 0; i <  shape->edge_count; i++) {
+        shape->edges[i].node_id_a = i % int(shape->node_count * 0.25);
+        shape->edges[i].node_id_b = i % shape->node_count;
+    }
+    
+}
