@@ -510,13 +510,18 @@ void VSyn::test(){
     
     //Test addAgShape
     ag_shape_t shape;
-    shape.node_count = 137;
-    shape.edges[1].node_id_a = 138;
+    shape.nodes[0].x = 0.5f;
+    shape.nodes[0].y = 0.5f;
+    shape.nodes[1].x = 1.0f;
+    shape.nodes[1].y = 1.0f;
+    shape.node_count = 2;
+    shape.edges[0].node_id_a = 0;
+    shape.edges[0].node_id_b = 1;
+    shape.edge_count = 1;
     gismo.bang("/addShape" , &shape);
-    //addAgShape(shape); //Add the shapoe
     assert(ag_shapes_count == 1);
-    assert( ag_shapes[0].node_count == 137 );
-    assert (ag_shapes[0].edges[1].node_id_a == 138);
+    assert( ag_shapes[0].node_count == 2 );
+    assert (ag_shapes[0].edges[0].node_id_b == 1);
     std::cout << "VSyn:: addAgShape is ok." << std::endl;
     
     
@@ -526,11 +531,13 @@ void VSyn::test(){
     //Set Agents
     ag_t act1, act2, act3, act4, act5, act6, act7, act8;
 
+    /*
     initAgentActive(&act8);
     act8.posi.x = 0.25f; act8.posi.y = 0.5f;
     gismo.addAgent(act8);
     act8.posi.x = 0.75f; act8.posi.y = 0.5f;
     gismo.addAgent(act8);
+    */
     
     /*
     for(int i=0;i<600;i++) gismo.addAgent(act8);
