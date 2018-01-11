@@ -118,9 +118,7 @@ class VSyn : public Event {
     
 
         //AGENT VISUAL
-        void createShape(ag_shape_t &shape);    //to create filled shape(test code)
         RippleManager ripple;
-    
         visual_container_t visual;
 };
 

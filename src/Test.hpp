@@ -33,14 +33,17 @@ class Test {
         void solo();
     
     
+    void createShape(ag_shape_t* shape);
+
+    
+    
         GismoManager& gismo = GismoManager::getInstance(); //Pointer for gismoManager instance
         Sound *sound;
     
     //Visual
     RippleManager *ripple;
     EventHandler visEvents;
-    bool isSolo;
-        
+  bool isSolo;        
     
 };
 

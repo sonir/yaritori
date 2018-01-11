@@ -421,7 +421,6 @@ void Test::runVisualTest(visual_container_t* visual) {
     cout << "OK" << endl;
 }
 
-
 void Test::solo() {
     isSolo = !isSolo;
     int soloArgs[] = {1 , isSolo};
@@ -431,5 +430,21 @@ void Test::solo() {
 
 void Test::invert() {
     int invArg = 1;
-    visEvents.bang("/invert", &invArg);
+}
+void Test::createShape(ag_shape_t* shape) {
+    //Create random shape
+    
+    shape->node_count = 10;
+    shape->edge_count = shape->node_count * (1.0 + frand());
+    
+    for(int i = 0; i < NODE_MAX; i++) {
+        shape->nodes[i].x = frand() - 0.5;
+        shape->nodes[i].y = frand() - 0.5;
+    }
+    
+    for (int i = 0; i <  shape->edge_count; i++) {
+        shape->edges[i].node_id_a = i % int(shape->node_count * 0.25);
+        shape->edges[i].node_id_b = i % shape->node_count;
+    }
+    
 }

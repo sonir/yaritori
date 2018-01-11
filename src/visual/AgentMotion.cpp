@@ -196,22 +196,25 @@ void AgentMotion::draw() {
 //    shader.setUniform1f("color", color);
 //    shader.setUniform1i("CANVAS_HEIGHT", CANVAS_HEIGHT);
 //    shader.setUniform1f("size", size);
-//    shader.setUniform1fv("carStep", carStep, pShape->node_count);
-//    shader.setUniform1fv("modStep", modStep, pShape->node_count);
-//    shader.setUniform1fv("velocityX", velocityX, pShape->node_count);
-//    shader.setUniform1fv("velocityY", velocityX, pShape->node_count);
+//    shader.setUniform1fv("carStep", carStep);
+//    shader.setUniform1fv("modStep", modStep);
+//    shader.setUniform1f("centerX", center.x*screenWidth);
+//    shader.setUniform1f("centerY", center.y*screenWidth);
     
-    glEnable(GL_POINT_SMOOTH);
-    glHint(GL_POINT_SMOOTH_HINT, GL_NICEST);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glEnable(GL_BLEND);
-    glPointSize(getPointSize());
-    nodeVbo.draw(GL_POINTS, 0, pShape->node_count);
-    
-    
-    glEnable(GL_LINE_SMOOTH);
-    glLineWidth(getLineWidth());
-    edgeVbo.drawElements(GL_LINES, pShape->edge_count * 2);
+    if(pShape->node_count != 0) {
+//        glEnable(GL_POINT_SMOOTH);
+//        glHint(GL_POINT_SMOOTH_HINT, GL_NICEST);
+//        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+//        glEnable(GL_BLEND);
+        glPointSize(getPointSize());
+        nodeVbo.draw(GL_POINTS, 0, pShape->node_count);
+    }
+   
+    if(pShape->edge_count != 0) {
+        glEnable(GL_LINE_SMOOTH);
+        glLineWidth(getLineWidth());
+        edgeVbo.drawElements(GL_LINES, pShape->edge_count * 2);
+    }
     
 //    shader.end();
 }
