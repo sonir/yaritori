@@ -11,8 +11,8 @@
 
 //Convert Contstants
 #define V_FIX 0.005 //Basic param for View
-#define S_FIX 0.00017 //Basic param for Size
-#define M_FIX 0.0005 //Basic param for move
+#define S_FIX 0.0055 //0.00017 //Basic param for Size
+#define M_FIX 0.035 //0.0005 //Basic param for move
 #define NODE_AVG 20
 
 #include <stdio.h>
