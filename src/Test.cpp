@@ -311,6 +311,7 @@ void Test :: run(){
     fval2 = ATK_DIST+0.1;
     attackCheck(fval2, &size2);
     assert(size2 == 1.0f);
+    cout << "GismoLibrary::attackCheck() is OK" << endl;
 
     size2 = 1.0f;
     fval2 = ATK_DIST;
@@ -327,18 +328,32 @@ void Test :: run(){
     active = true;
     deadCheck( &dummy_size , &active );
     assert(active == true);
+    cout << "GismoLibrary::deadCheck is OK" << endl;
     
-
+    //Test Shape2Agent
+    ag_shape_t shape;
+    shape.nodes[0].x = 0.5f;
+    shape.nodes[0].y = 0.5f;
+    shape.nodes[1].x = 1.0f;
+    shape.nodes[1].y = 1.0f;
+    shape.node_count = 2;
+    shape.edges[0].node_id_a = 0;
+    shape.edges[0].node_id_b = 1;
+    shape.edge_count = 1;
+    ag_t tmpAg = shape2Agent(shape);
+    assert(tmpAg.view == 0.005f);
+    assert(tmpAg.size == 0.00034f);
+    assert(tmpAg.mov == 0.005f);
+    cout << "Shape2Agent.hpp::shape2Agent() is OK" << endl;
+    
     
 }
 
 void Test :: update(){
     
-    //Size print
-//    ag_t *ag1 = gismo.getAgent(0);
-//    ag_t *ag2 = gismo.getAgent(1);
-//    
-//    std::cout << ag1->size << "," << ag2->size << std::endl;
+//    cout << gismo.agents.count << endl;
+
+    
 
     
 }

@@ -15,7 +15,7 @@
 #include "ag_shape.h"
 
 // listen on port 12345
-#define IN_PORT 56138
+#define IN_PORT 8002//56138
 #define NUM_MSG_STRINGS 20
 
 

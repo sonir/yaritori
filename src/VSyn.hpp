@@ -32,6 +32,8 @@
 // Receiving message from network
 #include "Network.hpp"
 
+//Convert from shape_t to agent
+#include "Shape2Agent.hpp"
 
 //Test Class
 #include "Test.hpp"
