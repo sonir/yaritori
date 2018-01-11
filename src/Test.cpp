@@ -347,6 +347,18 @@ void Test :: run(){
     assert(tmpAg.mov == 0.35f);
     cout << "Shape2Agent.hpp::shape2Agent() is OK" << endl;
     
+    //Test moveOnLine()
+    posi_t posi = moveOnLine(0.5f, 0.0f, 0.0f, 1.0f, 1.0f);
+    assert(posi.x == 0.5f && posi.y == 0.5f);
+    posi = moveOnLine(1.0f, 0.0f, 0.0f, 1.0f, 1.0f);
+    assert(posi.x == 1.0f && posi.y == 1.0f);
+    posi = moveOnLine(0.5f, -1.0f, -1.0f, -2.0f, -2.0f);
+    assert(posi.x == -1.5f && posi.y == -1.5f);
+    posi = moveOnLine(0.0f, -1.0f, -1.0f, -2.0f, -2.0f);
+    assert(posi.x == -1.0f && posi.y == -1.0f);
+    posi = moveOnLine(0.5f, 0.0f, 0.0f, -1.0f, -2.0f);
+    assert(posi.x == -0.5f && posi.y == -1.0f);
+
     
 }
 

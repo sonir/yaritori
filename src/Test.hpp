@@ -15,6 +15,7 @@
 #include "ag_shape.h"
 #include "Sound.hpp"
 #include "Shape2Agent.hpp"
+#include "Performance.hpp"
 
 class Test {
 
