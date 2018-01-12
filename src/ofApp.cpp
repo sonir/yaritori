@@ -46,6 +46,7 @@ void ofApp::keyReleased(int key){
         case 'f':
             ofToggleFullscreen();
             break;
+            
     
     }
     

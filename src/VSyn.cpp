@@ -12,9 +12,21 @@ using namespace std;
 
 void VSyn::setup(){
     
+    //Set Metro
+    metro = new Metro(GISMO_UPDATE_INTERVAL);
+    
+    //Set for bullet
+    posi_t p_a , p_b;
+    p_a.x = 0.5f; p_a.y = 0.5f;
+    p_b.x = 1.0f; p_b.y = 1.0f;
+    aLine.node_a = p_a;
+    aLine.node_b = p_b;
+    bullet = new Bullet();
+    bullet->bang();
     
     //Create TestClass
     myTest = new Test(&sound);
+    myTest->setup();
     
     ofBackground(0, 0, 0);
     ofSetCircleResolution(50);
@@ -43,6 +55,7 @@ void VSyn::setup(){
     //SetupEvents
     gismo.eventAdd("/addShape", this);
     
+    myTest->setup();
     //Do Test Code
     this->test();
 
@@ -60,8 +73,8 @@ void VSyn::update(){
     //sync();
 
     gismo.addSync();
-    makeInteracts(&gismo.agents);
-
+    if(metro->update())makeInteracts(&gismo.agents);
+    //makeInteracts(&gismo.agents);
     
     // hide old messages
     for(int i = 0; i < NUM_MSG_STRINGS; i++){
@@ -460,6 +473,38 @@ void VSyn::draw(){
     ///
 #endif
     
+    //Draw Performers
+    /*
+    for(int i=0; i<PERFORMER_NUM;i++){
+        
+        circle(performance.performers.pfm.buf[i].posi.x, performance.performers.pfm.buf[i].posi.x, SIZE_OF_PERFORMER_INDICATE,false);
+        
+    }
+    
+    for(int i=0; i< gismo.agents.count;i++){
+        
+        line_t *tmp = &performance.lines[i];
+        tmp->node_a.x = gismo.agents.buf[i].posi.x;
+        tmp->node_a.y = gismo.agents.buf[i].posi.y;
+        tmp->node_b.x = performance.performers.pfm.buf[i%PERFORMER_NUM].posi.x;
+        tmp->node_b.y = performance.performers.pfm.buf[i%PERFORMER_NUM].posi.y;
+        
+        line(tmp->node_a.x, tmp->node_a.y, tmp->node_b.x , tmp->node_b.y, 0.1f);
+        //tmp->points[0].bang();
+        //cout << tmp->points[0].update() << endl;;
+        
+        performance.bullets[i].bang();
+        posi_t pos = performance.bullets[i].update(performance.lines[i]);
+        circle(pos.x, pos.y, 0.0045, 1);
+
+        
+    }
+    
+    //bullet->bang();
+    posi_t tmp = bullet->update(aLine);
+    circle(tmp.x, tmp.y, 0.0045, 1);
+    cout << tmp.x << endl;
+    */
     
     if(cam_flg){
         ofPopMatrix();
@@ -531,21 +576,22 @@ void VSyn::test(){
     //Set Agents
     ag_t act1, act2, act3, act4, act5, act6, act7, act8;
 
-    /*
+    
     initAgentActive(&act8);
     act8.posi.x = 0.25f; act8.posi.y = 0.5f;
     gismo.addAgent(act8);
     act8.posi.x = 0.75f; act8.posi.y = 0.5f;
     gismo.addAgent(act8);
-    */
+    gismo.addAgent(act8);
     
-    /*
+    
+    
     for(int i=0;i<600;i++) gismo.addAgent(act8);
     act8.size *= 0.8f;
     act8.mov *= 2.5f;
     act8.view *= 1.0f;
     for(int i=0;i<1000;i++) gismo.addAgent(act8);
-    */
+    
     
     std::cout << "test method has finished." << std::endl;
 

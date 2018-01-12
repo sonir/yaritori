@@ -11,6 +11,7 @@
 
 //Set running mode
 #define DEBUG_MODE
+#define GISMO_UPDATE_INTERVAL 0.033
 
 
 //Basics
@@ -40,6 +41,10 @@
 
 //Gismo
 #include "drawAgents.hpp"
+
+//Metro
+#include "Metro.hpp"
+
 
 //AudioTriger with OSC
 #include "Sound.hpp"
@@ -92,7 +97,13 @@ class VSyn : public Event {
         bool cam_flg;
         ofVec3f pov;
         ofVec3f look;
-        
+    
+        //For Performance
+        PerformanceManager performance;
+        line_t aLine;
+        Bullet *bullet;
+        Metro *metro;
+
     
     
     private:
