@@ -30,6 +30,8 @@
 #include "cam_func.hpp"
 #include "Particle.hpp"
 
+// Yaritori Modules ///
+
 // Receiving message from network
 #include "Network.hpp"
 
@@ -41,6 +43,7 @@
 
 //Gismo
 #include "drawAgents.hpp"
+#include "DrawAgentsWithChar.hpp"
 
 //Metro
 #include "Metro.hpp"
@@ -113,6 +116,7 @@ class VSyn : public Event {
         //Variables
         Test *myTest; //Test Instance
         GismoManager& gismo = GismoManager::getInstance(); //Pointer for gismoManager instance
+        DrawAgentsWithChar drawAgentsWithChar;
         Sound sound; //AudioTrigger with OSC
     
         //CCMA

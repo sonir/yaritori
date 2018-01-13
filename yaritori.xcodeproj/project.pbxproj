@@ -37,6 +37,7 @@
 		F01092BB147FA462845C38C7 /* CreEPS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34BF591C646B5F6EF968D620 /* CreEPS.cpp */; };
 		F21DCD072007BFE4003BCC42 /* Fade.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F21DCD062007BFE4003BCC42 /* Fade.cpp */; };
 		F21DCD0A2008D0D7003BCC42 /* Metro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F21DCD082008D0D7003BCC42 /* Metro.cpp */; };
+		F245008B2009F9F600454D28 /* DrawAgentsWithChar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F24500892009F9F600454D28 /* DrawAgentsWithChar.cpp */; };
 		F251DC9B2006A49E005D2472 /* Shape2Agent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F251DC992006A49E005D2472 /* Shape2Agent.cpp */; };
 		F2545E8E1F99B73F0029709A /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2545E8D1F99B73F0029709A /* Particle.cpp */; };
 		F27A52F81FEC634F00942A31 /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F27A52F61FEC634F00942A31 /* Sound.cpp */; };
@@ -152,6 +153,8 @@
 		F21DCD062007BFE4003BCC42 /* Fade.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fade.cpp; sourceTree = "<group>"; };
 		F21DCD082008D0D7003BCC42 /* Metro.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Metro.cpp; sourceTree = "<group>"; };
 		F21DCD092008D0D7003BCC42 /* Metro.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Metro.hpp; sourceTree = "<group>"; };
+		F24500892009F9F600454D28 /* DrawAgentsWithChar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DrawAgentsWithChar.cpp; sourceTree = "<group>"; };
+		F245008A2009F9F600454D28 /* DrawAgentsWithChar.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DrawAgentsWithChar.hpp; sourceTree = "<group>"; };
 		F251DC992006A49E005D2472 /* Shape2Agent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shape2Agent.cpp; sourceTree = "<group>"; };
 		F251DC9A2006A49E005D2472 /* Shape2Agent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Shape2Agent.hpp; sourceTree = "<group>"; };
 		F2545E8C1F99B73F0029709A /* Particle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Particle.hpp; sourceTree = "<group>"; };
@@ -422,6 +425,8 @@
 				F2ABF1271FEFF227006773CE /* Network.hpp */,
 				F26D88141F6B638600AC27FE /* cam_func.hpp */,
 				F2C099011FDD7DB30075255C /* drawAgents.hpp */,
+				F24500892009F9F600454D28 /* DrawAgentsWithChar.cpp */,
+				F245008A2009F9F600454D28 /* DrawAgentsWithChar.hpp */,
 				F27A52F61FEC634F00942A31 /* Sound.cpp */,
 				F27A52F71FEC634F00942A31 /* Sound.hpp */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
@@ -619,6 +624,7 @@
 				5864AD82E20F15536D054EA3 /* ofxOscMessage.cpp in Sources */,
 				4ADB88E2FB52E76A471065DE /* ofxOscParameterSync.cpp in Sources */,
 				640279EE111671BD026CB013 /* ofxOscReceiver.cpp in Sources */,
+				F245008B2009F9F600454D28 /* DrawAgentsWithChar.cpp in Sources */,
 				8F5205AEF8861EF234F0651A /* ofxOscSender.cpp in Sources */,
 				F2545E8E1F99B73F0029709A /* Particle.cpp in Sources */,
 				ADE367465D2A8EBAD4C7A8D9 /* IpEndpointName.cpp in Sources */,

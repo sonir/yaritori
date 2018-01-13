@@ -34,6 +34,7 @@ public:
     slMetro *metro;
     void set(float dur);
     bool update();
+
     
 };
 

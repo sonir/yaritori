@@ -25,7 +25,6 @@ Fade :: Fade(int ms){
 
 void Fade :: init (int ms){
     
-    cout << "init(int ms)" << endl;
     activated = false;
     this->set(ms);
     count = 0;

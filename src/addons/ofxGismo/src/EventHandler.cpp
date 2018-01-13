@@ -14,10 +14,20 @@ void EventHandler::eventAdd(std::string event_name, Event *pEvent){
     
 }
 
+
 int EventHandler::bang(string event_name){
     
-    Event *tmp = events[event_name];
-    return tmp->trigger();
+    if(events[event_name])
+    {
+        
+        Event *tmp = events[event_name];
+        return tmp->trigger();
+        
+    } else {
+        
+        cout << "ERR :: Unknown event named <" << event_name << "> was invoked." << endl;
+        
+    }
     
 }
 

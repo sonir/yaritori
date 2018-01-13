@@ -28,7 +28,6 @@ class Test {
     
         GismoManager& gismo = GismoManager::getInstance(); //Pointer for gismoManager instance
         Sound *sound;
-//        Fade fade;
     
 };
 

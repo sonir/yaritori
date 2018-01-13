@@ -23,6 +23,7 @@ void Test :: setup(){
 
 void Test :: run(){
     
+    gismo.bang("/foo");
     
     
     //Test frand

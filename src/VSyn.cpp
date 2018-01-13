@@ -356,9 +356,12 @@ void VSyn::draw(){
     //drawing particle
     particle.draw();
     
-#ifndef DEBUG_MODE
+#ifdef DEBUG_MODE
+    //drawAgentsForSimpleGraphics
+    drawAgentsWithChar.draw(&gismo, screen_w, screen_h);
+#else
     //drawAgents
-    drawAgents(&gismo);
+    drawAgents(&gismo, screen_w, screen_h);
 #endif
     
     for(int i=0; i<CONTAINER_MAX; i++){
@@ -411,7 +414,7 @@ void VSyn::draw(){
         
     }
 
-    
+/*
 #ifdef DEBUG_MODE
     /// DRAW_AGENTS_CONDITIONS
     int count = gismo.agents.count;
@@ -472,6 +475,7 @@ void VSyn::draw(){
     }
     ///
 #endif
+*/
     
     //Draw Performers
     /*
