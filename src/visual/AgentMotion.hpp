@@ -13,7 +13,7 @@
 #include "ScreenManager.hpp"
 #include "ofxGismo.h"
 #include "ag_shape.h"
-#include "A2PLine.hpp"
+//#include "A2PLine.hpp"
 
 
 struct vec2 {
@@ -32,6 +32,7 @@ public:
     void draw();
     void update();
     void updatePhase();
+    void updateCenter();
     void updatePosition();
     void updateIndex();
     void updateColors();
@@ -46,16 +47,16 @@ public:
     //Variables
     ag_shape_t shape;
     ag_shape_t* pShape;
+    ag_t* pAg;
     int screenWidth, screenHeight;
     bool isActive;
     float size;
     float width_rate;
-    float mov;
-    vec2 center;
+    ofVec2f center, dest;
     float centerX ,centerY;
     
     //Interaction
-    A2PLine interaction;
+//    A2PLine interaction;
 
 private:
     //VBO

@@ -404,32 +404,32 @@ void Test::runVisualTest(visual_container_t* visual) {
     cout << "OK" << endl;
     
     //Test line
-    cout << "Calling line through event....";
-    A2PLine line;
-    gismo.eventAdd("/line", &line);
-    float lineArgs[] = {0.25, 0.5, 0.75, 0.5};
-    assert ( gismo.bang("/line", lineArgs) == 1.0 );
-    cout << "OK" << endl;
+//    cout << "Calling line through event....";
+//    A2PLine line;
+//    gismo.eventAdd("/line", &line);
+//    float lineArgs[] = {0.25, 0.5, 0.75, 0.5};
+//    assert ( gismo.bang("/line", lineArgs) == 1.0 );
+//    cout << "OK" << endl;
     
     //Test nodebang
-    cout << "Calling node-bang through event....";
-    gismo.eventAdd("/lineNodeBang", &line.node);
-    float nodeDuration = 2000;
-    assert (gismo.bang("/lineNodeBang", &nodeDuration) == 1.0);
-    cout << "OK" << endl;
+//    cout << "Calling node-bang through event....";
+//    gismo.eventAdd("/lineNodeBang", &line.node);
+//    float nodeDuration = 2000;
+//    assert (gismo.bang("/lineNodeBang", &nodeDuration) == 1.0);
+//    cout << "OK" << endl;
     
     //Test line
-    cout << "Calling visual.interaction through event....";
-    gismo.eventAdd("/line", &visual->motion.agent[1].interaction);
-    assert ( gismo.bang("/line", lineArgs) == 1.0 );
-    cout << "OK" << endl;
+//    cout << "Calling visual.interaction through event....";
+//    gismo.eventAdd("/line", &visual->motion.agent[1].interaction);
+//    assert ( gismo.bang("/line", lineArgs) == 1.0 );
+//    cout << "OK" << endl;
     
     //Test node bang through manager
-    cout << "Calling visual.node-bang through event....";
-    gismo.eventAdd("/nodeBang", &visual->motion.agent[1].interaction.node);
-    nodeDuration = 2000;
-    assert (gismo.bang("/nodeBang", &nodeDuration) == 1.0);
-    cout << "OK" << endl;
+//    cout << "Calling visual.node-bang through event....";
+//    gismo.eventAdd("/nodeBang", &visual->motion.agent[1].interaction.node);
+//    nodeDuration = 2000;
+//    assert (gismo.bang("/nodeBang", &nodeDuration) == 1.0);
+//    cout << "OK" << endl;
 }
 
 void Test::solo() {

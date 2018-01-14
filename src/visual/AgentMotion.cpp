@@ -28,12 +28,13 @@ constexpr float MOV_FIX = 0.012;
 constexpr float dx = 0.0166f;
 
 constexpr int PHASE_ENABLE = 3;
+constexpr float easing = 0.05;
 
 AgentMotion::AgentMotion() {
     color = 0.0;
     width_rate = 1.0f;
     size = 0.03;
-    mov = 0.01;
+    //mov = 0.01;
     pShape = &this->shape;
     
     resetShape();
@@ -46,6 +47,8 @@ AgentMotion::AgentMotion() {
 void AgentMotion::resetShape() {
     center.x = frand()-0.5;
     center.y = frand()-0.5;
+    dest.x = center.x;
+    dest.y = center.y;
     
 
     shape.node_count = 64;
@@ -61,9 +64,6 @@ void AgentMotion::resetShape() {
         shape.edges[i].node_id_a = 0;
         shape.edges[i].node_id_b = 1;
     }
-    
-    pShape = &this->shape;
-    
 }
 
 void AgentMotion::initModulation() {
@@ -125,15 +125,30 @@ void AgentMotion::updateColors() {
     edgeVbo.updateColorData(edgeColors, pShape->edge_count);
 }
 
+void AgentMotion::updateCenter() {
+    ofVec2f diff = dest - center;
+    float length = diff.length() * CANVAS_HEIGHT;
+    
+//    if(0.9 < spd) {
+//        center = dest;
+//    }
+    
+    if(WINDOW_HEIGHT < length) {
+        center = dest;
+    } else {
+        center += (dest - center) * easing;
+    }
+}
+
 void AgentMotion::updatePhase() {
     // Update Phases
     for(int i = 0; i < pShape->node_count; i++) {
-        carPhase[i] += carStep[i] * mov * MOV_FIX;    //Carrier
+        carPhase[i] += carStep[i] * pAg->mov * MOV_FIX;    //Carrier
         if(M_2XPI < carPhase[i]) {
             carPhase[i] = 0.0;
         }
 
-        modPhase[i] += modStep[i] * mov * MOV_FIX;    //Modulater
+        modPhase[i] += modStep[i] * pAg->mov * MOV_FIX;    //Modulater
         if(M_2XPI < modPhase[i]) {
             modPhase[i] = 0.0;
         }
@@ -147,8 +162,8 @@ void AgentMotion::updatePhase() {
 void AgentMotion::updatePosition() {
     for(int i = 0; i < pShape->node_count; i++) {
         //Modulation by CPU
-        float nodeX = (pShape->nodes[i].x + velocityX[i] * phase[i % PHASE_ENABLE ]) * size;
-        float nodeY = (pShape->nodes[i].y + velocityY[i] * phase[i % PHASE_ENABLE ]) * size;
+        float nodeX = (pShape->nodes[i].x + velocityX[i] * phase[i % PHASE_ENABLE ]) * pAg->size;
+        float nodeY = (pShape->nodes[i].y + velocityY[i] * phase[i % PHASE_ENABLE ]) * pAg->size;
 
         ofVec2f pos;
         pos.x = (center.x + nodeX) * CANVAS_HEIGHT;
@@ -157,8 +172,8 @@ void AgentMotion::updatePosition() {
         
         //Modulation by Shader
 //        ofVec2f pos;
-//        pos.x = ( center.x + (pShape->nodes[i].x * size)) * CANVAS_HEIGHT;
-//        pos.y = ( center.y + (pShape->nodes[i].y * size)) * CANVAS_HEIGHT;
+//        pos.x = ( center.x + (pShape->nodes[i].x * pAg->size)) * CANVAS_HEIGHT;
+//        pos.y = ( center.y + (pShape->nodes[i].y * pAg->size)) * CANVAS_HEIGHT;
 
     
         nodePos[i] = pos;
@@ -179,11 +194,12 @@ void AgentMotion::updateIndex() {
 }
 
 void AgentMotion::update() {
-    t += mov * dx;
+    t += pAg->mov * dx;
     if(M_2XPI < t) {
         t = 0.0f;
         
     }
+    updateCenter();
     updatePhase();
     updatePosition();
     updateIndex();
@@ -216,10 +232,6 @@ void AgentMotion::draw() {
         glLineWidth(getLineWidth());
         edgeVbo.drawElements(GL_LINES, pShape->edge_count * 2);
     }
-    
-//    ofSetCircleResolution(12);
-//    ofDrawCircle(center.x * CANVAS_HEIGHT, center.y * CANVAS_HEIGHT, 3);
-    
 //    shader.end();
 }
 

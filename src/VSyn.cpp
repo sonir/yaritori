@@ -605,7 +605,7 @@ void VSyn::test(){
     shape.edges[0].node_id_a = 0;
     shape.edges[0].node_id_b = 1;
     shape.edge_count = 1;
-    gismo.bang("/addShape" , &shape);
+    for(int i=0;i<100;i++) addAgShape(shape);
     //assert(ag_shapes_count == 1);
     //assert( ag_shapes[0].node_count == 2 );
     //assert (ag_shapes[0].edges[0].node_id_b == 1);
@@ -652,7 +652,7 @@ void VSyn::test(){
 //    assert(tmpAg.view == 0.005f);
 //    assert(tmpAg.size == 0.00034f);
 //    assert(tmpAg.mov == 0.005f);
-    addAgShape(shape3);
+     addAgShape(shape3);
     
 
 //    createShape(shape);
@@ -699,11 +699,11 @@ void VSyn::test(){
     
     
     
-    for(int i=0;i<600;i++) gismo.addAgent(act8);
+    //for(int i=0;i<600;i++) gismo.addAgent(act8);
     act8.size *= 0.8f;
     act8.mov *= 2.5f;
     act8.view *= 1.0f;
-    for(int i=0;i<1000;i++) gismo.addAgent(act8);
+//    for(int i=0;i<1000;i++) gismo.addAgent(act8);
     
     
     std::cout << "test method has finished." << std::endl;

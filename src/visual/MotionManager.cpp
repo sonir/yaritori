@@ -17,6 +17,13 @@ MotionManager::MotionManager() {
     
 }
 
+void MotionManager::setShapes() {
+    for(int i = 0; i < AG_MAX; i++){
+        agent[i].pShape = &pShapes[i];
+        agent[i].initVbo();
+    }
+}
+
 void MotionManager::invertColor() {
     for(int i = 0; i < AG_MAX; i++){
         agent[i].invertColor();
@@ -41,6 +48,8 @@ void MotionManager::deleteSolo(int _id) {
     soloCount--;
 }
 
+
+
 void MotionManager::drawAll() {
     int count = gismo->agents.count;
     ag_t* agents = gismo->getAgents(); //sets agents pointer
@@ -51,33 +60,30 @@ void MotionManager::drawAll() {
         ag = agents; //Set agent address
         if(ag->active){
             //square(ag->posi.x, ag->posi.y, ag->size, 0.0f, true);
-            agent[i].pShape = &pShapes[i];
-            agent[i].center.x = ag->posi.x;
-            agent[i].center.y = ag->posi.y;
-            agent[i].size = ag->size;
-            agent[i].mov = ag->mov;
-            //motion->agent[i].width_rate = gismo->width_rate;
+            agent[i].pAg = ag;
+            agent[i].dest.x = ag->posi.x;
+            agent[i].dest.y = ag->posi.y;
             
-//            if(ag->interact_with != -1) {
-//                int targetID = ag->interact_with;
-//                ag_t* target = gismo->getAgent(targetID);
-//                
-//                if(ag->condition == CHASE && target->condition == RUN) {
-//                    interactLine[i].myPos.x = ag->posi.x;
-//                    interactLine[i].myPos.y = ag->posi.y;
-//                
-//                    ofSetColor(0);
-//                    interactLine[i].lineTo(target->posi.x, target->posi.y);
-//                }
-//                
-//            }
-            
-            agent[i].update();            
+            agent[i].update();
             agent[i].draw();
             
-
+            ofSetColor(255, 0, 0);
+            ofDrawBitmapString(i, ag->posi.x * CANVAS_HEIGHT, ag->posi.y * CANVAS_HEIGHT);
+            //ofDrawCircle(pAg->posi.x * CANVAS_HEIGHT, pAg->posi.y * CANVAS_HEIGHT, 3);
             
-            
+            //Draw interaction
+            if(ag->interact_with != -1) {
+                int targetID = ag->interact_with;
+                ag_t* target = gismo->getAgent(targetID);
+                
+                if(ag->condition == CHASE && target->condition == RUN) {
+                    interactLine[i].myPos.x = agent[i].center.x;
+                    interactLine[i].myPos.y = agent[i].center.y;
+                    
+                    ofSetColor(0);
+                    interactLine[i].lineTo(agent[targetID].center.x, agent[targetID].center.y);
+                }
+            }
         }
         agents++;
     }
@@ -93,26 +99,30 @@ void MotionManager::drawSolo() {
             ag = &agents[i];
             
             if(ag->active){
-                //square(ag->posi.x, ag->posi.y, ag->size, 0.0f, true);
-                
-//                agent[i].setShapePtr(&pShapes[i]);
+                agent[i].pAg = ag;
                 agent[i].pShape = &pShapes[i];
-                agent[i].center.x = ag->posi.x;
-                agent[i].center.y = ag->posi.y;
-                agent[i].size = ag->size;
-                agent[i].mov = ag->mov;
-                //motion->agent[i].width_rate = gismo->width_rate;
-                
-//                if(ag->interact_with != -1) {
-//                    int targetID = ag->interact_with;
-//                    float targetX = agents[targetID].posi.x;
-//                    float targetY = agents[targetID].posi.y;
-//                    
-//                    interactLine[i].lineTo(targetX, targetY);
-//                }
+                agent[i].dest.x = ag->posi.x;
+                agent[i].dest.y = ag->posi.y;
                 
                 agent[i].update();
                 agent[i].draw();
+                
+
+                
+                //Draw Interaction
+                if(ag->interact_with != -1) {
+                    int targetID = ag->interact_with;
+                    ag_t* target = gismo->getAgent(targetID);
+                    
+                    if(ag->condition == CHASE && target->condition == RUN) {
+                        interactLine[i].myPos.x = agent[i].center.x;
+                        interactLine[i].myPos.y = agent[i].center.y;
+                        
+                        ofSetColor(0);
+                        interactLine[i].lineTo(agent[targetID].center.x, agent[targetID].center.y);
+                    }
+                }
+
             }
         }
         //agents++;
@@ -126,6 +136,5 @@ void MotionManager::draw() {
     } else {
         drawSolo();
     }
-//    lines.draw();
 }
 
