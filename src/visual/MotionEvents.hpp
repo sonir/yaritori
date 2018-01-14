@@ -10,21 +10,27 @@
 #define MotionEvents_hpp
 
 #include "MotionManager.hpp"
+#include "RippleManager.hpp"
 
 
 class Invert : public Event {
 public:
-    int trigger(void *args) {
+    int trigger() {
         motionManager->invertColor();
+        rippleManager->invert();
         invertBackground();
         return 1;
     };
     inline void setMotionManagerPtr(MotionManager* pMotion) {
         motionManager = pMotion;
     }
+    inline void setRippleManagerPtr(RippleManager* pRipple) {
+        rippleManager = pRipple;
+    }
     
 private:
     MotionManager* motionManager;
+    RippleManager* rippleManager;
 };
 
 class Solo : public Event {
@@ -50,6 +56,9 @@ public:
     inline void setMotionManagerPtr(MotionManager* pMotion) {
         invert.setMotionManagerPtr(pMotion);
         solo.setMotionManagerPtr(pMotion);
+    }
+    inline void setRippleManagerPtr(RippleManager* pRipple) {
+        invert.setRippleManagerPtr(pRipple);
     }
 };
 

@@ -17,6 +17,7 @@
 #include "drawAgents.hpp"
 #include "RippleManager.hpp"
 #include "Shape2Agent.hpp"
+#include "Performance.hpp"
 
 class Test {
 

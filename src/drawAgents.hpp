@@ -17,20 +17,6 @@
 #include "MotionEvents.hpp"
 
 
-//struct motion_manager_t {
-//    int width;
-//    int height;
-//    int soloCount = 0;
-//    int soloID[AG_MAX];
-//    ag_shape_t* pShapes;
-//    
-//    AgentMotion agentMotion[AG_MAX];
-//    void invertColor() {
-//        for(int i = 0; i < AG_MAX; i++){
-//            agentMotion[i].invertColor();
-//        }
-//    }
-//};
 
 struct visual_container_t {
     GismoManager* gismo;

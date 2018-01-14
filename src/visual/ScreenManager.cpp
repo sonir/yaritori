@@ -38,7 +38,6 @@ void screenBegin() {
     
     ofPushMatrix();
     ofTranslate(targetScreen);
-
 }
 
 

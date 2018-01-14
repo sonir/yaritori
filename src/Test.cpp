@@ -342,10 +342,22 @@ void Test :: run(){
     shape.edge_count = 1;
     ag_t tmpAg = shape2Agent(shape);
     assert(tmpAg.view == 0.005f);
-    assert(tmpAg.size == 0.00034f);
-    assert(tmpAg.mov == 0.005f);
+    assert(tmpAg.size == 0.011f);
+    assert(tmpAg.mov == 0.35f);
     cout << "Shape2Agent.hpp::shape2Agent() is OK" << endl;
     
+    //Test moveOnLine()
+    posi_t posi = moveOnLine(0.5f, 0.0f, 0.0f, 1.0f, 1.0f);
+    assert(posi.x == 0.5f && posi.y == 0.5f);
+    posi = moveOnLine(1.0f, 0.0f, 0.0f, 1.0f, 1.0f);
+    assert(posi.x == 1.0f && posi.y == 1.0f);
+    posi = moveOnLine(0.5f, -1.0f, -1.0f, -2.0f, -2.0f);
+    assert(posi.x == -1.5f && posi.y == -1.5f);
+    posi = moveOnLine(0.0f, -1.0f, -1.0f, -2.0f, -2.0f);
+    assert(posi.x == -1.0f && posi.y == -1.0f);
+    posi = moveOnLine(0.5f, 0.0f, 0.0f, -1.0f, -2.0f);
+    assert(posi.x == -0.5f && posi.y == -1.0f);
+
     
 }
 
@@ -362,22 +374,22 @@ void Test :: update(){
 void Test::runVisualTest(visual_container_t* visual) {
     std::cout << " " << std::endl;
     std::cout << "Visual test methods are starting..." << std::endl;
-    EventHandler eventHandler;
-    eventHandler.eventAdd("/ripple", ripple);
+
+    gismo.eventAdd("/ripple", ripple);
     
     //Test Bang Ripple
     cout << "Calling RippleManager::ripple.triger()....";
     float args1[] = {0.25 ,0.5};
-    assert ( eventHandler.bang("/ripple", args1) == 1.0 );
+    assert ( gismo.bang("/ripple", args1) == 1.0 );
     float args2[] = {0.5 ,0.5};
-    assert ( eventHandler.bang("/ripple", args2) == 1.0 );
+    assert ( gismo.bang("/ripple", args2) == 1.0 );
     float args3[] = {0.75 ,0.5};
-    assert ( eventHandler.bang("/ripple", args3) == 1.0 );
+    assert ( gismo.bang("/ripple", args3) == 1.0 );
     cout << "OK." << endl;
     
     //Test solo
     cout << "Calling Solo....";
-    visEvents.eventAdd("/solo", &visual->events.solo);
+    gismo.eventAdd("/solo", &visual->events.solo);
 //    int soloID[] = {1 , isSolo};
 //    assert(visEvents.bang("/solo", &soloID) == 1);
 //    assert(visEvents.bang("/solo", &soloID) == 1);
@@ -386,51 +398,52 @@ void Test::runVisualTest(visual_container_t* visual) {
     
     //Test invert
     cout << "Calling Invert...";
-    visEvents.eventAdd("/invert", &visual->events.invert);
+    gismo.eventAdd("/invert", &visual->events.invert);
     int invArg = 1;
-    assert(visEvents.bang("/invert", &invArg) == 1);
-    assert(visEvents.bang("/invert", &invArg) == 1);
+    assert(gismo.bang("/invert") == 1);
+    assert(gismo.bang("/invert") == 1);
     cout << "OK" << endl;
     
     //Test line
     cout << "Calling line through event....";
     A2PLine line;
-    eventHandler.eventAdd("/line", &line);
+    gismo.eventAdd("/line", &line);
     float lineArgs[] = {0.25, 0.5, 0.75, 0.5};
-    assert ( eventHandler.bang("/line", lineArgs) == 1.0 );
+    assert ( gismo.bang("/line", lineArgs) == 1.0 );
     cout << "OK" << endl;
     
     //Test nodebang
     cout << "Calling node-bang through event....";
-    eventHandler.eventAdd("/lineNodeBang", &line.node);
+    gismo.eventAdd("/lineNodeBang", &line.node);
     float nodeDuration = 2000;
-    assert (eventHandler.bang("/lineNodeBang", &nodeDuration) == 1.0);
+    assert (gismo.bang("/lineNodeBang", &nodeDuration) == 1.0);
     cout << "OK" << endl;
     
     //Test line
     cout << "Calling visual.interaction through event....";
-    eventHandler.eventAdd("/line", &visual->motion.agent[1].interaction);
-    assert ( eventHandler.bang("/line", lineArgs) == 1.0 );
+    gismo.eventAdd("/line", &visual->motion.agent[1].interaction);
+    assert ( gismo.bang("/line", lineArgs) == 1.0 );
     cout << "OK" << endl;
     
     //Test node bang through manager
     cout << "Calling visual.node-bang through event....";
-    eventHandler.eventAdd("/nodeBang", &visual->motion.agent[1].interaction.node);
+    gismo.eventAdd("/nodeBang", &visual->motion.agent[1].interaction.node);
     nodeDuration = 2000;
-    assert (eventHandler.bang("/nodeBang", &nodeDuration) == 1.0);
+    assert (gismo.bang("/nodeBang", &nodeDuration) == 1.0);
     cout << "OK" << endl;
 }
 
 void Test::solo() {
     isSolo = !isSolo;
     int soloArgs[] = {1 , isSolo};
-    visEvents.bang("/solo", &soloArgs);
+    gismo.bang("/solo", &soloArgs);
 }
 
 
 void Test::invert() {
-    int invArg = 1;
+    gismo.bang("/invert");
 }
+
 void Test::createShape(ag_shape_t* shape) {
     //Create random shape
     

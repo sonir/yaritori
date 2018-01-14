@@ -64,6 +64,28 @@ void Network :: update(){
             
             
         }
+        
+        else if(m.getAddress() == "/all_agent") {
+            
+            string adr = m.getArgAsString(0);
+            float view =  m.getArgAsFloat(1);
+            
+            if(adr == "/view"){
+                int count = gismo.agents.count;
+                ag_t *agents = gismo.getAgents(); //sets agents pointer
+                ag_t *ag;
+            
+                for(int i =0; i<count; i++){
+            
+                    ag = agents; //Set agent address
+                    ag->view = view;
+            
+ 
+                    agents++;
+                }
+            }
+        }
+        
         else if( m.getAddress() == "/test/outline" /*"/que"*/ ){ //Receiving Agents
             
             cout << "Network :: /outline received" << endl;
@@ -92,6 +114,7 @@ void Network :: update(){
             
             
         }
+        
         else{
             // unrecognized message: display on the bottom of the screen
             string msg_string;

@@ -75,15 +75,7 @@ void MotionManager::drawAll() {
             agent[i].update();            
             agent[i].draw();
             
-//            if (agent[i].interaction.node.isRunning()) {
-//                agent[i].interaction.begin = ag->posi;
-//                agent[i].interaction.end.x = 0.5;
-//                agent[i].interaction.end.y = 0.5;
-//                lines.addLine(agent[i].interaction);
-//                if(!agent[i].interaction.isRunning()){
-//                    agent[i].interaction.bang(1000);
-//                }
-//            }
+
             
             
         }
@@ -134,6 +126,6 @@ void MotionManager::draw() {
     } else {
         drawSolo();
     }
-    lines.draw();
+//    lines.draw();
 }
 

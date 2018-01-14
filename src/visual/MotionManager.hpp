@@ -14,7 +14,7 @@
 #include "ag_shape.h"
 #include "AgentMotion.hpp"
 #include "LineDrawer.hpp"
-//#include "SoloController.hpp"
+
 
 class MotionManager : public Event {
 public:
@@ -42,7 +42,7 @@ public:
 private:
     GismoManager* gismo;
     ag_shape_t* pShapes;
-    A2PLineManager lines;
+    //A2PLineManager lines;
     
     LineDrawer interactLine[AG_MAX];
     ofShader shader;

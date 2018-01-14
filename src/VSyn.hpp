@@ -12,7 +12,6 @@
 //Set running mode
 //#define DEBUG_MODE
 
-
 //Basics
 #include <stdio.h>
 #include <cassert>
@@ -45,6 +44,7 @@
 
 //Gismo
 #include "drawAgents.hpp"
+
 
 //Ripple
 #include "RippleManager.hpp"
