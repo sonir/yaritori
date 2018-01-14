@@ -18,6 +18,7 @@
 #include "RippleManager.hpp"
 #include "Shape2Agent.hpp"
 #include "Performance.hpp"
+//#include "Fade.hpp"
 
 class Test {
 

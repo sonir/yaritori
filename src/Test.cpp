@@ -16,12 +16,13 @@ Test :: Test(Sound *pSnd, RippleManager *pRipple ){
 
 void Test :: setup(){
     
-    
+//    fade.bang();
     
 }
 
 void Test :: run(){
     
+    gismo.bang("/foo");
     
     
     //Test frand
@@ -29,8 +30,7 @@ void Test :: run(){
 //    assert( frand()==0.7f );
 //    assert( frand()==0.7f );
 //    assert( frand()==0.1f );
-    cout << "gismoManager::randmom() is OK."<<endl;
-    
+//    cout << "gismoManager::randmom() is OK."<<endl;
     
     //Test Sound Trigger with OSC
     for(int i=0; i<AUDIO_BANK_MAX;i++){
@@ -358,15 +358,14 @@ void Test :: run(){
     posi = moveOnLine(0.5f, 0.0f, 0.0f, -1.0f, -2.0f);
     assert(posi.x == -0.5f && posi.y == -1.0f);
 
-    
 }
 
 void Test :: update(){
-    
-//    cout << gismo.agents.count << endl;
 
-    
-
+//    float fval = fade.update();
+//    cout << "fval=" << fval << endl;
+//    if(fval>0.5f) fade.reset();
+//    fade.bang();
     
 }
 

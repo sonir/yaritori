@@ -11,6 +11,7 @@
 
 //Set running mode
 //#define DEBUG_MODE
+#define GISMO_UPDATE_INTERVAL 0.033
 
 //Basics
 #include <stdio.h>
@@ -28,6 +29,8 @@
 #include "cam_func.hpp"
 #include "Particle.hpp"
 
+// Yaritori Modules ///
+
 // Receiving message from network
 #include "Network.hpp"
 
@@ -44,6 +47,11 @@
 
 //Gismo
 #include "drawAgents.hpp"
+#include "DrawAgentsWithChar.hpp"
+
+//Metro
+#include "Metro.hpp"
+
 
 
 //Ripple
@@ -98,7 +106,13 @@ class VSyn : public Event {
         bool cam_flg;
         ofVec3f pov;
         ofVec3f look;
-        
+    
+        //For Performance
+        PerformanceManager performance;
+        line_t aLine;
+        Bullet *bullet;
+        Metro *metro;
+
     
     
     private:
@@ -108,6 +122,7 @@ class VSyn : public Event {
         //Variables
         Test *myTest; //Test Instance
         GismoManager& gismo = GismoManager::getInstance(); //Pointer for gismoManager instance
+        DrawAgentsWithChar drawAgentsWithChar;
         Sound sound; //AudioTrigger with OSC
     
         //CCMA

@@ -9,14 +9,6 @@
 /* Begin PBXBuildFile section */
 		0546D1A38E13BD319CC9755B /* OscReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BF3AA0D4FAA89D0F8A0E545 /* OscReceivedElements.cpp */; };
 		1CD33E884D9E3358252E82A1 /* ofxToggle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 907C5B5E104864A2D3A25745 /* ofxToggle.cpp */; };
-		339EDFB6200472C900D1AFFF /* A2PLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 339EDFAE200472C900D1AFFF /* A2PLine.cpp */; };
-		339EDFB7200472C900D1AFFF /* AgentMotion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 339EDFB0200472C900D1AFFF /* AgentMotion.cpp */; };
-		339EDFB8200472C900D1AFFF /* MotionManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 339EDFB2200472C900D1AFFF /* MotionManager.cpp */; };
-		339EDFB9200472C900D1AFFF /* ScreenManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 339EDFB4200472C900D1AFFF /* ScreenManager.cpp */; };
-		33B2A6F11FF6C4AE00A0CEA5 /* RippleDrawer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33B2A6EB1FF6C4AE00A0CEA5 /* RippleDrawer.cpp */; };
-		33B2A6F21FF6C4AE00A0CEA5 /* RippleManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33B2A6ED1FF6C4AE00A0CEA5 /* RippleManager.cpp */; };
-		33B2A6F31FF6C4AE00A0CEA5 /* timed_interpolation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33B2A6EF1FF6C4AE00A0CEA5 /* timed_interpolation.cpp */; };
-		33C2E391200627C10054776B /* LineDrawer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33C2E38F200627C10054776B /* LineDrawer.cpp */; };
 		483908258D00B98B4BE69F07 /* ofxLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78D67A00EB899FAC09430597 /* ofxLabel.cpp */; };
 		4ADB88E2FB52E76A471065DE /* ofxOscParameterSync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AED834CE4DEC5260AF302A2 /* ofxOscParameterSync.cpp */; };
 		510CAFE035E576A4E1502D52 /* UdpSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6DEF695B88BA5FAACEAA937 /* UdpSocket.cpp */; };
@@ -43,6 +35,9 @@
 		E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1D0A3A1BDC003C02F2 /* main.cpp */; };
 		E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */; };
 		F01092BB147FA462845C38C7 /* CreEPS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34BF591C646B5F6EF968D620 /* CreEPS.cpp */; };
+		F21DCD072007BFE4003BCC42 /* Fade.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F21DCD062007BFE4003BCC42 /* Fade.cpp */; };
+		F21DCD0A2008D0D7003BCC42 /* Metro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F21DCD082008D0D7003BCC42 /* Metro.cpp */; };
+		F245008B2009F9F600454D28 /* DrawAgentsWithChar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F24500892009F9F600454D28 /* DrawAgentsWithChar.cpp */; };
 		F251DC9B2006A49E005D2472 /* Shape2Agent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F251DC992006A49E005D2472 /* Shape2Agent.cpp */; };
 		F2545E8E1F99B73F0029709A /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2545E8D1F99B73F0029709A /* Particle.cpp */; };
 		F27A52F81FEC634F00942A31 /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F27A52F61FEC634F00942A31 /* Sound.cpp */; };
@@ -53,6 +48,7 @@
 		F2ABF1281FEFF227006773CE /* Network.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2ABF1261FEFF227006773CE /* Network.cpp */; };
 		F2C099001FDD12400075255C /* ofxGismo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2C098E51FDD12400075255C /* ofxGismo.cpp */; };
 		F2E7003D2007145100A90022 /* Performance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2E7003B2007145100A90022 /* Performance.cpp */; };
+		F2E7007B20071E2000A90022 /* slMetro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2E7006A20071E2000A90022 /* slMetro.cpp */; };
 		F2FFCEB11F62A27D00E71BAA /* VSyn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2FFCEAF1F62A27D00E71BAA /* VSyn.cpp */; };
 		F2FFCEB41F62AFF800E71BAA /* osc2shape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2FFCEB21F62AFF800E71BAA /* osc2shape.cpp */; };
 		F2FFCEB71F62C5C500E71BAA /* drawer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2FFCEB61F62C5C500E71BAA /* drawer.cpp */; };
@@ -103,23 +99,6 @@
 		2B40EDA85BEB63E46785BC29 /* tinyxml.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = tinyxml.cpp; path = ../../../addons/ofxXmlSettings/libs/tinyxml.cpp; sourceTree = SOURCE_ROOT; };
 		2FD4B0329909D3527F003494 /* UdpSocket.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = UdpSocket.h; path = ../../../addons/ofxOsc/libs/oscpack/src/ip/UdpSocket.h; sourceTree = SOURCE_ROOT; };
 		318ABED90EADFB757FFDCCAF /* ofxVectorGraphics.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxVectorGraphics.cpp; path = ../../../addons/ofxVectorGraphics/src/ofxVectorGraphics.cpp; sourceTree = SOURCE_ROOT; };
-		339EDFAE200472C900D1AFFF /* A2PLine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = A2PLine.cpp; path = visual/A2PLine.cpp; sourceTree = "<group>"; };
-		339EDFAF200472C900D1AFFF /* A2PLine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = A2PLine.hpp; path = visual/A2PLine.hpp; sourceTree = "<group>"; };
-		339EDFB0200472C900D1AFFF /* AgentMotion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AgentMotion.cpp; path = visual/AgentMotion.cpp; sourceTree = "<group>"; };
-		339EDFB1200472C900D1AFFF /* AgentMotion.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = AgentMotion.hpp; path = visual/AgentMotion.hpp; sourceTree = "<group>"; };
-		339EDFB2200472C900D1AFFF /* MotionManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MotionManager.cpp; path = visual/MotionManager.cpp; sourceTree = "<group>"; };
-		339EDFB3200472C900D1AFFF /* MotionManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = MotionManager.hpp; path = visual/MotionManager.hpp; sourceTree = "<group>"; };
-		339EDFB4200472C900D1AFFF /* ScreenManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ScreenManager.cpp; path = visual/ScreenManager.cpp; sourceTree = "<group>"; };
-		339EDFB5200472C900D1AFFF /* ScreenManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ScreenManager.hpp; path = visual/ScreenManager.hpp; sourceTree = "<group>"; };
-		339EDFBA200472E800D1AFFF /* MotionEvents.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = MotionEvents.hpp; path = visual/MotionEvents.hpp; sourceTree = "<group>"; };
-		33B2A6EB1FF6C4AE00A0CEA5 /* RippleDrawer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RippleDrawer.cpp; path = ripple/RippleDrawer.cpp; sourceTree = "<group>"; };
-		33B2A6EC1FF6C4AE00A0CEA5 /* RippleDrawer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = RippleDrawer.hpp; path = ripple/RippleDrawer.hpp; sourceTree = "<group>"; };
-		33B2A6ED1FF6C4AE00A0CEA5 /* RippleManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RippleManager.cpp; path = ripple/RippleManager.cpp; sourceTree = "<group>"; };
-		33B2A6EE1FF6C4AE00A0CEA5 /* RippleManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = RippleManager.hpp; path = ripple/RippleManager.hpp; sourceTree = "<group>"; };
-		33B2A6EF1FF6C4AE00A0CEA5 /* timed_interpolation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = timed_interpolation.cpp; path = ripple/timed_interpolation.cpp; sourceTree = "<group>"; };
-		33B2A6F01FF6C4AE00A0CEA5 /* timed_interpolation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = timed_interpolation.hpp; path = ripple/timed_interpolation.hpp; sourceTree = "<group>"; };
-		33C2E38F200627C10054776B /* LineDrawer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LineDrawer.cpp; path = visual/LineDrawer.cpp; sourceTree = "<group>"; };
-		33C2E390200627C10054776B /* LineDrawer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = LineDrawer.hpp; path = visual/LineDrawer.hpp; sourceTree = "<group>"; };
 		34BF591C646B5F6EF968D620 /* CreEPS.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = CreEPS.cpp; path = ../../../addons/ofxVectorGraphics/libs/CreEPS.cpp; sourceTree = SOURCE_ROOT; };
 		3B361208CD4107E479F04E7B /* NetworkingUtils.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = NetworkingUtils.cpp; path = ../../../addons/ofxOsc/libs/oscpack/src/ip/posix/NetworkingUtils.cpp; sourceTree = SOURCE_ROOT; };
 		444657A12E59D0ED86981498 /* TimerListener.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = TimerListener.h; path = ../../../addons/ofxOsc/libs/oscpack/src/ip/TimerListener.h; sourceTree = SOURCE_ROOT; };
@@ -170,6 +149,12 @@
 		E4EB6923138AFD0F00A09F29 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
 		E6DEF695B88BA5FAACEAA937 /* UdpSocket.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = UdpSocket.cpp; path = ../../../addons/ofxOsc/libs/oscpack/src/ip/posix/UdpSocket.cpp; sourceTree = SOURCE_ROOT; };
 		ECF8674C7975F1063C5E30CA /* ofxGuiGroup.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxGuiGroup.cpp; path = ../../../addons/ofxGui/src/ofxGuiGroup.cpp; sourceTree = SOURCE_ROOT; };
+		F21DCD052007BFE4003BCC42 /* Fade.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Fade.hpp; sourceTree = "<group>"; };
+		F21DCD062007BFE4003BCC42 /* Fade.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fade.cpp; sourceTree = "<group>"; };
+		F21DCD082008D0D7003BCC42 /* Metro.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Metro.cpp; sourceTree = "<group>"; };
+		F21DCD092008D0D7003BCC42 /* Metro.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Metro.hpp; sourceTree = "<group>"; };
+		F24500892009F9F600454D28 /* DrawAgentsWithChar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DrawAgentsWithChar.cpp; sourceTree = "<group>"; };
+		F245008A2009F9F600454D28 /* DrawAgentsWithChar.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DrawAgentsWithChar.hpp; sourceTree = "<group>"; };
 		F251DC992006A49E005D2472 /* Shape2Agent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shape2Agent.cpp; sourceTree = "<group>"; };
 		F251DC9A2006A49E005D2472 /* Shape2Agent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Shape2Agent.hpp; sourceTree = "<group>"; };
 		F2545E8C1F99B73F0029709A /* Particle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Particle.hpp; sourceTree = "<group>"; };
@@ -192,6 +177,8 @@
 		F2D2DCF81FFF2746004513CB /* ag_shape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ag_shape.h; sourceTree = "<group>"; };
 		F2E7003B2007145100A90022 /* Performance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Performance.cpp; sourceTree = "<group>"; };
 		F2E7003C2007145100A90022 /* Performance.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Performance.hpp; sourceTree = "<group>"; };
+		F2E7006A20071E2000A90022 /* slMetro.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = slMetro.cpp; sourceTree = "<group>"; };
+		F2E7006B20071E2000A90022 /* slMetro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = slMetro.h; sourceTree = "<group>"; };
 		F2FFCEAF1F62A27D00E71BAA /* VSyn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VSyn.cpp; sourceTree = "<group>"; };
 		F2FFCEB01F62A27D00E71BAA /* VSyn.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = VSyn.hpp; sourceTree = "<group>"; };
 		F2FFCEB21F62AFF800E71BAA /* osc2shape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = osc2shape.cpp; sourceTree = "<group>"; };
@@ -252,37 +239,6 @@
 				C6937888E126BADC8777423B /* OscTypes.h */,
 			);
 			name = osc;
-			sourceTree = "<group>";
-		};
-		339EDFAD200472BE00D1AFFF /* visual */ = {
-			isa = PBXGroup;
-			children = (
-				339EDFB5200472C900D1AFFF /* ScreenManager.hpp */,
-				339EDFB4200472C900D1AFFF /* ScreenManager.cpp */,
-				339EDFBA200472E800D1AFFF /* MotionEvents.hpp */,
-				339EDFB3200472C900D1AFFF /* MotionManager.hpp */,
-				339EDFB2200472C900D1AFFF /* MotionManager.cpp */,
-				339EDFAF200472C900D1AFFF /* A2PLine.hpp */,
-				339EDFAE200472C900D1AFFF /* A2PLine.cpp */,
-				339EDFB1200472C900D1AFFF /* AgentMotion.hpp */,
-				339EDFB0200472C900D1AFFF /* AgentMotion.cpp */,
-				33C2E38F200627C10054776B /* LineDrawer.cpp */,
-				33C2E390200627C10054776B /* LineDrawer.hpp */,
-			);
-			name = visual;
-			sourceTree = "<group>";
-		};
-		33B2A6EA1FF6C49000A0CEA5 /* ripple */ = {
-			isa = PBXGroup;
-			children = (
-				33B2A6EB1FF6C4AE00A0CEA5 /* RippleDrawer.cpp */,
-				33B2A6EC1FF6C4AE00A0CEA5 /* RippleDrawer.hpp */,
-				33B2A6ED1FF6C4AE00A0CEA5 /* RippleManager.cpp */,
-				33B2A6EE1FF6C4AE00A0CEA5 /* RippleManager.hpp */,
-				33B2A6EF1FF6C4AE00A0CEA5 /* timed_interpolation.cpp */,
-				33B2A6F01FF6C4AE00A0CEA5 /* timed_interpolation.hpp */,
-			);
-			name = ripple;
 			sourceTree = "<group>";
 		};
 		3801B04C72ADFE74ED284693 /* src */ = {
@@ -390,6 +346,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				F2E7004120071E2000A90022 /* slMetro */,
 				F2C0989F1FDD12400075255C /* ofxGismo */,
 				480A780D8D0308AE4A368801 /* ofxGui */,
 				E6053AB7FEC63D5F83825B88 /* ofxOsc */,
@@ -451,18 +408,25 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				F21DCD082008D0D7003BCC42 /* Metro.cpp */,
+				F21DCD092008D0D7003BCC42 /* Metro.hpp */,
+				F21DCD052007BFE4003BCC42 /* Fade.hpp */,
+				F21DCD062007BFE4003BCC42 /* Fade.cpp */,
+				F28AF43B1FF35DC200D48FEB /* Test.cpp */,
+				F28AF43C1FF35DC200D48FEB /* Test.hpp */,
 				F2E7003B2007145100A90022 /* Performance.cpp */,
 				F2E7003C2007145100A90022 /* Performance.hpp */,
 				F251DC992006A49E005D2472 /* Shape2Agent.cpp */,
 				F251DC9A2006A49E005D2472 /* Shape2Agent.hpp */,
 				F2D2DCF81FFF2746004513CB /* ag_shape.h */,
-				F28AF43B1FF35DC200D48FEB /* Test.cpp */,
-				F28AF43C1FF35DC200D48FEB /* Test.hpp */,
 				F2FFCEB01F62A27D00E71BAA /* VSyn.hpp */,
 				F2FFCEAF1F62A27D00E71BAA /* VSyn.cpp */,
 				F2ABF1261FEFF227006773CE /* Network.cpp */,
 				F2ABF1271FEFF227006773CE /* Network.hpp */,
 				F26D88141F6B638600AC27FE /* cam_func.hpp */,
+				F2C099011FDD7DB30075255C /* drawAgents.hpp */,
+				F24500892009F9F600454D28 /* DrawAgentsWithChar.cpp */,
+				F245008A2009F9F600454D28 /* DrawAgentsWithChar.hpp */,
 				F27A52F61FEC634F00942A31 /* Sound.cpp */,
 				F27A52F71FEC634F00942A31 /* Sound.hpp */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
@@ -475,9 +439,6 @@
 				F2FFCEB51F62B3EA00E71BAA /* shape.h */,
 				F2545E8C1F99B73F0029709A /* Particle.hpp */,
 				F2545E8D1F99B73F0029709A /* Particle.cpp */,
-				F2C099011FDD7DB30075255C /* drawAgents.hpp */,
-				339EDFAD200472BE00D1AFFF /* visual */,
-				33B2A6EA1FF6C49000A0CEA5 /* ripple */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -519,6 +480,24 @@
 				F27A52FD1FEC78FE00942A31 /* Event.hpp */,
 				F27A52FF1FEC82DA00942A31 /* EventHandler.cpp */,
 				F27A53001FEC82DA00942A31 /* EventHandler.hpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		F2E7004120071E2000A90022 /* slMetro */ = {
+			isa = PBXGroup;
+			children = (
+				F2E7006920071E2000A90022 /* src */,
+			);
+			name = slMetro;
+			path = src/addons/slMetro;
+			sourceTree = "<group>";
+		};
+		F2E7006920071E2000A90022 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				F2E7006A20071E2000A90022 /* slMetro.cpp */,
+				F2E7006B20071E2000A90022 /* slMetro.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -624,32 +603,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33B2A6F11FF6C4AE00A0CEA5 /* RippleDrawer.cpp in Sources */,
 				F2FFCEB41F62AFF800E71BAA /* osc2shape.cpp in Sources */,
-				33C2E391200627C10054776B /* LineDrawer.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				F2E7003D2007145100A90022 /* Performance.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				856AA354D08AB4B323081444 /* ofxBaseGui.cpp in Sources */,
-				33B2A6F21FF6C4AE00A0CEA5 /* RippleManager.cpp in Sources */,
 				5CBB2AB3A60F65431D7B555D /* ofxButton.cpp in Sources */,
 				F27A53011FEC82DA00942A31 /* EventHandler.cpp in Sources */,
+				F2E7007B20071E2000A90022 /* slMetro.cpp in Sources */,
 				B266578FC55D23BFEBC042E7 /* ofxGuiGroup.cpp in Sources */,
 				F2FFCEB11F62A27D00E71BAA /* VSyn.cpp in Sources */,
 				483908258D00B98B4BE69F07 /* ofxLabel.cpp in Sources */,
-				339EDFB8200472C900D1AFFF /* MotionManager.cpp in Sources */,
 				F285EB3169F1566CA3D93C20 /* ofxPanel.cpp in Sources */,
 				837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */,
-				339EDFB9200472C900D1AFFF /* ScreenManager.cpp in Sources */,
 				F28AF43D1FF35DC200D48FEB /* Test.cpp in Sources */,
 				B56FE57CC35806596D38118C /* ofxSliderGroup.cpp in Sources */,
 				F2ABF1281FEFF227006773CE /* Network.cpp in Sources */,
 				1CD33E884D9E3358252E82A1 /* ofxToggle.cpp in Sources */,
-				339EDFB7200472C900D1AFFF /* AgentMotion.cpp in Sources */,
 				72A929D3561B8232A182ABFC /* ofxOscBundle.cpp in Sources */,
 				5864AD82E20F15536D054EA3 /* ofxOscMessage.cpp in Sources */,
 				4ADB88E2FB52E76A471065DE /* ofxOscParameterSync.cpp in Sources */,
 				640279EE111671BD026CB013 /* ofxOscReceiver.cpp in Sources */,
+				F245008B2009F9F600454D28 /* DrawAgentsWithChar.cpp in Sources */,
 				8F5205AEF8861EF234F0651A /* ofxOscSender.cpp in Sources */,
 				F2545E8E1F99B73F0029709A /* Particle.cpp in Sources */,
 				ADE367465D2A8EBAD4C7A8D9 /* IpEndpointName.cpp in Sources */,
@@ -662,12 +637,12 @@
 				F2C099001FDD12400075255C /* ofxGismo.cpp in Sources */,
 				0546D1A38E13BD319CC9755B /* OscReceivedElements.cpp in Sources */,
 				879A251454401BC0B6E4F238 /* OscTypes.cpp in Sources */,
+				F21DCD072007BFE4003BCC42 /* Fade.cpp in Sources */,
 				603044E656EA8D499FCF7DEA /* ofxVectorGraphics.cpp in Sources */,
 				F01092BB147FA462845C38C7 /* CreEPS.cpp in Sources */,
-				33B2A6F31FF6C4AE00A0CEA5 /* timed_interpolation.cpp in Sources */,
 				63B57AC5BF4EF088491E0317 /* ofxXmlSettings.cpp in Sources */,
-				339EDFB6200472C900D1AFFF /* A2PLine.cpp in Sources */,
 				933A2227713C720CEFF80FD9 /* tinyxml.cpp in Sources */,
+				F21DCD0A2008D0D7003BCC42 /* Metro.cpp in Sources */,
 				F27A52F81FEC634F00942A31 /* Sound.cpp in Sources */,
 				9D44DC88EF9E7991B4A09951 /* tinyxmlerror.cpp in Sources */,
 				5A4349E9754D6FA14C0F2A3A /* tinyxmlparser.cpp in Sources */,
@@ -728,7 +703,7 @@
 					"-D__MACOSX_CORE__",
 					"-mtune=native",
 				);
-				SDKROOT = macosx10.9;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -774,7 +749,7 @@
 					"-D__MACOSX_CORE__",
 					"-mtune=native",
 				);
-				SDKROOT = macosx10.9;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -821,10 +796,15 @@
 					"$(PROJECT_DIR)/src/addons/ofxGismo/libs/necessaryLib/lib/linux64",
 					"$(PROJECT_DIR)/src/addons/ofxGismo/libs/necessaryLib/lib/osx",
 					"$(PROJECT_DIR)/src/addons/ofxGismo/libs/necessaryLib/lib/win_cb",
+					"$(PROJECT_DIR)/src/addons/slMetro/libs/necessaryLib/lib/android/armeabi",
+					"$(PROJECT_DIR)/src/addons/slMetro/libs/necessaryLib/lib/android/armeabi-v7a",
+					"$(PROJECT_DIR)/src/addons/slMetro/libs/necessaryLib/lib/ios",
+					"$(PROJECT_DIR)/src/addons/slMetro/libs/necessaryLib/lib/linux",
+					"$(PROJECT_DIR)/src/addons/slMetro/libs/necessaryLib/lib/linux64",
+					"$(PROJECT_DIR)/src/addons/slMetro/libs/necessaryLib/lib/osx",
+					"$(PROJECT_DIR)/src/addons/slMetro/libs/necessaryLib/lib/win_cb",
 				);
-				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = yaritoriDebug;
-				SDKROOT = macosx10.9;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -871,10 +851,15 @@
 					"$(PROJECT_DIR)/src/addons/ofxGismo/libs/necessaryLib/lib/linux64",
 					"$(PROJECT_DIR)/src/addons/ofxGismo/libs/necessaryLib/lib/osx",
 					"$(PROJECT_DIR)/src/addons/ofxGismo/libs/necessaryLib/lib/win_cb",
+					"$(PROJECT_DIR)/src/addons/slMetro/libs/necessaryLib/lib/android/armeabi",
+					"$(PROJECT_DIR)/src/addons/slMetro/libs/necessaryLib/lib/android/armeabi-v7a",
+					"$(PROJECT_DIR)/src/addons/slMetro/libs/necessaryLib/lib/ios",
+					"$(PROJECT_DIR)/src/addons/slMetro/libs/necessaryLib/lib/linux",
+					"$(PROJECT_DIR)/src/addons/slMetro/libs/necessaryLib/lib/linux64",
+					"$(PROJECT_DIR)/src/addons/slMetro/libs/necessaryLib/lib/osx",
+					"$(PROJECT_DIR)/src/addons/slMetro/libs/necessaryLib/lib/win_cb",
 				);
-				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = yaritori;
-				SDKROOT = macosx10.9;
 				WRAPPER_EXTENSION = app;
 				baseConfigurationReference = E4EB6923138AFD0F00A09F29;
 			};

@@ -11,10 +11,23 @@
 using namespace std;
 
 void VSyn::setup(){
-    ofSetFrameRate(30);
+  ofSetFrameRate(30);
+    
+    //Set Metro
+    metro = new Metro(GISMO_UPDATE_INTERVAL);
+    
+    //Set for bullet
+    posi_t p_a , p_b;
+    p_a.x = 0.5f; p_a.y = 0.5f;
+    p_b.x = 1.0f; p_b.y = 1.0f;
+    aLine.node_a = p_a;
+    aLine.node_b = p_b;
+    bullet = new Bullet();
+    bullet->bang();
     
     //Create TestClass
     myTest = new Test(&sound, &ripple);
+    myTest->setup();
     
     ofBackground(255);
     ofSetCircleResolution(50);
@@ -48,6 +61,8 @@ void VSyn::setup(){
     visual.events.setMotionManagerPtr(&visual.motion);
     visual.events.setRippleManagerPtr(&ripple);
     
+    myTest->setup();
+
     //Do Test Code
     this->test();
 }
@@ -64,8 +79,8 @@ void VSyn::update(){
     //sync();
 
     gismo.addSync();
-    makeInteracts(&gismo.agents);
-
+    if(metro->update())makeInteracts(&gismo.agents);
+    //makeInteracts(&gismo.agents);
     
     // hide old messages
     for(int i = 0; i < NUM_MSG_STRINGS; i++){
@@ -347,16 +362,15 @@ void VSyn::draw(){
     //drawing particle
     particle.draw();
     
-#ifndef DEBUG_MODE
-    screenBegin();
 
-    //Draw Agents
+#ifdef DEBUG_MODE
+    //drawAgentsForSimpleGraphics
+    drawAgentsWithChar.draw(&gismo, screen_w, screen_h);
+#else
+    //drawAgents
+    screenBegin();
     drawAgents(&visual);
-    
-    //Ripple
     ripple.draw();
-    
-    
     screenEnd();
 #endif
     
@@ -410,7 +424,7 @@ void VSyn::draw(){
         
     }
 
-    
+/*
 #ifdef DEBUG_MODE
     /// DRAW_AGENTS_CONDITIONS
     int count = gismo.agents.count;
@@ -471,7 +485,40 @@ void VSyn::draw(){
     }
     ///
 #endif
+*/
     
+    //Draw Performers
+    /*
+    for(int i=0; i<PERFORMER_NUM;i++){
+        
+        circle(performance.performers.pfm.buf[i].posi.x, performance.performers.pfm.buf[i].posi.x, SIZE_OF_PERFORMER_INDICATE,false);
+        
+    }
+    
+    for(int i=0; i< gismo.agents.count;i++){
+        
+        line_t *tmp = &performance.lines[i];
+        tmp->node_a.x = gismo.agents.buf[i].posi.x;
+        tmp->node_a.y = gismo.agents.buf[i].posi.y;
+        tmp->node_b.x = performance.performers.pfm.buf[i%PERFORMER_NUM].posi.x;
+        tmp->node_b.y = performance.performers.pfm.buf[i%PERFORMER_NUM].posi.y;
+        
+        line(tmp->node_a.x, tmp->node_a.y, tmp->node_b.x , tmp->node_b.y, 0.1f);
+        //tmp->points[0].bang();
+        //cout << tmp->points[0].update() << endl;;
+        
+        performance.bullets[i].bang();
+        posi_t pos = performance.bullets[i].update(performance.lines[i]);
+        circle(pos.x, pos.y, 0.0045, 1);
+
+        
+    }
+    
+    //bullet->bang();
+    posi_t tmp = bullet->update(aLine);
+    circle(tmp.x, tmp.y, 0.0045, 1);
+    cout << tmp.x << endl;
+    */
     
     if(cam_flg){
         ofPopMatrix();
@@ -545,6 +592,7 @@ void VSyn::test(){
 
     //Test addAgShape
     ag_shape_t shape;
+
     shape.nodes[0].x = -0.5f;
     shape.nodes[0].y = 0.5f;
     shape.nodes[1].x = 0.5f;
@@ -641,36 +689,22 @@ void VSyn::test(){
 
     //    initAgentActive(&act8);
 
-//    act8.mov = 0.01f;
-//    act8.view = 0.3f;
-//    act8.size = 0.03;
-//    act8.mov = 0.05;
-//    act8.posi.x = 0.1f; act8.posi.y = 0.25f;
-//    gismo.addAgent(act8);
-//    
-//    act8.posi.x = 0.3f; act8.posi.y = 0.25f;
-//    act8.view = 0.3;
-//    gismo.addAgent(act8);
-//
-//    act8.posi.x = 0.25f; act8.posi.y = 0.75f;
-//    act8.size = 0.03f;
-//    gismo.addAgent(act8);
-//    myTest->createShape(&shape);
- //   gismo.bang("/addShape" , &shape);
-    
     act8.posi.x = 0.75f; act8.posi.y = 0.5f;
-
-//    gismo.addAgent(act8);
-//    gismo.addAgent(act8);
+    initAgentActive(&act8);
+    act8.posi.x = 0.25f; act8.posi.y = 0.5f;
+    gismo.addAgent(act8);
+    act8.posi.x = 0.75f; act8.posi.y = 0.5f;
+    gismo.addAgent(act8);
+    gismo.addAgent(act8);
     
- 
-//    
-//    for(int i=0;i<600;i++) gismo.addAgent(act8);
-
-
-    //for(int i=0;i < 1000;i++) addAgShape(shape3);
-
-
+    
+    
+    for(int i=0;i<600;i++) gismo.addAgent(act8);
+    act8.size *= 0.8f;
+    act8.mov *= 2.5f;
+    act8.view *= 1.0f;
+    for(int i=0;i<1000;i++) gismo.addAgent(act8);
+    
     
     std::cout << "test method has finished." << std::endl;
     

@@ -13,6 +13,14 @@
 #include <iostream>
 //#include "EventHandler.hpp"
 
+typedef union param_u{
+    
+    int ival;
+    float fval;
+    bool bval;
+    
+}param_u;
+
 class Event {
   
     public:

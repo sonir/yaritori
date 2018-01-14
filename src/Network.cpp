@@ -113,9 +113,13 @@ void Network :: update(){
             dispParams(shape);
             
             
-        }
         
-        else{
+        } else if ( m.getAddress() == "/fps" ) { //Set fps
+            
+            float fval = m.getArgAsFloat(0);
+            gismo.bang("/fps", &fval );
+            
+        } else {
             // unrecognized message: display on the bottom of the screen
             string msg_string;
             msg_string = m.getAddress();
