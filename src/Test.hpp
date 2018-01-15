@@ -16,7 +16,8 @@
 #include "Sound.hpp"
 #include "Shape2Agent.hpp"
 #include "Performance.hpp"
-//#include "Fade.hpp"
+#include "getArraySize.h"
+
 
 class Test {
 
@@ -24,6 +25,7 @@ class Test {
         Test(Sound *pSnd);
         void setup();
         void run();
+        void runSubTest(void* args);
         void update();
     
         GismoManager& gismo = GismoManager::getInstance(); //Pointer for gismoManager instance

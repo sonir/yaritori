@@ -38,6 +38,8 @@
 		F21DCD072007BFE4003BCC42 /* Fade.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F21DCD062007BFE4003BCC42 /* Fade.cpp */; };
 		F21DCD0A2008D0D7003BCC42 /* Metro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F21DCD082008D0D7003BCC42 /* Metro.cpp */; };
 		F245008B2009F9F600454D28 /* DrawAgentsWithChar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F24500892009F9F600454D28 /* DrawAgentsWithChar.cpp */; };
+		F245008F200AFF8800454D28 /* DrawPerformance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F245008D200AFF8800454D28 /* DrawPerformance.cpp */; };
+		F2450093200B1A1A00454D28 /* Bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2450091200B1A1A00454D28 /* Bullet.cpp */; };
 		F251DC9B2006A49E005D2472 /* Shape2Agent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F251DC992006A49E005D2472 /* Shape2Agent.cpp */; };
 		F2545E8E1F99B73F0029709A /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2545E8D1F99B73F0029709A /* Particle.cpp */; };
 		F27A52F81FEC634F00942A31 /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F27A52F61FEC634F00942A31 /* Sound.cpp */; };
@@ -155,6 +157,11 @@
 		F21DCD092008D0D7003BCC42 /* Metro.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Metro.hpp; sourceTree = "<group>"; };
 		F24500892009F9F600454D28 /* DrawAgentsWithChar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DrawAgentsWithChar.cpp; sourceTree = "<group>"; };
 		F245008A2009F9F600454D28 /* DrawAgentsWithChar.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DrawAgentsWithChar.hpp; sourceTree = "<group>"; };
+		F245008D200AFF8800454D28 /* DrawPerformance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DrawPerformance.cpp; sourceTree = "<group>"; };
+		F245008E200AFF8800454D28 /* DrawPerformance.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DrawPerformance.hpp; sourceTree = "<group>"; };
+		F2450090200B042300454D28 /* getArraySize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = getArraySize.h; sourceTree = "<group>"; };
+		F2450091200B1A1A00454D28 /* Bullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bullet.cpp; sourceTree = "<group>"; };
+		F2450092200B1A1A00454D28 /* Bullet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Bullet.hpp; sourceTree = "<group>"; };
 		F251DC992006A49E005D2472 /* Shape2Agent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shape2Agent.cpp; sourceTree = "<group>"; };
 		F251DC9A2006A49E005D2472 /* Shape2Agent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Shape2Agent.hpp; sourceTree = "<group>"; };
 		F2545E8C1F99B73F0029709A /* Particle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Particle.hpp; sourceTree = "<group>"; };
@@ -408,14 +415,19 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				F2450090200B042300454D28 /* getArraySize.h */,
+				F2450091200B1A1A00454D28 /* Bullet.cpp */,
+				F2450092200B1A1A00454D28 /* Bullet.hpp */,
+				F2E7003B2007145100A90022 /* Performance.cpp */,
+				F2E7003C2007145100A90022 /* Performance.hpp */,
+				F245008D200AFF8800454D28 /* DrawPerformance.cpp */,
+				F245008E200AFF8800454D28 /* DrawPerformance.hpp */,
 				F21DCD082008D0D7003BCC42 /* Metro.cpp */,
 				F21DCD092008D0D7003BCC42 /* Metro.hpp */,
 				F21DCD052007BFE4003BCC42 /* Fade.hpp */,
 				F21DCD062007BFE4003BCC42 /* Fade.cpp */,
 				F28AF43B1FF35DC200D48FEB /* Test.cpp */,
 				F28AF43C1FF35DC200D48FEB /* Test.hpp */,
-				F2E7003B2007145100A90022 /* Performance.cpp */,
-				F2E7003C2007145100A90022 /* Performance.hpp */,
 				F251DC992006A49E005D2472 /* Shape2Agent.cpp */,
 				F251DC9A2006A49E005D2472 /* Shape2Agent.hpp */,
 				F2D2DCF81FFF2746004513CB /* ag_shape.h */,
@@ -618,6 +630,7 @@
 				837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */,
 				F28AF43D1FF35DC200D48FEB /* Test.cpp in Sources */,
 				B56FE57CC35806596D38118C /* ofxSliderGroup.cpp in Sources */,
+				F2450093200B1A1A00454D28 /* Bullet.cpp in Sources */,
 				F2ABF1281FEFF227006773CE /* Network.cpp in Sources */,
 				1CD33E884D9E3358252E82A1 /* ofxToggle.cpp in Sources */,
 				72A929D3561B8232A182ABFC /* ofxOscBundle.cpp in Sources */,
@@ -634,6 +647,7 @@
 				F27A52FE1FEC78FE00942A31 /* Event.cpp in Sources */,
 				C4782ECC372420ACE0615B74 /* OscPrintReceivedElements.cpp in Sources */,
 				F2FFCEB71F62C5C500E71BAA /* drawer.cpp in Sources */,
+				F245008F200AFF8800454D28 /* DrawPerformance.cpp in Sources */,
 				F2C099001FDD12400075255C /* ofxGismo.cpp in Sources */,
 				0546D1A38E13BD319CC9755B /* OscReceivedElements.cpp in Sources */,
 				879A251454401BC0B6E4F238 /* OscTypes.cpp in Sources */,

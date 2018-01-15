@@ -17,14 +17,43 @@ Test :: Test(Sound *pSnd){
 
 void Test :: setup(){
     
-//    fade.bang();
+    auto f3 = [](void* args){cout << ">>> ee" << endl;};
+    int foo = 137;
+    gismo.lambdaAdd("/lambdaTest", f3);
+
     
 }
 
+void Test :: runSubTest(void* args){
+    
+    param_u *params = (param_u *)args;
+    cout << params->ival << endl;
+    cout << params->fval << endl;
+    
+    
+}
+
+
 void Test :: run(){
     
-    gismo.bang("/foo");
+
+    auto f1 = [](int x) { return x * x; };
+    cout << "::::::" << f1(2) << endl;
+    auto *f2 = +f1;
+    cout << "::::::" << f2(2) << endl;
     
+    function <void (void*)>funcs[3];
+    funcs[0] = [](void* args){cout << ">>> ff" << endl;};
+//    auto f3 = [](void* args){cout << ">>> ee" << endl;};
+    
+    int foo;
+    funcs[0](&foo);
+    
+    
+    
+    //gismo.lambdaBang("/lambdaTest", &foo);
+    
+    //f3(&foo);
     
     //Test frand
 //    assert( frand()==0.1f );
@@ -360,6 +389,13 @@ void Test :: run(){
     posi = moveOnLine(0.5f, 0.0f, 0.0f, -1.0f, -2.0f);
     assert(posi.x == -0.5f && posi.y == -1.0f);
 
+    //TestGetArraySize
+    int iArray[137];
+    posi_t posiArray[138];
+    assert(getArraySize(iArray)==137);
+    assert(getArraySize(posiArray)==138);
+    cout << "TestGetArraySize.h::getArraySize() is ok." << endl;
+    
 }
 
 void Test :: update(){

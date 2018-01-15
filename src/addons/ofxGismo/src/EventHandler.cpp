@@ -38,3 +38,15 @@ int EventHandler::bang(string event_name, void* args){
     return tmp->trigger(args);
     
 }
+
+void EventHandler::lambdaBang(string event_name, void* args){
+    
+    return lambdas[event_name](args);
+    
+}
+
+void EventHandler::lambdaAdd(string event_name, function <void (void*)> lambda) {
+    
+    lambdas[event_name] = lambda;
+    
+}

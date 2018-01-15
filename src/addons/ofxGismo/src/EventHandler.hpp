@@ -25,9 +25,13 @@ class EventHandler {
         int bang(string event_name);
         int bang(string event_name, void* args);
 
+        void lambdaAdd(string event_name, function <void (void*)> lambda);
+        void lambdaBang(string event_name, void* args);
+
     
     protected:
         map <string, Event*> events;
+        map <string, function <void (void*)>> lambdas;
 
     
 };
@@ -36,6 +40,14 @@ class EventHandler {
 class EvTest : public Event {
 
     public:
+    
+        EvTest(){
+            
+            //Lambda test now
+            auto func0 = [&](void *args){ lambdaTrigger(args);};
+            
+        }
+    
     
         int trigger(){
             
@@ -54,7 +66,16 @@ class EvTest : public Event {
                 return 138;
 
         }
+
+        void lambdaTrigger(void *args){
+         
+            //Lambda test now
+            param_u *params = (param_u *)args;
+            cout << params[0].ival <<endl;
+            
+        }
     
+        function <void (void*)> *func;
     
 };
 

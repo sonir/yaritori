@@ -11,47 +11,8 @@
 
 //Set running mode
 #define DEBUG_MODE
+#define PERFORMANCE_MODE
 #define GISMO_UPDATE_INTERVAL 0.033
-
-
-//Basics
-#include <stdio.h>
-#include <cassert>
-#include "ofMain.h"
-#include "ofxOsc.h"
-
-//Addons
-#include "ofxGismo.h"
-
-//vSyn
-#include "shape.h"
-#include "osc2shape.hpp"
-#include "drawer.hpp"
-#include "cam_func.hpp"
-#include "Particle.hpp"
-
-// Yaritori Modules ///
-
-// Receiving message from network
-#include "Network.hpp"
-
-//Convert from shape_t to agent
-#include "Shape2Agent.hpp"
-
-//Test Class
-#include "Test.hpp"
-
-//Gismo
-#include "drawAgents.hpp"
-#include "DrawAgentsWithChar.hpp"
-
-//Metro
-#include "Metro.hpp"
-
-
-//AudioTriger with OSC
-#include "Sound.hpp"
-
 
 //SCREEN SETUP
 #define SC_WITDH 1024
@@ -63,6 +24,51 @@
 
 //#define CONTAINER_MAX 128 //Size of Buffer for Shapes
 #define CONTAINER_MAX AG_MAX*128 //Size of Buffer for Shapes
+
+
+
+/// Includes ///
+
+//Basics
+#include <stdio.h>
+#include <cassert>
+#include "ofMain.h"
+
+//Addons
+#include "ofxOsc.h"
+//Gismo
+#include "ofxGismo.h"
+
+//vSyn
+#include "shape.h"
+#include "osc2shape.hpp"
+#include "drawer.hpp"
+#include "cam_func.hpp"
+#include "Particle.hpp"
+
+
+/// Yaritori Modules ///
+
+// Receiving message from network
+#include "Network.hpp"
+
+//Convert from shape_t to agent
+#include "Shape2Agent.hpp"
+
+//Test Class
+#include "Test.hpp"
+
+//Metro
+#include "Metro.hpp"
+
+//AudioTriger with OSC
+#include "Sound.hpp"
+
+//Drawing
+#include "drawAgents.hpp"
+#include "DrawPerformance.hpp"
+#include "DrawAgentsWithChar.hpp"
+
 
 
 class VSyn : public Event {
@@ -102,7 +108,8 @@ class VSyn : public Event {
         ofVec3f look;
     
         //For Performance
-        PerformanceManager performance;
+        PerformanceManager performanceManager;
+        //DrawPerformance drawPerformance;
         line_t aLine;
         Bullet *bullet;
         Metro *metro;

@@ -357,12 +357,19 @@ void VSyn::draw(){
     particle.draw();
     
 #ifdef DEBUG_MODE
-    //drawAgentsForSimpleGraphics
+    //drawAgentsForSimpleGraphics for debugging
     drawAgentsWithChar.draw(&gismo, screen_w, screen_h);
 #else
-    //drawAgents
+    //drawAgents normally
     drawAgents(&gismo, screen_w, screen_h);
 #endif
+    
+#ifdef PERFORMANCE_MODE
+    performanceManager.updateLines();
+    //drawPerformance.run(&performanceManager);
+    drawPerformance(&performanceManager);
+#endif
+    
     
     for(int i=0; i<CONTAINER_MAX; i++){
         
@@ -414,69 +421,7 @@ void VSyn::draw(){
         
     }
 
-/*
-#ifdef DEBUG_MODE
-    /// DRAW_AGENTS_CONDITIONS
-    int count = gismo.agents.count;
-    ag_t *agents = gismo.getAgents(); //sets agents pointer
-    ag_t *ag;
-    string cond_flg;
-    
-    for(int i =0; i<count; i++){
-        
-        ag = agents; //Set agent address
-        
-        if(ag->active){
 
-            int tmp_x = (int)( ag->posi.x * (float)screen_w );
-            int tmp_y = (int)( ag->posi.y * (float)screen_h );
-            
-            switch(ag->condition){
-                    
-                case CALM:
-                    cond_flg = "+";
-                    //cond_flg = to_string(ag->mov);
-                    ofSetColor(50,255,50);
-                    break;
-                    
-                case CHASE:
-                    cond_flg = "C";
-                    ofSetColor(255,255, 50);
-                    break;
-                    
-                case RUN:
-                    cond_flg = "R";
-                    ofSetColor(200, 50, 50);
-                    break;
-                    
-                case DMG:
-                    cond_flg = "D";
-                    ofSetColor(255, 100, 100);
-                    break;
-                    
-                case DEATH:
-                    cond_flg = "x";
-                    ofSetColor(100, 100, 100);
-                    break;
-                    
-                default:
-                    break;
-                    
-                    
-            }
-            
-            //square(ag->posi.x, ag->posi.y, ag->size*10.0f, 0.0f, false);
-            ofDrawBitmapString( cond_flg, tmp_x, tmp_y);
-            //circle(ag->posi.x+0.0078f, ag->posi.y+0.00078f, ag->view,false);
-            ofSetColor(255,255,255);
-        }
-        agents++;
-        
-    }
-    ///
-#endif
-*/
-    
     //Draw Performers
     /*
     for(int i=0; i<PERFORMER_NUM;i++){
@@ -508,7 +453,8 @@ void VSyn::draw(){
     posi_t tmp = bullet->update(aLine);
     circle(tmp.x, tmp.y, 0.0045, 1);
     cout << tmp.x << endl;
-    */
+     */
+
     
     if(cam_flg){
         ofPopMatrix();
