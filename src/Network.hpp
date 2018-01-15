@@ -40,12 +40,19 @@ class Network {
         string mouseButtonState;
         
         ofImage receivedImage;
+    
+    void setShapePtr(ag_shape_t* _pShapes) {
+        pShapes = _pShapes;
+    }
+    
 
     
     private:
         GismoManager& gismo = GismoManager::getInstance(); //Pointer for gismoManager instance
         ag_shape_t shape; // for shape receiving
         void dispParams(ag_shape_t shape); //For receiving test of shape from server
+    
+    ag_shape_t* pShapes;    //Pointer of shape container
 
     
 };

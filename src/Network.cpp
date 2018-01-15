@@ -86,6 +86,13 @@ void Network :: update(){
             }
         }
         
+        else if(m.getAddress() == "/multiply" ) {
+            int count = gismo.agents.count;
+            int id = count * ofRandom(1.0);
+            
+            gismo.bang("/addShape" , &pShapes[id]);
+        }
+        
         else if( m.getAddress() == "/test/outline" /*"/que"*/ ){ //Receiving Agents
             
             cout << "Network :: /outline received" << endl;

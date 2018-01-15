@@ -14,6 +14,8 @@
 #include "ag_shape.h"
 #include "AgentMotion.hpp"
 #include "LineDrawer.hpp"
+#include "timed_interpolation.hpp"
+#include "Sound.hpp"
 
 
 class MotionManager : public Event {
@@ -21,17 +23,20 @@ public:
     MotionManager();
     AgentMotion agent[AG_MAX];
     int soloCount = 0;
-    bool soloID[AG_MAX];
+    bool isSolo[AG_MAX];
     void setShapes();
     
     void invertColor();
-    void solo(int _id, int act);
-    void addSolo(int _id);
+    void updateSolo();
+    void update();
+    void solo(int _id, bool status, float duration);
+    void addSolo(int _id, float duration);
     void deleteSolo(int _id);
     void draw();
     void drawAgent(ag_t* ag);
     void drawAll();
     void drawSolo();
+    void sendOSC(const string adr, param_u* args, int argNum);
     
     
     //Methods to set pointer;
@@ -41,7 +46,6 @@ public:
     inline void setShapePtr(ag_shape_t* _pShapes) {
         pShapes = _pShapes;
         setShapes();
-        cout << "SHAPE SET" << endl;
     }
     
 private:
@@ -51,6 +55,11 @@ private:
     
     LineDrawer interactLine[AG_MAX];
     ofShader shader;
+    TimedInterpolation soloTimers[AG_MAX];
+    
+    ofxOscSender sender;
+    
+    bool bSolo;
 
 };
 

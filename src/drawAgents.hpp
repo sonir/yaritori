@@ -26,6 +26,7 @@ struct visual_container_t {
 };
 
 void drawAgents(visual_container_t* visual) {
+    visual->motion.update();
     visual->motion.draw();
 }
 

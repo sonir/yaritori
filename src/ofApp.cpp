@@ -8,6 +8,7 @@ void ofApp::setup(){
 //    ofEnableSmoothing();
 
     network.setup();
+    network.setShapePtr(vsyn.ag_shapes);
     
     vsyn.initWindowSize();
     vsyn.setup();

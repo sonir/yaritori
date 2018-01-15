@@ -107,11 +107,19 @@ class VSyn : public Event {
         ofVec3f pov;
         ofVec3f look;
     
+    //CCMA
+    //To store the received shape
+    ag_shape_t ag_shapes[AG_MAX];
+    int ag_shapes_count = 0;
+    void addAgShape(ag_shape_t shape);
+    
         //For Performance
         PerformanceManager performance;
         line_t aLine;
         Bullet *bullet;
         Metro *metro;
+    
+    
 
     
     
@@ -125,11 +133,7 @@ class VSyn : public Event {
         DrawAgentsWithChar drawAgentsWithChar;
         Sound sound; //AudioTrigger with OSC
     
-        //CCMA
-        //To store the received shape
-        ag_shape_t ag_shapes[AG_MAX];
-        int ag_shapes_count = 0;
-        void addAgShape(ag_shape_t shape);
+
     
 
         //AGENT VISUAL

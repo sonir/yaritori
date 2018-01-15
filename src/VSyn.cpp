@@ -61,6 +61,7 @@ void VSyn::setup(){
     visual.events.setMotionManagerPtr(&visual.motion);
     visual.events.setRippleManagerPtr(&ripple);
     
+    
     myTest->setup();
 
     //Do Test Code
@@ -605,12 +606,16 @@ void VSyn::test(){
     shape.edges[0].node_id_a = 0;
     shape.edges[0].node_id_b = 1;
     shape.edge_count = 1;
-    for(int i=0;i<100;i++) addAgShape(shape);
+    for(int i=0;i<100;i++) gismo.bang("/addShape" , &shape);
     //assert(ag_shapes_count == 1);
     //assert( ag_shapes[0].node_count == 2 );
     //assert (ag_shapes[0].edges[0].node_id_b == 1);
     std::cout << "VSyn:: addAgShape is ok." << std::endl;
 
+    
+
+    
+    
     
     //Test addAgShape
 //    ag_shape_t shape;

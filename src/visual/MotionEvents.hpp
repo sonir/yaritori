@@ -11,6 +11,7 @@
 
 #include "MotionManager.hpp"
 #include "RippleManager.hpp"
+#include "Sound.hpp"
 
 
 class Invert : public Event {
@@ -35,9 +36,17 @@ private:
 
 class Solo : public Event {
 public:
-    int trigger(void *arg) {
-        int* id = (int *)arg;
-        motionManager->solo(id[0], id[1]);
+    Solo() {
+        sender.setup(SOUND_HOST, SOUND_PORT);
+    }
+    
+    int trigger(void *arg) {        
+        param_u *params = (param_u *)arg;
+        int id = params[0].ival;
+        int duration = params[1].fval;
+        
+        motionManager->addSolo(id, duration);
+        
         return 1;
     };
     inline void setMotionManagerPtr(MotionManager* pMotion) {
@@ -46,6 +55,7 @@ public:
     
 private:
     MotionManager* motionManager;
+    ofxOscSender sender;
 };
 
 

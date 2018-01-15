@@ -433,9 +433,16 @@ void Test::runVisualTest(visual_container_t* visual) {
 }
 
 void Test::solo() {
-    isSolo = !isSolo;
-    int soloArgs[] = {1 , isSolo};
-    gismo.bang("/solo", &soloArgs);
+    int id = ofRandom(1.0) * gismo.agents.count;
+    
+    param_u tmp[2];
+    tmp[0].ival = id;
+    tmp[1].fval = 1000;
+    gismo.bang("/solo", &tmp);
+    
+    
+    float args1[] = {gismo.getAgent(id)->posi.x ,gismo.getAgent(id)->posi.y};
+    gismo.bang("/ripple", args1);
 }
 
 
@@ -446,12 +453,12 @@ void Test::invert() {
 void Test::createShape(ag_shape_t* shape) {
     //Create random shape
     
-    shape->node_count = 10;
+    shape->node_count = 20;
     shape->edge_count = shape->node_count * (1.0 + frand());
     
     for(int i = 0; i < NODE_MAX; i++) {
-        shape->nodes[i].x = frand() - 0.5;
-        shape->nodes[i].y = frand() - 0.5;
+        shape->nodes[i].x = (frand() - 0.5) * 0.1;
+        shape->nodes[i].y = (frand() - 0.5) * 0.1;
     }
     
     for (int i = 0; i <  shape->edge_count; i++) {
