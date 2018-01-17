@@ -16,12 +16,13 @@ Test :: Test(Sound *pSnd, RippleManager *pRipple ){
 
 void Test :: setup(){
     
-    
+//    fade.bang();
     
 }
 
 void Test :: run(){
     
+    gismo.bang("/foo");
     
     
     //Test frand
@@ -29,8 +30,7 @@ void Test :: run(){
 //    assert( frand()==0.7f );
 //    assert( frand()==0.7f );
 //    assert( frand()==0.1f );
-    cout << "gismoManager::randmom() is OK."<<endl;
-    
+//    cout << "gismoManager::randmom() is OK."<<endl;
     
     //Test Sound Trigger with OSC
     for(int i=0; i<AUDIO_BANK_MAX;i++){
@@ -342,19 +342,30 @@ void Test :: run(){
     shape.edge_count = 1;
     ag_t tmpAg = shape2Agent(shape);
     assert(tmpAg.view == 0.005f);
-    assert(tmpAg.size == 0.00034f);
-    assert(tmpAg.mov == 0.005f);
+    assert(tmpAg.size == 0.011f);
+    assert(tmpAg.mov == 0.35f);
     cout << "Shape2Agent.hpp::shape2Agent() is OK" << endl;
     
-    
+    //Test moveOnLine()
+    posi_t posi = moveOnLine(0.5f, 0.0f, 0.0f, 1.0f, 1.0f);
+    assert(posi.x == 0.5f && posi.y == 0.5f);
+    posi = moveOnLine(1.0f, 0.0f, 0.0f, 1.0f, 1.0f);
+    assert(posi.x == 1.0f && posi.y == 1.0f);
+    posi = moveOnLine(0.5f, -1.0f, -1.0f, -2.0f, -2.0f);
+    assert(posi.x == -1.5f && posi.y == -1.5f);
+    posi = moveOnLine(0.0f, -1.0f, -1.0f, -2.0f, -2.0f);
+    assert(posi.x == -1.0f && posi.y == -1.0f);
+    posi = moveOnLine(0.5f, 0.0f, 0.0f, -1.0f, -2.0f);
+    assert(posi.x == -0.5f && posi.y == -1.0f);
+
 }
 
 void Test :: update(){
-    
-//    cout << gismo.agents.count << endl;
 
-    
-
+//    float fval = fade.update();
+//    cout << "fval=" << fval << endl;
+//    if(fval>0.5f) fade.reset();
+//    fade.bang();
     
 }
 
@@ -362,22 +373,22 @@ void Test :: update(){
 void Test::runVisualTest(visual_container_t* visual) {
     std::cout << " " << std::endl;
     std::cout << "Visual test methods are starting..." << std::endl;
-    EventHandler eventHandler;
-    eventHandler.eventAdd("/ripple", ripple);
+
+    gismo.eventAdd("/ripple", ripple);
     
     //Test Bang Ripple
     cout << "Calling RippleManager::ripple.triger()....";
     float args1[] = {0.25 ,0.5};
-    assert ( eventHandler.bang("/ripple", args1) == 1.0 );
+    assert ( gismo.bang("/ripple", args1) == 1.0 );
     float args2[] = {0.5 ,0.5};
-    assert ( eventHandler.bang("/ripple", args2) == 1.0 );
+    assert ( gismo.bang("/ripple", args2) == 1.0 );
     float args3[] = {0.75 ,0.5};
-    assert ( eventHandler.bang("/ripple", args3) == 1.0 );
+    assert ( gismo.bang("/ripple", args3) == 1.0 );
     cout << "OK." << endl;
     
     //Test solo
     cout << "Calling Solo....";
-    visEvents.eventAdd("/solo", &visual->events.solo);
+    gismo.eventAdd("/solo", &visual->events.solo);
 //    int soloID[] = {1 , isSolo};
 //    assert(visEvents.bang("/solo", &soloID) == 1);
 //    assert(visEvents.bang("/solo", &soloID) == 1);
@@ -386,60 +397,68 @@ void Test::runVisualTest(visual_container_t* visual) {
     
     //Test invert
     cout << "Calling Invert...";
-    visEvents.eventAdd("/invert", &visual->events.invert);
+    gismo.eventAdd("/invert", &visual->events.invert);
     int invArg = 1;
-    assert(visEvents.bang("/invert", &invArg) == 1);
-    assert(visEvents.bang("/invert", &invArg) == 1);
+    assert(gismo.bang("/invert") == 1);
+    assert(gismo.bang("/invert") == 1);
     cout << "OK" << endl;
     
     //Test line
-    cout << "Calling line through event....";
-    A2PLine line;
-    eventHandler.eventAdd("/line", &line);
-    float lineArgs[] = {0.25, 0.5, 0.75, 0.5};
-    assert ( eventHandler.bang("/line", lineArgs) == 1.0 );
-    cout << "OK" << endl;
+//    cout << "Calling line through event....";
+//    A2PLine line;
+//    gismo.eventAdd("/line", &line);
+//    float lineArgs[] = {0.25, 0.5, 0.75, 0.5};
+//    assert ( gismo.bang("/line", lineArgs) == 1.0 );
+//    cout << "OK" << endl;
     
     //Test nodebang
-    cout << "Calling node-bang through event....";
-    eventHandler.eventAdd("/lineNodeBang", &line.node);
-    float nodeDuration = 2000;
-    assert (eventHandler.bang("/lineNodeBang", &nodeDuration) == 1.0);
-    cout << "OK" << endl;
+//    cout << "Calling node-bang through event....";
+//    gismo.eventAdd("/lineNodeBang", &line.node);
+//    float nodeDuration = 2000;
+//    assert (gismo.bang("/lineNodeBang", &nodeDuration) == 1.0);
+//    cout << "OK" << endl;
     
     //Test line
-    cout << "Calling visual.interaction through event....";
-    eventHandler.eventAdd("/line", &visual->motion.agent[1].interaction);
-    assert ( eventHandler.bang("/line", lineArgs) == 1.0 );
-    cout << "OK" << endl;
+//    cout << "Calling visual.interaction through event....";
+//    gismo.eventAdd("/line", &visual->motion.agent[1].interaction);
+//    assert ( gismo.bang("/line", lineArgs) == 1.0 );
+//    cout << "OK" << endl;
     
     //Test node bang through manager
-    cout << "Calling visual.node-bang through event....";
-    eventHandler.eventAdd("/nodeBang", &visual->motion.agent[1].interaction.node);
-    nodeDuration = 2000;
-    assert (eventHandler.bang("/nodeBang", &nodeDuration) == 1.0);
-    cout << "OK" << endl;
+//    cout << "Calling visual.node-bang through event....";
+//    gismo.eventAdd("/nodeBang", &visual->motion.agent[1].interaction.node);
+//    nodeDuration = 2000;
+//    assert (gismo.bang("/nodeBang", &nodeDuration) == 1.0);
+//    cout << "OK" << endl;
 }
 
 void Test::solo() {
-    isSolo = !isSolo;
-    int soloArgs[] = {1 , isSolo};
-    visEvents.bang("/solo", &soloArgs);
+    int id = ofRandom(1.0) * gismo.agents.count;
+    
+    param_u tmp[2];
+    tmp[0].ival = id;
+    tmp[1].fval = 1000;
+    gismo.bang("/solo", &tmp);
+    
+    
+    float args1[] = {gismo.getAgent(id)->posi.x ,gismo.getAgent(id)->posi.y};
+    gismo.bang("/ripple", args1);
 }
 
 
 void Test::invert() {
-    int invArg = 1;
+    gismo.bang("/invert");
 }
+
 void Test::createShape(ag_shape_t* shape) {
     //Create random shape
     
-    shape->node_count = 10;
+    shape->node_count = 20;
     shape->edge_count = shape->node_count * (1.0 + frand());
     
     for(int i = 0; i < NODE_MAX; i++) {
-        shape->nodes[i].x = frand() - 0.5;
-        shape->nodes[i].y = frand() - 0.5;
+        shape->nodes[i].x = (frand() - 0.5) * 0.1;
+        shape->nodes[i].y = (frand() - 0.5) * 0.1;
     }
     
     for (int i = 0; i <  shape->edge_count; i++) {

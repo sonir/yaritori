@@ -14,38 +14,65 @@
 #include "ag_shape.h"
 #include "AgentMotion.hpp"
 #include "LineDrawer.hpp"
-//#include "SoloController.hpp"
+#include "timed_interpolation.hpp"
+#include "Sound.hpp"
+
+
+
+
 
 class MotionManager : public Event {
 public:
     MotionManager();
     AgentMotion agent[AG_MAX];
     int soloCount = 0;
-    bool soloID[AG_MAX];
+    bool isSolo[AG_MAX];
+    void setShapes();
     
     void invertColor();
-    void solo(int _id, int act);
-    void addSolo(int _id);
+    void updateSolo();
+    void update();
+    void solo(int _id, bool status, float duration);
+    void addSolo(int _id, float duration);
     void deleteSolo(int _id);
     void draw();
+    void drawAgent(ag_t* ag);
     void drawAll();
     void drawSolo();
+    void sendOSC(const string adr, param_u* args, int argNum);
+        
+    vbo_t vbo;
     
     //Methods to set pointer;
-    inline void setGismoPtr(GismoManager* _gismo) {
-        gismo = _gismo;
-    }
     inline void setShapePtr(ag_shape_t* _pShapes) {
         pShapes = _pShapes;
+        setShapes();
     }
     
+    
 private:
-    GismoManager* gismo;
+    GismoManager& gismo = GismoManager::getInstance();
     ag_shape_t* pShapes;
-    A2PLineManager lines;
+
     
     LineDrawer interactLine[AG_MAX];
     ofShader shader;
+    TimedInterpolation soloTimers[AG_MAX];
+    
+    ofxOscSender sender;
+    
+    bool bSolo;
+    
+    int nodeNum, edgeNum;
+    
+    float fColor;
+    
+//    ofVbo nodeVbo, edgeVbo;
+//    ofVec2f nodePos[NODE_MAX * AG_MAX];
+//    ofFloatColor nodeColors[NODE_MAX * AG_MAX];
+//    ofVec2f edgePos[NODE_MAX * AG_MAX];
+//    ofIndexType edgeIndices[EDGE_MAX * 2 * AG_MAX];
+//    ofFloatColor edgeColors[EDGE_MAX * 2 * AG_MAX];
 
 };
 

@@ -110,7 +110,7 @@ void RippleManager::invert(){
     }
 }
 
-int RippleManager::trigger(void* args) {    // To be called from eventhandler
+int RippleManager::trigger(void* args) {    // To call from eventhandler
     float *val = (float *)args;
         
     this->bang(val[0], val[1]);

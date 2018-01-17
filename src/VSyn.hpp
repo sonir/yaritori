@@ -11,7 +11,7 @@
 
 //Set running mode
 //#define DEBUG_MODE
-
+#define GISMO_UPDATE_INTERVAL 0.033
 
 //Basics
 #include <stdio.h>
@@ -29,6 +29,8 @@
 #include "cam_func.hpp"
 #include "Particle.hpp"
 
+// Yaritori Modules ///
+
 // Receiving message from network
 #include "Network.hpp"
 
@@ -45,6 +47,12 @@
 
 //Gismo
 #include "drawAgents.hpp"
+#include "DrawAgentsWithChar.hpp"
+
+//Metro
+#include "Metro.hpp"
+
+
 
 //Ripple
 #include "RippleManager.hpp"
@@ -98,7 +106,21 @@ class VSyn : public Event {
         bool cam_flg;
         ofVec3f pov;
         ofVec3f look;
-        
+    
+    //CCMA
+    //To store the received shape
+    ag_shape_t ag_shapes[AG_MAX];
+    int ag_shapes_count = 0;
+    void addAgShape(ag_shape_t shape);
+    
+        //For Performance
+        PerformanceManager performance;
+        line_t aLine;
+        Bullet *bullet;
+        Metro *metro;
+    
+    
+
     
     
     private:
@@ -108,13 +130,10 @@ class VSyn : public Event {
         //Variables
         Test *myTest; //Test Instance
         GismoManager& gismo = GismoManager::getInstance(); //Pointer for gismoManager instance
+        DrawAgentsWithChar drawAgentsWithChar;
         Sound sound; //AudioTrigger with OSC
     
-        //CCMA
-        //To store the received shape
-        ag_shape_t ag_shapes[AG_MAX];
-        int ag_shapes_count = 0;
-        void addAgShape(ag_shape_t shape);
+
     
 
         //AGENT VISUAL

@@ -64,6 +64,28 @@ void Network :: update(){
             
             
         }
+        
+        else if(m.getAddress() == "/solo") {
+            int id = m.getArgAsInt(0);
+            float duration = m.getArgAsFloat(1);
+            
+            param_u tmp[2];
+            tmp[0].ival = id;
+            tmp[1].fval = duration;
+            gismo.bang("/solo", &tmp);
+            
+            float args[] = {gismo.getAgent(id)->posi.x ,gismo.getAgent(id)->posi.y};
+            gismo.bang("/ripple", args);
+            
+        }
+        
+        else if(m.getAddress() == "/multiply" ) {
+            int count = gismo.agents.count;
+            int id = count * ofRandom(1.0);
+            
+            gismo.bang("/addShape" , &pShapes[id]);
+        }
+        
         else if( m.getAddress() == "/test/outline" /*"/que"*/ ){ //Receiving Agents
             
             cout << "Network :: /outline received" << endl;
@@ -91,8 +113,13 @@ void Network :: update(){
             dispParams(shape);
             
             
-        }
-        else{
+        
+        } else if ( m.getAddress() == "/fps" ) { //Set fps
+            
+            float fval = m.getArgAsFloat(0);
+            gismo.bang("/fps", &fval );
+            
+        } else {
             // unrecognized message: display on the bottom of the screen
             string msg_string;
             msg_string = m.getAddress();
