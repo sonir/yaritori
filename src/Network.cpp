@@ -65,25 +65,18 @@ void Network :: update(){
             
         }
         
-        else if(m.getAddress() == "/all_agent") {
+        else if(m.getAddress() == "/solo") {
+            int id = m.getArgAsInt(0);
+            float duration = m.getArgAsFloat(1);
             
-            string adr = m.getArgAsString(0);
-            float view =  m.getArgAsFloat(1);
+            param_u tmp[2];
+            tmp[0].ival = id;
+            tmp[1].fval = duration;
+            gismo.bang("/solo", &tmp);
             
-            if(adr == "/view"){
-                int count = gismo.agents.count;
-                ag_t *agents = gismo.getAgents(); //sets agents pointer
-                ag_t *ag;
+            float args[] = {gismo.getAgent(id)->posi.x ,gismo.getAgent(id)->posi.y};
+            gismo.bang("/ripple", args);
             
-                for(int i =0; i<count; i++){
-            
-                    ag = agents; //Set agent address
-                    ag->view = view;
-            
- 
-                    agents++;
-                }
-            }
         }
         
         else if(m.getAddress() == "/multiply" ) {

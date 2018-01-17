@@ -57,7 +57,7 @@ void VSyn::setup(){
     
     //Set ag_shape_t and gismo pointer
     visual.motion.setShapePtr(ag_shapes);
-    visual.motion.setGismoPtr(&gismo);
+    //visual.motion.setGismoPtr(&gismo);
     visual.events.setMotionManagerPtr(&visual.motion);
     visual.events.setRippleManagerPtr(&ripple);
     
