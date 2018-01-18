@@ -46,6 +46,12 @@ void ofApp::keyReleased(int key){
         case 'f':
             ofToggleFullscreen();
             break;
+        case 'a':
+            vsyn.performanceManager.bullets[0].bang();
+            break;
+        case 's':
+            vsyn.performanceManager.reverseBullets[1].bang();
+            break;
             
     
     }

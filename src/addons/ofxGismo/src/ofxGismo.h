@@ -40,9 +40,9 @@
 void initAgent(ag_t *ags);
 void initAgentActive(ag_t *ags);
 void initAgents(ag_t *ags);
-void initPutBuff(put_buf_t *put_buf);
+void initAgentBuff(agent_buf_t *ags);
 //AgentOperation
-void addAgentToBuff(ag_t ag, put_buf_t put_buf);
+void addAgentToBuff(ag_t ag, agent_buf_t put_buf);
 void agBuffReset(agent_buf_t *agents);
 //InteractionTool
 float distance(posi_t p1, posi_t p2);
@@ -67,6 +67,7 @@ int irand();
 bool brand();
 //SetSound
 int setSound(int sound_id);
+void triggerRipple(ag_t *focus);
 
 //Class for Data management
 
@@ -90,7 +91,7 @@ class GismoManager : public EventHandler {
     
         //Variables
         agent_buf_t agents;
-        put_buf_t add;
+        agent_buf_t add;
         Event *sound;
         //Store the screen rate
         float width_rate = 1.0f;
@@ -102,7 +103,6 @@ class GismoManager : public EventHandler {
         ag_t* getAgent(int aid);
         void addAgent(ag_t tmp);
         void addSync(); //Sync actual agent array and add_buffer
-        //float random();
 
 
     

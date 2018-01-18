@@ -91,10 +91,18 @@ void Network :: update(){
             dispParams(shape);
             
             
-        } if ( m.getAddress() == "/fps" ) { //Set fps
+        } else if ( m.getAddress() == "/fps" ) { //Set fps
             
             float fval = m.getArgAsFloat(0);
             gismo.bang("/fps", &fval );
+            
+            
+        }else if (  m.getAddress() == "/ch1" ) { //Receiving bullet bang from performer
+            
+            
+            int performer_id = m.getArgAsInt32(0);
+            gismo.bang("/sjq/atk" , &performer_id);
+            
             
         } else {
             // unrecognized message: display on the bottom of the screen

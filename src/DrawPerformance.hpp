@@ -9,6 +9,8 @@
 #ifndef DrawPerformance_hpp
 #define DrawPerformance_hpp
 
+#define BULLET_SPD 250
+
 #include <stdio.h>
 #include "ofMain.h"
 #include "ofxGismo.h"

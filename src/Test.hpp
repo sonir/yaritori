@@ -31,6 +31,10 @@ class Test {
         GismoManager& gismo = GismoManager::getInstance(); //Pointer for gismoManager instance
         Sound *sound;
     
+    
+        int arg1;
+        int arg2;
+    
 };
 
 

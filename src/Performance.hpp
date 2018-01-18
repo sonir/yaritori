@@ -41,12 +41,6 @@ int count_ring(int now, int max);
 //
 typedef enum performer_e { PIANO, TROMBONE, GUITAR, BASS, DRUMS } performer_e;
 
-typedef struct pline_t {
-    
-    posi_t *node_a;
-    posi_t *node_b;
-    
-}pline_t;
 
 
 class Performers : public Event{
@@ -87,18 +81,21 @@ class Performers : public Event{
     
 };
 
-class PerformanceManager {
+class PerformanceManager : public Event {
     
     public:
 
         GismoManager& gismo = GismoManager::getInstance(); //Pointer for gismoManager instance
         Performers performers;
         pline_t lines[AG_MAX];
+        pline_t invertedLines[AG_MAX];
         Bullet bullets[AG_MAX];
+        Bullet reverseBullets[AG_MAX];
     
         PerformanceManager (){
             
-            gismo.eventAdd("/setPerformerPosition" , &performers);
+            gismo.eventAdd("/sjq/setPosition" , &performers);
+            gismo.eventAdd("/sjq/atk" , this);
             
             //Example of invoking </setPerformerPosition>
             
@@ -111,7 +108,18 @@ class PerformanceManager {
         }
     
         void updateLines();
+        void updateLinesInverted();
+        void performerBang(performer_e perf);
     
+    
+        int trigger(void *args){ //Event for set performers' position
+            
+            param_u *param = (param_u *)args;
+            performer_e perf = (performer_e)param->ival;
+            performerBang(perf);
+            
+        }
+
     
 };
 

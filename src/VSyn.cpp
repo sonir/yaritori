@@ -14,19 +14,7 @@ void VSyn::setup(){
     
     //Set Metro
     metro = new Metro(GISMO_UPDATE_INTERVAL);
-    
-    //Set for bullet
-    posi_t p_a , p_b;
-    p_a.x = 0.5f; p_a.y = 0.5f;
-    p_b.x = 1.0f; p_b.y = 1.0f;
-    aLine.node_a = p_a;
-    aLine.node_b = p_b;
-    bullet = new Bullet();
-    bullet->bang();
-    
-    //Create TestClass
-    myTest = new Test(&sound);
-    myTest->setup();
+        
     
     ofBackground(0, 0, 0);
     ofSetCircleResolution(50);
@@ -54,6 +42,11 @@ void VSyn::setup(){
     gismo.setup();
     //SetupEvents
     gismo.eventAdd("/addShape", this);
+    
+    //Create TestClass
+    myTest = new Test(&sound);
+    myTest->setup();
+
     
     myTest->setup();
     //Do Test Code
@@ -366,7 +359,7 @@ void VSyn::draw(){
     
 #ifdef PERFORMANCE_MODE
     performanceManager.updateLines();
-    //drawPerformance.run(&performanceManager);
+    performanceManager.updateLinesInverted();
     drawPerformance(&performanceManager);
 #endif
     
@@ -496,7 +489,7 @@ void VSyn::addAgShape(ag_shape_t shape){
 
 
 void VSyn::test(){
-    
+
     //Draw Your Test Code. This method was invoked when the end of setup().
     std::cout << "test method is starting..." << std::endl;
     
@@ -522,27 +515,36 @@ void VSyn::test(){
     
     //Reset all agents
     agBuffReset(&gismo.agents);
+    agBuffReset(&gismo.add);
     
     //Set Agents
-    ag_t act1, act2, act3, act4, act5, act6, act7, act8;
+    ag_t ag;
 
     
-    initAgentActive(&act8);
-    act8.posi.x = 0.25f; act8.posi.y = 0.5f;
-    gismo.addAgent(act8);
-    act8.posi.x = 0.75f; act8.posi.y = 0.5f;
-    gismo.addAgent(act8);
-    gismo.addAgent(act8);
+    initAgentActive(&ag);
+    ag.posi.x = 0.25f; ag.posi.y = 0.5f;
+    gismo.addAgent(ag);
+    ag.posi.x = 0.75f; ag.posi.y = 0.5f;
+    gismo.addAgent(ag);
+    gismo.addAgent(ag);
     
     
     
-    for(int i=0;i<600;i++) gismo.addAgent(act8);
-    act8.size *= 0.8f;
-    act8.mov *= 2.5f;
-    act8.view *= 1.0f;
-    for(int i=0;i<1000;i++) gismo.addAgent(act8);
+//    for(int i=0;i<600;i++) gismo.addAgent(ag);
+//    ag.size *= 0.8f;
+//    ag.mov *= 2.5f;
+//    ag.view *= 1.0f;
+//    for(int i=0;i<1000;i++) gismo.addAgent(ag);
+//    
+//    
+//    for(int i=0; i<1600; i++){
+//        
+//        performanceManager.bullets[i].bang();
+//        
+//    }
     
     
     std::cout << "test method has finished." << std::endl;
 
+    
 }

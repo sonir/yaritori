@@ -26,34 +26,49 @@ posi_t moveOnLine(float fval, float a, float b, float x, float y){
 }
 
 
+////////
+// Implementation of Unibullet //
+///////
 
 
-
-void Bullet::bang(){
+void UniBullet::bang(){
     
+    fade.reset();
     fade.bang();
     
 }
 
-void Bullet::set(int ms){
+void UniBullet::set(int ms){
     
     fade.set(ms);
     
 }
 
-posi_t Bullet::update(){
-    
+bullet_shape_t UniBullet::update(){
+
+
+    bullet_shape_t bullet_shape;
     float fval = fade.update();
-    return moveOnLine(fval, route.node_a.x, route.node_a.y, route.node_b.x, route.node_b.y);
     
+    //deactivate draw when star and end position of bullet
+    if(fval == 1.0f || fval == 0.0f) bullet_shape.active = false;
+    else bullet_shape.active = true;
+    
+    bullet_shape.posi = moveOnLine(fval, route.node_a.x, route.node_a.y, route.node_b.x, route.node_b.y);
+    return bullet_shape;
 }
 
-posi_t Bullet::update(line_t aLine){
-    
+bullet_shape_t UniBullet::update(pline_t aLine){
+
+    bullet_shape_t bullet_shape;
     float fval = fade.update();
-    //    cout << "fval = " << fval << endl;
-    //    cout << aLine.node_a.x << "," << aLine.node_a.y << " | " << aLine.node_b.x << "," << aLine.node_b.y << endl;
-    return moveOnLine(fval, aLine.node_a.x, aLine.node_a.y, aLine.node_b.x, aLine.node_b.y);
     
+    //deactivate draw when star and end position of bullet
+    if(fval == 1.0f || fval == 0.0f) bullet_shape.active = false;
+    else bullet_shape.active = true;
+
+    bullet_shape.posi =  moveOnLine(fval, aLine.node_a->x, aLine.node_a->y, aLine.node_b->x, aLine.node_b->y);
+    
+    return bullet_shape;
     
 }

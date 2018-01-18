@@ -33,15 +33,39 @@ int EventHandler::bang(string event_name){
 
 
 int EventHandler::bang(string event_name, void* args){
+
+    if(events[event_name])
+    {
+        
+        Event *tmp = events[event_name];
+        return tmp->trigger(args);
+        
+    } else {
+        
+        lambdaBang(event_name, args);
+//        cout << "ERR :: Unknown event named <" << event_name << "> was invoked." << endl;
+        
+    }
     
-    Event *tmp = events[event_name];
-    return tmp->trigger(args);
     
 }
 
 void EventHandler::lambdaBang(string event_name, void* args){
+
+    if(lambdas[event_name])
+    {
+        
+        return lambdas[event_name](args);
+        
+    } else {
+        
+        cout << "ERR :: Unknown event named <" << event_name << "> was invoked." << endl;
+        return;
+        
+    }
+
     
-    return lambdas[event_name](args);
+//    return lambdas[event_name](args);
     
 }
 
