@@ -11,28 +11,16 @@
 
 #include "ofMain.h"
 #include "ScreenManager.hpp"
+#include "animation_setup.hpp"
 #include "ofxGismo.h"
 #include "ag_shape.h"
 
-class MotionManager;    //Prototype to avoid circular reference
+
 
 struct vec2 {
     float x;
     float y;
 };
-
-
-struct vbo_t {
-    int nodeNum, edgeNum, prevEdgeFinal;
-    
-    ofFloatColor color;
-    ofVec2f nodePos[NODE_MAX * AG_MAX];
-    ofFloatColor nodeColors[NODE_MAX * AG_MAX];
-    ofVec2f edgePos[NODE_MAX * AG_MAX];
-    ofIndexType edgeIndices[EDGE_MAX * 2 * AG_MAX];
-    ofFloatColor edgeColors[EDGE_MAX * 2 * AG_MAX];
-};
-
 
 class AgentMotion {
 public:
@@ -53,30 +41,21 @@ public:
     float getLineWidth();
     
     void setShapePtr(ag_shape_t *shapePtr);
-    inline void setVboPtr(vbo_t *vboPtr) {
-        vbo = vboPtr;
-    }
-    
-    
-    int getNodeNum();
-    int getEdgeNum();
     
     //event
-    float fColor;
-    ofFloatColor color;
     void invertColor();
     
     //Variables
     ag_shape_t shape;
     ag_shape_t* pShape;
     ag_t* pAg;
-    vbo_t* vbo;
     int screenWidth, screenHeight;
     bool isActive;
     float size;
     float width_rate;
     ofVec2f center, dest;
     float centerX ,centerY;
+    
 
 private:
     //VBO
@@ -86,9 +65,11 @@ private:
     ofIndexType edgeIndices[EDGE_MAX * 2];
     ofFloatColor edgeColors[EDGE_MAX * 2];
     
-    ofShader shader;
+    //ofShader shader;
+    float aspect;
     
-    
+    //Variables
+    float color;
     
     //Modulation
     static constexpr int MOD_NUM = 3;

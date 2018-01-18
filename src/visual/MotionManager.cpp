@@ -11,10 +11,11 @@
 
 MotionManager::MotionManager() {
     //Reset solo
+    soloCount = 0;
     for(int i = 0; i < AG_MAX; i++) {
         isSolo[i] = false;
         soloTimers[i].ready();
-        agent[i].setVboPtr(&vbo);
+        
     }
     
     //OSC
@@ -28,18 +29,6 @@ MotionManager::MotionManager() {
     params[3].ival = 87;
     
     sendOSC("/foo", params, 4);
-    
-    nodeNum = 0;
-    edgeNum = 0;
-    fColor = 0.0f;
-    soloCount = 0;
-    
-//    nodeVbo.setVertexData(vbo.nodePos, NODE_MAX * AG_MAX, GL_DYNAMIC_DRAW);
-//    edgeVbo.setColorData(vbo.nodeColors, NODE_MAX * AG_MAX, GL_DYNAMIC_DRAW);
-//    
-//    
-//    edgeVbo.setVertexData(vbo.edgePos, EDGE_MAX * 2 * AG_MAX, GL_DYNAMIC_DRAW);
-//    edgeVbo.setColorData(vbo.edgeColors, EDGE_MAX * 2 * AG_MAX, GL_DYNAMIC_DRAW);
 }
 
 void MotionManager::setShapes() {
@@ -50,17 +39,8 @@ void MotionManager::setShapes() {
 }
 
 void MotionManager::invertColor() {
-    if( fColor == 0.0) {
-        fColor = 1.0;
-    } else {
-        fColor = 0.0;
-    }
-    
-    ofFloatColor color = ofFloatColor(fColor, fColor, fColor);
     for(int i = 0; i < AG_MAX; i++){
-        agent[i].fColor = fColor;
-        agent[i].color = color;
-        agent[i].updateColors();
+        agent[i].invertColor();
     }
 }
 
@@ -85,21 +65,23 @@ void MotionManager::deleteSolo(int _id) {
 
 
 void MotionManager::updateSolo() {
+    soloCount = 0;
     for(int i = 0; i < AG_MAX; i++){
         if(isSolo[i]) {
             float val = soloTimers[i].get();
             if (1.0 <= val) {
                 deleteSolo(i);
             }
+            soloCount++;
         }
     }
 }
 
 void MotionManager::update() {
+    updateSolo();
     if(0 < soloCount) {
-        updateSolo();
+        
         if(bSolo == false) {    //if solo turns on
-            
             param_u params[1];
             params[0].fval = 1.0f;
             sendOSC("/solo_sound", params, 1);
@@ -122,7 +104,6 @@ void MotionManager::drawAll() {
     ag_t* agents = gismo.getAgents(); //sets agents pointer
     ag_t* ag;
     
-
     for(int i = 0; i < count; i++){
         
         ag = agents; //Set agent address
@@ -136,8 +117,8 @@ void MotionManager::drawAll() {
             agent[i].draw();
             
 //            ofSetColor(255, 0, 0);
-//            ofDrawBitmapString(i, ag->posi.x * CANVAS_HEIGHT, ag->posi.y * CANVAS_HEIGHT);
-//            ofDrawCircle(pAg->posi.x * CANVAS_HEIGHT, pAg->posi.y * CANVAS_HEIGHT, 3);
+//            ofDrawBitmapString(i, ag->posi.x * VSYN_HEIGHT, ag->posi.y * VSYN_HEIGHT);
+            //ofDrawCircle(pAg->posi.x * CANVAS_HEIGHT, pAg->posi.y * CANVAS_HEIGHT, 3);
             
             //Draw interaction
             if(ag->interact_with != -1) {
@@ -162,24 +143,22 @@ void MotionManager::drawSolo() {
     ag_t* agents = gismo.getAgents(); //sets agents pointer
     ag_t* ag;
     
-
-    
     for(int i =0; i < count; i++){
         
         ag = &agents[i];
         
-        if(ag->active){
+        if(ag->active)  {
             agent[i].pAg = ag;
-            agent[i].pShape = &pShapes[i];
             agent[i].dest.x = ag->posi.x;
             agent[i].dest.y = ag->posi.y;
-            agent[i].center.x = ag->posi.x;
-            agent[i].center.y = ag->posi.y;
-
+//            agent[i].center.x = ag->posi.x;
+//            agent[i].center.y = ag->posi.y;
+            
             agent[i].update();
+            
             if(isSolo[i]) {
                 agent[i].draw();
-           
+            
 
                 //Draw Interaction
                 if(ag->interact_with != -1) {
@@ -196,28 +175,18 @@ void MotionManager::drawSolo() {
                 }
             }
         }
-    //agents++;
+        //agents++;
     }
 }
 
 
 void MotionManager::draw() {
-    
-    vbo.nodeNum = 0;
-    
     if(soloCount == 0) {
         drawAll();
+        
     } else {
         drawSolo();
     }
-    
-//    ofSetColor(ofFloatColor(color));
-//    nodeVbo.updateVertexData(vbo.nodePos, vbo.nodeNum);
-//    nodeVbo.updateColorData(vbo.nodeColors,  vbo.nodeNum);
-//    nodeVbo.draw(GL_POINTS, 0, vbo.nodeNum);
-    
-    
-    shader.setAttribute1f(GLint location, <#float v1#>)
 }
 
 void MotionManager::sendOSC(const string adr, param_u* args,  int numArgs) {
@@ -230,4 +199,10 @@ void MotionManager::sendOSC(const string adr, param_u* args,  int numArgs) {
 }
 
 
+void MotionManager::addNode(ofVec2f pos) {
+    
+}
 
+void MotionManager::addEdge(ofVec2f node_a, ofVec2f node_b) {
+    
+}

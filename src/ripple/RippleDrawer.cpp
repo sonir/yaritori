@@ -20,7 +20,7 @@ void RippleDrawer::initVertices() {
     //init verts
     for(int j = 0; j < rippleNum; j++){
         for(int i = 0; i < res; i++){
-            verts[j * res + i].set(centerX * aspect * CANVAS_HEIGHT, centerY * CANVAS_HEIGHT);
+            verts[j * res + i].set(centerX * aspect * VSYN_HEIGHT, centerY * VSYN_HEIGHT);
             cols[j * res + i] = ofFloatColor(0., 0., 0., 1.);
         }
     }
@@ -62,7 +62,7 @@ void RippleDrawer::updateColor(){
         }
         for(int j = 0; j < rippleNum; j++){
             for(int i = 0; i < res; i++){
-                cols[j * res + i] = ofFloatColor(col);
+                cols[j * res + i] = col;
             }
         }
     }
@@ -75,8 +75,8 @@ void RippleDrawer::updateVertex(){
         for(int i = 0; i < res; i++){
             float th = theta * i;
             if(currentTime - lag[j] > 0){
-                float x = centerX * CANVAS_HEIGHT * aspect + currentRadius * cos(th) * CANVAS_HEIGHT;
-                float y = centerY * CANVAS_HEIGHT + currentRadius * sin(th) * CANVAS_HEIGHT;
+                float x = centerX * VSYN_HEIGHT * aspect + currentRadius * cos(th) * VSYN_HEIGHT;
+                float y = centerY * VSYN_HEIGHT + currentRadius * sin(th) * VSYN_HEIGHT;
                 verts[j * res + i].set(x, y);
             }
         }

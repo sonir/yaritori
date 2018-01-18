@@ -35,6 +35,8 @@ private:
     ofVbo vbo;
     
     TimedInterpolation interpolation;
+    
+    float aspect; 
 };
 
 
