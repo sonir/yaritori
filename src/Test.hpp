@@ -18,7 +18,8 @@
 #include "RippleManager.hpp"
 #include "Shape2Agent.hpp"
 #include "Performance.hpp"
-//#include "Fade.hpp"
+#include "getArraySize.h"
+
 
 class Test {
 
@@ -26,7 +27,7 @@ class Test {
         Test(Sound *pSnd, RippleManager *pRipple);
         void setup();
         void run();
-
+        void runSubTest(void* args);
         void update();
     
         //Visual
@@ -35,17 +36,23 @@ class Test {
         void solo();
     
     
-    void createShape(ag_shape_t* shape);
+        void createShape(ag_shape_t* shape);
 
     
     
         GismoManager& gismo = GismoManager::getInstance(); //Pointer for gismoManager instance
         Sound *sound;
     
-    //Visual
-    RippleManager *ripple;
-    EventHandler visEvents;
-  bool isSolo;        
+
+        //Visual
+        RippleManager *ripple;
+        EventHandler visEvents;
+        bool isSolo;
+
+    
+        int arg1;
+        int arg2;
+
     
 };
 

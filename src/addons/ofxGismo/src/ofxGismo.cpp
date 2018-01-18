@@ -35,6 +35,7 @@ void initAgents(ag_t *ags){ //Init all agents with default paramas
     printf("initAgents\n");
     for (int i=0; i<AG_MAX; i++){
         
+        initAgent(ags);
         ags++; //Increment the index
         
     }
@@ -43,23 +44,16 @@ void initAgents(ag_t *ags){ //Init all agents with default paramas
 }
 
 
-void initPutBuff(put_buf_t *put_buf){
+void initAgentBuff(agent_buf_t *ags){
     
-    put_buf->count = 0;
-    ag_t *ags = put_buf->buf;
-    
-    for(int i=0; i<AG_BUF_MAX; i++){
-        
-        initAgent(ags);
-        ags++;
-        
-    }
+    ags->count = 0;
+    initAgents(ags->buf);
     
 }
 
 
 
-void addAgentToBuff(ag_t ag, put_buf_t *put_buf){ //Put agent to buff
+void addAgentToBuff(ag_t ag, agent_buf_t *put_buf){ //Put agent to buff
     
     put_buf->buf[put_buf->count] = ag;
     put_buf->count += 1;
@@ -69,7 +63,7 @@ void addAgentToBuff(ag_t ag, put_buf_t *put_buf){ //Put agent to buff
 
 void agBuffReset(agent_buf_t *agents){
     
-    for(int i=0; i<agents->count;i++){
+    for(int i=0; i<AG_MAX;i++){
         
         agents->buf[i].active = false;
         
@@ -345,23 +339,39 @@ void interactWith(ag_t *focus , ag_t *target){
             
             if( !conditionCheck(focus->condition, CHASE) ){
                 
-                //WORK137
-                setSound( (int)focus->condition );
                 focus->condition=CHASE;
+                setSound( (int)focus->condition );
+                triggerRipple(focus);
+                
+            }else{
+                
+                focus->condition=CHASE;
+                
             }
+
             
         } else if (size_check == (-1) ) { //Is same size
         
-            if( brand() ) target->size-=AG_DMG; //decrease the target size in 50% rate.
-            
-            
-        } else {
+            if( brand() ) {
+                
+                target->size-=AG_DMG; //decrease the target size in 50% rate.
+                focus->size+=AG_DMG; //Increasing the atacked agent
+                triggerRipple(focus);
 
-//            posi_t tmp = target->posi; //set invert position for running
-//            tmp.x = tmp.x*(-1);
-//            tmp.y = tmp.y*(-1);
-//            move(focus, &tmp);
+            }
+            
+            
+        } else { //RUN CASE
+
             running(focus, &target->posi);
+            if( !conditionCheck(focus->condition, RUN) ){
+                
+                //do running code
+                focus->condition=RUN;
+                setSound( (int)focus->condition );
+                triggerRipple(focus);
+                
+            }
             focus->condition=RUN;
 
         }
@@ -500,6 +510,18 @@ int setSound(int sound_id){
     
 }
 
+void triggerRipple(ag_t *focus){
+
+    //Get singleton to get width rate
+    GismoManager& gismo = GismoManager::getInstance();
+    
+    float posi[2];
+    posi[0] = focus->posi.x;
+    posi[1] = focus->posi.y;
+    gismo.bang("/ripple", posi);
+    
+}
+
 
 
 //Definication of GismoManager :::::::::::
@@ -509,8 +531,8 @@ GismoManager::GismoManager() //Constructor
     setSeed(137);
     initAgents(agents.buf);
     agents.count = 0;
-    put_buf_t add;
-    initPutBuff(&add);
+    agent_buf_t add;
+    initAgentBuff(&add);
     
 }
 

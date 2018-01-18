@@ -215,8 +215,6 @@ void MotionManager::draw() {
 //    nodeVbo.updateColorData(vbo.nodeColors,  vbo.nodeNum);
 //    nodeVbo.draw(GL_POINTS, 0, vbo.nodeNum);
     
-    
-    shader.setAttribute1f(GLint location, <#float v1#>)
 }
 
 void MotionManager::sendOSC(const string adr, param_u* args,  int numArgs) {

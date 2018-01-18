@@ -9,7 +9,7 @@
 #ifndef agTypes_h
 #define agTypes_h
 
-#define AG_BUF_MAX 2500
+#define AG_BUF_MAX AG_MAX
 
 
 //ENUM CONDITIONS
@@ -47,12 +47,12 @@ typedef struct agent_buf_t{
     
 }agent_buf_t;
 
-typedef struct put_buf_t {
-
-    int count;
-    ag_t buf[AG_BUF_MAX];
-
-} put_buf_t;
+//typedef struct put_buf_t {
+//
+//    int count;
+//    ag_t buf[AG_BUF_MAX];
+//
+//} put_buf_t;
 
 
 

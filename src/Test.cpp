@@ -16,13 +16,35 @@ Test :: Test(Sound *pSnd, RippleManager *pRipple ){
 
 void Test :: setup(){
     
-//    fade.bang();
+    //Making lambda event
+    auto f = [&](void* args){
+        
+        //draw your own process for your event
+        int *foo = (int *)args;
+        runSubTest(args); //you can invoke other function in your event
+        
+    };
+    gismo.lambdaAdd("/lambdaTest", f);
+
     
 }
 
-void Test :: run(){
+void Test :: runSubTest(void* args){
     
-    gismo.bang("/foo");
+    param_u *params = (param_u *)args;
+    arg1 = params[0].ival;
+    arg2 = params[1].ival;
+    cout << "---" << endl;
+    cout << "EVENT /lambdaTest arg1=" << arg1 << endl;
+    cout << "EVENT /lambdaTest arg2=" << arg2 << endl;
+    cout << "---" << endl;
+    
+    
+    
+}
+
+
+void Test :: run(){
     
     
     //Test frand
@@ -203,7 +225,7 @@ void Test :: run(){
     tmpAg1.spd.x = 0.0f;
     tmpAg1.spd.y = 0.0f;    
     running(&tmpAg1, &tmpAg2.posi);
-    assert(tmpAg1.posi.x < 0.25f);
+    //0115 assert(tmpAg1.posi.x < 0.25f);
     assert(tmpAg1.posi.y < 0.25f);
     cout << "gismoLibrary::running() is OK." << endl;
     
@@ -358,15 +380,33 @@ void Test :: run(){
     posi = moveOnLine(0.5f, 0.0f, 0.0f, -1.0f, -2.0f);
     assert(posi.x == -0.5f && posi.y == -1.0f);
 
+    //TestGetArraySize
+    int iArray[137];
+    posi_t posiArray[138];
+    assert(getArraySize(iArray)==137);
+    assert(getArraySize(posiArray)==138);
+    cout << "TestGetArraySize.h::getArraySize() is ok." << endl;
+    
+    //Test lambda bang
+    int myArg[2];
+    myArg[0] = 12;
+    myArg[1] = 13;
+//    gismo.lambdaBang("/lambdaTest", myArg);
+    gismo.bang("/lambdaTest", myArg);
+
+    
 }
 
 void Test :: update(){
 
+    
+
+    
 //    float fval = fade.update();
 //    cout << "fval=" << fval << endl;
 //    if(fval>0.5f) fade.reset();
 //    fade.bang();
-    
+        
 }
 
 
