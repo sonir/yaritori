@@ -10,46 +10,55 @@
 #define ScreenManager_hpp
 
 #include "ofMain.h"
+#include "agTypes.h"
+#include "timed_interpolation.hpp"
+#include "screen_setup.h"
 
-//Variables for screen position
-constexpr int WINDOW_WIDTH = 1920;
-constexpr int WINDOW_HEIGHT = 1080;  //This is 1.0
-
-//Length : real length (mm)
-constexpr int SCREEN_LENGTH_W = 4000;
-constexpr int SCREEN_LENGTH_H = 4000;
-constexpr int CANVAS_LENGTH_W = 4200 * 4;
-constexpr int CANVAS_LENGTH_H = 4200;
-constexpr int MARGIN_LENGTH = (CANVAS_LENGTH_H - SCREEN_LENGTH_H) * 0.5;
-constexpr float SCREEN_RATIO = SCREEN_LENGTH_H / CANVAS_LENGTH_H;
-
-constexpr float PxPerMm = WINDOW_HEIGHT / SCREEN_LENGTH_H;
-constexpr float screen_margin =  MARGIN_LENGTH * WINDOW_HEIGHT / SCREEN_LENGTH_H;
-
-constexpr float CANVAS_WIDTH = WINDOW_HEIGHT * 3 + screen_margin * 4;
-constexpr float CANVAS_HEIGHT = WINDOW_HEIGHT +  screen_margin * 2;
-constexpr int SCREEN_CENTER = WINDOW_HEIGHT * 0.5;
-
-//for black box
-constexpr int DISPLAY_MARGIN_X = WINDOW_HEIGHT;
-constexpr int DISPLAY_MARGIN_W = WINDOW_WIDTH - WINDOW_HEIGHT;
-
-
-enum screen_pos_e {
-    SCREEN_POS_LEFT,
-    SCREEN_POS_CENTER,
-    SCREEN_POS_RIGHT,
-};
-
-static ofVec2f leftScreen = ofVec2f(-screen_margin, screen_margin);
-static ofVec2f centerScreen = ofVec2f(-(WINDOW_HEIGHT + screen_margin * 2), screen_margin);
-static ofVec2f rightScreen = ofVec2f(-(WINDOW_HEIGHT*2 + screen_margin * 3), screen_margin);
-
-static ofVec2f targetScreen = leftScreen;
-
+static bool drawWhiteBack = true;
 void invertBackground();
-void setScreenPos(screen_pos_e screenPos);
-void screenBegin();
-void screenEnd();
+
+typedef enum{UP, DOWN, RIGHT, LEFT} swap_direction;
+
+class ScreenManager{
+public:
+    ScreenManager();
+    void begin(int window);
+    void end(int window);
+    void draw();
+
+    void swap(int window, swap_direction direction);
+    void setSwapDuration(float go, float out, float back);
+    void setOriginPosition(posi_t o1, posi_t o2, posi_t o3);
+    void setZoom(int window, posi_t centerPos, float ratio);
+    void resetScreen(int window);
+    
+    void drawBackground();
+    bool colorState;
+    
+    float swapDur_go, swapDur_out, swapDur_back;    //msec
+    
+private:
+    void init();
+    void initFbo();
+    void initStatus();
+    void swap_cal();
+    
+    ofFbo fbo[3];
+    ofMesh mesh[3];
+//    ofShader shader;
+    
+    posi_t pos[3];  //up-left point of window
+    
+    posi_t centerPos[3];
+    posi_t centerPos_origin[3]; //standard pos
+    float ratio[3];
+    
+    posi_t startPos[3];    //pos when called as start pos
+    posi_t endPos[3];
+    int state_w[3];
+    int state_h[3];
+    TimedInterpolation interpolation_w[3];
+    TimedInterpolation interpolation_h[3];
+};
 
 #endif /* ScreenManager_hpp */

@@ -18,9 +18,6 @@
 #include "Sound.hpp"
 
 
-
-
-
 class MotionManager : public Event {
 public:
     MotionManager();
@@ -32,7 +29,7 @@ public:
     void invertColor();
     void updateSolo();
     void update();
-    void solo(int _id, bool status, float duration);
+    void solo(int _id, bool status, float duration = 1000.0);
     void addSolo(int _id, float duration);
     void deleteSolo(int _id);
     void draw();
@@ -40,15 +37,19 @@ public:
     void drawAll();
     void drawSolo();
     void sendOSC(const string adr, param_u* args, int argNum);
-        
-    vbo_t vbo;
+    
+    void addNode(ofVec2f pos);
+    void addEdge(ofVec2f node_a, ofVec2f node_b);
+    
     
     //Methods to set pointer;
+//    inline void setGismoPtr(GismoManager* _gismo) {
+//        gismo = _gismo;
+//    }
     inline void setShapePtr(ag_shape_t* _pShapes) {
         pShapes = _pShapes;
         setShapes();
     }
-    
     
 private:
     GismoManager& gismo = GismoManager::getInstance();
@@ -63,16 +64,12 @@ private:
     
     bool bSolo;
     
-    int nodeNum, edgeNum;
-    
-    float fColor;
-    
-//    ofVbo nodeVbo, edgeVbo;
-//    ofVec2f nodePos[NODE_MAX * AG_MAX];
-//    ofFloatColor nodeColors[NODE_MAX * AG_MAX];
-//    ofVec2f edgePos[NODE_MAX * AG_MAX];
-//    ofIndexType edgeIndices[EDGE_MAX * 2 * AG_MAX];
-//    ofFloatColor edgeColors[EDGE_MAX * 2 * AG_MAX];
+    ofVbo nodeVbo, edgeVbo;
+    ofVec2f nodePos[NODE_MAX * AG_MAX];
+    ofFloatColor nodeColors[NODE_MAX * AG_MAX];
+    ofVec2f edgePos[NODE_MAX * AG_MAX];
+    ofIndexType edgeIndices[EDGE_MAX * 2 * AG_MAX];
+    ofFloatColor edgeColors[EDGE_MAX * 2 * AG_MAX];
 
 };
 

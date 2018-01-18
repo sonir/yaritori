@@ -22,7 +22,7 @@ void RippleManager::initVertices(){
     for(int k = 0; k < NUM; k++){
         for(int j = 0; j < rippleNum; j++){
             for(int i = 0; i < res; i++){
-                verts[k * res * rippleNum + j * res + i].set(0.5 * CANVAS_HEIGHT, 0.5 * CANVAS_HEIGHT);
+                verts[k * res * rippleNum + j * res + i].set(0.5 * VSYN_HEIGHT, 0.5 * VSYN_HEIGHT);
                 cols[k * res * rippleNum + j * res + i] = ofFloatColor(0., 0., 0., 1.);
             }
         }

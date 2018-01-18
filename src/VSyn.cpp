@@ -361,11 +361,20 @@ void VSyn::draw(){
     drawAgentsWithChar.draw(&gismo, screen_w, screen_h);
     
 #else
-    //drawAgents　normally
-    screenBegin();
-    drawAgents(&visual);
-    ripple.draw();
-    screenEnd();
+    //drawAgents
+    for(int i = 0; i < 3; i++){
+        scManager.begin(i);
+        
+        //Draw Agents
+        drawAgents(&visual);
+        
+        //Ripple
+        ripple.draw();
+        
+        scManager.end(i);
+    }
+    
+    scManager.draw();
 #endif
     
 #ifdef PERFORMANCE_MODE
@@ -482,6 +491,25 @@ void VSyn::keyPressed(int key) {
                 gismo.bang("/ripple", args1);
                 break;
             }
+        case 'm':
+            scManager.swap(1, UP);
+            break;
+        case 'n':
+            scManager.swap(1, DOWN);
+            break;
+        case 'k':
+            scManager.swap(1, RIGHT);
+            break;
+        case 'j':
+            scManager.swap(1, LEFT);
+            break;
+        case '0':{
+            posi_t pos;
+            pos.x = ofRandom(0., 0.2);
+            pos.y = ofRandom(0., 1.);
+            float r = ofRandom(1., 3.);
+            scManager.setZoom(0, pos, r);
+            break;}
             
         default:
             break;

@@ -17,10 +17,13 @@ LineDrawer::LineDrawer(){
     myPos.y = 0.5;
     
     for(int i = 0; i < NUM + 2; i++){
-        verts[i].set(0.5 * CANVAS_HEIGHT, 0.5 * CANVAS_HEIGHT);
+        verts[i].set(0.5 * VSYN_HEIGHT, 0.5 * VSYN_HEIGHT);
     }
     
     vbo.setVertexData(verts, NUM + 2, GL_DYNAMIC_DRAW);
+    
+    GismoManager& gismo = GismoManager::getInstance();
+    aspect = gismo.width_rate;
 }
 
 void LineDrawer::update(){
@@ -65,7 +68,7 @@ void LineDrawer::update(){
             x = myPos.x + (targetPos.x - myPos.x) * dist + r * cos(th);
             y = myPos.y + (targetPos.y - myPos.y) * dist + r * sin(th);
         }
-        verts[i].set(x * CANVAS_HEIGHT, y * CANVAS_HEIGHT);
+        verts[i].set(x * VSYN_HEIGHT * aspect, y * VSYN_HEIGHT);
     }
 }
 

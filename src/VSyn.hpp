@@ -102,6 +102,7 @@ class VSyn : public Event {
         //ScreenManagement
         int screen_w;
         int screen_h;
+        ScreenManager scManager;
     
         //Particle
         Particle particle;
