@@ -565,7 +565,7 @@ void VSyn::keyPressed(int key) {
             scManager.swap(1, LEFT);
             break;
         case '0':{
-            posi_t pos;
+            pos_t pos;
             pos.x = ofRandom(0., 0.2);
             pos.y = ofRandom(0., 1.);
             float r = ofRandom(1., 3.);

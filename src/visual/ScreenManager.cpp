@@ -54,7 +54,7 @@ void ScreenManager::initFbo(){
 }
 
 void ScreenManager::initStatus(){
-    posi_t tmp[3];
+    pos_t tmp[3];
     tmp[0].x = (SCREEN_WIDTH * 0.5 + MARGIN) / VSYN_WIDTH;
     tmp[0].y = 0.5;
     tmp[1].x = (SCREEN_WIDTH * 1.5 + MARGIN * 2.) / VSYN_WIDTH;
@@ -100,7 +100,7 @@ void ScreenManager::end(int window){
     ofPopMatrix();
     fbo[window].end();
 }
-void ScreenManager::setOriginPosition(posi_t p1, posi_t p2, posi_t p3){
+void ScreenManager::setOriginPosition(pos_t p1, pos_t p2, pos_t p3){
     swap_cal();
     
     pos[0] = p1;
@@ -108,7 +108,7 @@ void ScreenManager::setOriginPosition(posi_t p1, posi_t p2, posi_t p3){
     pos[2] = p3;
 }
 
-void ScreenManager::setZoom(int window, posi_t p, float r){
+void ScreenManager::setZoom(int window, pos_t p, float r){
     centerPos[window] = p;
     ratio[window] = r;
 }
@@ -273,4 +273,12 @@ void ScreenManager::swap_cal(){
             }
         }
     }
+}
+
+void ScreenManager::setFullScreen() {
+    
+        ofSetFullscreen(true);
+        ofSetWindowShape(APP_WIDTH, APP_HEIGHT);
+        ofSetWindowPosition(0, MASTER_HEGHT); //y: height of mbpr display
+    
 }

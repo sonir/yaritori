@@ -10,9 +10,16 @@
 #define ScreenManager_hpp
 
 #include "ofMain.h"
-#include "agTypes.h"
 #include "timed_interpolation.hpp"
 #include "screen_setup.h"
+
+//Define Structs
+typedef struct pos_t {
+    
+    float x;
+    float y;
+    
+} pos_t;
 
 static bool drawWhiteBack = true;
 void invertBackground();
@@ -28,14 +35,15 @@ public:
 
     void swap(int window, swap_direction direction);
     void setSwapDuration(float go, float out, float back);
-    void setOriginPosition(posi_t o1, posi_t o2, posi_t o3);
-    void setZoom(int window, posi_t centerPos, float ratio);
+    void setOriginPosition(pos_t o1, pos_t o2, pos_t o3);
+    void setZoom(int window, pos_t centerPos, float ratio);
     void resetScreen(int window);
     
     void drawBackground();
     bool colorState;
     
     float swapDur_go, swapDur_out, swapDur_back;    //msec
+    void setFullScreen();
     
 private:
     void init();
@@ -47,14 +55,14 @@ private:
     ofMesh mesh[3];
 //    ofShader shader;
     
-    posi_t pos[3];  //up-left point of window
+    pos_t pos[3];  //up-left point of window
     
-    posi_t centerPos[3];
-    posi_t centerPos_origin[3]; //standard pos
+    pos_t centerPos[3];
+    pos_t centerPos_origin[3]; //standard pos
     float ratio[3];
     
-    posi_t startPos[3];    //pos when called as start pos
-    posi_t endPos[3];
+    pos_t startPos[3];    //pos when called as start pos
+    pos_t endPos[3];
     int state_w[3];
     int state_h[3];
     TimedInterpolation interpolation_w[3];

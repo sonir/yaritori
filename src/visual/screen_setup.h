@@ -20,8 +20,12 @@ constexpr float ORIGIN_1_LENGTH_W = 0.;
 constexpr float ORIGIN_2_LENGTH_W = 0.;
 
 //display resolution(projector)
-constexpr int DISPLAY_WIDTH = 1600;//1920;
-constexpr int DISPLAY_HEIGHT = 900;//1080;
+constexpr int DISPLAY_WIDTH = 1920;//1920;
+constexpr int DISPLAY_HEIGHT = 1080;//1080;
+
+//Display reslution (master pc)
+constexpr int MASTER_WIDTH = 1920;
+constexpr int MASTER_HEGHT = 1200;
 
 //unit conversion
 constexpr float PixPerMm_W = DISPLAY_WIDTH / DISPLAY_LENGTH_W;
