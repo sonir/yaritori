@@ -5,11 +5,11 @@
 			"major" : 7,
 			"minor" : 3,
 			"revision" : 4,
-			"architecture" : "x64",
+			"architecture" : "x86",
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 898.0, 79.0, 772.0, 887.0 ],
+		"rect" : [ 874.0, 79.0, 772.0, 887.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -85,7 +85,10 @@
 							"parameter_longname" : "Playback",
 							"parameter_shortname" : "Playback",
 							"parameter_type" : 0,
+							"parameter_mmin" : 0.01,
 							"parameter_mmax" : 100.0,
+							"parameter_initial_enable" : 1,
+							"parameter_initial" : [ 100.0 ],
 							"parameter_unitstyle" : 5
 						}
 
@@ -658,7 +661,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x64",
+							"architecture" : "x86",
 							"modernui" : 1
 						}
 ,
@@ -976,7 +979,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x64",
+							"architecture" : "x86",
 							"modernui" : 1
 						}
 ,
@@ -1293,7 +1296,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x64",
+							"architecture" : "x86",
 							"modernui" : 1
 						}
 ,
@@ -1610,7 +1613,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x64",
+							"architecture" : "x86",
 							"modernui" : 1
 						}
 ,
@@ -1927,7 +1930,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x64",
+							"architecture" : "x86",
 							"modernui" : 1
 						}
 ,
@@ -2244,7 +2247,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x64",
+							"architecture" : "x86",
 							"modernui" : 1
 						}
 ,
@@ -2569,7 +2572,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x64",
+							"architecture" : "x86",
 							"modernui" : 1
 						}
 ,
@@ -2691,7 +2694,7 @@
 											"major" : 7,
 											"minor" : 3,
 											"revision" : 4,
-											"architecture" : "x64",
+											"architecture" : "x86",
 											"modernui" : 1
 										}
 ,
@@ -3173,7 +3176,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x64",
+							"architecture" : "x86",
 							"modernui" : 1
 						}
 ,
@@ -3295,7 +3298,7 @@
 											"major" : 7,
 											"minor" : 3,
 											"revision" : 4,
-											"architecture" : "x64",
+											"architecture" : "x86",
 											"modernui" : 1
 										}
 ,
@@ -3776,7 +3779,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x64",
+							"architecture" : "x86",
 							"modernui" : 1
 						}
 ,
@@ -3898,7 +3901,7 @@
 											"major" : 7,
 											"minor" : 3,
 											"revision" : 4,
-											"architecture" : "x64",
+											"architecture" : "x86",
 											"modernui" : 1
 										}
 ,
@@ -4379,7 +4382,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x64",
+							"architecture" : "x86",
 							"modernui" : 1
 						}
 ,
@@ -4501,7 +4504,7 @@
 											"major" : 7,
 											"minor" : 3,
 											"revision" : 4,
-											"architecture" : "x64",
+											"architecture" : "x86",
 											"modernui" : 1
 										}
 ,
@@ -4982,7 +4985,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x64",
+							"architecture" : "x86",
 							"modernui" : 1
 						}
 ,
@@ -5104,7 +5107,7 @@
 											"major" : 7,
 											"minor" : 3,
 											"revision" : 4,
-											"architecture" : "x64",
+											"architecture" : "x86",
 											"modernui" : 1
 										}
 ,
@@ -5696,7 +5699,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x64",
+							"architecture" : "x86",
 							"modernui" : 1
 						}
 ,
@@ -6150,7 +6153,7 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 240.0, 350.75, 135.0, 22.0 ],
 					"style" : "",
-					"text" : "/sound/set 1 363 2 0.52"
+					"text" : "/sound/set 3 550 1 0.5"
 				}
 
 			}
@@ -6165,7 +6168,7 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 86.5, 351.0, 133.5, 22.0 ],
 					"style" : "",
-					"text" : "2 830 3 1."
+					"text" : "3 550 1 0.5"
 				}
 
 			}
@@ -6785,7 +6788,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x64",
+							"architecture" : "x86",
 							"modernui" : 1
 						}
 ,
@@ -6907,7 +6910,7 @@
 											"major" : 7,
 											"minor" : 3,
 											"revision" : 4,
-											"architecture" : "x64",
+											"architecture" : "x86",
 											"modernui" : 1
 										}
 ,
@@ -7401,7 +7404,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x64",
+							"architecture" : "x86",
 							"modernui" : 1
 						}
 ,
@@ -7825,7 +7828,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x64",
+							"architecture" : "x86",
 							"modernui" : 1
 						}
 ,
@@ -7989,7 +7992,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-7", 2 ],
-									"midpoints" : [ 124.166667, 159.5, 153.5, 159.5 ],
+									"midpoints" : [ 124.166664, 159.5, 153.5, 159.5 ],
 									"source" : [ "obj-4", 2 ]
 								}
 
@@ -7997,7 +8000,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-7", 1 ],
-									"midpoints" : [ 92.833333, 158.5, 107.5, 158.5 ],
+									"midpoints" : [ 92.833336, 158.5, 107.5, 158.5 ],
 									"source" : [ "obj-4", 1 ]
 								}
 
@@ -8320,7 +8323,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-71", 2 ],
-					"midpoints" : [ 516.5, 764.833344, 456.0, 764.833344 ],
+					"midpoints" : [ 516.5, 764.833374, 456.0, 764.833374 ],
 					"source" : [ "obj-118", 0 ]
 				}
 
@@ -8402,7 +8405,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-71", 1 ],
-					"midpoints" : [ 456.0, 764.833343, 411.0, 764.833343 ],
+					"midpoints" : [ 456.0, 764.833313, 411.0, 764.833313 ],
 					"source" : [ "obj-129", 0 ]
 				}
 
@@ -8808,14 +8811,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-76", 0 ],
 					"source" : [ "obj-36", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-54", 0 ],
-					"midpoints" : [ 392.833374, 852.833313, 66.5, 852.833313 ],
-					"source" : [ "obj-38", 0 ]
 				}
 
 			}
@@ -9292,102 +9287,102 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-120::obj-8::obj-30" : [ "Ratio[1]", "Ratio", 1 ],
-			"obj-130" : [ "Strom_Vol", "Storm", 0 ],
-			"obj-132" : [ "Dummy_ON", "Dummy_ON", 0 ],
-			"obj-128" : [ "Rhythm_Vol", "Rhythm_Vol", 0 ],
-			"obj-129" : [ "number", "number", 0 ],
-			"obj-120::obj-8::obj-14" : [ "Release[1]", "Release", 3 ],
-			"obj-120::obj-8::obj-13" : [ "Attack[1]", "Attack", 2 ],
 			"obj-146" : [ "Master", "Master", 0 ],
+			"obj-120::obj-8::obj-15" : [ "Makeup[1]", "Makeup", 4 ],
+			"obj-132" : [ "Dummy_ON", "Dummy_ON", 0 ],
 			"obj-120::obj-8::obj-55" : [ "Threshold[1]", "Threshold", 0 ],
 			"obj-148" : [ "Playback", "Playback", 0 ],
-			"obj-120::obj-8::obj-7" : [ "Output Gain[1]", "Output Gain", 5 ],
+			"obj-120::obj-8::obj-30" : [ "Ratio[1]", "Ratio", 1 ],
 			"obj-126" : [ "Drone_Vol", "Drone", 0 ],
-			"obj-120::obj-8::obj-15" : [ "Makeup[1]", "Makeup", 4 ],
-			"obj-122::obj-1" : [ "live.gain~[2]", "live.gain~", 0 ]
+			"obj-122::obj-1" : [ "live.gain~[2]", "live.gain~", 0 ],
+			"obj-120::obj-8::obj-7" : [ "Output Gain[1]", "Output Gain", 5 ],
+			"obj-129" : [ "number", "number", 0 ],
+			"obj-130" : [ "Strom_Vol", "Storm", 0 ],
+			"obj-128" : [ "Rhythm_Vol", "Rhythm_Vol", 0 ],
+			"obj-120::obj-8::obj-13" : [ "Attack[1]", "Attack", 2 ],
+			"obj-120::obj-8::obj-14" : [ "Release[1]", "Release", 3 ]
 		}
 ,
 		"dependency_cache" : [ 			{
 				"name" : "sliceBuf.maxpat",
-				"bootpath" : "~/Desktop/_sliceBuf",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "slicePlay.maxpat",
-				"bootpath" : "~/Desktop/_sliceBuf",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "effect_sweep.maxpat",
-				"bootpath" : "~/Desktop/_sliceBuf",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "playback_ratio.maxpat",
-				"bootpath" : "~/Desktop/_sliceBuf",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "drone.maxpat",
-				"bootpath" : "~/Desktop/_sliceBuf",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "resonator.maxpat",
-				"bootpath" : "~/Desktop/_sliceBuf",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "stringen.maxpat",
-				"bootpath" : "~/Desktop/_sliceBuf",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "redux.maxpat",
-				"bootpath" : "~/Desktop/_sliceBuf",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "ccma_drone_eq.maxpat",
-				"bootpath" : "~/Desktop/_sliceBuf",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "eq.maxpat",
-				"bootpath" : "~/Desktop/_sliceBuf",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "highpass.maxpat",
-				"bootpath" : "~/Desktop/_sliceBuf",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "reverb.maxpat",
-				"bootpath" : "~/Desktop/_sliceBuf",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
@@ -9395,90 +9390,90 @@
 , 			{
 				"name" : "yafr.maxpat",
 				"bootpath" : "/Users/Shared/Max 7/Examples/legacy-examples/effects/reverb",
-				"patcherrelativepath" : "../../../Shared/Max 7/Examples/legacy-examples/effects/reverb",
+				"patcherrelativepath" : "../../../../../Shared/Max 7/Examples/legacy-examples/effects/reverb",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "yafr2.maxpat",
-				"bootpath" : "~/Documents/Max 7/Packages/RISE/RISE_Cantor/patchers",
-				"patcherrelativepath" : "../../Documents/Max 7/Packages/RISE/RISE_Cantor/patchers",
+				"bootpath" : "/Users/Shared/Max 7/Examples/effects/reverb/lib",
+				"patcherrelativepath" : "../../../../../Shared/Max 7/Examples/effects/reverb/lib",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "drywet.maxpat",
-				"bootpath" : "~/Desktop/_sliceBuf",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "lowshelf.maxpat",
-				"bootpath" : "~/Desktop/_sliceBuf",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "highshelf.maxpat",
-				"bootpath" : "~/Desktop/_sliceBuf",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "rhythm.maxpat",
-				"bootpath" : "~/Desktop/_sliceBuf",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "ccma_rhythm_eq_first.maxpat",
-				"bootpath" : "~/Desktop/_sliceBuf",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "ccma_rhythm_eq_second.maxpat",
-				"bootpath" : "~/Desktop/_sliceBuf",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "redux_rhy.maxpat",
-				"bootpath" : "~/Desktop/_sliceBuf",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "compressor.maxpat",
-				"bootpath" : "~/Desktop/_sliceBuf",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "limiter.maxpat",
-				"bootpath" : "~/Desktop/_sliceBuf",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "storm.maxpat",
-				"bootpath" : "~/Desktop/_sliceBuf",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "SimpleDelay_First.maxpat",
-				"bootpath" : "~/Desktop/_sliceBuf",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
