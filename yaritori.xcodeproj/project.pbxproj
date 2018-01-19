@@ -470,6 +470,8 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				F2FFCEB01F62A27D00E71BAA /* VSyn.hpp */,
+				F2FFCEAF1F62A27D00E71BAA /* VSyn.cpp */,
 				F2450090200B042300454D28 /* getArraySize.h */,
 				F2450091200B1A1A00454D28 /* Bullet.cpp */,
 				F2450092200B1A1A00454D28 /* Bullet.hpp */,
@@ -486,8 +488,6 @@
 				F251DC992006A49E005D2472 /* Shape2Agent.cpp */,
 				F251DC9A2006A49E005D2472 /* Shape2Agent.hpp */,
 				F2D2DCF81FFF2746004513CB /* ag_shape.h */,
-				F2FFCEB01F62A27D00E71BAA /* VSyn.hpp */,
-				F2FFCEAF1F62A27D00E71BAA /* VSyn.cpp */,
 				F2ABF1261FEFF227006773CE /* Network.cpp */,
 				F2ABF1271FEFF227006773CE /* Network.hpp */,
 				F26D88141F6B638600AC27FE /* cam_func.hpp */,
