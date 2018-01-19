@@ -518,7 +518,10 @@ void triggerRipple(ag_t *focus){
     float posi[2];
     posi[0] = focus->posi.x;
     posi[1] = focus->posi.y;
+    
+#ifndef KILL_RIPPLES
     gismo.bang("/ripple", posi);
+#endif
     
 }
 
