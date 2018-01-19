@@ -17,8 +17,8 @@
 /// Includes ///
 
 //#define DEBUG_MODE
-#define DUMMY_AG_A_NUM 200
-#define DUMMY_AG_B_NUM 200
+#define DUMMY_AG_A_NUM 10
+#define DUMMY_AG_B_NUM 10
 
 //#define PERFORMANCE_MODE
 #define GISMO_UPDATE_INTERVAL 0.033
