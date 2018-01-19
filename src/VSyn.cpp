@@ -575,13 +575,15 @@ void VSyn::test(){
         ag_shapes[i] = shape;
         //gismo.bang("/addShape", &shape);
     }
+    assert(ag_shapes_count == 0);
+    
+    
     //assert(ag_shapes_count == 1);
     //assert( ag_shapes[0].node_count == 2 );
     //assert (ag_shapes[0].edges[0].node_id_b == 1);
     std::cout << "VSyn:: addAgShape is ok." << std::endl;
 
     
-
     
     
     
@@ -669,14 +671,14 @@ void VSyn::test(){
     //gismo.addAgent(ag);
     
     
-//    ag.size = 0.03;
+    ag.size = 0.03;
     
-//    for(int i=0;i<DUMMY_AG_A_NUM;i++) gismo.addAgent(ag);
+    for(int i=0;i<DUMMY_AG_A_NUM;i++) gismo.addAgent(ag);
 
     //_ag.size *= 0.8f;
     ag.mov *= 2.5f;
     ag.view *= 1.0f;
-//    for(int i=0;i<DUMMY_AG_B_NUM;i++) gismo.addAgent(ag);
+    for(int i=0;i<DUMMY_AG_B_NUM;i++) gismo.addAgent(ag);
     
     
 //    for(int i=0; i<1600; i++){
