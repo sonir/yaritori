@@ -15,6 +15,10 @@
 #define AG_MAX 9000
 #define SEED_MAX 63
 
+//World Rate of Space
+#define WORLD_WIDTH 2.9f //for 3screens //1.0f
+#define WORLD_HEIGHT 1.0f
+
 //Agent Default Parameters
 #define AG_DEF_SIZE 0.001f//0.0034f
 #define AG_DEF_MOV 0.2f//0.002f
@@ -97,8 +101,8 @@ class GismoManager : public EventHandler {
         agent_buf_t add;
         Event *sound;
         //Store the screen rate
-        float width_rate = 1.0f;
-        float height_rate = 1.0f;
+        float width_rate = WORLD_WIDTH;
+        float height_rate = WORLD_HEIGHT;
     
         //Methods
         void setup();
