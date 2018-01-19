@@ -8,6 +8,9 @@
 
 #ifndef screen_setup_h
 #define screen_setup_h
+#import <iostream>
+
+//#define DEBUG_MODE_SCREEN
 
 //Length: real length(mm) | input figures on the site
 constexpr float DISPLAY_LENGTH_W = 7111.;
@@ -20,8 +23,13 @@ constexpr float ORIGIN_1_LENGTH_W = 0.;
 constexpr float ORIGIN_2_LENGTH_W = 0.;
 
 //display resolution(projector)
+#ifdef DEBUG_MODE_SCREEN
+constexpr int DISPLAY_WIDTH = 440;//440;//1920;
+constexpr int DISPLAY_HEIGHT = 225;//225;//1080;
+#else
 constexpr int DISPLAY_WIDTH = 1920;//1920;
 constexpr int DISPLAY_HEIGHT = 1080;//1080;
+#endif
 
 //Display reslution (master pc)
 constexpr int MASTER_WIDTH = 1920;

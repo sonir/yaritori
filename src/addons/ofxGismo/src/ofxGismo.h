@@ -9,7 +9,7 @@
 #pragma once
 
 //SETUP FLAGS
-#define KILL_RIPPLES
+//#define KILL_RIPPLES
 
 //AG BUF SETUPS
 #define AG_MAX 9000
