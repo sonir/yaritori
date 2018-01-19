@@ -16,19 +16,6 @@ void VSyn::setup(){
     //Set Metro
     metro = new Metro(GISMO_UPDATE_INTERVAL);
     
-    //Set for bullet
-    posi_t p_a , p_b;
-    p_a.x = 0.5f; p_a.y = 0.5f;
-    p_b.x = 1.0f; p_b.y = 1.0f;
-    aLine.node_a = p_a;
-    aLine.node_b = p_b;
-    bullet = new Bullet();
-    bullet->bang();
-    
-    //Create TestClass
-    myTest = new Test(&sound, &ripple);
-    myTest->setup();
-    
     ofBackground(255);
     ofSetCircleResolution(50);
     ofSetFrameRate(30);
@@ -62,6 +49,9 @@ void VSyn::setup(){
     visual.events.setRippleManagerPtr(&ripple);
     
     
+    
+    //Create TestClass
+    myTest = new Test(&sound, &ripple);
     myTest->setup();
 
     //Do Test Code
@@ -365,14 +355,14 @@ void VSyn::draw(){
     
 
 #ifdef DEBUG_MODE
-    //drawAgentsForSimpleGraphics
+    //drawAgentsForSimpleGraphics for debugging
     drawAgentsWithChar.draw(&gismo, screen_w, screen_h);
 #else
     //drawAgents
     for(int i = 0; i < 3; i++){
         scManager.begin(i);
         
-        //Draw Agents
+        //Draw Agents normally
         drawAgents(&visual);
         
         //Ripple
@@ -382,7 +372,15 @@ void VSyn::draw(){
     }
     
     scManager.draw();
+
 #endif
+    
+#ifdef PERFORMANCE_MODE
+    performanceManager.updateLines();
+    performanceManager.updateLinesInverted();
+    drawPerformance(&performanceManager);
+#endif
+    
     
     for(int i=0; i<CONTAINER_MAX; i++){
         
@@ -434,69 +432,7 @@ void VSyn::draw(){
         
     }
 
-/*
-#ifdef DEBUG_MODE
-    /// DRAW_AGENTS_CONDITIONS
-    int count = gismo.agents.count;
-    ag_t *agents = gismo.getAgents(); //sets agents pointer
-    ag_t *ag;
-    string cond_flg;
-    
-    for(int i =0; i<count; i++){
-        
-        ag = agents; //Set agent address
-        
-        if(ag->active){
 
-            int tmp_x = (int)( ag->posi.x * (float)screen_w );
-            int tmp_y = (int)( ag->posi.y * (float)screen_h );
-            
-            switch(ag->condition){
-                    
-                case CALM:
-                    cond_flg = "+";
-                    //cond_flg = to_string(ag->mov);
-                    ofSetColor(50,255,50);
-                    break;
-                    
-                case CHASE:
-                    cond_flg = "C";
-                    ofSetColor(255,255, 50);
-                    break;
-                    
-                case RUN:
-                    cond_flg = "R";
-                    ofSetColor(200, 50, 50);
-                    break;
-                    
-                case DMG:
-                    cond_flg = "D";
-                    ofSetColor(255, 100, 100);
-                    break;
-                    
-                case DEATH:
-                    cond_flg = "x";
-                    ofSetColor(100, 100, 100);
-                    break;
-                    
-                default:
-                    break;
-                    
-                    
-            }
-            
-            //square(ag->posi.x, ag->posi.y, ag->size*10.0f, 0.0f, false);
-            ofDrawBitmapString( cond_flg, tmp_x, tmp_y);
-            //circle(ag->posi.x+0.0078f, ag->posi.y+0.00078f, ag->view,false);
-            ofSetColor(255,255,255);
-        }
-        agents++;
-        
-    }
-    ///
-#endif
-*/
-    
     //Draw Performers
     /*
     for(int i=0; i<PERFORMER_NUM;i++){
@@ -528,7 +464,8 @@ void VSyn::draw(){
     posi_t tmp = bullet->update(aLine);
     circle(tmp.x, tmp.y, 0.0045, 1);
     cout << tmp.x << endl;
-    */
+     */
+
     
     if(cam_flg){
         ofPopMatrix();
@@ -610,7 +547,7 @@ void VSyn::addAgShape(ag_shape_t shape){
 
 
 void VSyn::test(){
-    
+
     //Draw Your Test Code. This method was invoked when the end of setup().
     std::cout << "test method is starting..." << std::endl;
     
@@ -716,30 +653,40 @@ void VSyn::test(){
     
     //Reset all agents
     agBuffReset(&gismo.agents);
+    agBuffReset(&gismo.add);
     
     //Set Agents
-    ag_t act1, act2, act3, act4, act5, act6, act7, act8;
+    ag_t ag;
 
-    //    initAgentActive(&act8);
 
-    act8.posi.x = 0.75f; act8.posi.y = 0.5f;
-    initAgentActive(&act8);
-    act8.posi.x = 0.25f; act8.posi.y = 0.5f;
-    gismo.addAgent(act8);
-    act8.posi.x = 0.75f; act8.posi.y = 0.5f;
-    gismo.addAgent(act8);
-    gismo.addAgent(act8);
+
+    
+    initAgentActive(&ag);
+    ag.posi.x = 0.25f; ag.posi.y = 0.5f;
+    gismo.addAgent(ag);
+    ag.posi.x = 0.75f; ag.posi.y = 0.5f;
+    gismo.addAgent(ag);
+    gismo.addAgent(ag);
     
     
     
-    //for(int i=0;i<600;i++) gismo.addAgent(act8);
-    act8.size *= 0.8f;
-    act8.mov *= 2.5f;
-    act8.view *= 1.0f;
-//    for(int i=0;i<1000;i++) gismo.addAgent(act8);
+//    for(int i=0;i<600;i++) gismo.addAgent(ag);
+//    ag.size *= 0.8f;
+//    ag.mov *= 2.5f;
+//    ag.view *= 1.0f;
+//    for(int i=0;i<1000;i++) gismo.addAgent(ag);
+//    
+//    
+//    for(int i=0; i<1600; i++){
+//        
+//        performanceManager.bullets[i].bang();
+//        
+//    }
+
     
     
     std::cout << "test method has finished." << std::endl;
     
 
+    
 }

@@ -14,13 +14,17 @@
 //#define PERFORMANCE_MODE
 #define GISMO_UPDATE_INTERVAL 0.033
 
+/// Includes ///
+
 //Basics
 #include <stdio.h>
 #include <cassert>
 #include "ofMain.h"
-#include "ofxOsc.h"
 
 //Addons
+#include "ofxOsc.h"
+
+//Gismo
 #include "ofxGismo.h"
 
 //vSyn
@@ -30,7 +34,8 @@
 #include "cam_func.hpp"
 #include "Particle.hpp"
 
-// Yaritori Modules ///
+
+/// Yaritori Modules ///
 
 // Receiving message from network
 #include "Network.hpp"
@@ -41,26 +46,16 @@
 //Test Class
 #include "Test.hpp"
 
-////Visuals
-//SCREEN SETUP
-#define SC_WITDH 1024
-#define SC_HEIGHT 768
-
-//Gismo
-#include "drawAgents.hpp"
-#include "DrawAgentsWithChar.hpp"
-
 //Metro
 #include "Metro.hpp"
 
-
-
-//Ripple
-#include "RippleManager.hpp"
-
-
 //AudioTriger with OSC
 #include "Sound.hpp"
+
+//Drawing
+#include "drawAgents.hpp"
+#include "DrawPerformance.hpp"
+#include "DrawAgentsWithChar.hpp"
 
 
 //OSC
@@ -69,6 +64,7 @@
 
 //#define CONTAINER_MAX 128 //Size of Buffer for Shapes
 #define CONTAINER_MAX AG_MAX*128 //Size of Buffer for Shapes
+
 
 
 class VSyn : public Event {
@@ -116,7 +112,8 @@ class VSyn : public Event {
     void addAgShape(ag_shape_t shape);
     
         //For Performance
-        PerformanceManager performance;
+        PerformanceManager performanceManager;
+        //DrawPerformance drawPerformance;
         line_t aLine;
         Bullet *bullet;
         Metro *metro;
