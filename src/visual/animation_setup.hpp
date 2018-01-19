@@ -12,6 +12,8 @@
 //Constant Values
 constexpr float M_2XPI = M_PI * 2.0;
 
+constexpr float SIZE_FIX = 0.5;
+
 //Modulation on each node
 constexpr float STEP_MAX = M_2XPI * 6.0f;
 constexpr float STEP_MIN = M_2XPI * 4.0f;

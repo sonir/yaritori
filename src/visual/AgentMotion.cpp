@@ -9,8 +9,6 @@
 #include "AgentMotion.hpp"
 
 
-
-
 AgentMotion::AgentMotion() {
     color = 0.0;
     width_rate = 1.0f;
@@ -157,8 +155,8 @@ void AgentMotion::updatePosition() {
     
     for(int i = 0; i < pShape->node_count; i++) {
         //Modulation by CPU
-        float nodeX = (pShape->nodes[i].x + velocityX[i] * phase[i % MOD_NUM ] ) * pAg->size * sizeMod;
-        float nodeY = (pShape->nodes[i].y + velocityY[i] * phase[i % MOD_NUM ] ) * pAg->size * sizeMod;
+        float nodeX = (pShape->nodes[i].x + velocityX[i] * phase[i % MOD_NUM ] ) * pAg->size * sizeMod * SIZE_FIX;
+        float nodeY = (pShape->nodes[i].y + velocityY[i] * phase[i % MOD_NUM ] ) * pAg->size * sizeMod * SIZE_FIX;
 
         ofVec2f pos;
         pos.x = (center.x * aspect + nodeX) * VSYN_HEIGHT ;

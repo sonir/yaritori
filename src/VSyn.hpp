@@ -15,7 +15,7 @@
 #define DUMMY_AG_A_NUM 1000
 #define DUMMY_AG_B_NUM 1000
 
->>>>>>> gismo
+
 //#define PERFORMANCE_MODE
 #define GISMO_UPDATE_INTERVAL 0.033
 
@@ -130,9 +130,6 @@ class VSyn : public Event {
         line_t aLine;
         Bullet *bullet;
         Metro *metro;
-    
-    
-
     
     
     private:

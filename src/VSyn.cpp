@@ -525,8 +525,7 @@ void VSyn::initWindowSize(){
     initCanvasSize(tmp_w, tmp_h);
     particle.screen_width = tmp_w;
     particle.screen_height = tmp_h;
-    
-    
+
 }
 
 
@@ -572,7 +571,10 @@ void VSyn::test(){
     shape.edges[0].node_id_a = 0;
     shape.edges[0].node_id_b = 1;
     shape.edge_count = 1;
-    //for(int i=0;i<100;i++) gismo.bang("/addShape" , &shape);
+    for(int i=0;i < AG_MAX;i++) { 
+        ag_shapes[i] = shape;
+        //gismo.bang("/addShape", &shape);
+    }
     //assert(ag_shapes_count == 1);
     //assert( ag_shapes[0].node_count == 2 );
     //assert (ag_shapes[0].edges[0].node_id_b == 1);
@@ -611,9 +613,9 @@ void VSyn::test(){
 //    gismo.bang("/addShape" , &shape2);
     
     ag_shape_t shape3;
-    shape3.nodes[0].x = 0.5f;
-    shape3.nodes[0].y = 0.5f;
-    shape3.nodes[1].x = -0.5f;
+    shape3.nodes[0].x = 0.05f;
+    shape3.nodes[0].y = 0.05f;
+    shape3.nodes[1].x = -0.05f;
     shape3.nodes[1].y = 0.5;
     shape3.node_count = 2;
     shape3.edges[0].node_id_a = 0;
@@ -623,7 +625,7 @@ void VSyn::test(){
 //    assert(tmpAg.view == 0.005f);
 //    assert(tmpAg.size == 0.00034f);
 //    assert(tmpAg.mov == 0.005f);
-     addAgShape(shape3);
+     //addAgShape(shape3);
     
 
 //    createShape(shape);
@@ -660,21 +662,22 @@ void VSyn::test(){
 //(int i=0;i<1000;i++) gismo.addAgent(act8);
 
     
-    initAgentActive(&ag);
+    //initAgentActive(&ag);
     ag.posi.x = 0.25f; ag.posi.y = 0.5f;
-    gismo.addAgent(ag);
+    //gismo.addAgent(ag);
     ag.posi.x = 0.75f; ag.posi.y = 0.5f;
-    gismo.addAgent(ag);
-    gismo.addAgent(ag);
+    //gismo.addAgent(ag);
+    //gismo.addAgent(ag);
     
     
+    ag.size = 0.03;
     
-    for(int i=0;i<DUMMY_AG_A_NUM;i++) gismo.addAgent(ag);
+//    for(int i=0;i<DUMMY_AG_A_NUM;i++) gismo.addAgent(ag);
 
-    ag.size *= 0.8f;
+    //_ag.size *= 0.8f;
     ag.mov *= 2.5f;
     ag.view *= 1.0f;
-    for(int i=0;i<DUMMY_AG_B_NUM;i++) gismo.addAgent(ag);
+    //for(int i=0;i<DUMMY_AG_B_NUM;i++) gismo.addAgent(ag);
     
     
 //    for(int i=0; i<1600; i++){
