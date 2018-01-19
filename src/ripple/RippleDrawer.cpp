@@ -20,7 +20,7 @@ void RippleDrawer::initVertices() {
     //init verts
     for(int j = 0; j < rippleNum; j++){
         for(int i = 0; i < res; i++){
-            verts[j * res + i].set(centerX * aspect * VSYN_HEIGHT, centerY * VSYN_HEIGHT);
+            verts[j * res + i].set(centerX * aspect * ORIGINAL_HEIGHT, centerY * ORIGINAL_HEIGHT);
             cols[j * res + i] = ofFloatColor(0., 0., 0., 1.);
         }
     }
@@ -54,10 +54,14 @@ void RippleDrawer::updateColor(){
         }else{
             alpha = - (currentTime - (1. - fadeOutRatio)) / fadeOutRatio + 1.;
         }
+        
+        
         ofFloatColor col;
         if(colorState == true){
+            alpha *= RIPPLE_ALPHA_FIX_BLACK;
             col = ofFloatColor(0., 0., 0., alpha);
         }else{
+            alpha *= RIPPLE_ALPHA_FIX_WHITE;
             col = ofFloatColor(1., 1., 1., alpha);
         }
         for(int j = 0; j < rippleNum; j++){
@@ -75,8 +79,8 @@ void RippleDrawer::updateVertex(){
         for(int i = 0; i < res; i++){
             float th = theta * i;
             if(currentTime - lag[j] > 0){
-                float x = centerX * VSYN_HEIGHT * aspect + currentRadius * cos(th) * VSYN_HEIGHT;
-                float y = centerY * VSYN_HEIGHT + currentRadius * sin(th) * VSYN_HEIGHT;
+                float x = centerX * ORIGINAL_HEIGHT * aspect + currentRadius * cos(th) * ORIGINAL_HEIGHT;
+                float y = centerY * ORIGINAL_HEIGHT + currentRadius * sin(th) * ORIGINAL_HEIGHT;
                 verts[j * res + i].set(x, y);
             }
         }

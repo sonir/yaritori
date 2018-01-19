@@ -8,8 +8,8 @@ int main( ){
 
     ofGLWindowSettings settings;
     settings.setGLVersion(3, 2);
-    settings.width = APP_WIDTH;
-    settings.height = APP_HEIGHT;
+    settings.width = SC_WIDTH;
+    settings.height = SC_HEIGHT;
     ofCreateWindow(settings);
     
 	// this kicks off the running of my app

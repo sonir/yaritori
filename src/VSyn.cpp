@@ -43,18 +43,18 @@ void VSyn::setup(){
     //SetupEvents
     gismo.eventAdd("/addShape", this);
     
-
     //Set ag_shape_t and gismo pointer
     visual.motion.setShapePtr(ag_shapes);
     //visual.motion.setGismoPtr(&gismo);
     visual.events.setMotionManagerPtr(&visual.motion);
     visual.events.setRippleManagerPtr(&ripple);
-
-
+    
+    //Set window size for yaritori
+    scManager.setup();
+    initWindowSize();
+    
     //Create TestClass
     myTest = new Test(&sound, &ripple);
-    myTest->setup();
-    
     myTest->setup();
 
     //Init agent
@@ -375,7 +375,7 @@ void VSyn::draw(){
     for(int i = 0; i < 3; i++){
         scManager.begin(i);
         
-        //Draw Agents
+        //Draw Agents normally
         drawAgents(&visual);
         
         //Ripple
@@ -647,8 +647,6 @@ void VSyn::test(){
 //        createShape(shape);
 //        gismo.bang("/addShape" , &shape);
 //    }
-
-    
     
 //    for(int i=0;i < AG_MAX; i++) {
 //        myTest->createShape(&ag_shapes[i]);
@@ -669,10 +667,11 @@ void VSyn::test(){
     //Set Agents
     ag_t ag;
 
+
 //(int i=0;i<1000;i++) gismo.addAgent(act8);
 
     
-    //initAgentActive(&ag);
+//    initAgentActive(&ag);
     ag.posi.x = 0.25f; ag.posi.y = 0.5f;
     //gismo.addAgent(ag);
     ag.posi.x = 0.75f; ag.posi.y = 0.5f;
@@ -680,14 +679,14 @@ void VSyn::test(){
     //gismo.addAgent(ag);
     
     
-    ag.size = 0.03;
+//    ag.size = 0.03;
     
 //    for(int i=0;i<DUMMY_AG_A_NUM;i++) gismo.addAgent(ag);
 
     //_ag.size *= 0.8f;
     ag.mov *= 2.5f;
     ag.view *= 1.0f;
-    //for(int i=0;i<DUMMY_AG_B_NUM;i++) gismo.addAgent(ag);
+//    for(int i=0;i<DUMMY_AG_B_NUM;i++) gismo.addAgent(ag);
     
     
 //    for(int i=0; i<1600; i++){

@@ -10,16 +10,21 @@
 #define VSyn_hpp
 
 //Set running mode
+//#define DEBUG_MODE
+//#define PERFORMANCE_MODE
+#define GISMO_UPDATE_INTERVAL 0.033
+
+/// Includes ///
 
 //#define DEBUG_MODE
-#define DUMMY_AG_A_NUM 0
-#define DUMMY_AG_B_NUM 0
+#define DUMMY_AG_A_NUM 200
+#define DUMMY_AG_B_NUM 200
 
 //#define PERFORMANCE_MODE
 #define GISMO_UPDATE_INTERVAL 0.033
 
 //SCREEN SETUP
-#define SC_WITDH 1024
+#define SC_WIDTH 1024
 #define SC_HEIGHT 768
 
 //OSC
@@ -30,9 +35,7 @@
 #define CONTAINER_MAX AG_MAX*128 //Size of Buffer for Shapes
 
 
-
 /// Includes ///
-
 
 //Basics
 #include <stdio.h>
@@ -41,6 +44,7 @@
 
 //Addons
 #include "ofxOsc.h"
+
 //Gismo
 #include "ofxGismo.h"
 

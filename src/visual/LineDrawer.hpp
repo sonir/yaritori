@@ -13,6 +13,7 @@
 #include "ofMain.h"
 #include "timed_interpolation.hpp"
 #include "ofxGismo.h"
+#include "animation_setup.hpp"
 
 
 class LineDrawer{
@@ -26,12 +27,10 @@ public:
 private:
     void update();
     
-    static constexpr float cycle = 1. * 1000.;   //msec
-    float currentPhase, theta;
-    static constexpr float maxR = 0.015;
     
-    static const int NUM = 30;  //num of feature points
-    ofVec2f verts[NUM + 2]; // + myPos + targetPos
+    float currentPhase, theta;
+
+    ofVec2f verts[TURN_NUM + 2]; // + myPos + targetPos
     ofVbo vbo;
     
     TimedInterpolation interpolation;

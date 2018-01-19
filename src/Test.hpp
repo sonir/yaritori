@@ -28,6 +28,7 @@ class Test {
         void setup();
         void run();
         void runSubTest(void* args);
+
         void update();
     
         //Visual
@@ -44,9 +45,10 @@ class Test {
         Sound *sound;
     
 
-        //Visual
-        RippleManager *ripple;
-        EventHandler visEvents;
+
+    //Visual
+    RippleManager *ripple;
+    EventHandler visEvents;
         bool isSolo;
 
     

@@ -112,7 +112,7 @@
 		33612B0320110CD200AD7A2B /* screen_setup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = screen_setup.h; sourceTree = "<group>"; };
 		33ACF295200C032700268C3D /* RippleDrawer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RippleDrawer.cpp; sourceTree = "<group>"; };
 		33ACF296200C032700268C3D /* RippleDrawer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RippleDrawer.hpp; sourceTree = "<group>"; };
-		33ACF297200C032700268C3D /* RippleManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RippleManager.cpp; sourceTree = "<group>"; };
+		33ACF297200C032700268C3D /* RippleManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RippleManager.cpp; sourceTree = "<group>"; wrapsLines = 0; };
 		33ACF298200C032700268C3D /* RippleManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RippleManager.hpp; sourceTree = "<group>"; };
 		33ACF299200C032700268C3D /* timed_interpolation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = timed_interpolation.cpp; sourceTree = "<group>"; };
 		33ACF29A200C032700268C3D /* timed_interpolation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = timed_interpolation.hpp; sourceTree = "<group>"; };

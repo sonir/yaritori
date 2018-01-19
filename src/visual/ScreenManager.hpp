@@ -12,6 +12,8 @@
 #include "ofMain.h"
 #include "timed_interpolation.hpp"
 #include "screen_setup.h"
+#include "ofxGismo.h"
+#include "drawer.hpp"
 
 //Define Structs
 typedef struct pos_t {
@@ -26,14 +28,18 @@ void invertBackground();
 
 typedef enum{UP, DOWN, RIGHT, LEFT} swap_direction;
 
-class ScreenManager{
+
+
+class ScreenManager {
 public:
     ScreenManager();
+    void setup();
     void begin(int window);
     void end(int window);
     void draw();
 
     void swap(int window, swap_direction direction);
+    void swap(int window, float x, float y);
     void setSwapDuration(float go, float out, float back);
     void setOriginPosition(pos_t o1, pos_t o2, pos_t o3);
     void setZoom(int window, pos_t centerPos, float ratio);
@@ -45,11 +51,14 @@ public:
     float swapDur_go, swapDur_out, swapDur_back;    //msec
     void setFullScreen();
     
+
+    
 private:
     void init();
     void initFbo();
     void initStatus();
     void swap_cal();
+    void setEvents();
     
     ofFbo fbo[3];
     ofMesh mesh[3];
