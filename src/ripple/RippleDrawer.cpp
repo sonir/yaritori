@@ -54,10 +54,14 @@ void RippleDrawer::updateColor(){
         }else{
             alpha = - (currentTime - (1. - fadeOutRatio)) / fadeOutRatio + 1.;
         }
+        
+        
         ofFloatColor col;
         if(colorState == true){
+            alpha *= RIPPLE_ALPHA_FIX_BLACK;
             col = ofFloatColor(0., 0., 0., alpha);
         }else{
+            alpha *= RIPPLE_ALPHA_FIX_WHITE;
             col = ofFloatColor(1., 1., 1., alpha);
         }
         for(int j = 0; j < rippleNum; j++){
