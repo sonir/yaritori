@@ -11,6 +11,7 @@
 using namespace std;
 
 void VSyn::setup(){
+    
   ofSetFrameRate(30);
     
     //Set Metro
@@ -56,8 +57,17 @@ void VSyn::setup(){
     
     myTest->setup();
 
+    //Init agent
+    agBuffReset(&gismo.agents);
+    agBuffReset(&gismo.add);
+
     //Do Test Code
     this->test();
+    
+    //Reset State
+    agBuffReset(&gismo.agents);
+    agBuffReset(&gismo.add);
+    
 }
 
 
@@ -689,7 +699,10 @@ void VSyn::test(){
     
     
     std::cout << "test method has finished." << std::endl;
-    
+    //Reset State
+    agBuffReset(&gismo.agents);
+    agBuffReset(&gismo.add);
+
 
     
 }
