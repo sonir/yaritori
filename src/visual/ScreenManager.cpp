@@ -20,6 +20,7 @@ ScreenManager::ScreenManager(){
     }
     
     init();
+    setEvents();
 }
 
 void ScreenManager::init(){
@@ -31,6 +32,7 @@ void ScreenManager::init(){
 }
 
 void ScreenManager::setEvents() {
+    
     auto swapEvent = [&](void* args) {
         param_u* params = (param_u *)args;
         int id = params[0].ival;
@@ -221,6 +223,11 @@ void ScreenManager::swap(int window, swap_direction direction){
             interpolation_w[window].bang(swapDur_go);
             break;
     }
+}
+
+void ScreenManager::swap(int window, float x, float y) {
+    pos[window].x = x * SCREEN_WIDTH;
+    pos[window].y = y * SCREEN_HEIGHT;
 }
 
 void ScreenManager::swap_cal(){
