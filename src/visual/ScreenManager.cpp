@@ -30,6 +30,22 @@ void ScreenManager::init(){
     colorState = true;
 }
 
+void ScreenManager::setEvents() {
+    auto swapEvent = [&](void* args) {
+        param_u* params = (param_u *)args;
+        int id = params[0].ival;
+        float x = params[1].fval;
+        float y = params[2].fval;
+        
+        this->swap(id, x, y);
+        
+    };
+    
+    GismoManager& gismo = GismoManager::getInstance();
+    gismo.lambdaAdd("/swap", swapEvent);
+    
+}
+
 void ScreenManager::initFbo(){
     for(int i = 0; i < 3; i++){
         fbo[i].allocate(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -276,9 +292,10 @@ void ScreenManager::swap_cal(){
 }
 
 void ScreenManager::setFullScreen() {
-    
         ofSetFullscreen(true);
         ofSetWindowShape(APP_WIDTH, APP_HEIGHT);
         ofSetWindowPosition(0, MASTER_HEGHT); //y: height of mbpr display
     
 }
+
+
