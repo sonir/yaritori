@@ -51,7 +51,7 @@ void VSyn::setup(){
     
     //Set window size for yaritori
     scManager.setup();
-    initWindowSize();
+    initCanvasSize(ORIGINAL_WIDTH, ORIGINAL_HEIGHT);
     
     //Create TestClass
     myTest = new Test(&sound, &ripple);
@@ -380,17 +380,16 @@ void VSyn::draw(){
         
         //Ripple
         ripple.draw();
-        
-        scManager.end(i);
-    }
-    
-    scManager.draw();
-#endif
     
 #ifdef PERFORMANCE_MODE
     performanceManager.updateLines();
     performanceManager.updateLinesInverted();
     drawPerformance(&performanceManager);
+#endif        
+        scManager.end(i);
+    }
+    
+    scManager.draw();
 #endif
     
     
@@ -440,8 +439,6 @@ void VSyn::draw(){
                 break;
                 
         }
-        
-        
     }
 
 
@@ -670,7 +667,7 @@ void VSyn::test(){
 
 
     
-//    initAgentActive(&ag);
+    initAgentActive(&ag);
     ag.posi.x = 0.25f; ag.posi.y = 0.5f;
     //gismo.addAgent(ag);
     ag.posi.x = 0.75f; ag.posi.y = 0.5f;

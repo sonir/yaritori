@@ -40,6 +40,7 @@ public:
     
     void addNode(ofVec2f pos);
     void addEdge(ofVec2f node_a, ofVec2f node_b);
+    float aspect;
     
     
     //Methods to set pointer;
