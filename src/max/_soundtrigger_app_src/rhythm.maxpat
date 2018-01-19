@@ -5,11 +5,11 @@
 			"major" : 7,
 			"minor" : 3,
 			"revision" : 4,
-			"architecture" : "x64",
+			"architecture" : "x86",
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 968.0, 80.0, 640.0, 480.0 ],
+		"rect" : [ 839.0, 177.0, 640.0, 480.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -55,7 +55,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "signal" ],
-					"patching_rect" : [ 162.0, 246.0, 42.0, 22.0 ],
+					"patching_rect" : [ 162.0, 247.0, 42.0, 22.0 ],
 					"style" : "",
 					"text" : "limiter"
 				}
@@ -117,7 +117,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-3",
-					"index" : 0,
+					"index" : 2,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -130,11 +130,11 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-4",
-					"index" : 0,
+					"index" : 2,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "" ],
+					"outlettype" : [ "signal" ],
 					"patching_rect" : [ 202.0, 9.0, 30.0, 30.0 ],
 					"style" : ""
 				}
@@ -144,7 +144,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-2",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -157,11 +157,11 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-1",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "" ],
+					"outlettype" : [ "signal" ],
 					"patching_rect" : [ 162.0, 9.0, 30.0, 30.0 ],
 					"style" : ""
 				}
@@ -269,60 +269,7 @@
 				}
 
 			}
- ],
-		"parameters" : 		{
-			"obj-8::obj-15" : [ "Makeup", "Makeup", 4 ],
-			"obj-8::obj-30" : [ "Ratio", "Ratio", 1 ],
-			"obj-8::obj-14" : [ "Release", "Release", 3 ],
-			"obj-8::obj-55" : [ "Threshold", "Threshold", 0 ],
-			"obj-8::obj-7" : [ "Output Gain", "Output Gain", 5 ],
-			"obj-8::obj-13" : [ "Attack", "Attack", 2 ]
-		}
-,
-		"dependency_cache" : [ 			{
-				"name" : "ccma_rhythm_eq_first.maxpat",
-				"bootpath" : "~/Desktop/180114_cmma/effectors/finished_product/effector_pack/rhythm",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "eq.maxpat",
-				"bootpath" : "~/Desktop/180114_cmma/effectors/old/olddrone",
-				"patcherrelativepath" : "../../../old/olddrone",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "ccma_rhythm_eq_second.maxpat",
-				"bootpath" : "~/Desktop/180114_cmma/effectors/finished_product/effector_pack/rhythm",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "redux_rhy.maxpat",
-				"bootpath" : "~/Desktop/180114_cmma/effectors/finished_product/effector_pack/rhythm",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "compressor.maxpat",
-				"bootpath" : "~/Desktop/180114_cmma/effectors/finished_product/effector_pack/rhythm",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "limiter.maxpat",
-				"bootpath" : "~/Desktop/180114_cmma/effectors/finished_product/effector_pack/rhythm",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
- ],
-		"autosave" : 0
+ ]
 	}
 
 }
