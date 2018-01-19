@@ -27,9 +27,6 @@ class Test {
         Test(Sound *pSnd, RippleManager *pRipple);
         void setup();
         void run();
-
-
-
         void runSubTest(void* args);
 
         void update();
@@ -40,7 +37,7 @@ class Test {
         void solo();
     
     
-    void createShape(ag_shape_t* shape);
+        void createShape(ag_shape_t* shape);
 
     
     
@@ -48,10 +45,13 @@ class Test {
         Sound *sound;
     
 
+
     //Visual
     RippleManager *ripple;
     EventHandler visEvents;
         bool isSolo;
+
+    
         int arg1;
         int arg2;
 

@@ -48,7 +48,9 @@ void VSyn::setup(){
     visual.events.setMotionManagerPtr(&visual.motion);
     visual.events.setRippleManagerPtr(&ripple);
     
-    
+    //Set window size for yaritori
+    scManager.setup();
+    initWindowSize();
     
     //Create TestClass
     myTest = new Test(&sound, &ripple);
@@ -357,6 +359,7 @@ void VSyn::draw(){
 #ifdef DEBUG_MODE
     //drawAgentsForSimpleGraphics for debugging
     drawAgentsWithChar.draw(&gismo, screen_w, screen_h);
+    
 #else
     //drawAgents
     for(int i = 0; i < 3; i++){
@@ -372,7 +375,6 @@ void VSyn::draw(){
     }
     
     scManager.draw();
-
 #endif
     
 #ifdef PERFORMANCE_MODE
@@ -523,8 +525,7 @@ void VSyn::initWindowSize(){
     initCanvasSize(tmp_w, tmp_h);
     particle.screen_width = tmp_w;
     particle.screen_height = tmp_h;
-    
-    
+
 }
 
 
@@ -543,7 +544,6 @@ void VSyn::addAgShape(ag_shape_t shape){
     gismo.addAgent( shape2Agent(shape) );
     
 }
-
 
 
 void VSyn::test(){
@@ -571,7 +571,10 @@ void VSyn::test(){
     shape.edges[0].node_id_a = 0;
     shape.edges[0].node_id_b = 1;
     shape.edge_count = 1;
-    for(int i=0;i<100;i++) gismo.bang("/addShape" , &shape);
+    for(int i=0;i < AG_MAX;i++) { 
+        ag_shapes[i] = shape;
+        //gismo.bang("/addShape", &shape);
+    }
     //assert(ag_shapes_count == 1);
     //assert( ag_shapes[0].node_count == 2 );
     //assert (ag_shapes[0].edges[0].node_id_b == 1);
@@ -610,9 +613,9 @@ void VSyn::test(){
 //    gismo.bang("/addShape" , &shape2);
     
     ag_shape_t shape3;
-    shape3.nodes[0].x = 0.5f;
-    shape3.nodes[0].y = 0.5f;
-    shape3.nodes[1].x = -0.5f;
+    shape3.nodes[0].x = 0.05f;
+    shape3.nodes[0].y = 0.05f;
+    shape3.nodes[1].x = -0.05f;
     shape3.nodes[1].y = 0.5;
     shape3.node_count = 2;
     shape3.edges[0].node_id_a = 0;
@@ -622,7 +625,7 @@ void VSyn::test(){
 //    assert(tmpAg.view == 0.005f);
 //    assert(tmpAg.size == 0.00034f);
 //    assert(tmpAg.mov == 0.005f);
-     addAgShape(shape3);
+     //addAgShape(shape3);
     
 
 //    createShape(shape);
@@ -634,8 +637,6 @@ void VSyn::test(){
 //        createShape(shape);
 //        gismo.bang("/addShape" , &shape);
 //    }
-
-    
     
 //    for(int i=0;i < AG_MAX; i++) {
 //        myTest->createShape(&ag_shapes[i]);
@@ -647,8 +648,6 @@ void VSyn::test(){
 //    shape.edges[1].node_id_a = 1; shape.edges[1].node_id_b = 2;
 //    shape.edges[2].node_id_a = 2; shape.edges[2].node_id_b = 3;
 //    shape.edges[3].node_id_a = 3; shape.edges[3].node_id_b = 0;
-//    gismo.bang("/addShape" , &shape);
-
 
     
     //Reset all agents
@@ -659,24 +658,27 @@ void VSyn::test(){
     ag_t ag;
 
 
+//(int i=0;i<1000;i++) gismo.addAgent(act8);
 
     
-    initAgentActive(&ag);
+//    initAgentActive(&ag);
     ag.posi.x = 0.25f; ag.posi.y = 0.5f;
-    gismo.addAgent(ag);
+    //gismo.addAgent(ag);
     ag.posi.x = 0.75f; ag.posi.y = 0.5f;
-    gismo.addAgent(ag);
-    gismo.addAgent(ag);
+    //gismo.addAgent(ag);
+    //gismo.addAgent(ag);
     
     
+//    ag.size = 0.03;
     
-//    for(int i=0;i<600;i++) gismo.addAgent(ag);
-//    ag.size *= 0.8f;
-//    ag.mov *= 2.5f;
-//    ag.view *= 1.0f;
-//    for(int i=0;i<1000;i++) gismo.addAgent(ag);
-//    
-//    
+//    for(int i=0;i<DUMMY_AG_A_NUM;i++) gismo.addAgent(ag);
+
+    //_ag.size *= 0.8f;
+    ag.mov *= 2.5f;
+    ag.view *= 1.0f;
+//    for(int i=0;i<DUMMY_AG_B_NUM;i++) gismo.addAgent(ag);
+    
+    
 //    for(int i=0; i<1600; i++){
 //        
 //        performanceManager.bullets[i].bang();

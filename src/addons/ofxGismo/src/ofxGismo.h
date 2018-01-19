@@ -8,8 +8,11 @@
 
 #pragma once
 
+//SETUP FLAGS
+//#define KILL_RIPPLES
+
 //AG BUF SETUPS
-#define AG_MAX 3000
+#define AG_MAX 9000
 #define SEED_MAX 63
 
 //Agent Default Parameters

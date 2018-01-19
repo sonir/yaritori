@@ -16,6 +16,27 @@
 
 /// Includes ///
 
+//#define DEBUG_MODE
+#define DUMMY_AG_A_NUM 200
+#define DUMMY_AG_B_NUM 200
+
+//#define PERFORMANCE_MODE
+#define GISMO_UPDATE_INTERVAL 0.033
+
+//SCREEN SETUP
+#define SC_WIDTH 1024
+#define SC_HEIGHT 768
+
+//OSC
+#define PORT 57139
+#define NUM_MSG_STRINGS 20
+
+//#define CONTAINER_MAX 128 //Size of Buffer for Shapes
+#define CONTAINER_MAX AG_MAX*128 //Size of Buffer for Shapes
+
+
+/// Includes ///
+
 //Basics
 #include <stdio.h>
 #include <cassert>
@@ -49,6 +70,7 @@
 //Metro
 #include "Metro.hpp"
 
+
 //AudioTriger with OSC
 #include "Sound.hpp"
 
@@ -56,14 +78,8 @@
 #include "drawAgents.hpp"
 #include "DrawPerformance.hpp"
 #include "DrawAgentsWithChar.hpp"
+#include "RippleManager.hpp"
 
-
-//OSC
-#define PORT 57139
-#define NUM_MSG_STRINGS 20
-
-//#define CONTAINER_MAX 128 //Size of Buffer for Shapes
-#define CONTAINER_MAX AG_MAX*128 //Size of Buffer for Shapes
 
 
 
@@ -117,9 +133,6 @@ class VSyn : public Event {
         line_t aLine;
         Bullet *bullet;
         Metro *metro;
-    
-    
-
     
     
     private:

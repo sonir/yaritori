@@ -112,7 +112,7 @@
 		33612B0320110CD200AD7A2B /* screen_setup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = screen_setup.h; sourceTree = "<group>"; };
 		33ACF295200C032700268C3D /* RippleDrawer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RippleDrawer.cpp; sourceTree = "<group>"; };
 		33ACF296200C032700268C3D /* RippleDrawer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RippleDrawer.hpp; sourceTree = "<group>"; };
-		33ACF297200C032700268C3D /* RippleManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RippleManager.cpp; sourceTree = "<group>"; };
+		33ACF297200C032700268C3D /* RippleManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RippleManager.cpp; sourceTree = "<group>"; wrapsLines = 0; };
 		33ACF298200C032700268C3D /* RippleManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RippleManager.hpp; sourceTree = "<group>"; };
 		33ACF299200C032700268C3D /* timed_interpolation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = timed_interpolation.cpp; sourceTree = "<group>"; };
 		33ACF29A200C032700268C3D /* timed_interpolation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = timed_interpolation.hpp; sourceTree = "<group>"; };
@@ -470,6 +470,8 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				F2FFCEB01F62A27D00E71BAA /* VSyn.hpp */,
+				F2FFCEAF1F62A27D00E71BAA /* VSyn.cpp */,
 				F2450090200B042300454D28 /* getArraySize.h */,
 				F2450091200B1A1A00454D28 /* Bullet.cpp */,
 				F2450092200B1A1A00454D28 /* Bullet.hpp */,
@@ -486,8 +488,6 @@
 				F251DC992006A49E005D2472 /* Shape2Agent.cpp */,
 				F251DC9A2006A49E005D2472 /* Shape2Agent.hpp */,
 				F2D2DCF81FFF2746004513CB /* ag_shape.h */,
-				F2FFCEB01F62A27D00E71BAA /* VSyn.hpp */,
-				F2FFCEAF1F62A27D00E71BAA /* VSyn.cpp */,
 				F2ABF1261FEFF227006773CE /* Network.cpp */,
 				F2ABF1271FEFF227006773CE /* Network.hpp */,
 				F26D88141F6B638600AC27FE /* cam_func.hpp */,

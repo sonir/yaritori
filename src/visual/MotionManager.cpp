@@ -111,8 +111,7 @@ void MotionManager::drawAll() {
             //square(ag->posi.x, ag->posi.y, ag->size, 0.0f, true);
             agent[i].pAg = ag;
             agent[i].dest.x = ag->posi.x;
-            agent[i].dest.y = ag->posi.y;
-            
+            agent[i].dest.y = ag->posi.y;            
             agent[i].update();
             agent[i].draw();
             
@@ -187,6 +186,12 @@ void MotionManager::draw() {
     } else {
         drawSolo();
     }
+    
+//    ofSetColor(ofFloatColor(color));
+//    nodeVbo.updateVertexData(vbo.nodePos, vbo.nodeNum);
+//    nodeVbo.updateColorData(vbo.nodeColors,  vbo.nodeNum);
+//    nodeVbo.draw(GL_POINTS, 0, vbo.nodeNum);
+    
 }
 
 void MotionManager::sendOSC(const string adr, param_u* args,  int numArgs) {

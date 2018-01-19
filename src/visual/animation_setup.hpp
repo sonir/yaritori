@@ -14,12 +14,13 @@
 
 //Constant Values
 constexpr float M_2XPI = M_PI * 2.0;
+constexpr float SIZE_FIX = 0.5;
 
 //Modulation on each node
 constexpr float STEP_MAX = M_2XPI * 6.0f;
 constexpr float STEP_MIN = M_2XPI * 4.0f;
 
-constexpr float TREMOR_RATIO = 0.12f;
+constexpr float TREMOR_RATIO = 0.18f;//180119 MODIFIED BY 137 //0.12f;
 constexpr float STAY_RATIO = 1.0 - TREMOR_RATIO;
 constexpr float MOV_FIX = 0.008;
 
@@ -32,9 +33,7 @@ constexpr float SIZE_MOD_STEP = 0.04;
 constexpr float easing = 0.05;
 
 
-
 /////////////////// WAVEFORM ///////////////////
-
 static constexpr float cycle = 1. * 1000.;   //msec
 static constexpr float maxR = 0.01;    //Max amplitude
 static const int TURN_NUM = 15;  //num of feature points

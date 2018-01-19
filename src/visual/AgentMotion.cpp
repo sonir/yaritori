@@ -9,8 +9,6 @@
 #include "AgentMotion.hpp"
 
 
-
-
 AgentMotion::AgentMotion() {
     color = 0.0;
     width_rate = 1.0f;
@@ -77,8 +75,8 @@ void AgentMotion::initModulation() {
 void AgentMotion::initVbo() {
     for(int i = 0; i < pShape->node_count; i++) {
         ofVec2f pos;
-        pos.x = ( center.x + (pShape->nodes[i].x * size)) * VSYN_HEIGHT;
-        pos.y = ( center.y + (pShape->nodes[i].y * size)) * VSYN_HEIGHT;
+        pos.x = ( center.x + (pShape->nodes[i].x * size)) * ORIGINAL_HEIGHT;
+        pos.y = ( center.y + (pShape->nodes[i].y * size)) * ORIGINAL_HEIGHT;
         
         nodePos[i] = pos;
         nodeColors[i] = ofFloatColor(color);
@@ -117,7 +115,7 @@ void AgentMotion::updateColors() {
 
 void AgentMotion::updateCenter() {
     ofVec2f diff = dest - center;
-    float length = diff.length() * VSYN_HEIGHT;
+    float length = diff.length() * ORIGINAL_HEIGHT;
     
 //    if(0.9 < spd) {
 //        center = dest;
@@ -157,12 +155,12 @@ void AgentMotion::updatePosition() {
     
     for(int i = 0; i < pShape->node_count; i++) {
         //Modulation by CPU
-        float nodeX = (pShape->nodes[i].x + velocityX[i] * phase[i % MOD_NUM ] ) * pAg->size * sizeMod;
-        float nodeY = (pShape->nodes[i].y + velocityY[i] * phase[i % MOD_NUM ] ) * pAg->size * sizeMod;
+        float nodeX = (pShape->nodes[i].x + velocityX[i] * phase[i % MOD_NUM ] ) * pAg->size * sizeMod * SIZE_FIX;
+        float nodeY = (pShape->nodes[i].y + velocityY[i] * phase[i % MOD_NUM ] ) * pAg->size * sizeMod * SIZE_FIX;
 
         ofVec2f pos;
-        pos.x = (center.x * aspect + nodeX) * VSYN_HEIGHT ;
-        pos.y = (center.y + nodeY) * VSYN_HEIGHT;
+        pos.x = (center.x * aspect + nodeX) * ORIGINAL_HEIGHT ;
+        pos.y = (center.y + nodeY) * ORIGINAL_HEIGHT;
         
         
         //Modulation by Shader

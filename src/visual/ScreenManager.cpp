@@ -23,6 +23,14 @@ ScreenManager::ScreenManager(){
     setEvents();
 }
 
+
+void ScreenManager::setup() {
+    
+    ofSetWindowShape(APP_WIDTH, APP_HEIGHT);
+    initCanvasSize(APP_WIDTH, APP_HEIGHT);
+//    vsyn.initWindowSize();
+}
+
 void ScreenManager::init(){
     initFbo();
     initStatus();
@@ -73,11 +81,11 @@ void ScreenManager::initFbo(){
 
 void ScreenManager::initStatus(){
     pos_t tmp[3];
-    tmp[0].x = (SCREEN_WIDTH * 0.5 + MARGIN) / VSYN_WIDTH;
+    tmp[0].x = (SCREEN_WIDTH * 0.5 + MARGIN) / ORIGINAL_HEIGHT;
     tmp[0].y = 0.5;
-    tmp[1].x = (SCREEN_WIDTH * 1.5 + MARGIN * 2.) / VSYN_WIDTH;
+    tmp[1].x = (SCREEN_WIDTH * 1.5 + MARGIN * 2.) / ORIGINAL_HEIGHT;
     tmp[1].y = 0.5;
-    tmp[2].x = (SCREEN_WIDTH * 2.5 + MARGIN * 3.) / VSYN_WIDTH;
+    tmp[2].x = (SCREEN_WIDTH * 2.5 + MARGIN * 3.) / ORIGINAL_HEIGHT;
     tmp[2].y = 0.5;
     
     for(int i = 0; i < 3; i++){
@@ -106,7 +114,7 @@ void ScreenManager::begin(int window){
     ofPushMatrix();
     ofTranslate(SCREEN_WIDTH * 0.5, SCREEN_HEIGHT * 0.5);
     ofScale(ratio[window], ratio[window]);
-    ofTranslate(-centerPos[window].x * VSYN_WIDTH, -centerPos[window].y * VSYN_HEIGHT);
+    ofTranslate(-centerPos[window].x * ORIGINAL_HEIGHT, -centerPos[window].y * ORIGINAL_HEIGHT);
 //    ofSetColor(255, 0, 0);
 //    ofDrawCircle(centerPos[window].x  * VSYN_WIDTH, centerPos[window].y * VSYN_HEIGHT, 50);
 //    ofNoFill();
@@ -188,7 +196,7 @@ void ScreenManager::drawBackground(){
         ofDrawRectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     }else{
         ofSetColor(0);
-        ofDrawRectangle(0, 0, VSYN_WIDTH, VSYN_HEIGHT);
+        ofDrawRectangle(0, 0, ORIGINAL_HEIGHT, ORIGINAL_HEIGHT);
     }
 }
 

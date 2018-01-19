@@ -13,6 +13,7 @@
 #include "timed_interpolation.hpp"
 #include "screen_setup.h"
 #include "ofxGismo.h"
+#include "drawer.hpp"
 
 //Define Structs
 typedef struct pos_t {
@@ -27,9 +28,12 @@ void invertBackground();
 
 typedef enum{UP, DOWN, RIGHT, LEFT} swap_direction;
 
+
+
 class ScreenManager {
 public:
     ScreenManager();
+    void setup();
     void begin(int window);
     void end(int window);
     void draw();
