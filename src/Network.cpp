@@ -64,7 +64,7 @@ void Network :: update(){
             
             
         }
-        else if( m.getAddress() == "/test/outline" /*"/que"*/ ){ //Receiving Agents
+        else if( m.getAddress() == "/yaritori/post" /*"/que"*/ ){ //Receiving Agents
             
             cout << "Network :: /outline received" << endl;
             shape.node_count = m.getArgAsInt32(0);
@@ -102,6 +102,12 @@ void Network :: update(){
             
             int performer_id = m.getArgAsInt32(0);
             gismo.bang("/sjq/atk" , &performer_id);
+            
+            
+        } else if (  m.getAddress() == "/reset" ) { //Reset Agents
+            
+            int key_num = m.getArgAsInt32(0);
+            if (key_num == 137) gismo.bang("/reset" , &key_num);
             
             
         } else {

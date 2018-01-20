@@ -12,6 +12,23 @@ using namespace std;
 
 void VSyn::setup(){
     
+    //// EventSetup ////
+    
+    //ResetFunction
+    //SetUpEvents
+    auto f = [&](void* args){ //<- keep this desctiption
+        //draw your code
+        int *key_num = (int *)args;
+        //Reset State
+        agBuffReset(&gismo.agents);
+        agBuffReset(&gismo.add);
+        
+    };
+    gismo.lambdaAdd("/reset", f);
+    
+    
+    ////////////////////
+    
     //Set Metro
     metro = new Metro(GISMO_UPDATE_INTERVAL);
         
