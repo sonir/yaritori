@@ -82,9 +82,9 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 340.0, 302.0, 63.0, 22.0 ],
+					"patching_rect" : [ 340.0, 302.0, 69.0, 22.0 ],
 					"style" : "",
-					"text" : "pack 0.87"
+					"text" : "pack 0.087"
 				}
 
 			}
