@@ -57,12 +57,14 @@ void ScreenManager::setEvents() {
         int vertexId = params[1].ival;
         float x = params[2].fval;
         float y = params[3].fval;
+        this->setMask(window, vertexId, x, y);
+        cout << "MASK SET" << endl;
     };
     
     
     GismoManager& gismo = GismoManager::getInstance();
     gismo.lambdaAdd("/swap", swapEvent);
-    gismo.lambdaAdd("/masp", maskEvent);
+    gismo.lambdaAdd("/mask", maskEvent);
     
 }
 
@@ -214,7 +216,7 @@ void ScreenManager::end(){
 //}
 
 void ScreenManager::setMask(int window, int vertexId, float x, float y){
-    mask_pos[window * 4 + vertexId].set(x + DISPLAY_WIDTH, y * DISPLAY_HEIGHT);
+    mask_pos[window * 4 + vertexId].set(x * DISPLAY_WIDTH, y * DISPLAY_HEIGHT);
 }
 
 void ScreenManager::mask(){
