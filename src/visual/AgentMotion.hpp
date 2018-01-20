@@ -39,6 +39,7 @@ public:
     void updateColors();
     float getPointSize();
     float getLineWidth();
+    void move(float x, float y);
     
     void setShapePtr(ag_shape_t *shapePtr);
     

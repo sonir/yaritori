@@ -14,6 +14,8 @@ AgentMotion::AgentMotion() {
     width_rate = 1.0f;
     size = 0.03;
     //mov = 0.01;
+    center.x = -100.0;
+    center.y = -100.0;
     pShape = &this->shape;
     
     resetShape();
@@ -117,14 +119,11 @@ void AgentMotion::updateCenter() {
     ofVec2f diff = dest - center;
     float length = diff.length() * ORIGINAL_HEIGHT;
     
-//    if(0.9 < spd) {
-//        center = dest;
-//    }
     
     if(SCREEN_HEIGHT < length) {
         center = dest;
     } else {
-        center += (dest - center) * easing;
+        center += (dest - center) * EASING_RATIO;
     }
 }
 
@@ -281,5 +280,17 @@ void AgentMotion::invertColor() {
 }
 
 
-
+void AgentMotion::move(float x, float y) {
+    if(center.x != -100 && center.y != -100) {
+        dest.x = x;
+        dest.y = y;
+        center.x = x;
+        center.y = y;
+    } else {
+        dest.x = x;
+        dest,y = y;
+    }
+    
+    
+}
 

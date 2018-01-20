@@ -39,8 +39,6 @@ void Test :: runSubTest(void* args){
     cout << "EVENT /lambdaTest arg2=" << arg2 << endl;
     cout << "---" << endl;
     
-    
-    
 }
 
 

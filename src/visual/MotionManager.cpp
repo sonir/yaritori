@@ -113,8 +113,8 @@ void MotionManager::drawAll() {
         if(ag->active){
             //square(ag->posi.x, ag->posi.y, ag->size, 0.0f, true);
             agent[i].pAg = ag;
-            agent[i].dest.x = ag->posi.x;
-            agent[i].dest.y = ag->posi.y;            
+            agent[i].move(ag->posi.x, ag->posi.y);
+
             agent[i].update();
             agent[i].draw();
             

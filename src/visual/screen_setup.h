@@ -45,7 +45,7 @@ constexpr int MARGIN = MARGIN_LENGTH * PixPerMm_H;
 constexpr int SCREEN_WIDTH = SCREEN_LENGHT_W * PixPerMm_W;
 constexpr int SCREEN_HEIGHT = SCREEN_LENGTH_H * PixPerMm_H;
 
-constexpr int ORIGINAL_WIDTH = SCREEN_WIDTH * 3 + MARGIN * 4;
+constexpr int ORIGINAL_WIDTH = SCREEN_HEIGHT * 3 + MARGIN * 4;
 constexpr int ORIGINAL_HEIGHT = SCREEN_HEIGHT + MARGIN * 2;  //That is 1.0
 
 constexpr int APP_WIDTH = DISPLAY_WIDTH * 3;
