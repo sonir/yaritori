@@ -44,7 +44,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 54.0, 419.0, 30.0, 30.0 ],
+					"patching_rect" : [ 81.0, 404.0, 30.0, 30.0 ],
 					"style" : ""
 				}
 
@@ -71,7 +71,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 45.0, 294.0, 30.0, 30.0 ],
+					"patching_rect" : [ 49.5, 279.0, 30.0, 30.0 ],
 					"style" : ""
 				}
 
@@ -85,7 +85,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 30.0, 279.0, 30.0, 30.0 ],
+					"patching_rect" : [ 39.0, 279.0, 30.0, 30.0 ],
 					"style" : ""
 				}
 

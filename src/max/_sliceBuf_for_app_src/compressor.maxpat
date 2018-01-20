@@ -173,7 +173,7 @@
 							"parameter_type" : 0,
 							"parameter_mmax" : 30.0,
 							"parameter_initial_enable" : 1,
-							"parameter_initial" : [ 5.9 ],
+							"parameter_initial" : [ 5.0 ],
 							"parameter_unitstyle" : 4,
 							"parameter_speedlim" : 0.0
 						}

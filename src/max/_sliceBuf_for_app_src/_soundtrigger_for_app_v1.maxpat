@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 34.0, 79.0, 772.0, 887.0 ],
+		"rect" : [ 112.0, 86.0, 772.0, 887.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -38,12 +38,33 @@
 		"subpatcher_template" : "",
 		"boxes" : [ 			{
 				"box" : 				{
+					"bgmode" : 0,
+					"border" : 0,
+					"clickthrough" : 0,
+					"enablehscroll" : 0,
+					"enablevscroll" : 0,
+					"id" : "obj-111",
+					"lockeddragscroll" : 0,
+					"maxclass" : "bpatcher",
+					"name" : "audio_status.maxpat",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"offset" : [ 0.0, 0.0 ],
+					"patching_rect" : [ 535.0, 918.333313, 175.0, 28.666687 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 212.0, 61.499969, 175.0, 28.666687 ],
+					"viewvisibility" : 1
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-109",
 					"maxclass" : "newobj",
 					"numinlets" : 2,
 					"numoutlets" : 4,
 					"outlettype" : [ "signal", "signal", "list", "list" ],
-					"patching_rect" : [ 84.0, 1416.0, 85.0, 22.0 ],
+					"patching_rect" : [ 84.0, 1415.0, 85.0, 22.0 ],
 					"style" : "",
 					"text" : "omx.peaklim~"
 				}
@@ -6345,7 +6366,7 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 25.0, 182.833328, 284.0, 25.0 ],
 					"style" : "",
-					"text" : "DONE Loading Phase"
+					"text" : "PLEASE PUSH BUTTON 1"
 				}
 
 			}
@@ -6424,16 +6445,15 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-38",
-					"linecount" : 2,
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 383.333374, 824.0, 64.0, 35.0 ],
+					"patching_rect" : [ 383.333374, 824.0, 64.0, 22.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 86.5, 396.0, 133.5, 22.0 ],
 					"style" : "",
-					"text" : "4 731 2 0.555"
+					"text" : "0 384 2 1."
 				}
 
 			}
@@ -9572,102 +9592,102 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-120::obj-8::obj-15" : [ "Makeup[1]", "Makeup", 4 ],
-			"obj-120::obj-8::obj-14" : [ "Release[1]", "Release", 3 ],
 			"obj-120::obj-8::obj-55" : [ "Threshold[1]", "Threshold", 0 ],
-			"obj-132" : [ "Dummy_ON", "Dummy_ON", 0 ],
 			"obj-148" : [ "Playback", "Playback", 0 ],
-			"obj-129" : [ "number", "number", 0 ],
-			"obj-146" : [ "Master", "Master", 0 ],
+			"obj-122::obj-1" : [ "live.gain~[2]", "live.gain~", 0 ],
+			"obj-120::obj-8::obj-30" : [ "Ratio[1]", "Ratio", 1 ],
 			"obj-120::obj-8::obj-7" : [ "Output Gain[1]", "Output Gain", 5 ],
-			"obj-126" : [ "Drone_Vol", "Drone", 0 ],
-			"obj-120::obj-8::obj-13" : [ "Attack[1]", "Attack", 2 ],
 			"obj-130" : [ "Strom_Vol", "Storm", 0 ],
 			"obj-128" : [ "Rhythm_Vol", "Rhythm", 0 ],
-			"obj-120::obj-8::obj-30" : [ "Ratio[1]", "Ratio", 1 ],
-			"obj-122::obj-1" : [ "live.gain~[2]", "live.gain~", 0 ]
+			"obj-126" : [ "Drone_Vol", "Drone", 0 ],
+			"obj-120::obj-8::obj-15" : [ "Makeup[1]", "Makeup", 4 ],
+			"obj-146" : [ "Master", "Master", 0 ],
+			"obj-120::obj-8::obj-14" : [ "Release[1]", "Release", 3 ],
+			"obj-129" : [ "number", "number", 0 ],
+			"obj-120::obj-8::obj-13" : [ "Attack[1]", "Attack", 2 ],
+			"obj-132" : [ "Dummy_ON", "Dummy_ON", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
 				"name" : "sliceBuf.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_forapp",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "slicePlay.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_forapp",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "effect_sweep.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_forapp",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "playback_ratio.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_forapp",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "drone.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_forapp",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "resonator.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_forapp",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "stringen.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_forapp",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "redux.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_forapp",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "ccma_drone_eq.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_forapp",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "eq.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_forapp",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "highpass.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_forapp",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "reverb.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_forapp",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
@@ -9688,84 +9708,84 @@
 			}
 , 			{
 				"name" : "drywet.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_forapp",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "lowshelf.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_forapp",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "highshelf.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_forapp",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "rhythm.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_forapp",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "ccma_rhythm_eq_first.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_forapp",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "ccma_rhythm_eq_second.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_forapp",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "redux_rhy.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_forapp",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "compressor.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_forapp",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "limiter.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_forapp",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "storm.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_forapp",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "SimpleDelay_First.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_forapp",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "SimpleDelay_Second.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_forapp",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "audio_status.maxpat",
+				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
