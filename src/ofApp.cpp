@@ -31,7 +31,6 @@ void ofApp::draw(){
 #ifdef DEBUG_MODE
     ofDrawBitmapString("fps = " + ofToString(ofGetFrameRate()), 10, 20);
 #endif
-    ofSetColor(255, 0, 0);
     ofDrawBitmapString("fps = " + ofToString(ofGetFrameRate()), 10, 20);
 }
 
@@ -93,7 +92,7 @@ void ofApp::mouseExited(int x, int y){
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h){
     
-    vsyn.initWindowSize();
+//    vsyn.initWindowSize();
 
 }
 

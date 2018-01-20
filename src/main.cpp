@@ -6,10 +6,11 @@
 int main( ){
 //	ofSetupOpenGL(SC_WITDH,SC_HEIGHT,OF_WINDOW);			// <-------- setup the GL context
 
-    ofGLWindowSettings settings;
+    ofGLFWWindowSettings settings;
     settings.setGLVersion(3, 2);
     settings.width = SC_WIDTH;
     settings.height = SC_HEIGHT;
+    settings.resizable = false;
     ofCreateWindow(settings);
     
 	// this kicks off the running of my app

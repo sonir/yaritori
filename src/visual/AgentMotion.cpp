@@ -120,7 +120,7 @@ void AgentMotion::updateCenter() {
     float length = diff.length() * ORIGINAL_HEIGHT;
     
     
-    if(SCREEN_HEIGHT < length) {
+    if(DISPLAY_HEIGHT < length) {
         center = dest;
     } else {
         center += (dest - center) * EASING_RATIO;

@@ -26,7 +26,7 @@ typedef struct pos_t {
 static bool drawWhiteBack = true;
 void invertBackground();
 
-typedef enum{UP, DOWN, RIGHT, LEFT} swap_direction;
+typedef enum{UP, RIGHT, DOWN, LEFT} swap_direction;
 
 
 
@@ -34,41 +34,51 @@ class ScreenManager {
 public:
     ScreenManager();
     void setup();
-    void begin(int window);
-    void end(int window);
+    void begin();
+    void end();
     void draw();
-
+    
+    void setMask(int window, int vertexId, float x, float y);
+    void mask();
+    
     void swap(int window, swap_direction direction);
     void swap(int window, float x, float y);
     void setSwapDuration(float go, float out, float back);
-    void setOriginPosition(pos_t o1, pos_t o2, pos_t o3);
-    void setZoom(int window, pos_t centerPos, float ratio);
-    void resetScreen(int window);
+    //    void setOriginPosition(pos_t o1, pos_t o2, pos_t o3);
+    //    void setZoom(int window, pos_t centerPos, float ratio);
+    //    void resetScreen(int window);
     
     void drawBackground();
     bool colorState;
     
-    float swapDur_go, swapDur_out, swapDur_back;    //msec
     void setFullScreen();
-    
-
+    ofColor getDrawColor();
     
 private:
     void init();
     void initFbo();
     void initStatus();
+    void initMask();
+    
     void swap_cal();
     void setEvents();
     
-    ofFbo fbo[3];
+    ofVbo mask_vbo;
+    ofIndexType mask_indices[6 * 4 * 3];
+    ofVec2f mask_pos[4 * 3];
+    ofVec2f mask_verts[8 * 3];
+    ofFloatColor mask_cols[8 * 3];
+    
+    ofFbo fbo;
     ofMesh mesh[3];
-//    ofShader shader;
     
     pos_t pos[3];  //up-left point of window
     
-    pos_t centerPos[3];
-    pos_t centerPos_origin[3]; //standard pos
-    float ratio[3];
+    //    pos_t centerPos[3];
+    //    pos_t centerPos_origin[3]; //standard pos
+    //    float ratio[3];
+    
+    float swapDur_go, swapDur_out, swapDur_back;    //msec
     
     pos_t startPos[3];    //pos when called as start pos
     pos_t endPos[3];
