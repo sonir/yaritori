@@ -5,7 +5,7 @@
 			"major" : 7,
 			"minor" : 3,
 			"revision" : 4,
-			"architecture" : "x86",
+			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
@@ -43,7 +43,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 162.0, 358.0, 29.5, 22.0 ],
+					"patching_rect" : [ 162.0, 372.0, 29.5, 22.0 ],
 					"style" : "",
 					"text" : "*~"
 				}
@@ -303,7 +303,7 @@
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "" ],
+					"outlettype" : [ "float" ],
 					"patching_rect" : [ 619.0, 27.0, 30.0, 30.0 ],
 					"style" : ""
 				}
@@ -432,7 +432,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-9", 1 ],
-					"midpoints" : [ 171.5, 410.5, 241.0, 410.5 ],
+					"midpoints" : [ 171.5, 418.0, 241.0, 418.0 ],
 					"source" : [ "obj-3", 0 ]
 				}
 

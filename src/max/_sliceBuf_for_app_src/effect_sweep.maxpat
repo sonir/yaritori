@@ -43,9 +43,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 162.0, 358.0, 53.0, 22.0 ],
+					"patching_rect" : [ 162.0, 372.0, 29.5, 22.0 ],
 					"style" : "",
-					"text" : "pow~ 2."
+					"text" : "*~"
 				}
 
 			}
@@ -432,7 +432,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-9", 1 ],
-					"midpoints" : [ 171.5, 410.5, 241.0, 410.5 ],
+					"midpoints" : [ 171.5, 402.0, 241.0, 402.0 ],
 					"source" : [ "obj-3", 0 ]
 				}
 
@@ -500,7 +500,16 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-3", 1 ],
+					"order" : 0,
+					"source" : [ "obj-6", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-3", 0 ],
+					"order" : 1,
 					"source" : [ "obj-6", 0 ]
 				}
 
