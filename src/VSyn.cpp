@@ -11,7 +11,24 @@
 using namespace std;
 
 void VSyn::setup(){
+    
   ofSetFrameRate(30);
+    //// EventSetup ////
+    
+    //ResetFunction
+    //SetUpEvents
+    auto f = [&](void* args){ //<- keep this desctiption
+        //draw your code
+        int *key_num = (int *)args;
+        //Reset State
+        agBuffReset(&gismo.agents);
+        agBuffReset(&gismo.add);
+        
+    };
+    gismo.lambdaAdd("/reset", f);
+    
+    
+    ////////////////////
     
     //Set Metro
     metro = new Metro(GISMO_UPDATE_INTERVAL);
@@ -50,14 +67,23 @@ void VSyn::setup(){
     
     //Set window size for yaritori
     scManager.setup();
-    initWindowSize();
+    initCanvasSize(ORIGINAL_WIDTH, ORIGINAL_HEIGHT);
     
     //Create TestClass
     myTest = new Test(&sound, &ripple);
     myTest->setup();
 
+    //Init agent
+    agBuffReset(&gismo.agents);
+    agBuffReset(&gismo.add);
+
     //Do Test Code
     this->test();
+    
+    //Reset State
+    agBuffReset(&gismo.agents);
+    agBuffReset(&gismo.add);
+    
 }
 
 
@@ -370,17 +396,16 @@ void VSyn::draw(){
         
         //Ripple
         ripple.draw();
-        
-        scManager.end(i);
-    }
-    
-    scManager.draw();
-#endif
     
 #ifdef PERFORMANCE_MODE
     performanceManager.updateLines();
     performanceManager.updateLinesInverted();
     drawPerformance(&performanceManager);
+#endif        
+        scManager.end(i);
+    }
+    
+    scManager.draw();
 #endif
     
     
@@ -430,8 +455,6 @@ void VSyn::draw(){
                 break;
                 
         }
-        
-        
     }
 
 
@@ -660,37 +683,31 @@ void VSyn::test(){
     ag_t ag;
 
 
-//(int i=0;i<1000;i++) gismo.addAgent(act8);
 
     
-//    initAgentActive(&ag);
+    initAgentActive(&ag);
     ag.posi.x = 0.25f; ag.posi.y = 0.5f;
     //gismo.addAgent(ag);
     ag.posi.x = 0.75f; ag.posi.y = 0.5f;
-    //gismo.addAgent(ag);
-    //gismo.addAgent(ag);
     
     
     ag.size = 0.03;
     
     for(int i=0;i<DUMMY_AG_A_NUM;i++) gismo.addAgent(ag);
 
-    //_ag.size *= 0.8f;
+    ag.size *= 0.8f;
     ag.mov *= 2.5f;
     ag.view *= 1.0f;
     for(int i=0;i<DUMMY_AG_B_NUM;i++) gismo.addAgent(ag);
     
     
-//    for(int i=0; i<1600; i++){
-//        
-//        performanceManager.bullets[i].bang();
-//        
-//    }
-
     
     
     std::cout << "test method has finished." << std::endl;
-    
+    //Reset State
+    agBuffReset(&gismo.agents);
+    agBuffReset(&gismo.add);
+
 
     
 }

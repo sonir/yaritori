@@ -19,6 +19,7 @@
 #include "Shape2Agent.hpp"
 #include "Performance.hpp"
 #include "getArraySize.h"
+#include "SoundTrigger.hpp"
 
 
 class Test {
@@ -43,6 +44,7 @@ class Test {
     
         GismoManager& gismo = GismoManager::getInstance(); //Pointer for gismoManager instance
         Sound *sound;
+//        SoundTrigger soundTest;
     
 
 

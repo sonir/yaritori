@@ -15,6 +15,10 @@
 #define AG_MAX 9000
 #define SEED_MAX 63
 
+//World Rate of Space
+#define WORLD_WIDTH 2.9f //for 3screens //1.0f
+#define WORLD_HEIGHT 1.0f
+
 //Agent Default Parameters
 #define AG_DEF_SIZE 0.001f//0.0034f
 #define AG_DEF_MOV 0.2f//0.002f
@@ -57,8 +61,8 @@ void randomMove(ag_t *ag);
 float limitter(float val, float limit);
 void running(ag_t *ag, posi_t *enemy);
 bool conditionCheck(condition_e cond1, condition_e cond2);
-void attackCheck(float distance, float *f_param);
-void deadCheck(float *size, bool *active);
+bool attackCheck(float distance, float *f_param);
+bool deadCheck(float *size, bool *active);
 void interactWith(ag_t *focus , ag_t *target);
 void makeInteracts(agent_buf_t *agents);
 //void positionLoop(posi_t *position);
@@ -98,8 +102,9 @@ class GismoManager : public EventHandler {
         Event *sound;
     
         //Store the screen rate
-        float width_rate = 1.0f;
-        float height_rate = 3.0f;
+        float width_rate = WORLD_WIDTH;
+        float height_rate = WORLD_HEIGHT;
+
     
         //Methods
         void setup();
@@ -107,7 +112,6 @@ class GismoManager : public EventHandler {
         ag_t* getAgent(int aid);
         void addAgent(ag_t tmp);
         void addSync(); //Sync actual agent array and add_buffer
-
 
     
     private:

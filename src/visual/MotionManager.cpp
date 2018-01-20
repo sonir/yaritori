@@ -29,6 +29,9 @@ MotionManager::MotionManager() {
     params[3].ival = 87;
     
     sendOSC("/foo", params, 4);
+    
+    GismoManager& gismo = GismoManager::getInstance();
+    aspect = gismo.width_rate;
 }
 
 void MotionManager::setShapes() {
@@ -110,14 +113,14 @@ void MotionManager::drawAll() {
         if(ag->active){
             //square(ag->posi.x, ag->posi.y, ag->size, 0.0f, true);
             agent[i].pAg = ag;
-            agent[i].dest.x = ag->posi.x;
-            agent[i].dest.y = ag->posi.y;            
+            agent[i].move(ag->posi.x, ag->posi.y);
+
             agent[i].update();
             agent[i].draw();
             
 //            ofSetColor(255, 0, 0);
-//            ofDrawBitmapString(i, ag->posi.x * VSYN_HEIGHT, ag->posi.y * VSYN_HEIGHT);
-            //ofDrawCircle(pAg->posi.x * CANVAS_HEIGHT, pAg->posi.y * CANVAS_HEIGHT, 3);
+//            ofDrawBitmapString(i, ag->posi.x * aspect * ORIGINAL_HEIGHT, ag->posi.y * ORIGINAL_HEIGHT);
+//            ofDrawCircle(ag->posi.x * ORIGINAL_HEIGHT * aspect, ag->posi.y * ORIGINAL_HEIGHT, 3);
             
             //Draw interaction
             if(ag->interact_with != -1) {

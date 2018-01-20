@@ -11,14 +11,14 @@
 
 //Set running mode
 //#define DEBUG_MODE
-//#define PERFORMANCE_MODE
+#define PERFORMANCE_MODE
 #define GISMO_UPDATE_INTERVAL 0.033
 
 /// Includes ///
 
 //#define DEBUG_MODE
-#define DUMMY_AG_A_NUM 200
-#define DUMMY_AG_B_NUM 200
+#define DUMMY_AG_A_NUM 10
+#define DUMMY_AG_B_NUM 10
 
 //#define PERFORMANCE_MODE
 #define GISMO_UPDATE_INTERVAL 0.033
@@ -81,6 +81,8 @@
 #include "RippleManager.hpp"
 
 
+//Sound
+#include "SoundTrigger.hpp"
 
 
 class VSyn : public Event {
@@ -96,6 +98,10 @@ class VSyn : public Event {
             ag_shape_t *tmp = (ag_shape_t *)args;
             ag_shape_t tmp2 = *tmp;
             addAgShape(tmp2);
+            //make sound
+            int index = gismo.agents.count;
+            sound_t snd = shape2sound(tmp2, index); //Song genre and song with the shape and ag_id
+            soundTrigger.sounds[index]= snd; //Store sound int sound buffer
             
         }
 

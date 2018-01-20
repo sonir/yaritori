@@ -30,7 +30,7 @@ constexpr float SIZE_MOD_FLOOR = 1.0 - SIZE_MOD_STRENGTH;
 constexpr float SIZE_MOD_STEP = 0.04;
 
 //constexpr float dx = 0.0166f;
-constexpr float easing = 0.05;
+constexpr float EASING_RATIO = 0.05;
 
 
 /////////////////// WAVEFORM ///////////////////

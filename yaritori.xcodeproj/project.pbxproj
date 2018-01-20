@@ -42,6 +42,7 @@
 		E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1D0A3A1BDC003C02F2 /* main.cpp */; };
 		E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */; };
 		F01092BB147FA462845C38C7 /* CreEPS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34BF591C646B5F6EF968D620 /* CreEPS.cpp */; };
+		F20C6C2A2013168800CF0DA3 /* SoundTrigger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F20C6C282013168800CF0DA3 /* SoundTrigger.cpp */; };
 		F21DCD072007BFE4003BCC42 /* Fade.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F21DCD062007BFE4003BCC42 /* Fade.cpp */; };
 		F21DCD0A2008D0D7003BCC42 /* Metro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F21DCD082008D0D7003BCC42 /* Metro.cpp */; };
 		F245008B2009F9F600454D28 /* DrawAgentsWithChar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F24500892009F9F600454D28 /* DrawAgentsWithChar.cpp */; };
@@ -175,6 +176,8 @@
 		E4EB6923138AFD0F00A09F29 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
 		E6DEF695B88BA5FAACEAA937 /* UdpSocket.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = UdpSocket.cpp; path = ../../../addons/ofxOsc/libs/oscpack/src/ip/posix/UdpSocket.cpp; sourceTree = SOURCE_ROOT; };
 		ECF8674C7975F1063C5E30CA /* ofxGuiGroup.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxGuiGroup.cpp; path = ../../../addons/ofxGui/src/ofxGuiGroup.cpp; sourceTree = SOURCE_ROOT; };
+		F20C6C282013168800CF0DA3 /* SoundTrigger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundTrigger.cpp; sourceTree = "<group>"; };
+		F20C6C292013168800CF0DA3 /* SoundTrigger.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SoundTrigger.hpp; sourceTree = "<group>"; };
 		F21DCD052007BFE4003BCC42 /* Fade.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Fade.hpp; sourceTree = "<group>"; };
 		F21DCD062007BFE4003BCC42 /* Fade.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fade.cpp; sourceTree = "<group>"; };
 		F21DCD082008D0D7003BCC42 /* Metro.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Metro.cpp; sourceTree = "<group>"; };
@@ -470,44 +473,19 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				F2FFCEB01F62A27D00E71BAA /* VSyn.hpp */,
-				F2FFCEAF1F62A27D00E71BAA /* VSyn.cpp */,
-				F2450090200B042300454D28 /* getArraySize.h */,
-				F2450091200B1A1A00454D28 /* Bullet.cpp */,
-				F2450092200B1A1A00454D28 /* Bullet.hpp */,
-				F2E7003B2007145100A90022 /* Performance.cpp */,
-				F2E7003C2007145100A90022 /* Performance.hpp */,
-				F245008D200AFF8800454D28 /* DrawPerformance.cpp */,
-				F245008E200AFF8800454D28 /* DrawPerformance.hpp */,
-				F21DCD082008D0D7003BCC42 /* Metro.cpp */,
-				F21DCD092008D0D7003BCC42 /* Metro.hpp */,
-				F21DCD052007BFE4003BCC42 /* Fade.hpp */,
-				F21DCD062007BFE4003BCC42 /* Fade.cpp */,
 				F28AF43B1FF35DC200D48FEB /* Test.cpp */,
 				F28AF43C1FF35DC200D48FEB /* Test.hpp */,
-				F251DC992006A49E005D2472 /* Shape2Agent.cpp */,
-				F251DC9A2006A49E005D2472 /* Shape2Agent.hpp */,
-				F2D2DCF81FFF2746004513CB /* ag_shape.h */,
-				F2ABF1261FEFF227006773CE /* Network.cpp */,
-				F2ABF1271FEFF227006773CE /* Network.hpp */,
-				F26D88141F6B638600AC27FE /* cam_func.hpp */,
-				F2C099011FDD7DB30075255C /* drawAgents.hpp */,
-				F24500892009F9F600454D28 /* DrawAgentsWithChar.cpp */,
-				F245008A2009F9F600454D28 /* DrawAgentsWithChar.hpp */,
-				F27A52F61FEC634F00942A31 /* Sound.cpp */,
-				F27A52F71FEC634F00942A31 /* Sound.hpp */,
+				F2FFCEB01F62A27D00E71BAA /* VSyn.hpp */,
+				F2FFCEAF1F62A27D00E71BAA /* VSyn.cpp */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
-				F2FFCEB21F62AFF800E71BAA /* osc2shape.cpp */,
-				F2FFCEB31F62AFF800E71BAA /* osc2shape.hpp */,
-				F2FFCEB91F62C5FC00E71BAA /* drawer.hpp */,
-				F2FFCEB61F62C5C500E71BAA /* drawer.cpp */,
-				F2FFCEB51F62B3EA00E71BAA /* shape.h */,
-				F2545E8C1F99B73F0029709A /* Particle.hpp */,
-				F2545E8D1F99B73F0029709A /* Particle.cpp */,
-				33ACF294200C032700268C3D /* ripple */,
-				33ACF29B200C032700268C3D /* visual */,
+				F2AD098A2012EC1300D6676F /* Utilities */,
+				F2AD098B2012EC2400D6676F /* Performance */,
+				F2AD098C2012EC4300D6676F /* AgentManagemt */,
+				F2AD098D2012EC6300D6676F /* Network_OSC */,
+				F2AD098F2012EC8700D6676F /* Sound */,
+				F2AD098E2012EC7700D6676F /* VSyn */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -528,6 +506,86 @@
 				38871A5825686AE018EC2BF0 /* libs */,
 			);
 			name = ofxOsc;
+			sourceTree = "<group>";
+		};
+		F2AD098A2012EC1300D6676F /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				F21DCD082008D0D7003BCC42 /* Metro.cpp */,
+				F21DCD092008D0D7003BCC42 /* Metro.hpp */,
+				F2450090200B042300454D28 /* getArraySize.h */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		F2AD098B2012EC2400D6676F /* Performance */ = {
+			isa = PBXGroup;
+			children = (
+				F2450092200B1A1A00454D28 /* Bullet.hpp */,
+				F2450091200B1A1A00454D28 /* Bullet.cpp */,
+				F2E7003B2007145100A90022 /* Performance.cpp */,
+				F2E7003C2007145100A90022 /* Performance.hpp */,
+				F245008D200AFF8800454D28 /* DrawPerformance.cpp */,
+				F245008E200AFF8800454D28 /* DrawPerformance.hpp */,
+				F21DCD052007BFE4003BCC42 /* Fade.hpp */,
+				F21DCD062007BFE4003BCC42 /* Fade.cpp */,
+			);
+			name = Performance;
+			sourceTree = "<group>";
+		};
+		F2AD098C2012EC4300D6676F /* AgentManagemt */ = {
+			isa = PBXGroup;
+			children = (
+				F2D2DCF81FFF2746004513CB /* ag_shape.h */,
+				F251DC992006A49E005D2472 /* Shape2Agent.cpp */,
+				F251DC9A2006A49E005D2472 /* Shape2Agent.hpp */,
+				F24500892009F9F600454D28 /* DrawAgentsWithChar.cpp */,
+				F245008A2009F9F600454D28 /* DrawAgentsWithChar.hpp */,
+				F2C099011FDD7DB30075255C /* drawAgents.hpp */,
+			);
+			name = AgentManagemt;
+			sourceTree = "<group>";
+		};
+		F2AD098D2012EC6300D6676F /* Network_OSC */ = {
+			isa = PBXGroup;
+			children = (
+				F2ABF1261FEFF227006773CE /* Network.cpp */,
+				F2ABF1271FEFF227006773CE /* Network.hpp */,
+				F2FFCEB21F62AFF800E71BAA /* osc2shape.cpp */,
+				F2FFCEB31F62AFF800E71BAA /* osc2shape.hpp */,
+				F2FFCEB91F62C5FC00E71BAA /* drawer.hpp */,
+				F2FFCEB61F62C5C500E71BAA /* drawer.cpp */,
+				F2FFCEB51F62B3EA00E71BAA /* shape.h */,
+				F2545E8C1F99B73F0029709A /* Particle.hpp */,
+				F2545E8D1F99B73F0029709A /* Particle.cpp */,
+				33ACF294200C032700268C3D /* ripple */,
+				33ACF29B200C032700268C3D /* visual */,
+			);
+			name = Network_OSC;
+			sourceTree = "<group>";
+		};
+		F2AD098E2012EC7700D6676F /* VSyn */ = {
+			isa = PBXGroup;
+			children = (
+				F2FFCEB51F62B3EA00E71BAA /* shape.h */,
+				F2545E8C1F99B73F0029709A /* Particle.hpp */,
+				F2545E8D1F99B73F0029709A /* Particle.cpp */,
+				F2FFCEB91F62C5FC00E71BAA /* drawer.hpp */,
+				F2FFCEB61F62C5C500E71BAA /* drawer.cpp */,
+				F26D88141F6B638600AC27FE /* cam_func.hpp */,
+			);
+			name = VSyn;
+			sourceTree = "<group>";
+		};
+		F2AD098F2012EC8700D6676F /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				F20C6C282013168800CF0DA3 /* SoundTrigger.cpp */,
+				F20C6C292013168800CF0DA3 /* SoundTrigger.hpp */,
+				F27A52F61FEC634F00942A31 /* Sound.cpp */,
+				F27A52F71FEC634F00942A31 /* Sound.hpp */,
+			);
+			name = Sound;
 			sourceTree = "<group>";
 		};
 		F2C0989F1FDD12400075255C /* ofxGismo */ = {
@@ -683,6 +741,7 @@
 				F27A53011FEC82DA00942A31 /* EventHandler.cpp in Sources */,
 				F2E7007B20071E2000A90022 /* slMetro.cpp in Sources */,
 				B266578FC55D23BFEBC042E7 /* ofxGuiGroup.cpp in Sources */,
+				F20C6C2A2013168800CF0DA3 /* SoundTrigger.cpp in Sources */,
 				F2FFCEB11F62A27D00E71BAA /* VSyn.cpp in Sources */,
 				483908258D00B98B4BE69F07 /* ofxLabel.cpp in Sources */,
 				F285EB3169F1566CA3D93C20 /* ofxPanel.cpp in Sources */,
