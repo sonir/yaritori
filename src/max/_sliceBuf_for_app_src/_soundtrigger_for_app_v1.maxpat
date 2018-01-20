@@ -5,7 +5,7 @@
 			"major" : 7,
 			"minor" : 3,
 			"revision" : 4,
-			"architecture" : "x86",
+			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
@@ -107,14 +107,14 @@
 				"box" : 				{
 					"fontface" : 1,
 					"fontname" : "Helvetica Neue",
-					"fontsize" : 16.0,
+					"fontsize" : 20.0,
 					"id" : "obj-92",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 516.0, 32.666668, 184.0, 26.0 ],
+					"patching_rect" : [ 516.0, 32.666668, 228.0, 30.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 25.0, 27.666656, 208.5, 26.0 ],
+					"presentation_rect" : [ 18.0, 15.666656, 258.0, 30.0 ],
 					"style" : "",
 					"text" : "SoundTrigger_APP_v1",
 					"textcolor" : [ 0.0, 0.078431, 0.321569, 1.0 ]
@@ -413,7 +413,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 507.0, 739.0, 50.0, 22.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 164.0, 349.666687, 50.0, 22.0 ],
+					"presentation_rect" : [ 164.0, 344.666595, 50.0, 22.0 ],
 					"style" : ""
 				}
 
@@ -524,7 +524,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 165.5, 117.0, 37.5, 33.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 111.75, 126.5, 32.0, 33.0 ],
+					"presentation_rect" : [ 123.333374, 127.5, 32.0, 33.0 ],
 					"style" : "",
 					"text" : "→",
 					"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -607,7 +607,7 @@
 					"patching_rect" : [ 231.0, 65.0, 190.0, 33.0 ],
 					"presentation" : 1,
 					"presentation_linecount" : 2,
-					"presentation_rect" : [ 198.5, 93.166656, 190.0, 33.0 ],
+					"presentation_rect" : [ 198.5, 93.166656, 170.0, 33.0 ],
 					"style" : "",
 					"text" : "BUTTON 2\nPUSH to add audio to buffer",
 					"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -640,7 +640,7 @@
 					"presentation_linecount" : 2,
 					"presentation_rect" : [ 25.0, 93.166656, 165.0, 33.0 ],
 					"style" : "",
-					"text" : "BUTTON  1\nPUSH to start load buffer",
+					"text" : "BUTTON  1\nPUSH to load buffer",
 					"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 				}
 
@@ -777,7 +777,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x86",
+							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
@@ -1095,7 +1095,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x86",
+							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
@@ -1412,7 +1412,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x86",
+							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
@@ -1729,7 +1729,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x86",
+							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
@@ -2046,7 +2046,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x86",
+							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
@@ -2363,7 +2363,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x86",
+							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
@@ -2688,7 +2688,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x86",
+							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
@@ -2810,7 +2810,7 @@
 											"major" : 7,
 											"minor" : 3,
 											"revision" : 4,
-											"architecture" : "x86",
+											"architecture" : "x64",
 											"modernui" : 1
 										}
 ,
@@ -3292,7 +3292,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x86",
+							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
@@ -3414,7 +3414,7 @@
 											"major" : 7,
 											"minor" : 3,
 											"revision" : 4,
-											"architecture" : "x86",
+											"architecture" : "x64",
 											"modernui" : 1
 										}
 ,
@@ -3895,7 +3895,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x86",
+							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
@@ -4017,7 +4017,7 @@
 											"major" : 7,
 											"minor" : 3,
 											"revision" : 4,
-											"architecture" : "x86",
+											"architecture" : "x64",
 											"modernui" : 1
 										}
 ,
@@ -4498,7 +4498,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x86",
+							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
@@ -4620,7 +4620,7 @@
 											"major" : 7,
 											"minor" : 3,
 											"revision" : 4,
-											"architecture" : "x86",
+											"architecture" : "x64",
 											"modernui" : 1
 										}
 ,
@@ -5101,7 +5101,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x86",
+							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
@@ -5223,7 +5223,7 @@
 											"major" : 7,
 											"minor" : 3,
 											"revision" : 4,
-											"architecture" : "x86",
+											"architecture" : "x64",
 											"modernui" : 1
 										}
 ,
@@ -5815,7 +5815,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x86",
+							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
@@ -5846,7 +5846,6 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
-						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-14",
@@ -6360,7 +6359,7 @@
 			}
 , 			{
 				"box" : 				{
-					"fontface" : 2,
+					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-108",
 					"maxclass" : "comment",
@@ -6398,9 +6397,9 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 1346.0, 446.0, 302.0, 25.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 25.0, 182.833328, 284.0, 25.0 ],
+					"presentation_rect" : [ 25.0, 188.833328, 284.0, 25.0 ],
 					"style" : "",
-					"text" : "PLEASE PUSH BUTTON 1"
+					"text" : "Setup completed."
 				}
 
 			}
@@ -6453,7 +6452,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 79.5, 764.0, 58.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 241.0, 325.166656, 58.0, 20.0 ],
+					"presentation_rect" : [ 241.0, 318.666687, 58.0, 20.0 ],
 					"style" : "",
 					"text" : "Receive",
 					"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -6487,7 +6486,7 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 86.5, 396.0, 133.5, 22.0 ],
 					"style" : "",
-					"text" : "0 384 2 1."
+					"text" : "0 191 0 0."
 				}
 
 			}
@@ -6500,7 +6499,7 @@
 					"outlettype" : [ "bang" ],
 					"patching_rect" : [ 79.5, 789.0, 24.0, 24.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 244.0, 344.666595, 23.0, 23.0 ],
+					"presentation_rect" : [ 241.0, 344.666595, 23.0, 23.0 ],
 					"style" : ""
 				}
 
@@ -6653,7 +6652,7 @@
 					"outlettype" : [ "bang" ],
 					"patching_rect" : [ 57.0, 117.0, 35.0, 35.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 28.0, 126.5, 35.0, 35.0 ],
+					"presentation_rect" : [ 25.0, 127.5, 35.0, 35.0 ],
 					"style" : ""
 				}
 
@@ -7107,7 +7106,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x86",
+							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
@@ -7229,7 +7228,7 @@
 											"major" : 7,
 											"minor" : 3,
 											"revision" : 4,
-											"architecture" : "x86",
+											"architecture" : "x64",
 											"modernui" : 1
 										}
 ,
@@ -7723,7 +7722,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x86",
+							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
@@ -8048,7 +8047,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 446.5, 739.0, 50.0, 22.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 86.5, 349.666687, 50.0, 22.0 ],
+					"presentation_rect" : [ 86.5, 345.166595, 50.0, 22.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "number",
@@ -8130,7 +8129,7 @@
 					"outlettype" : [ "bang" ],
 					"patching_rect" : [ 231.0, 117.0, 35.0, 35.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 198.5, 126.5, 35.0, 35.0 ],
+					"presentation_rect" : [ 204.5, 127.5, 35.0, 35.0 ],
 					"style" : ""
 				}
 
@@ -8148,7 +8147,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 4,
-							"architecture" : "x86",
+							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
@@ -8312,7 +8311,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-7", 2 ],
-									"midpoints" : [ 124.166664, 159.5, 153.5, 159.5 ],
+									"midpoints" : [ 124.166667, 159.5, 153.5, 159.5 ],
 									"source" : [ "obj-4", 2 ]
 								}
 
@@ -8320,7 +8319,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-7", 1 ],
-									"midpoints" : [ 92.833336, 158.5, 107.5, 158.5 ],
+									"midpoints" : [ 92.833333, 158.5, 107.5, 158.5 ],
 									"source" : [ "obj-4", 1 ]
 								}
 
@@ -8515,7 +8514,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 1188.0, 663.166687, 128.0, 128.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 18.0, 55.666656, 375.5, 174.666687 ],
+					"presentation_rect" : [ 18.0, 55.666656, 370.5, 178.666687 ],
 					"proportion" : 0.39,
 					"style" : ""
 				}
@@ -9647,102 +9646,102 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-129" : [ "number", "number", 0 ],
-			"obj-120::obj-8::obj-15" : [ "Makeup[1]", "Makeup", 4 ],
-			"obj-120::obj-8::obj-13" : [ "Attack[1]", "Attack", 2 ],
 			"obj-120::obj-8::obj-30" : [ "Ratio[1]", "Ratio", 1 ],
-			"obj-132" : [ "Dummy_ON", "Dummy_ON", 0 ],
-			"obj-120::obj-8::obj-7" : [ "Output Gain[1]", "Output Gain", 5 ],
-			"obj-148" : [ "Playback", "Playback", 0 ],
-			"obj-120::obj-8::obj-55" : [ "Threshold[1]", "Threshold", 0 ],
-			"obj-122::obj-1" : [ "live.gain~[2]", "live.gain~", 0 ],
-			"obj-146" : [ "Master", "Master", 0 ],
+			"obj-126" : [ "Drone_Vol", "Drone", 0 ],
 			"obj-130" : [ "Strom_Vol", "Storm", 0 ],
 			"obj-120::obj-8::obj-14" : [ "Release[1]", "Release", 3 ],
+			"obj-129" : [ "number", "number", 0 ],
+			"obj-122::obj-1" : [ "live.gain~[2]", "live.gain~", 0 ],
+			"obj-120::obj-8::obj-15" : [ "Makeup[1]", "Makeup", 4 ],
+			"obj-148" : [ "Playback", "Playback", 0 ],
+			"obj-120::obj-8::obj-7" : [ "Output Gain[1]", "Output Gain", 5 ],
+			"obj-146" : [ "Master", "Master", 0 ],
 			"obj-128" : [ "Rhythm_Vol", "Rhythm", 0 ],
-			"obj-126" : [ "Drone_Vol", "Drone", 0 ]
+			"obj-120::obj-8::obj-55" : [ "Threshold[1]", "Threshold", 0 ],
+			"obj-120::obj-8::obj-13" : [ "Attack[1]", "Attack", 2 ],
+			"obj-132" : [ "Dummy_ON", "Dummy_ON", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
 				"name" : "sliceBuf.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Development/openFrameworks/of_v0.9.8_osx_release/apps/1802_CCMA/yaritori-sound/src/max/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "slicePlay.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Development/openFrameworks/of_v0.9.8_osx_release/apps/1802_CCMA/yaritori-sound/src/max/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "effect_sweep.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Development/openFrameworks/of_v0.9.8_osx_release/apps/1802_CCMA/yaritori-sound/src/max/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "playback_ratio.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Development/openFrameworks/of_v0.9.8_osx_release/apps/1802_CCMA/yaritori-sound/src/max/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "drone.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Development/openFrameworks/of_v0.9.8_osx_release/apps/1802_CCMA/yaritori-sound/src/max/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "resonator.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Development/openFrameworks/of_v0.9.8_osx_release/apps/1802_CCMA/yaritori-sound/src/max/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "stringen.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Development/openFrameworks/of_v0.9.8_osx_release/apps/1802_CCMA/yaritori-sound/src/max/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "redux.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Development/openFrameworks/of_v0.9.8_osx_release/apps/1802_CCMA/yaritori-sound/src/max/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "ccma_drone_eq.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Development/openFrameworks/of_v0.9.8_osx_release/apps/1802_CCMA/yaritori-sound/src/max/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "eq.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Development/openFrameworks/of_v0.9.8_osx_release/apps/1802_CCMA/yaritori-sound/src/max/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "highpass.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Development/openFrameworks/of_v0.9.8_osx_release/apps/1802_CCMA/yaritori-sound/src/max/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "reverb.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Development/openFrameworks/of_v0.9.8_osx_release/apps/1802_CCMA/yaritori-sound/src/max/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
@@ -9750,90 +9749,90 @@
 , 			{
 				"name" : "yafr.maxpat",
 				"bootpath" : "/Users/Shared/Max 7/Examples/legacy-examples/effects/reverb",
-				"patcherrelativepath" : "../../../../../Shared/Max 7/Examples/legacy-examples/effects/reverb",
+				"patcherrelativepath" : "../../../../../../../../../../Shared/Max 7/Examples/legacy-examples/effects/reverb",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "yafr2.maxpat",
-				"bootpath" : "/Users/Shared/Max 7/Examples/effects/reverb/lib",
-				"patcherrelativepath" : "../../../../../Shared/Max 7/Examples/effects/reverb/lib",
+				"bootpath" : "~/Documents/Max 7/Packages/RISE/RISE_Cantor/patchers",
+				"patcherrelativepath" : "../../../../../../../../../Documents/Max 7/Packages/RISE/RISE_Cantor/patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "drywet.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Development/openFrameworks/of_v0.9.8_osx_release/apps/1802_CCMA/yaritori-sound/src/max/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "lowshelf.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Development/openFrameworks/of_v0.9.8_osx_release/apps/1802_CCMA/yaritori-sound/src/max/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "highshelf.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Development/openFrameworks/of_v0.9.8_osx_release/apps/1802_CCMA/yaritori-sound/src/max/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "rhythm.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Development/openFrameworks/of_v0.9.8_osx_release/apps/1802_CCMA/yaritori-sound/src/max/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "ccma_rhythm_eq_first.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Development/openFrameworks/of_v0.9.8_osx_release/apps/1802_CCMA/yaritori-sound/src/max/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "ccma_rhythm_eq_second.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Development/openFrameworks/of_v0.9.8_osx_release/apps/1802_CCMA/yaritori-sound/src/max/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "redux_rhy.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Development/openFrameworks/of_v0.9.8_osx_release/apps/1802_CCMA/yaritori-sound/src/max/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "compressor.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Development/openFrameworks/of_v0.9.8_osx_release/apps/1802_CCMA/yaritori-sound/src/max/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "storm.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Development/openFrameworks/of_v0.9.8_osx_release/apps/1802_CCMA/yaritori-sound/src/max/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "SimpleDelay_First.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Development/openFrameworks/of_v0.9.8_osx_release/apps/1802_CCMA/yaritori-sound/src/max/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "SimpleDelay_Second.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Development/openFrameworks/of_v0.9.8_osx_release/apps/1802_CCMA/yaritori-sound/src/max/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
