@@ -389,9 +389,51 @@ void Test :: run(){
     int myArg[2];
     myArg[0] = 12;
     myArg[1] = 13;
-//    gismo.lambdaBang("/lambdaTest", myArg);
     gismo.bang("/lambdaTest", myArg);
 
+    //TestSoundTrigger
+    /*
+    param_u params[4];
+    params[0].ival = 0; //Genre
+    params[1].ival = 1; //Song
+    params[2].ival = 2; //Slice
+    params[3].fval = 1.0f;//effect
+    gismo.bang("/soundTrg" , &params);
+    cout << "sound trigger is ok. If you could listen the RM sound" << endl;
+    //Test shape2Sound
+    ag_shape_t shapeForSound;
+    shapeForSound.node_count = 12;
+    sound_t snd = shape2sound(shapeForSound,5);
+    assert(snd.genre == 2);
+    assert(snd.song == 5);
+    shapeForSound.node_count = 6;
+    snd = shape2sound(shapeForSound,1137);
+    assert(snd.genre == 0);
+    assert(snd.song == 137);
+    cout << "SoundTrigger::shape2Sound is OK" << endl;
+    ag_t test;
+    test.condition = CALM;
+    ag2sound(&test, &snd);
+    assert(snd.slice == 0);
+    assert(snd.effect_val == 0.0f);
+    test.condition = RUN;
+    ag2sound(&test, &snd);
+    assert(snd.slice == 1);
+    assert(snd.effect_val == 0.25f);
+    test.condition = CHASE;
+    ag2sound(&test, &snd);
+    assert(snd.slice == 2);
+    assert(snd.effect_val == 0.5f);
+    test.condition = DMG;
+    ag2sound(&test, &snd);
+    assert(snd.slice == 3);
+    assert(snd.effect_val == 0.75f);
+    test.condition = DEATH;
+    ag2sound(&test, &snd);
+    assert(snd.slice == 4);
+    assert(snd.effect_val == 1.0f);    
+    cout << "SoundTrigger::ag2Sound is OK" << endl;
+     */
     
 }
 

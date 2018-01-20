@@ -26,6 +26,7 @@ typedef struct posi_t {
 
 typedef struct ag_t {
     
+    int agid;
     bool active;
     posi_t posi;
     float size;

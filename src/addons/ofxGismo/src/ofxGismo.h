@@ -61,8 +61,8 @@ void randomMove(ag_t *ag);
 float limitter(float val, float limit);
 void running(ag_t *ag, posi_t *enemy);
 bool conditionCheck(condition_e cond1, condition_e cond2);
-void attackCheck(float distance, float *f_param);
-void deadCheck(float *size, bool *active);
+bool attackCheck(float distance, float *f_param);
+bool deadCheck(float *size, bool *active);
 void interactWith(ag_t *focus , ag_t *target);
 void makeInteracts(agent_buf_t *agents);
 //void positionLoop(posi_t *position);
@@ -112,7 +112,6 @@ class GismoManager : public EventHandler {
         ag_t* getAgent(int aid);
         void addAgent(ag_t tmp);
         void addSync(); //Sync actual agent array and add_buffer
-
 
     
     private:

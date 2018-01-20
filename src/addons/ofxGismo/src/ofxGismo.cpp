@@ -6,6 +6,7 @@ using namespace std;
 
 void initAgent(ag_t *tmp){
     
+    tmp->agid = -1;
     tmp->active = false;
     tmp->posi.x = frand();
     tmp->posi.y = frand();
@@ -302,19 +303,34 @@ bool conditionCheck(condition_e cond1, condition_e cond2){
 
 
 
-void attackCheck(float distance, float *f_param){
+bool attackCheck(float distance, float *f_param){
     
-    if(distance <= ATK_DIST) *f_param -= AG_DMG;
+    if(distance <= ATK_DIST)
+    {
+        *f_param -= AG_DMG;
+        return true;
+        
+    }else
+    {
+        
+        return false;
+        
+    }
     
 }
 
 
-void deadCheck(float *size, bool *active){
+bool deadCheck(float *size, bool *active){
     
     if(*size < DEAD_THREATH ){
         
         *size = 0.0f;
         *active = false;
+        return true;
+        
+    }else{
+        
+        return false;
         
     }
     
@@ -323,6 +339,7 @@ void deadCheck(float *size, bool *active){
 
 void interactWith(ag_t *focus , ag_t *target){
 
+    GismoManager& gismo = GismoManager::getInstance();
     
     float dist = distance(focus->posi, target->posi);
     if (isViewRange(focus, dist)){
@@ -334,18 +351,21 @@ void interactWith(ag_t *focus , ag_t *target){
         if( size_check == 1){ //Is larger
 
             move(focus, &target->posi);
-            attackCheck( distance(focus->posi, target->posi) , &target->size);
-            deadCheck(&target->size, &target->active);
             
-            if( !conditionCheck(focus->condition, CHASE) ){
+            condition_e cond = CHASE;
+            if ( attackCheck( distance(focus->posi, target->posi) , &target->size) ) cond = DMG;
+            if ( deadCheck(&target->size, &target->active) ) cond = DEATH;
+            
+            if( !conditionCheck(focus->condition, cond) ){
                 
-                focus->condition=CHASE;
-                setSound( (int)focus->condition );
+                focus->condition=cond;
+//                setSound( (int)focus->condition );
+                gismo.bang("/soundTriggerWithAgent", focus);
                 triggerRipple(focus);
                 
             }else{
                 
-                focus->condition=CHASE;
+                focus->condition=cond;
                 
             }
 
@@ -368,8 +388,9 @@ void interactWith(ag_t *focus , ag_t *target){
                 
                 //do running code
                 focus->condition=RUN;
-                setSound( (int)focus->condition );
+//                setSound( (int)focus->condition );
                 triggerRipple(focus);
+                gismo.bang("/soundTriggerWithAgent", focus);
                 
             }
             focus->condition=RUN;
@@ -573,6 +594,7 @@ void GismoManager::addSync(){
     for(int i=0; i<add.count;i++){
         
         agents.buf[agents.count]=add.buf[i];
+        agents.buf[agents.count].agid = agents.count;
         agents.count++;
         
     }
