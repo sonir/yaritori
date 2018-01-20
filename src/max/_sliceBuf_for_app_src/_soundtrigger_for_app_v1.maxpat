@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 112.0, 86.0, 772.0, 887.0 ],
+		"rect" : [ 112.0, 86.0, 440.0, 695.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -524,7 +524,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 165.5, 117.0, 37.5, 33.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 123.333374, 127.5, 32.0, 33.0 ],
+					"presentation_rect" : [ 123.333374, 135.5, 32.0, 33.0 ],
 					"style" : "",
 					"text" : "→",
 					"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -607,7 +607,7 @@
 					"patching_rect" : [ 231.0, 65.0, 190.0, 33.0 ],
 					"presentation" : 1,
 					"presentation_linecount" : 2,
-					"presentation_rect" : [ 198.5, 93.166656, 170.0, 33.0 ],
+					"presentation_rect" : [ 204.5, 101.166656, 170.0, 33.0 ],
 					"style" : "",
 					"text" : "BUTTON 2\nPUSH to add audio to buffer",
 					"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -638,7 +638,7 @@
 					"patching_rect" : [ 57.0, 65.0, 165.0, 33.0 ],
 					"presentation" : 1,
 					"presentation_linecount" : 2,
-					"presentation_rect" : [ 25.0, 93.166656, 165.0, 33.0 ],
+					"presentation_rect" : [ 25.0, 101.166656, 165.0, 33.0 ],
 					"style" : "",
 					"text" : "BUTTON  1\nPUSH to load buffer",
 					"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -6367,7 +6367,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 1346.0, 418.0, 187.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 25.0, 166.5, 187.0, 20.0 ],
+					"presentation_rect" : [ 25.0, 177.833328, 187.0, 20.0 ],
 					"style" : "",
 					"text" : "PROGRESS STATUS",
 					"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -6397,7 +6397,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 1346.0, 446.0, 302.0, 25.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 25.0, 188.833328, 284.0, 25.0 ],
+					"presentation_rect" : [ 25.0, 199.833328, 345.0, 25.0 ],
 					"style" : "",
 					"text" : "Setup completed."
 				}
@@ -6471,7 +6471,7 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 240.0, 395.75, 135.0, 22.0 ],
 					"style" : "",
-					"text" : "/sound/set 3 550 1 0.5"
+					"text" : "/sound/set 0 79 1 0.25"
 				}
 
 			}
@@ -6652,7 +6652,7 @@
 					"outlettype" : [ "bang" ],
 					"patching_rect" : [ 57.0, 117.0, 35.0, 35.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 25.0, 127.5, 35.0, 35.0 ],
+					"presentation_rect" : [ 25.0, 135.5, 35.0, 35.0 ],
 					"style" : ""
 				}
 
@@ -8129,7 +8129,7 @@
 					"outlettype" : [ "bang" ],
 					"patching_rect" : [ 231.0, 117.0, 35.0, 35.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 204.5, 127.5, 35.0, 35.0 ],
+					"presentation_rect" : [ 204.5, 135.5, 35.0, 35.0 ],
 					"style" : ""
 				}
 
@@ -9646,20 +9646,20 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-120::obj-8::obj-30" : [ "Ratio[1]", "Ratio", 1 ],
-			"obj-126" : [ "Drone_Vol", "Drone", 0 ],
-			"obj-130" : [ "Strom_Vol", "Storm", 0 ],
 			"obj-120::obj-8::obj-14" : [ "Release[1]", "Release", 3 ],
-			"obj-129" : [ "number", "number", 0 ],
-			"obj-122::obj-1" : [ "live.gain~[2]", "live.gain~", 0 ],
-			"obj-120::obj-8::obj-15" : [ "Makeup[1]", "Makeup", 4 ],
-			"obj-148" : [ "Playback", "Playback", 0 ],
 			"obj-120::obj-8::obj-7" : [ "Output Gain[1]", "Output Gain", 5 ],
+			"obj-132" : [ "Dummy_ON", "Dummy_ON", 0 ],
+			"obj-122::obj-1" : [ "live.gain~[2]", "live.gain~", 0 ],
 			"obj-146" : [ "Master", "Master", 0 ],
-			"obj-128" : [ "Rhythm_Vol", "Rhythm", 0 ],
 			"obj-120::obj-8::obj-55" : [ "Threshold[1]", "Threshold", 0 ],
+			"obj-120::obj-8::obj-15" : [ "Makeup[1]", "Makeup", 4 ],
+			"obj-130" : [ "Strom_Vol", "Storm", 0 ],
+			"obj-128" : [ "Rhythm_Vol", "Rhythm", 0 ],
+			"obj-129" : [ "number", "number", 0 ],
+			"obj-126" : [ "Drone_Vol", "Drone", 0 ],
 			"obj-120::obj-8::obj-13" : [ "Attack[1]", "Attack", 2 ],
-			"obj-132" : [ "Dummy_ON", "Dummy_ON", 0 ]
+			"obj-148" : [ "Playback", "Playback", 0 ],
+			"obj-120::obj-8::obj-30" : [ "Ratio[1]", "Ratio", 1 ]
 		}
 ,
 		"dependency_cache" : [ 			{
