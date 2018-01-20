@@ -125,6 +125,12 @@ void Network :: update(){
             gismo.bang("/sjq/atk" , &performer_id);
             
             
+        } else if (  m.getAddress() == "/reset" ) { //Reset Agents
+            
+            int key_num = m.getArgAsInt32(0);
+            if (key_num == 137) gismo.bang("/reset" , &key_num);
+            
+            
         } else {
             // unrecognized message: display on the bottom of the screen
             string msg_string;

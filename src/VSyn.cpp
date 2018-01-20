@@ -672,12 +672,12 @@ void VSyn::test(){
     //gismo.addAgent(ag);
     ag.posi.x = 0.75f; ag.posi.y = 0.5f;
     
-    for(int i=0;i<DUMMY_AG_A_NUM;i++) gismo.addAgent(ag);
-
-    ag.size *= 0.8f;
-    ag.mov *= 2.5f;
-    ag.view *= 1.0f;
-    for(int i=0;i<DUMMY_AG_B_NUM;i++) gismo.addAgent(ag);
+//    for(int i=0;i<DUMMY_AG_A_NUM;i++) gismo.addAgent(ag);
+//
+//    ag.size *= 0.8f;
+//    ag.mov *= 2.5f;
+//    ag.view *= 1.0f;
+//    for(int i=0;i<DUMMY_AG_B_NUM;i++) gismo.addAgent(ag);
     
     
     
