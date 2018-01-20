@@ -5846,6 +5846,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
+						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-14",
@@ -5996,9 +5997,9 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 146.0, 270.0, 201.0, 22.0 ],
+									"patching_rect" : [ 146.0, 270.0, 165.0, 22.0 ],
 									"style" : "",
-									"text" : "Adding audio to buffer phase ...[0%]"
+									"text" : "Adding audio to buffer ...[0%]"
 								}
 
 							}
@@ -6009,9 +6010,9 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 736.0, 243.0, 129.0, 22.0 ],
+									"patching_rect" : [ 736.0, 243.0, 104.0, 22.0 ],
 									"style" : "",
-									"text" : "DONE Loading Phase"
+									"text" : "Setup completed."
 								}
 
 							}
@@ -6035,9 +6036,9 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 478.25, 270.0, 250.0, 22.0 ],
+									"patching_rect" : [ 478.25, 270.0, 214.0, 22.0 ],
 									"style" : "",
-									"text" : "sprintf Adding audio to buffer phase ... [%d%]"
+									"text" : "sprintf Adding audio to buffer ... [%d%]"
 								}
 
 							}
@@ -6061,9 +6062,9 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 50.0, 243.0, 186.0, 22.0 ],
+									"patching_rect" : [ 50.0, 243.0, 102.0, 22.0 ],
 									"style" : "",
-									"text" : "Buffer reading phase is starting..."
+									"text" : "Loading Buffer ..."
 								}
 
 							}
@@ -9646,20 +9647,20 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-132" : [ "Dummy_ON", "Dummy_ON", 0 ],
-			"obj-120::obj-8::obj-13" : [ "Attack[1]", "Attack", 2 ],
-			"obj-120::obj-8::obj-15" : [ "Makeup[1]", "Makeup", 4 ],
-			"obj-120::obj-8::obj-14" : [ "Release[1]", "Release", 3 ],
-			"obj-130" : [ "Strom_Vol", "Storm", 0 ],
-			"obj-128" : [ "Rhythm_Vol", "Rhythm", 0 ],
-			"obj-126" : [ "Drone_Vol", "Drone", 0 ],
 			"obj-129" : [ "number", "number", 0 ],
-			"obj-120::obj-8::obj-55" : [ "Threshold[1]", "Threshold", 0 ],
+			"obj-120::obj-8::obj-15" : [ "Makeup[1]", "Makeup", 4 ],
+			"obj-120::obj-8::obj-13" : [ "Attack[1]", "Attack", 2 ],
 			"obj-120::obj-8::obj-30" : [ "Ratio[1]", "Ratio", 1 ],
+			"obj-132" : [ "Dummy_ON", "Dummy_ON", 0 ],
+			"obj-120::obj-8::obj-7" : [ "Output Gain[1]", "Output Gain", 5 ],
+			"obj-148" : [ "Playback", "Playback", 0 ],
+			"obj-120::obj-8::obj-55" : [ "Threshold[1]", "Threshold", 0 ],
 			"obj-122::obj-1" : [ "live.gain~[2]", "live.gain~", 0 ],
 			"obj-146" : [ "Master", "Master", 0 ],
-			"obj-120::obj-8::obj-7" : [ "Output Gain[1]", "Output Gain", 5 ],
-			"obj-148" : [ "Playback", "Playback", 0 ]
+			"obj-130" : [ "Strom_Vol", "Storm", 0 ],
+			"obj-120::obj-8::obj-14" : [ "Release[1]", "Release", 3 ],
+			"obj-128" : [ "Rhythm_Vol", "Rhythm", 0 ],
+			"obj-126" : [ "Drone_Vol", "Drone", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
