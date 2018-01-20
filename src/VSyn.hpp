@@ -151,7 +151,7 @@ class VSyn : public Event {
         DrawAgentsWithChar drawAgentsWithChar;
         Sound sound; //AudioTrigger with OSC
     
-
+        SoundTrigger soundTrigger;
     
 
         //AGENT VISUAL
