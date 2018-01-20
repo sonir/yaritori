@@ -84,9 +84,8 @@ void Network :: update(){
             int id = count * ofRandom(1.0);
             
             gismo.bang("/addShape" , &pShapes[id]);
-        }
-        
-        else if( m.getAddress() == "/test/outline" /*"/que"*/ ){ //Receiving Agents
+            
+        } else if( m.getAddress() == "/yaritori/post" /*"/que"*/ ){ //Receiving Agents
             
             cout << "Network :: /outline received" << endl;
             shape.node_count = m.getArgAsInt32(0);

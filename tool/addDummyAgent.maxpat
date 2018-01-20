@@ -8,7 +8,7 @@
 			"architecture" : "x86"
 		}
 ,
-		"rect" : [ 891.0, 231.0, 640.0, 480.0 ],
+		"rect" : [ 1073.0, 177.0, 640.0, 480.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -90,7 +90,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 158.0, 246.0, 388.0, 20.0 ],
-					"text" : "pack /dummyAdd /yaritori/post 4 -0.5 0.5 0.5 0.5 -0.5 -0.5 0.5 -0.5 1 3 4"
+					"text" : "pack /dummyAdd /yaritori/post 4 -0.5 0.5 0.5 0.5 -0.5 -0.5 0.5 -0.5 1 2 3"
 				}
 
 			}

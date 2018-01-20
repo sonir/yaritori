@@ -13,6 +13,22 @@ using namespace std;
 void VSyn::setup(){
     
   ofSetFrameRate(30);
+    //// EventSetup ////
+    
+    //ResetFunction
+    //SetUpEvents
+    auto f = [&](void* args){ //<- keep this desctiption
+        //draw your code
+        int *key_num = (int *)args;
+        //Reset State
+        agBuffReset(&gismo.agents);
+        agBuffReset(&gismo.add);
+        
+    };
+    gismo.lambdaAdd("/reset", f);
+    
+    
+    ////////////////////
     
     //Set Metro
     metro = new Metro(GISMO_UPDATE_INTERVAL);
@@ -672,12 +688,12 @@ void VSyn::test(){
     //gismo.addAgent(ag);
     ag.posi.x = 0.75f; ag.posi.y = 0.5f;
     
-//    for(int i=0;i<DUMMY_AG_A_NUM;i++) gismo.addAgent(ag);
-//
-//    ag.size *= 0.8f;
-//    ag.mov *= 2.5f;
-//    ag.view *= 1.0f;
-//    for(int i=0;i<DUMMY_AG_B_NUM;i++) gismo.addAgent(ag);
+    for(int i=0;i<DUMMY_AG_A_NUM;i++) gismo.addAgent(ag);
+
+    ag.size *= 0.8f;
+    ag.mov *= 2.5f;
+    ag.view *= 1.0f;
+    for(int i=0;i<DUMMY_AG_B_NUM;i++) gismo.addAgent(ag);
     
     
     
