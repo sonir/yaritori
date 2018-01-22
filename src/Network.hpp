@@ -17,7 +17,9 @@
 // listen on port 12345
 #define IN_PORT 57140 //8002//56138
 #define NUM_MSG_STRINGS 20
-
+//Decodeing incoming shapes
+#define INDEX_OF_COLOR 0
+#define INDEX_OF_NODE 1
 
 
 #endif /* Network_hpp */

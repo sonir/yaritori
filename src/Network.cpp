@@ -67,13 +67,14 @@ void Network :: update(){
         else if( m.getAddress() == "/yaritori/post" /*"/que"*/ ){ //Receiving Agents
             
             cout << "Network :: /outline received" << endl;
-            shape.node_count = m.getArgAsInt32(0);
-            int index_of_edge_count = (shape.node_count*2)+1;
+            shape.color = m.getArgAsFloat(INDEX_OF_COLOR);
+            shape.node_count = m.getArgAsInt32(INDEX_OF_NODE);
+            int index_of_edge_count = (shape.node_count*2)+2;
             shape.edge_count = m.getArgAsInt32( index_of_edge_count );
             
             int node_index = 0;
             
-            for(int i=1; i<(shape.node_count*2)+1; i=i+2){
+            for(int i=INDEX_OF_NODE+1; i<(shape.node_count*2)+1; i=i+2){
                 shape.nodes[node_index].x = m.getArgAsFloat(i);
                 shape.nodes[node_index].y = m.getArgAsFloat(i+1);
                 node_index+=1;
@@ -168,6 +169,8 @@ void Network::dispParams(ag_shape_t shape){
         
         
     }
+    
+    cout << "color = " << shape.color << endl;
     
     cout << "----" << endl;
     
