@@ -19,6 +19,7 @@ constexpr float DISPLAY_LENGTH_H = 4000.;
 //constexpr float SCREEN_LENGTH_H = 4000.;
 constexpr float MARGIN_0_LENGTH = 0.;
 constexpr float MARGIN_1_LENGTH = 0.;
+
 //constexpr float ORIGIN_0_LENGTH_W = 0.;
 //constexpr float ORIGIN_1_LENGTH_W = 0.;
 //constexpr float ORIGIN_2_LENGTH_W = 0.;
@@ -55,7 +56,7 @@ constexpr int ORIGINAL_WIDTH = ORIGINAL_HEIGHT * 2.9;
 
 constexpr int APP_WIDTH = DISPLAY_WIDTH * 3;
 constexpr int APP_HEIGHT = DISPLAY_HEIGHT;
-//
+
 //constexpr int ORIGIN_0_W = ORIGIN_0_LENGTH_W * PixPerMm_W;
 //constexpr int ORIGIN_1_W = ORIGIN_1_LENGTH_W * PixPerMm_W;
 //constexpr int ORIGIN_2_W = ORIGIN_2_LENGTH_W * PixPerMm_W;
