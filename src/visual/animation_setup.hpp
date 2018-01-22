@@ -35,8 +35,8 @@ constexpr float EASING_RATIO = 0.05;
 
 /////////////////// WAVEFORM ///////////////////
 static constexpr float cycle = 1. * 1000.;   //msec
-static constexpr float maxR = 0.01;    //Max amplitude
-static const int TURN_NUM = 15;  //num of feature points
+static constexpr float maxR = 0.003;    //Max amplitude
+static const int TURN_NUM = 8;  //num of feature points
 
 
 

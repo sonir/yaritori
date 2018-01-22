@@ -10,7 +10,7 @@
 #define screen_setup_h
 #import <iostream>
 
-//#define DEBUG_MODE_SCREEN
+#define DEBUG_MODE_SCREEN
 
 //Length: real length(mm) | input figures on the site
 constexpr float DISPLAY_LENGTH_W = 7111.;
@@ -25,8 +25,8 @@ constexpr float MARGIN_1_LENGTH = 0.;
 
 //display resolution(projector)
 #ifdef DEBUG_MODE_SCREEN
-constexpr int DISPLAY_WIDTH = 480;//440;//1920;
-constexpr int DISPLAY_HEIGHT = 270;//225;//1080;
+constexpr int DISPLAY_WIDTH = 1920;//440;//1920;
+constexpr int DISPLAY_HEIGHT = 1080;//225;//1080;
 #else
 constexpr int DISPLAY_WIDTH = 1920;
 constexpr int DISPLAY_HEIGHT = 1080;

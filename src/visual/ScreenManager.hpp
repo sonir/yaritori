@@ -38,21 +38,23 @@ public:
     void end();
     void draw();
     
+    void setWindowPlace(int window, float x, float y);
+    void resetWindowPlace(int window);
+    
     void setMask(int window, int vertexId, float x, float y);
     void mask();
     
     void swap(int window, swap_direction direction);
     void swap(int window, float x, float y);
     void setSwapDuration(float go, float out, float back);
-    //    void setOriginPosition(pos_t o1, pos_t o2, pos_t o3);
-    //    void setZoom(int window, pos_t centerPos, float ratio);
-    //    void resetScreen(int window);
     
     void drawBackground();
     bool colorState;
     
     void setFullScreen();
     ofColor getDrawColor();
+    
+    float width, height;
     
 private:
     void init();
@@ -70,13 +72,10 @@ private:
     ofFloatColor mask_cols[8 * 3];
     
     ofFbo fbo;
-    ofMesh mesh[3];
+    ofVec2f texture_originPos[3];
     
     pos_t pos[3];  //up-left point of window
     
-    //    pos_t centerPos[3];
-    //    pos_t centerPos_origin[3]; //standard pos
-    //    float ratio[3];
     
     float swapDur_go, swapDur_out, swapDur_back;    //msec
     

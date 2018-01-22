@@ -67,7 +67,6 @@ void VSyn::setup(){
     
     //Set window size for yaritori
     scManager.setup();
-    initCanvasSize(ORIGINAL_WIDTH, ORIGINAL_HEIGHT);
     
     //Create TestClass
     myTest = new Test(&sound, &ripple);
@@ -528,6 +527,46 @@ void VSyn::keyPressed(int key) {
         case 'i': {
             gismo.bang("/invert");
             break;
+        }
+        case 'm': {
+            param_u params[4];
+            params[0].ival = 0;
+            params[1].ival = 0;
+            params[2].fval = 0.1;
+            params[3].fval = 0.;
+            gismo.lambdaBang("/mask", params);
+            
+            params[0].ival = 0;
+            params[1].ival = 1;
+            params[2].fval = 0.8;
+            params[3].fval = 0.;
+            gismo.lambdaBang("/mask", params);
+            
+            
+            params[0].ival = 1;
+            params[1].ival = 0;
+            params[2].fval = 0.2;
+            params[3].fval = 0.;
+            gismo.lambdaBang("/mask", params);
+            
+            params[0].ival = 1;
+            params[1].ival = 1;
+            params[2].fval = 0.9;
+            params[3].fval = 0.;
+            gismo.lambdaBang("/mask", params);
+            
+            params[0].ival = 1;
+            params[1].ival = 2;
+            params[2].fval = 0.8;
+            params[3].fval = 1.0;
+            gismo.lambdaBang("/mask", params);
+            
+            params[0].ival = 1;
+            params[1].ival = 1;
+            params[2].fval = 0.1;
+            params[3].fval = 1.0;
+            gismo.lambdaBang("/mask", params);
+            
         }
         default:
             break;

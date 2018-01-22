@@ -8,37 +8,6 @@
 
 #include "ScreenManager.hpp"
 
-
-void invertBackground() {
-    drawWhiteBack = !drawWhiteBack;
-}
-
-ScreenManager::ScreenManager(){
-    for(int i = 0; i < 3; i++){
-        pos[i].x = 0;
-        pos[i].y = 0.;
-    }
-    
-    init();
-    setEvents();
-}
-
-
-void ScreenManager::setup() {
-    
-    ofSetWindowShape(APP_WIDTH, APP_HEIGHT);
-    initCanvasSize(APP_WIDTH, APP_HEIGHT);
-    //    vsyn.initWindowSize();
-}
-
-void ScreenManager::init(){
-    initFbo();
-    initStatus();
-    initMask();
-    
-    colorState = true;
-}
-
 void ScreenManager::setEvents() {
     
     auto swapEvent = [&](void* args) {
@@ -57,62 +26,60 @@ void ScreenManager::setEvents() {
         int vertexId = params[1].ival;
         float x = params[2].fval;
         float y = params[3].fval;
+        this->setMask(window, vertexId, x, y);
+        cout << "MASK SET" << endl;
     };
     
     
     GismoManager& gismo = GismoManager::getInstance();
     gismo.lambdaAdd("/swap", swapEvent);
-    gismo.lambdaAdd("/masp", maskEvent);
+    gismo.lambdaAdd("/mask", maskEvent);
     
+}
+
+void invertBackground() {
+    drawWhiteBack = !drawWhiteBack;
+}
+
+ScreenManager::ScreenManager(){
+    
+    
+    for(int i = 0; i < 3; i++){
+        pos[i].x = 0;
+        pos[i].y = 0.;
+    }
+    
+    init();
+    setEvents();
+}
+
+
+void ScreenManager::setup() {
+    
+#ifdef DEBUG_MODE_SCREEN
+    ofSetWindowShape(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+#else
+    ofSetWindowShape(APP_WIDTH, APP_HEIGHT);
+#endif
+    
+    initCanvasSize(ORIGINAL_WIDTH, ORIGINAL_HEIGHT);    //Tell original width and original height to vsyn
+    
+}
+
+void ScreenManager::init(){
+    initFbo();
+    initStatus();
+    initMask();
+    
+    colorState = true;
 }
 
 void ScreenManager::initFbo(){
     fbo.allocate(ORIGINAL_WIDTH, ORIGINAL_HEIGHT);
-    
-    for(int i = 0; i < 3; i++){
-        mesh[i].addVertex(ofVec2f(0, 0));
-        mesh[i].addVertex(ofVec2f(DISPLAY_WIDTH, 0));
-        mesh[i].addVertex(ofVec2f(DISPLAY_WIDTH, DISPLAY_HEIGHT));
-        mesh[i].addVertex(ofVec2f(0, DISPLAY_HEIGHT));
-        mesh[i].addVertex(ofVec2f(0, 0));
-        
-        mesh[i].setupIndicesAuto();
-        mesh[i].setMode(OF_PRIMITIVE_TRIANGLE_STRIP);
-    }
-    
-    mesh[0].addTexCoord(ofVec2f(MARGIN_W, MARGIN_H));
-    mesh[0].addTexCoord(ofVec2f(MARGIN_W + DISPLAY_WIDTH, MARGIN_H));
-    mesh[0].addTexCoord(ofVec2f(MARGIN_W + DISPLAY_WIDTH, MARGIN_H + DISPLAY_HEIGHT));
-    mesh[0].addTexCoord(ofVec2f(MARGIN_W, MARGIN_H + DISPLAY_HEIGHT));
-    mesh[0].addTexCoord(ofVec2f(MARGIN_W, MARGIN_H));
-    
-    mesh[1].addTexCoord(ofVec2f(MARGIN_W + MARGIN_0 + DISPLAY_WIDTH, MARGIN_H));
-    mesh[1].addTexCoord(ofVec2f(MARGIN_W + MARGIN_0 + DISPLAY_WIDTH * 2, MARGIN_H));
-    mesh[1].addTexCoord(ofVec2f(MARGIN_W + MARGIN_0 + DISPLAY_WIDTH * 2, MARGIN_H + DISPLAY_HEIGHT));
-    mesh[1].addTexCoord(ofVec2f(MARGIN_W + MARGIN_0 + DISPLAY_WIDTH, MARGIN_H + DISPLAY_HEIGHT));
-    mesh[1].addTexCoord(ofVec2f(MARGIN_W + MARGIN_0 + DISPLAY_WIDTH, MARGIN_H));
-    
-    mesh[2].addTexCoord(ofVec2f(MARGIN_W + MARGIN_0 + MARGIN_1 + DISPLAY_WIDTH * 2, MARGIN_H));
-    mesh[2].addTexCoord(ofVec2f(MARGIN_W + MARGIN_0 + MARGIN_1 + DISPLAY_WIDTH * 3, MARGIN_H));
-    mesh[2].addTexCoord(ofVec2f(MARGIN_W + MARGIN_0 + MARGIN_1 + DISPLAY_WIDTH * 3, MARGIN_H + DISPLAY_HEIGHT));
-    mesh[2].addTexCoord(ofVec2f(MARGIN_W + MARGIN_0 + MARGIN_1 + DISPLAY_WIDTH * 2, MARGIN_H + DISPLAY_HEIGHT));
-    mesh[2].addTexCoord(ofVec2f(MARGIN_W + MARGIN_0 + MARGIN_1 + DISPLAY_WIDTH * 2, MARGIN_H));
 }
 
 void ScreenManager::initStatus(){
-    //    pos_t tmp[3];
-    //    tmp[0].x = (DISPLAY_WIDTH * 0.5 + MARGIN_W) / ORIGINAL_WIDTH;
-    //    tmp[0].y = 0.5;
-    //    tmp[1].x = (DISPLAY_WIDTH * 1.5 + MARGIN_W + MARGIN_0) / ORIGINAL_HEIGHT;
-    //    tmp[1].y = 0.5;
-    //    tmp[2].x = (DISPLAY_WIDTH * 2.5 + MARGIN_W + MARGIN_0 + MARGIN_1) / ORIGINAL_WIDTH;
-    //    tmp[2].y = 0.5;
-    
     for(int i = 0; i < 3; i++){
-        //        centerPos_origin[i] = tmp[i];
-        //        centerPos[i] = centerPos_origin[i];
-        //        ratio[i] = 1.0;
-        
         startPos[i].x = 0.;
         startPos[i].y = 0.;
         endPos[i].x = 0.;
@@ -124,6 +91,10 @@ void ScreenManager::initStatus(){
     swapDur_go = 500;   //msec
     swapDur_out = 100;
     swapDur_back = 700;
+    
+    for(int i = 0; i < 3; i++){
+        resetWindowPlace(i);
+    }
 }
 
 void ScreenManager::initMask(){
@@ -185,36 +156,18 @@ void ScreenManager::initMask(){
     mask_vbo.setIndexData(mask_indices, 6 * 6 * 2, GL_STATIC_DRAW);
 }
 
-void ScreenManager::begin(){
-    fbo.begin();
-    ofClear(0);
-    drawBackground();
+void ScreenManager::setWindowPlace(int window, float x, float y){
+    texture_originPos[window].set(x * ORIGINAL_WIDTH, y * ORIGINAL_HEIGHT);
 }
 
-void ScreenManager::end(){
-    fbo.end();
+void ScreenManager::resetWindowPlace(int window){
+    texture_originPos[0].set(MARGIN_W, MARGIN_H);
+    texture_originPos[1].set(MARGIN_W + MARGIN_0 + DISPLAY_WIDTH, MARGIN_H);
+    texture_originPos[2].set(MARGIN_W + MARGIN_0 + MARGIN_1 + DISPLAY_WIDTH * 2, MARGIN_H);
 }
-
-//void ScreenManager::setOriginPosition(pos_t p1, pos_t p2, pos_t p3){
-//    swap_cal();
-//
-//    pos[0] = p1;
-//    pos[1] = p2;
-//    pos[2] = p3;
-//}
-
-//void ScreenManager::setZoom(int window, pos_t p, float r){
-//    centerPos[window] = p;
-//    ratio[window] = r;
-//}
-
-//void ScreenManager::resetScreen(int window){
-//    centerPos[window] = centerPos_origin[window];
-//    ratio[window] = 1.0;
-//}
 
 void ScreenManager::setMask(int window, int vertexId, float x, float y){
-    mask_pos[window * 4 + vertexId].set(x + DISPLAY_WIDTH, y * DISPLAY_HEIGHT);
+    mask_pos[window * 4 + vertexId].set(x * DISPLAY_WIDTH, y * DISPLAY_HEIGHT);
 }
 
 void ScreenManager::mask(){
@@ -228,20 +181,76 @@ void ScreenManager::mask(){
     mask_vbo.drawElements(GL_TRIANGLES, 72);
 }
 
+void ScreenManager::begin(){
+    fbo.begin();
+    ofClear(0);
+    drawBackground();
+    
+#ifdef DEBUG_MODE_SCREEN
+    //Draw Rectangle to show trimmed area here
+    
+    
+#endif
+    
+}
+
+void ScreenManager::end(){
+    
+#ifdef DEBUG_MODE_SCREEN
+    //Draw Rectangle to show trimmed area here
+    
+    
+#endif
+    
+    fbo.end();
+    
+
+}
+
 void ScreenManager::draw(){
+    ofBackground(0);
+    
+#ifdef DEBUG_MODE_SCREEN   //Debug mode
+    
+    fbo.draw(0, 100, 1920, 662);
+    
+#else   //Normal mode
     swap_cal();
     
-    fbo.getTexture().bind();
     for(int i = 0; i < 3; i++){
         ofPushMatrix();
         ofTranslate(DISPLAY_WIDTH * i, 0);
-        ofTranslate(pos[i].x, pos[i].y);
-        mesh[i].draw();
+        
+        float x, y, w, h, sx, sy, sw, sh;
+        if(pos[i].x > 0) {
+            x = pos[i].x;
+            w = DISPLAY_WIDTH - pos[i].x;
+            sx = texture_originPos[i].x;
+            sw = DISPLAY_WIDTH - pos[i].x;
+        }else{
+            x = 0;
+            w = DISPLAY_WIDTH + pos[i].x;
+            sx = texture_originPos[i].x - pos[i].x;
+            sw = DISPLAY_WIDTH + pos[i].x;
+        }
+        if(pos[i].y > 0) {
+            y = pos[i].y;
+            h = DISPLAY_HEIGHT - pos[i].y;
+            sy = texture_originPos[i].y;
+            sh = DISPLAY_HEIGHT - pos[i].y;
+        }else{
+            y = 0;
+            h = DISPLAY_HEIGHT + pos[i].y;
+            sy = texture_originPos[i].y - pos[i].y;
+            sh = DISPLAY_HEIGHT + pos[i].y;
+        }
+        
+        fbo.getTexture().drawSubsection(x, y, w, h, sx, sy, sw, sh);
         ofPopMatrix();
     }
-    fbo.getTexture().unbind();
     
     mask();
+#endif
 }
 
 void ScreenManager::drawBackground(){
