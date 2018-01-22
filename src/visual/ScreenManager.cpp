@@ -27,7 +27,6 @@ void ScreenManager::setEvents() {
         float x = params[2].fval;
         float y = params[3].fval;
         this->setMask(window, vertexId, x, y);
-        cout << "MASK SET" << endl;
     };
     
     

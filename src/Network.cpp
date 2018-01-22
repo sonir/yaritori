@@ -85,6 +85,14 @@ void Network :: update(){
             
             gismo.bang("/addShape" , &pShapes[id]);
             
+        } else if (m.getAddress() == "/mask" ) {
+            param_u tmp[4];
+            tmp[0].ival = m.getArgAsInt(0); //Window ID
+            tmp[1].ival = m.getArgAsInt(1); //Vertex ID
+            tmp[2].fval = m.getArgAsFloat(2);
+            tmp[3].fval = m.getArgAsFloat(3);
+            gismo.bang("/mask", &tmp);
+            
         } else if( m.getAddress() == "/yaritori/post" /*"/que"*/ ){ //Receiving Agents
             
             cout << "Network :: /outline received" << endl;
