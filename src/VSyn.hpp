@@ -17,8 +17,8 @@
 /// Includes ///
 
 //#define DEBUG_MODE
-#define DUMMY_AG_A_NUM 10
-#define DUMMY_AG_B_NUM 10
+#define DUMMY_AG_A_NUM 0
+#define DUMMY_AG_B_NUM 0
 
 //#define PERFORMANCE_MODE
 #define GISMO_UPDATE_INTERVAL 0.033
@@ -80,9 +80,9 @@
 #include "DrawAgentsWithChar.hpp"
 #include "RippleManager.hpp"
 
-
 //Sound
 #include "SoundTrigger.hpp"
+
 
 
 class VSyn : public Event {
@@ -157,6 +157,9 @@ class VSyn : public Event {
         //AGENT VISUAL
         RippleManager ripple;
         visual_container_t visual;
+        //Sound
+        SoundTrigger soundTrigger;
+    
 };
 
 #endif /* VSyn_hpp */
