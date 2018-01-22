@@ -382,28 +382,52 @@ void VSyn::draw(){
     particle.draw();
     
 
+//#ifdef DEBUG_MODE
+//    //drawAgentsForSimpleGraphics for debugging
+//    drawAgentsWithChar.draw(&gismo, screen_w, screen_h);
+//
+//#else
+//    //drawAgents
+//    for(int i = 0; i < 3; i++){
+//        scManager.begin(i);
+//
+//        //Draw Agents normally
+//        drawAgents(&visual);
+//
+//        //Ripple
+//        ripple.draw();
+//
+//#ifdef PERFORMANCE_MODE
+//    performanceManager.updateLines();
+//    performanceManager.updateLinesInverted();
+//    drawPerformance(&performanceManager);
+//#endif
+//        scManager.end(i);
+//    }
+//
+//    scManager.draw();
+//#endif
+    
 #ifdef DEBUG_MODE
     //drawAgentsForSimpleGraphics for debugging
     drawAgentsWithChar.draw(&gismo, screen_w, screen_h);
     
 #else
     //drawAgents
-    for(int i = 0; i < 3; i++){
-        scManager.begin(i);
-        
-        //Draw Agents normally
-        drawAgents(&visual);
-        
-        //Ripple
-        ripple.draw();
+    scManager.begin();
     
+    //Draw Agents normally
+    drawAgents(&visual);
+    //Ripple
+    ripple.draw();
+    
+    ofSetColor(scManager.getDrawColor());
 #ifdef PERFORMANCE_MODE
     performanceManager.updateLines();
     performanceManager.updateLinesInverted();
     drawPerformance(&performanceManager);
-#endif        
-        scManager.end(i);
-    }
+#endif
+    scManager.end();
     
     scManager.draw();
 #endif
@@ -501,39 +525,10 @@ void VSyn::draw(){
 
 void VSyn::keyPressed(int key) {
     switch (key) {
-        case 's':
-            myTest->solo();
+        case 'i': {
+            gismo.bang("/invert");
             break;
-            
-        case 'i':
-            myTest->invert();
-            break;
-            
-        case 'r': {
-                float args1[] = {0.25 ,0.5};
-                gismo.bang("/ripple", args1);
-                break;
-            }
-        case 'm':
-            scManager.swap(1, UP);
-            break;
-        case 'n':
-            scManager.swap(1, DOWN);
-            break;
-        case 'k':
-            scManager.swap(1, RIGHT);
-            break;
-        case 'j':
-            scManager.swap(1, LEFT);
-            break;
-        case '0':{
-            pos_t pos;
-            pos.x = ofRandom(0., 0.2);
-            pos.y = ofRandom(0., 1.);
-            float r = ofRandom(1., 3.);
-            scManager.setZoom(0, pos, r);
-            break;}
-            
+        }
         default:
             break;
     }
@@ -598,13 +593,15 @@ void VSyn::test(){
         ag_shapes[i] = shape;
         //gismo.bang("/addShape", &shape);
     }
+    assert(ag_shapes_count == 0);
+    
+    
     //assert(ag_shapes_count == 1);
     //assert( ag_shapes[0].node_count == 2 );
     //assert (ag_shapes[0].edges[0].node_id_b == 1);
     std::cout << "VSyn:: addAgShape is ok." << std::endl;
 
     
-
     
     
     
@@ -687,6 +684,9 @@ void VSyn::test(){
     ag.posi.x = 0.25f; ag.posi.y = 0.5f;
     //gismo.addAgent(ag);
     ag.posi.x = 0.75f; ag.posi.y = 0.5f;
+    
+    
+    ag.size = 0.03;
     
     for(int i=0;i<DUMMY_AG_A_NUM;i++) gismo.addAgent(ag);
 

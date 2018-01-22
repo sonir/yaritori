@@ -104,7 +104,7 @@ class VSyn : public Event {
             soundTrigger.sounds[index]= snd; //Store sound int sound buffer
             
         }
-
+    
     
         shapeContainer shapes[CONTAINER_MAX];
         ofColor colors[CONTAINER_MAX];
@@ -151,7 +151,7 @@ class VSyn : public Event {
         DrawAgentsWithChar drawAgentsWithChar;
         Sound sound; //AudioTrigger with OSC
     
-
+        SoundTrigger soundTrigger;
     
 
         //AGENT VISUAL

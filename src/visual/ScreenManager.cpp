@@ -28,14 +28,14 @@ void ScreenManager::setup() {
     
     ofSetWindowShape(APP_WIDTH, APP_HEIGHT);
     initCanvasSize(APP_WIDTH, APP_HEIGHT);
-//    vsyn.initWindowSize();
+    //    vsyn.initWindowSize();
 }
 
 void ScreenManager::init(){
     initFbo();
     initStatus();
+    initMask();
     
-//    shader.load("", "shader/invert.frag");
     colorState = true;
 }
 
@@ -51,47 +51,69 @@ void ScreenManager::setEvents() {
         
     };
     
+    auto maskEvent = [&](void* args) {
+        param_u* params = (param_u *)args;
+        int window = params[0].ival;
+        int vertexId = params[1].ival;
+        float x = params[2].fval;
+        float y = params[3].fval;
+        this->setMask(window, vertexId, x, y);
+        cout << "MASK SET" << endl;
+    };
+    
+    
     GismoManager& gismo = GismoManager::getInstance();
     gismo.lambdaAdd("/swap", swapEvent);
+    gismo.lambdaAdd("/mask", maskEvent);
     
 }
 
 void ScreenManager::initFbo(){
+    fbo.allocate(ORIGINAL_WIDTH, ORIGINAL_HEIGHT);
+    
     for(int i = 0; i < 3; i++){
-        fbo[i].allocate(SCREEN_WIDTH, SCREEN_HEIGHT);
-        
         mesh[i].addVertex(ofVec2f(0, 0));
-        mesh[i].addVertex(ofVec2f(SCREEN_WIDTH, 0));
-        mesh[i].addVertex(ofVec2f(SCREEN_WIDTH, SCREEN_HEIGHT));
-        mesh[i].addVertex(ofVec2f(0, SCREEN_HEIGHT));
+        mesh[i].addVertex(ofVec2f(DISPLAY_WIDTH, 0));
+        mesh[i].addVertex(ofVec2f(DISPLAY_WIDTH, DISPLAY_HEIGHT));
+        mesh[i].addVertex(ofVec2f(0, DISPLAY_HEIGHT));
         mesh[i].addVertex(ofVec2f(0, 0));
         
         mesh[i].setupIndicesAuto();
-        
         mesh[i].setMode(OF_PRIMITIVE_TRIANGLE_STRIP);
-        
-        mesh[i].addTexCoord(ofVec2f(0, 0));
-        mesh[i].addTexCoord(ofVec2f(SCREEN_WIDTH, 0));
-        mesh[i].addTexCoord(ofVec2f(SCREEN_WIDTH, SCREEN_HEIGHT));
-        mesh[i].addTexCoord(ofVec2f(0, SCREEN_HEIGHT));
-        mesh[i].addTexCoord(ofVec2f(0, 0));
-
     }
+    
+    mesh[0].addTexCoord(ofVec2f(MARGIN_W, MARGIN_H));
+    mesh[0].addTexCoord(ofVec2f(MARGIN_W + DISPLAY_WIDTH, MARGIN_H));
+    mesh[0].addTexCoord(ofVec2f(MARGIN_W + DISPLAY_WIDTH, MARGIN_H + DISPLAY_HEIGHT));
+    mesh[0].addTexCoord(ofVec2f(MARGIN_W, MARGIN_H + DISPLAY_HEIGHT));
+    mesh[0].addTexCoord(ofVec2f(MARGIN_W, MARGIN_H));
+    
+    mesh[1].addTexCoord(ofVec2f(MARGIN_W + MARGIN_0 + DISPLAY_WIDTH, MARGIN_H));
+    mesh[1].addTexCoord(ofVec2f(MARGIN_W + MARGIN_0 + DISPLAY_WIDTH * 2, MARGIN_H));
+    mesh[1].addTexCoord(ofVec2f(MARGIN_W + MARGIN_0 + DISPLAY_WIDTH * 2, MARGIN_H + DISPLAY_HEIGHT));
+    mesh[1].addTexCoord(ofVec2f(MARGIN_W + MARGIN_0 + DISPLAY_WIDTH, MARGIN_H + DISPLAY_HEIGHT));
+    mesh[1].addTexCoord(ofVec2f(MARGIN_W + MARGIN_0 + DISPLAY_WIDTH, MARGIN_H));
+    
+    mesh[2].addTexCoord(ofVec2f(MARGIN_W + MARGIN_0 + MARGIN_1 + DISPLAY_WIDTH * 2, MARGIN_H));
+    mesh[2].addTexCoord(ofVec2f(MARGIN_W + MARGIN_0 + MARGIN_1 + DISPLAY_WIDTH * 3, MARGIN_H));
+    mesh[2].addTexCoord(ofVec2f(MARGIN_W + MARGIN_0 + MARGIN_1 + DISPLAY_WIDTH * 3, MARGIN_H + DISPLAY_HEIGHT));
+    mesh[2].addTexCoord(ofVec2f(MARGIN_W + MARGIN_0 + MARGIN_1 + DISPLAY_WIDTH * 2, MARGIN_H + DISPLAY_HEIGHT));
+    mesh[2].addTexCoord(ofVec2f(MARGIN_W + MARGIN_0 + MARGIN_1 + DISPLAY_WIDTH * 2, MARGIN_H));
 }
 
 void ScreenManager::initStatus(){
-    pos_t tmp[3];
-    tmp[0].x = (SCREEN_WIDTH * 0.5 + MARGIN) / ORIGINAL_HEIGHT;
-    tmp[0].y = 0.5;
-    tmp[1].x = (SCREEN_WIDTH * 1.5 + MARGIN * 2.) / ORIGINAL_HEIGHT;
-    tmp[1].y = 0.5;
-    tmp[2].x = (SCREEN_WIDTH * 2.5 + MARGIN * 3.) / ORIGINAL_HEIGHT;
-    tmp[2].y = 0.5;
+    //    pos_t tmp[3];
+    //    tmp[0].x = (DISPLAY_WIDTH * 0.5 + MARGIN_W) / ORIGINAL_WIDTH;
+    //    tmp[0].y = 0.5;
+    //    tmp[1].x = (DISPLAY_WIDTH * 1.5 + MARGIN_W + MARGIN_0) / ORIGINAL_HEIGHT;
+    //    tmp[1].y = 0.5;
+    //    tmp[2].x = (DISPLAY_WIDTH * 2.5 + MARGIN_W + MARGIN_0 + MARGIN_1) / ORIGINAL_WIDTH;
+    //    tmp[2].y = 0.5;
     
     for(int i = 0; i < 3; i++){
-        centerPos_origin[i] = tmp[i];
-        centerPos[i] = centerPos_origin[i];
-        ratio[i] = 1.0;
+        //        centerPos_origin[i] = tmp[i];
+        //        centerPos[i] = centerPos_origin[i];
+        //        ratio[i] = 1.0;
         
         startPos[i].x = 0.;
         startPos[i].y = 0.;
@@ -106,97 +128,129 @@ void ScreenManager::initStatus(){
     swapDur_back = 700;
 }
 
+void ScreenManager::initMask(){
+    int n = 0;
+    for(int i = 0; i < 3; i++){
+        for(int j = 0; j < 3; j++){
+            mask_indices[n] = i*8 + j;
+            n++;
+            mask_indices[n] = i*8 + j + 1;
+            n++;
+            mask_indices[n] = i*8 + j + 4;
+            n++;
+            mask_indices[n] = i*8 + j + 1;
+            n++;
+            mask_indices[n] = i*8 + j + 4;
+            n++;
+            mask_indices[n] = i*8 + j + 5;
+            n++;
+        }
+        mask_indices[n] = i*8 + 3;
+        n++;
+        mask_indices[n] = i*8;
+        n++;
+        mask_indices[n] = i*8 + 7;
+        n++;
+        mask_indices[n] = i*8;
+        n++;
+        mask_indices[n] = i*8 + 7;
+        n++;
+        mask_indices[n] = i*8 + 4;
+        n++;
+    }
+    
+    for(int i = 0; i < 3; i++){
+        mask_pos[i * 4].set(0, 0);
+        mask_pos[i * 4 + 1].set(DISPLAY_WIDTH, 0);
+        mask_pos[i * 4 + 2].set(DISPLAY_WIDTH, DISPLAY_WIDTH);
+        mask_pos[i * 4 + 3].set(0, DISPLAY_WIDTH);
+    }
+    
+    for(int i = 0; i < 3; i++){
+        mask_verts[i * 8].set(DISPLAY_WIDTH * i, 0);
+        mask_verts[i * 8 + 1].set(DISPLAY_WIDTH * (i + 1), 0);
+        mask_verts[i * 8 + 2].set(DISPLAY_WIDTH * (i + 1), DISPLAY_HEIGHT);
+        mask_verts[i * 8 + 3].set(DISPLAY_WIDTH * i, DISPLAY_HEIGHT);
+        
+        mask_verts[i * 8 + 4].set(mask_pos[i * 4]);
+        mask_verts[i * 8 + 5].set(mask_pos[i * 4 + 1]);
+        mask_verts[i * 8 + 6].set(mask_pos[i * 4 + 2]);
+        mask_verts[i * 8 + 7].set(mask_pos[i * 4 + 3]);
+    }
+    
+    for(int i = 0; i < 24; i++){
+        mask_cols[i] = ofFloatColor(0, 0, 0);
+    }
+    
+    mask_vbo.setVertexData(mask_verts, 4 * 6, GL_DYNAMIC_DRAW);
+    mask_vbo.setColorData(mask_cols, 24, GL_STATIC_DRAW);
+    mask_vbo.setIndexData(mask_indices, 6 * 6 * 2, GL_STATIC_DRAW);
+}
 
-void ScreenManager::begin(int window){
-    fbo[window].begin();
+void ScreenManager::begin(){
+    fbo.begin();
     ofClear(0);
     drawBackground();
-    ofPushMatrix();
-    ofTranslate(SCREEN_WIDTH * 0.5, SCREEN_HEIGHT * 0.5);
-    ofScale(ratio[window], ratio[window]);
-    ofTranslate(-centerPos[window].x * ORIGINAL_HEIGHT, -centerPos[window].y * ORIGINAL_HEIGHT);
-//    ofSetColor(255, 0, 0);
-//    ofDrawCircle(centerPos[window].x  * VSYN_WIDTH, centerPos[window].y * VSYN_HEIGHT, 50);
-//    ofNoFill();
-//    ofDrawRectangle(0, 0, VSYN_WIDTH, VSYN_HEIGHT);
-//    ofFill();
 }
 
-void ScreenManager::end(int window){
-    ofPopMatrix();
-    fbo[window].end();
-}
-void ScreenManager::setOriginPosition(pos_t p1, pos_t p2, pos_t p3){
-    swap_cal();
-    
-    pos[0] = p1;
-    pos[1] = p2;
-    pos[2] = p3;
+void ScreenManager::end(){
+    fbo.end();
 }
 
-void ScreenManager::setZoom(int window, pos_t p, float r){
-    centerPos[window] = p;
-    ratio[window] = r;
+//void ScreenManager::setOriginPosition(pos_t p1, pos_t p2, pos_t p3){
+//    swap_cal();
+//
+//    pos[0] = p1;
+//    pos[1] = p2;
+//    pos[2] = p3;
+//}
+
+//void ScreenManager::setZoom(int window, pos_t p, float r){
+//    centerPos[window] = p;
+//    ratio[window] = r;
+//}
+
+//void ScreenManager::resetScreen(int window){
+//    centerPos[window] = centerPos_origin[window];
+//    ratio[window] = 1.0;
+//}
+
+void ScreenManager::setMask(int window, int vertexId, float x, float y){
+    mask_pos[window * 4 + vertexId].set(x * DISPLAY_WIDTH, y * DISPLAY_HEIGHT);
 }
 
-void ScreenManager::resetScreen(int window){
-    centerPos[window] = centerPos_origin[window];
-    ratio[window] = 1.0;
+void ScreenManager::mask(){
+    for(int i = 0; i < 3; i++){
+        mask_verts[i * 8 + 4].set(mask_pos[i * 4] + ofVec2f(DISPLAY_WIDTH * i, 0));
+        mask_verts[i * 8 + 5].set(mask_pos[i * 4 + 1] + ofVec2f(DISPLAY_WIDTH * i, 0));
+        mask_verts[i * 8 + 6].set(mask_pos[i * 4 + 2] + ofVec2f(DISPLAY_WIDTH * i, 0));
+        mask_verts[i * 8 + 7].set(mask_pos[i * 4 + 3] + ofVec2f(DISPLAY_WIDTH * i, 0));
+    }
+    mask_vbo.updateVertexData(mask_verts, 24);
+    mask_vbo.drawElements(GL_TRIANGLES, 72);
 }
 
 void ScreenManager::draw(){
-    ofBackground(0);
-        
     swap_cal();
     
-    ofSetColor(255, 255, 255);
-    
-
+    fbo.getTexture().bind();
     for(int i = 0; i < 3; i++){
-    
-        fbo[i].getTexture().bind();
-
         ofPushMatrix();
         ofTranslate(DISPLAY_WIDTH * i, 0);
         ofTranslate(pos[i].x, pos[i].y);
-        if(pos[i].x < 0){
-            fbo[i].getTexture().drawSubsection(-pos[i].x, 0, SCREEN_WIDTH + pos[i].x, SCREEN_HEIGHT, 1., 1.);
-        }else{
-            fbo[i].getTexture().drawSubsection(0, 0, SCREEN_WIDTH - pos[i].x , SCREEN_HEIGHT, 1., 1.);
-        }
+        mesh[i].draw();
         ofPopMatrix();
-    
-        fbo[i].getTexture().unbind();
-        
-//        ofPushMatrix();
-//        ofTranslate(DISPLAY_WIDTH * i, 0);
-//        ofTranslate(pos[i].x, pos[i].y);
-//        shader.begin();
-//        shader.setUniformTexture("texture", fbo[i].getTexture(), 0);
-//        shader.setUniform1f("colorState", colorState);
-//        fbo[i].draw(0, 0);
-//        shader.end();
-//        ofPopMatrix();
-
     }
+    fbo.getTexture().unbind();
     
-    //mask
-    ofSetColor(0);
-    ofDrawRectangle(0, 0, ORIGIN_0_W, DISPLAY_HEIGHT);
-    ofDrawRectangle(ORIGIN_0_W + SCREEN_WIDTH, 0, (DISPLAY_WIDTH - (SCREEN_WIDTH + ORIGIN_0_W)) + ORIGIN_1_W, DISPLAY_HEIGHT);
-    ofDrawRectangle(DISPLAY_WIDTH + ORIGIN_1_W + SCREEN_WIDTH, 0, (DISPLAY_WIDTH - (SCREEN_WIDTH + ORIGIN_1_W)) + ORIGIN_2_W, DISPLAY_HEIGHT);
-    ofDrawRectangle(DISPLAY_WIDTH * 2 + ORIGIN_2_W + SCREEN_WIDTH, 0, DISPLAY_WIDTH - (SCREEN_WIDTH + ORIGIN_2_W), DISPLAY_HEIGHT);
-//    ofDrawRectangle(0, 0, APP_WIDTH, (APP_HEIGHT - SCREEN_HEIGHT) * 0.5);
-//    ofDrawRectangle(0, APP_HEIGHT - (APP_HEIGHT - SCREEN_HEIGHT) * 0.5, APP_WIDTH, (APP_HEIGHT - SCREEN_HEIGHT) * 0.5);
+    mask();
 }
 
 void ScreenManager::drawBackground(){
     if(drawWhiteBack == true) {
-        ofSetColor(255);
-        ofDrawRectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        ofBackground(255);
     }else{
-        ofSetColor(0);
-        ofDrawRectangle(0, 0, ORIGINAL_HEIGHT, ORIGINAL_HEIGHT);
+        ofBackground(0);
     }
 }
 
@@ -208,25 +262,25 @@ void ScreenManager::setSwapDuration(float go, float out, float down){
 
 void ScreenManager::swap(int window, swap_direction direction){
     startPos[window] = pos[window];
-
+    
     switch(direction){
         case UP:
-            endPos[window].y = -SCREEN_HEIGHT;
+            endPos[window].y = -DISPLAY_HEIGHT;
             state_h[window] = 1;
             interpolation_h[window].bang(swapDur_go);
             break;
         case DOWN:
-            endPos[window].y = SCREEN_HEIGHT;
+            endPos[window].y = DISPLAY_HEIGHT;
             state_h[window] = 1;
             interpolation_h[window].bang(swapDur_go);
             break;
         case RIGHT:
-            endPos[window].x = SCREEN_WIDTH;
+            endPos[window].x = DISPLAY_WIDTH;
             state_w[window] = 1;
             interpolation_w[window].bang(swapDur_go);
             break;
         case LEFT:
-            endPos[window].x = -SCREEN_WIDTH;
+            endPos[window].x = -DISPLAY_WIDTH;
             state_w[window] = 1;
             interpolation_w[window].bang(swapDur_go);
             break;
@@ -234,8 +288,8 @@ void ScreenManager::swap(int window, swap_direction direction){
 }
 
 void ScreenManager::swap(int window, float x, float y) {
-    pos[window].x = x * SCREEN_WIDTH;
-    pos[window].y = y * SCREEN_HEIGHT;
+    pos[window].x = x * DISPLAY_WIDTH;
+    pos[window].y = y * DISPLAY_HEIGHT;
 }
 
 void ScreenManager::swap_cal(){
@@ -307,10 +361,15 @@ void ScreenManager::swap_cal(){
 }
 
 void ScreenManager::setFullScreen() {
-        ofSetFullscreen(true);
-        ofSetWindowShape(APP_WIDTH, APP_HEIGHT);
-        ofSetWindowPosition(0, MASTER_HEGHT); //y: height of mbpr display
-    
+    ofSetFullscreen(true);
+    ofSetWindowShape(APP_WIDTH, APP_HEIGHT);
+    ofSetWindowPosition(0, MASTER_HEGHT); //y: height of mbpr display
 }
 
-
+ofColor ScreenManager::getDrawColor() {
+    if(drawWhiteBack) {
+        return ofColor(0);
+    } else {
+        return ofColor(255);
+    }
+}
