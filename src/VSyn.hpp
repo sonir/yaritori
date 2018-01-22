@@ -150,15 +150,12 @@ class VSyn : public Event {
         GismoManager& gismo = GismoManager::getInstance(); //Pointer for gismoManager instance
         DrawAgentsWithChar drawAgentsWithChar;
         Sound sound; //AudioTrigger with OSC
-    
-        SoundTrigger soundTrigger;
-    
+        //Sound
+        SoundTrigger soundTrigger;    
 
         //AGENT VISUAL
         RippleManager ripple;
         visual_container_t visual;
-        //Sound
-        SoundTrigger soundTrigger;
     
 };
 
