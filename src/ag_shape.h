@@ -36,6 +36,7 @@ typedef struct ag_shape_t {
     
     int node_count;
     int edge_count;
+    float color;
     
     
 } ag_shape_t;
