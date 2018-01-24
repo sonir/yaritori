@@ -130,7 +130,7 @@ void Network :: update(){
             
             
             int performer_id = m.getArgAsInt32(0);
-            gismo.bang("/sjq/atk" , &performer_id);
+            gismo.bang("/performance/atk" , &performer_id);
             
             
         } else if (  m.getAddress() == "/reset" ) { //Reset Agents

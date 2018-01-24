@@ -94,8 +94,8 @@ class PerformanceManager : public Event {
     
         PerformanceManager (){
             
-            gismo.eventAdd("/sjq/setPosition" , &performers);
-            gismo.eventAdd("/sjq/atk" , this);
+            gismo.eventAdd("/performance/setPosition" , &performers);
+            gismo.eventAdd("/performance/atk" , this);
             
             //Example of invoking </setPerformerPosition>
             
@@ -104,6 +104,24 @@ class PerformanceManager : public Event {
                 // tmp[1].fval = 0.5f;
                 // tmp[2].fval = 0.51f;
                 // gismo.bang("/setPerformerPosition" , tmp);
+            
+            //SetupEvents
+            auto f = [&](void* args){ //<- keep this desctiption
+                //draw your code
+                param_u *params = (param_u *)args;
+                int bang_id = params[0].ival;
+                bullets[bang_id].bang();
+            };
+            gismo.lambdaAdd("/bullet_bang", f);
+
+            auto f2 = [&](void* args){ //<- keep this desctiption
+                //draw your code
+                param_u *params = (param_u *)args;
+                performer_e pfm = (performer_e)params[0].ival;
+                performerBang(pfm);
+            };
+            gismo.lambdaAdd("/bullet_bang_return", f2);
+
                 
         }
     
@@ -116,7 +134,8 @@ class PerformanceManager : public Event {
             
             param_u *param = (param_u *)args;
             performer_e perf = (performer_e)param->ival;
-            performerBang(perf);
+            gismo.bang("/bullet_bang_return" , &perf);
+//            performerBang(perf);
             
         }
 
