@@ -21,6 +21,8 @@
 #define INDEX_OF_COLOR 0
 #define INDEX_OF_NODE 1
 
+//Duration Time
+#define INVERT_DURATION 0.5
 
 #endif /* Network_hpp */
 
