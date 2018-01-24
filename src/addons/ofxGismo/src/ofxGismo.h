@@ -16,7 +16,7 @@
 #define SEED_MAX 63
 
 //World Rate of Space
-#define WORLD_WIDTH 2.9f //for 3screens //1.0f
+#define WORLD_WIDTH 5.433//2.9f //for 3screens //1.0f
 #define WORLD_HEIGHT 1.0f
 
 //Agent Default Parameters
