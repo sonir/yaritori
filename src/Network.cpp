@@ -77,14 +77,6 @@ void Network :: update(){
             float args[] = {gismo.getAgent(id)->posi.x ,gismo.getAgent(id)->posi.y};
             gismo.bang("/ripple", args);
             
-        }
-        
-        else if(m.getAddress() == "/multiply" ) {
-            int count = gismo.agents.count;
-            int id = count * ofRandom(1.0);
-            
-            gismo.bang("/addShape" , &pShapes[id]);
-            
         } else if (m.getAddress() == "/mask" ) {
             param_u tmp[4];
             tmp[0].ival = m.getArgAsInt(0); //Window ID

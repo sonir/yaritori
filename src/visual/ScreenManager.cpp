@@ -51,7 +51,7 @@ void ScreenManager::setEvents() {
     
     auto timedInvertEvent = [&](void* args) {
         param_u* params = (param_u *)args;
-        float duration = params[1].fval;
+        float duration = params[0].fval;
         this->invertTimer.bang(duration);
         invertState = true;
         timerOn = true;
