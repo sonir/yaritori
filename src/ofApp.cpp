@@ -71,7 +71,7 @@ void ofApp::keyReleased(int key){
         
     }else if(flg==2){
         
-        int num = 2;
+        int num = 0;
         gismo.bang("/bullet_bang_return", &num);
         
     }
