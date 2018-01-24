@@ -51,15 +51,16 @@ void ScreenManager::setEvents() {
     
     auto timedInvertEvent = [&](void* args) {
         param_u* params = (param_u *)args;
-        float bgColor = params[0].fval;
         float duration = params[1].fval;
         this->invertTimer.bang(duration);
         invertState = true;
+        timerOn = true;
     };
     
     auto invertEvent = [&](void* args) {
         param_u* params = (param_u *)args;
         invertState = params[0].bval;
+        if(timerOn) timerOn = false;
     };
     
     
@@ -128,6 +129,7 @@ void ScreenManager::setup() {
     initCanvasSize(ORIGINAL_WIDTH, ORIGINAL_HEIGHT);    //Tell original width and original height to vsyn
     invertTimer.ready();
     invertState = false;
+    timerOn = false;
 }
 
 void ScreenManager::init(){
@@ -268,15 +270,18 @@ void ScreenManager::mask(){
 }
 
 void ScreenManager::begin(){
-//    float invDur = invertTimer.get();
-//    if (!invertTimer.waiting) {
-//        if(0.0 < invDur && invDur < 1.0) {
-//                invertState = true;
-//            } else {
-//                invertState = false;
-//        }
-//    }
     
+    if(timerOn) {
+        float invDur = invertTimer.get();
+        if(invDur < 1.0) {
+            invertState = true;
+        } else if(1.0 <= invDur) {
+            invertState = false;
+            timerOn = false;
+        }else {
+            invertState = false;
+        }
+    }
     
     if(invertState) {
         setAllColor(0.0);

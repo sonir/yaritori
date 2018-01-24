@@ -95,6 +95,7 @@ private:
     
     float bgColor;  //Background Color;
     bool invertState;
+    bool timerOn;
     ofShader shader;
 };
 
