@@ -5,7 +5,7 @@
 			"major" : 7,
 			"minor" : 3,
 			"revision" : 4,
-			"architecture" : "x86",
+			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
@@ -92,11 +92,11 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-7",
-					"index" : 2,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 276.666656, 300.0, 30.0, 30.0 ],
+					"patching_rect" : [ 286.0, 296.0, 30.0, 30.0 ],
 					"style" : ""
 				}
 
@@ -105,11 +105,11 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-6",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 247.0, 300.0, 30.0, 30.0 ],
+					"patching_rect" : [ 249.166656, 296.0, 30.0, 30.0 ],
 					"style" : ""
 				}
 
@@ -144,11 +144,11 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-2",
-					"index" : 2,
+					"index" : 0,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "signal" ],
+					"outlettype" : [ "" ],
 					"patching_rect" : [ 336.0, 43.0, 30.0, 30.0 ],
 					"style" : ""
 				}
@@ -158,11 +158,11 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-1",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "signal" ],
+					"outlettype" : [ "" ],
 					"patching_rect" : [ 247.0, 43.0, 30.0, 30.0 ],
 					"style" : ""
 				}
@@ -253,7 +253,30 @@
 				}
 
 			}
- ]
+ ],
+		"dependency_cache" : [ 			{
+				"name" : "SimpleDelay_First.maxpat",
+				"bootpath" : "~/Sonilab/1802_CCMA/sound/yaritori-sound/src/max/_sliceBuf_for_app_src",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "drywet.maxpat",
+				"bootpath" : "~/Sonilab/1802_CCMA/sound/yaritori-sound/src/max/_sliceBuf_for_app_src",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "SimpleDelay_Second.maxpat",
+				"bootpath" : "~/Sonilab/1802_CCMA/sound/yaritori-sound/src/max/_sliceBuf_for_app_src",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+ ],
+		"autosave" : 0
 	}
 
 }
