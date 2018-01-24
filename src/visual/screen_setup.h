@@ -44,6 +44,8 @@ constexpr int MARGIN_H = 0;
 //constexpr int ORIGINAL_HEIGHT = DISPLAY_HEIGHT + MARGIN_H * 2;  //ORIGINAL_HEIGHT = 2 * DISPLAY_HEIGHT.
 //constexpr int ORIGINAL_WIDTH = ORIGINAL_HEIGHT * 2.9;
 
+
+//Ratio :: 5.43333
 constexpr int ORIGINAL_WIDTH = DISPLAY_WIDTH * 3 + MARGIN_0 * 2. ;
 constexpr int ORIGINAL_HEIGHT = DISPLAY_HEIGHT;
 
