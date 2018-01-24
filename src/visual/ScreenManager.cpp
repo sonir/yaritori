@@ -138,34 +138,6 @@ void ScreenManager::init(){
     colorState = true;
 }
 
-void ScreenManager::setEvents() {
-    
-    auto swapEvent = [&](void* args) {
-        param_u* params = (param_u *)args;
-        int id = params[0].ival;
-        float x = params[1].fval;
-        float y = params[2].fval;
-        
-        this->swap(id, x, y);
-        
-    };
-    
-    auto maskEvent = [&](void* args) {
-        param_u* params = (param_u *)args;
-        int window = params[0].ival;
-        int vertexId = params[1].ival;
-        float x = params[2].fval;
-        float y = params[3].fval;
-        this->setMask(window, vertexId, x, y);
-        cout << "MASK SET" << endl;
-    };
-    
-    
-    GismoManager& gismo = GismoManager::getInstance();
-    gismo.lambdaAdd("/swap", swapEvent);
-    gismo.lambdaAdd("/mask", maskEvent);
-    
-}
 
 void ScreenManager::initFbo(){
     fbo.allocate(ORIGINAL_WIDTH, ORIGINAL_HEIGHT);
