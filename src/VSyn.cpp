@@ -547,9 +547,8 @@ void VSyn::keyPressed(int key) {
             break;
         }
         case 'k': {
-            param_u params[2];
-            params[0].bval = 1;
-            params[1].fval = 1000;
+            param_u params;
+            params.fval = 1000.0;
             gismo.lambdaBang("/timedInvert", &params);
             
             break;
