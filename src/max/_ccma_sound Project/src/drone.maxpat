@@ -5,11 +5,11 @@
 			"major" : 7,
 			"minor" : 3,
 			"revision" : 4,
-			"architecture" : "x86",
+			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 874.0, 79.0, 476.0, 887.0 ],
+		"rect" : [ 751.0, 79.0, 1135.0, 1007.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -38,27 +38,27 @@
 		"subpatcher_template" : "",
 		"boxes" : [ 			{
 				"box" : 				{
-					"id" : "obj-2",
-					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 4,
-					"outlettype" : [ "signal", "signal", "list", "list" ],
-					"patching_rect" : [ 158.5, 299.0, 85.0, 22.0 ],
-					"style" : "",
-					"text" : "omx.peaklim~"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-3",
 					"maxclass" : "newobj",
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "signal" ],
-					"patching_rect" : [ 158.5, 142.0, 45.0, 22.0 ],
+					"patching_rect" : [ 98.0, 99.0, 80.0, 22.0 ],
 					"style" : "",
-					"text" : "reverb"
+					"text" : "ccma_reverb"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-2",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 4,
+					"outlettype" : [ "signal", "signal", "list", "list" ],
+					"patching_rect" : [ 98.0, 242.0, 85.0, 22.0 ],
+					"style" : "",
+					"text" : "omx.peaklim~"
 				}
 
 			}
@@ -69,9 +69,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 275.5, 267.0, 36.0, 22.0 ],
+					"patching_rect" : [ 176.0, 207.0, 36.0, 22.0 ],
 					"style" : "",
-					"text" : "*~ 5."
+					"text" : "*~ 2."
 				}
 
 			}
@@ -82,9 +82,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 158.5, 267.0, 36.0, 22.0 ],
+					"patching_rect" : [ 98.0, 207.0, 36.0, 22.0 ],
 					"style" : "",
-					"text" : "*~ 5."
+					"text" : "*~ 2."
 				}
 
 			}
@@ -92,11 +92,11 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-18",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 158.5, 417.0, 30.0, 30.0 ],
+					"patching_rect" : [ 98.0, 276.0, 30.0, 30.0 ],
 					"style" : ""
 				}
 
@@ -105,11 +105,11 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-17",
-					"index" : 2,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 190.5, 417.0, 30.0, 30.0 ],
+					"patching_rect" : [ 130.0, 276.0, 30.0, 30.0 ],
 					"style" : ""
 				}
 
@@ -118,12 +118,12 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-16",
-					"index" : 2,
+					"index" : 0,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 200.5, 13.0, 30.0, 30.0 ],
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 140.0, 23.0, 30.0, 30.0 ],
 					"style" : ""
 				}
 
@@ -132,12 +132,12 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-15",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 158.5, 13.0, 30.0, 30.0 ],
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 98.0, 23.0, 30.0, 30.0 ],
 					"style" : ""
 				}
 
@@ -149,7 +149,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "signal" ],
-					"patching_rect" : [ 158.5, 218.0, 97.0, 22.0 ],
+					"patching_rect" : [ 98.0, 162.0, 97.0, 22.0 ],
 					"style" : "",
 					"text" : "ccma_drone_eq"
 				}
@@ -162,7 +162,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "signal" ],
-					"patching_rect" : [ 158.5, 180.0, 41.0, 22.0 ],
+					"patching_rect" : [ 98.0, 129.75, 41.0, 22.0 ],
 					"style" : "",
 					"text" : "redux"
 				}
@@ -175,7 +175,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "signal" ],
-					"patching_rect" : [ 158.5, 106.0, 61.0, 22.0 ],
+					"patching_rect" : [ 98.0, 66.0, 61.0, 22.0 ],
 					"style" : "",
 					"text" : "resonator"
 				}
@@ -187,37 +187,9 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 28.0, 92.0, 150.0, 20.0 ],
+					"patching_rect" : [ 24.0, 66.0, 70.0, 20.0 ],
 					"style" : "",
 					"text" : "Effect Here"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-1",
-					"maxclass" : "live.gain~",
-					"numinlets" : 2,
-					"numoutlets" : 5,
-					"orientation" : 1,
-					"outlettype" : [ "signal", "signal", "", "float", "list" ],
-					"parameter_enable" : 1,
-					"patching_rect" : [ 158.5, 346.0, 136.0, 48.0 ],
-					"presentation_rect" : [ 0.0, 0.0, 50.0, 34.0 ],
-					"saved_attribute_attributes" : 					{
-						"valueof" : 						{
-							"parameter_longname" : "live.gain~[2]",
-							"parameter_shortname" : "live.gain~",
-							"parameter_type" : 0,
-							"parameter_mmin" : -70.0,
-							"parameter_mmax" : 6.0,
-							"parameter_initial" : [ 0.0 ],
-							"parameter_unitstyle" : 4
-						}
-
-					}
-,
-					"varname" : "live.gain~"
 				}
 
 			}
@@ -232,7 +204,7 @@
 					"mode" : 1,
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 18.75, 87.0, 264.0, 169.0 ],
+					"patching_rect" : [ 11.5, 59.0, 232.5, 132.25 ],
 					"proportion" : 0.39,
 					"style" : ""
 				}
@@ -240,20 +212,6 @@
 			}
  ],
 		"lines" : [ 			{
-				"patchline" : 				{
-					"destination" : [ "obj-17", 0 ],
-					"source" : [ "obj-1", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-18", 0 ],
-					"source" : [ "obj-1", 0 ]
-				}
-
-			}
-, 			{
 				"patchline" : 				{
 					"destination" : [ "obj-4", 0 ],
 					"source" : [ "obj-15", 0 ]
@@ -269,14 +227,14 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-1", 1 ],
+					"destination" : [ "obj-17", 0 ],
 					"source" : [ "obj-2", 1 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-1", 0 ],
+					"destination" : [ "obj-18", 0 ],
 					"source" : [ "obj-2", 0 ]
 				}
 
@@ -351,7 +309,93 @@
 				}
 
 			}
- ]
+ ],
+		"dependency_cache" : [ 			{
+				"name" : "resonator.maxpat",
+				"bootpath" : "~/Sonilab/1802_CCMA/sound/yaritori-sound/src/max/_sliceBuf_for_app_src",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "redux.maxpat",
+				"bootpath" : "~/Sonilab/1802_CCMA/sound/yaritori-sound/src/max/_sliceBuf_for_app_src",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "ccma_drone_eq.maxpat",
+				"bootpath" : "~/Sonilab/1802_CCMA/sound/yaritori-sound/src/max/_sliceBuf_for_app_src",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "eq.maxpat",
+				"bootpath" : "~/Sonilab/1802_CCMA/sound/yaritori-sound/src/max/_sliceBuf_for_app_src",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "highpass.maxpat",
+				"bootpath" : "~/Sonilab/1802_CCMA/sound/yaritori-sound/src/max/_sliceBuf_for_app_src",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "ccma_reverb.maxpat",
+				"bootpath" : "~/Sonilab/1802_CCMA/sound/yaritori-sound/src/max/_sliceBuf_for_app_src",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "DryWet.maxpat",
+				"bootpath" : "~/Sonilab/1802_CCMA/sound/yaritori-sound/src/max/_sliceBuf_for_app_src",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "reverb.maxpat",
+				"bootpath" : "~/Sonilab/1802_CCMA/sound/yaritori-sound/src/max/_sliceBuf_for_app_src",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "lowshelf.maxpat",
+				"bootpath" : "~/Sonilab/1802_CCMA/sound/yaritori-sound/src/max/_sliceBuf_for_app_src",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "rev3~.maxpat",
+				"bootpath" : "~/Sonilab/1802_CCMA/sound/yaritori-sound/src/max/_sliceBuf_for_app_src",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "yafr2.maxpat",
+				"bootpath" : "~/Documents/Max 7/Packages/RISE/RISE_Cantor/patchers",
+				"patcherrelativepath" : "../../../../../../../Documents/Max 7/Packages/RISE/RISE_Cantor/patchers",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "yafr.maxpat",
+				"bootpath" : "/Users/Shared/Max 7/Examples/legacy-examples/effects/reverb",
+				"patcherrelativepath" : "../../../../../../../../Shared/Max 7/Examples/legacy-examples/effects/reverb",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+ ],
+		"autosave" : 0
 	}
 
 }
