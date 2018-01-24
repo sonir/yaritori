@@ -41,6 +41,9 @@ void ofApp::keyPressed(int key){
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
+
+    GismoManager& gismo = GismoManager::getInstance();
+    int flg = 0;
     
     switch(key){
             
@@ -48,12 +51,29 @@ void ofApp::keyReleased(int key){
             ofToggleFullscreen();
             break;
         case 'a':
-            vsyn.performanceManager.bullets[0].bang();
+            flg = 1;
+//            gismo.bang("/bullet_bang", &num);
+//            vsyn.performanceManager.bullets[0].bang();
             break;
         case 's':
-            vsyn.performanceManager.reverseBullets[1].bang();
+            flg=2;
+            //vsyn.performanceManager.reverseBullets[1].bang();
             break;
             
+    }
+    
+    
+    
+    if(flg==1)
+    {
+        int num = 0;
+        gismo.bang("/bullet_bang", &num);
+        
+    }else if(flg==2){
+        
+        int num = 0;
+        gismo.bang("/bullet_bang_return", &num);
+        
     }
     
 
