@@ -221,9 +221,9 @@ void MotionManager::draw() {
         drawSolo();
     }
     
-    debugLine.myPos.x = 0.15;
-    debugLine.myPos.y = 0.5;
-    debugLine.lineTo(0.155, 0.5);
+//    debugLine.myPos.x = 0.15;
+//    debugLine.myPos.y = 0.5;
+//    debugLine.lineTo(0.155, 0.5);
     
 //    ofSetColor(ofFloatColor(color));
 //    nodeVbo.updateVertexData(vbo.nodePos, vbo.nodeNum);
