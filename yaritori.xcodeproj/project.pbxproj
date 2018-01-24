@@ -148,6 +148,9 @@
 		242CFF6C201862170001EB4D /* ut_SimpleDelay.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = ut_SimpleDelay.maxpat; sourceTree = "<group>"; };
 		242CFF6D201862170001EB4D /* ut_slicePlay.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = ut_slicePlay.maxpat; sourceTree = "<group>"; };
 		242CFF6E201862180001EB4D /* ut_storm.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = ut_storm.maxpat; sourceTree = "<group>"; };
+		242CFF702018628E0001EB4D /* Project8_1.cfg */ = {isa = PBXFileReference; lastKnownFileType = file; path = Project8_1.cfg; sourceTree = "<group>"; };
+		242CFF712018628E0001EB4D /* ccma_sound.als */ = {isa = PBXFileReference; lastKnownFileType = file; path = ccma_sound.als; sourceTree = "<group>"; };
+		242CFF722018628E0001EB4D /* Icon */ = {isa = PBXFileReference; lastKnownFileType = text; path = Icon; sourceTree = "<group>"; };
 		2449807420185B6B00F98CC5 /* _soundtrigger_for_app_v1.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = _soundtrigger_for_app_v1.maxpat; sourceTree = "<group>"; };
 		2449807520185B6B00F98CC5 /* audio_status.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = audio_status.maxpat; sourceTree = "<group>"; };
 		2449807620185B6B00F98CC5 /* ccma_drone_eq.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = ccma_drone_eq.maxpat; sourceTree = "<group>"; };
@@ -335,6 +338,14 @@
 			name = ofxXmlSettings;
 			sourceTree = "<group>";
 		};
+		242CFF6F2018628E0001EB4D /* Ableton Project Info */ = {
+			isa = PBXGroup;
+			children = (
+				242CFF702018628E0001EB4D /* Project8_1.cfg */,
+			);
+			path = "Ableton Project Info";
+			sourceTree = "<group>";
+		};
 		2449807020185B6B00F98CC5 /* max */ = {
 			isa = PBXGroup;
 			children = (
@@ -347,6 +358,9 @@
 		2449807120185B6B00F98CC5 /* _ccma_sound Project */ = {
 			isa = PBXGroup;
 			children = (
+				242CFF6F2018628E0001EB4D /* Ableton Project Info */,
+				242CFF712018628E0001EB4D /* ccma_sound.als */,
+				242CFF722018628E0001EB4D /* Icon */,
 				2449807220185B6B00F98CC5 /* src */,
 			);
 			path = "_ccma_sound Project";
