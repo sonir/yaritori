@@ -16,17 +16,65 @@ LineDrawer::LineDrawer(){
     myPos.x = 0.25;
     myPos.y = 0.5;
     
-    for(int i = 0; i < TURN_NUM + 2; i++){
+    for(int i = 0; i < TURN_NUM_MAX + 2; i++){
         verts[i].set(0.5 * ORIGINAL_HEIGHT, 0.5 * ORIGINAL_HEIGHT);
+        cols[i].set(0., 0., 0., 1.);
     }
     
-    vbo.setVertexData(verts, TURN_NUM + 2, GL_DYNAMIC_DRAW);
-    
+    vbo.setVertexData(verts, TURN_NUM_MAX + 2, GL_DYNAMIC_DRAW);
+    vbo.setColorData(cols, TURN_NUM_MAX + 2, GL_DYNAMIC_DRAW);
+
     GismoManager& gismo = GismoManager::getInstance();
     aspect = gismo.width_rate;
+    
+    colorState = true;
+    
+    setEvents();
 }
 
+void LineDrawer::setEvents() {
+    GismoManager& gismo = GismoManager::getInstance();
+    
+    auto colorEvent = [&](void* args){ //<- keep this desctiption
+        param_u* params = (param_u *)args;
+        float c = params[0].fval;
+        
+        this->setColor(c);
+    };
+    
+    gismo.lambdaAdd("/lineColor", colorEvent);
+}
+
+void LineDrawer::setColor(float c) {
+    color = ofFloatColor(c);
+    
+    for(int i = 0; i < TURN_NUM_MAX + 2; i++){
+        cols[i] = color;
+    }
+    
+    vbo.updateColorData(cols, TURN_NUM_MAX + 2);
+}
+
+
+
 void LineDrawer::update(){
+    float distance = ofDist(myPos.x, myPos.y, targetPos.x, targetPos.y);
+    float max_width;
+    
+    turn_num = int(ofMap(distance, 0., DISPLAY_HEIGHT, 2., TURN_NUM_MAX));
+    max_width = ofMap(distance, 0., DISPLAY_HEIGHT, minR, maxR);
+    
+//    if(colorState == true){
+//        for(int i = 0; i < TURN_NUM_MAX + 2; i++){
+//            cols[i].set(0., 0., 0., 1.);
+//        }
+//    }else{
+//        for(int i = 0; i < TURN_NUM_MAX + 2; i++){
+//            cols[i].set(1., 1., 1., 1.);
+//        }
+//    }
+    
+    
     if(currentPhase == 1.){
         interpolation.bang();
     }
@@ -34,10 +82,11 @@ void LineDrawer::update(){
     
     theta = atan2(targetPos.y - myPos.y, targetPos.x - myPos.x);
     
-    for(int i = 0; i < TURN_NUM + 2; i++){
-        float x, y;
-        float r;
-        float th;
+    float x, y;
+    float r;
+    float th;
+    float dist;
+    for(int i = 0; i < TURN_NUM_MAX + 2; i++){
         
         if(currentPhase < 0.5){
             th = theta + PI * 0.5 + PI * (i-1);
@@ -48,27 +97,19 @@ void LineDrawer::update(){
         if(i == 0){
             x = myPos.x;
             y = myPos.y;
-//            if(currentPhase < 0.5){
-//                r = 4. * maxR * (0.25 - currentPhase);
-//            }else{
-//                r = -4. * maxR * (0.25 - (currentPhase - 0.5));
-//            }
-//            x = myPos.x + r * cos(theta + PI * 0.5);
-//            y = myPos.y + r * sin(theta + PI * 0.5);
-        }else if(i == TURN_NUM + 1){
+        }else if(i == turn_num + 1){
             x = targetPos.x;
             y = targetPos.y;
         }else{
-            float dist;
             if(currentPhase < 0.5){
-                dist = 1. / TURN_NUM * (i-1 + 2 * currentPhase);
+                dist = 1. / turn_num * (i-1 + 2 * currentPhase);
             }else{
-                dist = 1. / TURN_NUM * (i-1 + 2 * (currentPhase - 0.5));
+                dist = 1. / turn_num * (i-1 + 2 * (currentPhase - 0.5));
             }
             if(dist < 0.3){
-                r = maxR * dist * 3.3333;
+                r = max_width * dist * 3.3333;
             }else{
-                r = maxR * (1. - dist) * 1.4286;
+                r = max_width * (1. - dist) * 1.4286;
             }
             
             x = myPos.x + (targetPos.x - myPos.x) * dist + r * cos(th);
@@ -85,7 +126,11 @@ void LineDrawer::lineTo(float target_x, float target_y){
     update();
     
     glLineWidth(0.02);
-    ofSetColor(0, 0, 0);
-    vbo.updateVertexData(verts, TURN_NUM + 2);
-    vbo.draw(GL_LINE_STRIP, 0, TURN_NUM + 2);
+    vbo.updateColorData(cols, turn_num + 2);
+    vbo.updateVertexData(verts, turn_num + 2);
+    vbo.draw(GL_LINE_STRIP, 0, turn_num + 2);
+}
+
+void LineDrawer::invert(){
+    colorState = !colorState;
 }

@@ -45,6 +45,8 @@ public:
     
     //event
     void invertColor();
+    void setColor(float c);
+    
     
     //Variables
     ag_shape_t shape;

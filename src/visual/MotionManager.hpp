@@ -27,6 +27,9 @@ public:
     void setShapes();
     
     void invertColor();
+    void setColor(float c);
+    void setEvents();
+    
     void updateSolo();
     void update();
     void solo(int _id, bool status, float duration = 1000.0);
@@ -58,6 +61,7 @@ private:
 
     
     LineDrawer interactLine[AG_MAX];
+    LineDrawer debugLine;
     ofShader shader;
     TimedInterpolation soloTimers[AG_MAX];
     

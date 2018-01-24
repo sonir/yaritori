@@ -19,12 +19,13 @@
 class RippleDrawer{
 public:
     RippleDrawer();
-    
+    void setColor(float c);
     void initVertices();
     void initStatus();
     void init();
     void update();
     void bang(float x, float y);
+    
     
     float centerX, centerY;
     bool isRunning;
@@ -53,6 +54,7 @@ private:
     float currentRadius;
     
     float aspect;   //aspect ratio, acquired from gismomanager
+    float color;
 };
 
 #endif /* RippleDrawer_hpp */

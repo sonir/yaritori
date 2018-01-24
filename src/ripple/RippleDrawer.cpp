@@ -10,10 +10,16 @@
 RippleDrawer::RippleDrawer(){
     centerX = 0.f;
     centerY = 0.f;
+    color = 0.0;
     init();
     
     GismoManager& gismo = GismoManager::getInstance();
     aspect = gismo.width_rate;
+}
+
+void RippleDrawer::setColor(float c) {
+    color = c;
+    
 }
 
 void RippleDrawer::initVertices() {
@@ -59,10 +65,10 @@ void RippleDrawer::updateColor(){
         ofFloatColor col;
         if(colorState == true){
             alpha *= RIPPLE_ALPHA_FIX_BLACK;
-            col = ofFloatColor(0., 0., 0., alpha);
+            col = ofFloatColor(color, color, color, alpha);
         }else{
             alpha *= RIPPLE_ALPHA_FIX_WHITE;
-            col = ofFloatColor(1., 1., 1., alpha);
+            col = ofFloatColor(color, color, color, alpha);
         }
         for(int j = 0; j < rippleNum; j++){
             for(int i = 0; i < res; i++){

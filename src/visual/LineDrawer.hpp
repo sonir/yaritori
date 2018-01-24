@@ -21,16 +21,23 @@ public:
     LineDrawer();
     
     void lineTo(float target_x, float target_y);
+    void invert();
+    void setColor(float _c);
+    void setEvents();
     
     posi_t myPos, targetPos;
+    
+    bool colorState;
+    ofFloatColor color;
     
 private:
     void update();
     
-    
+    int turn_num;
     float currentPhase, theta;
-
-    ofVec2f verts[TURN_NUM + 2]; // + myPos + targetPos
+    
+    ofVec2f verts[TURN_NUM_MAX + 2]; // + myPos + targetPos
+    ofFloatColor cols[TURN_NUM_MAX + 2];
     ofVbo vbo;
     
     TimedInterpolation interpolation;
