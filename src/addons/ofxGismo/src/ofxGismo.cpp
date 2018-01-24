@@ -360,7 +360,8 @@ void interactWith(ag_t *focus , ag_t *target){
                 
                 focus->condition=cond;
 //                setSound( (int)focus->condition );
-                gismo.bang("/soundTriggerWithAgent", focus);
+                gismo.bang("/soundTriggerWithAgent", focus); //trigger sound
+                gismo.bang("/bullet_bang", &focus->agid); //trigger bullet
                 triggerRipple(focus);
                 
             }else{
@@ -391,6 +392,7 @@ void interactWith(ag_t *focus , ag_t *target){
 //                setSound( (int)focus->condition );
                 triggerRipple(focus);
                 gismo.bang("/soundTriggerWithAgent", focus);
+                
                 
             }
             focus->condition=RUN;

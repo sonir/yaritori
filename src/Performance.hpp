@@ -104,6 +104,31 @@ class PerformanceManager : public Event {
                 // tmp[1].fval = 0.5f;
                 // tmp[2].fval = 0.51f;
                 // gismo.bang("/setPerformerPosition" , tmp);
+            
+            //SetupEvents
+            auto f = [&](void* args){ //<- keep this desctiption
+                //draw your code
+                param_u *params = (param_u *)args;
+                int bang_id = params[0].ival;
+                bullets[bang_id].bang();
+            };
+            gismo.lambdaAdd("/bullet_bang", f);
+
+            auto f2 = [&](void* args){ //<- keep this desctiption
+                //draw your code
+                param_u *params = (param_u *)args;
+                int bang_id = params[0].ival;
+                for(int i=0; i<AG_MAX;i++){
+                    
+                    if(i%PERFORMER_NUM == bang_id){
+                        ag_t *ag = gismo.getAgent(i);
+                        if(ag->active) reverseBullets[i].bang();
+                    }
+                }
+                
+            };
+            gismo.lambdaAdd("/bullet_bang_return", f2);
+
                 
         }
     
