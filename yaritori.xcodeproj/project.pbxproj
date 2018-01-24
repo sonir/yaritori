@@ -105,6 +105,49 @@
 		1C0DA2561397A7DE0246858B /* ofxGuiGroup.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiGroup.h; path = ../../../addons/ofxGui/src/ofxGuiGroup.h; sourceTree = SOURCE_ROOT; };
 		20F35AFADAF0068B067E713F /* OscReceivedElements.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = OscReceivedElements.h; path = ../../../addons/ofxOsc/libs/oscpack/src/osc/OscReceivedElements.h; sourceTree = SOURCE_ROOT; };
 		23640F57DF6C4BB6BFC5DA4C /* PacketListener.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = PacketListener.h; path = ../../../addons/ofxOsc/libs/oscpack/src/ip/PacketListener.h; sourceTree = SOURCE_ROOT; };
+		242CFF44201862170001EB4D /* audio_status.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = audio_status.maxpat; sourceTree = "<group>"; };
+		242CFF45201862170001EB4D /* ccma_drone_eq.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = ccma_drone_eq.maxpat; sourceTree = "<group>"; };
+		242CFF46201862170001EB4D /* ccma_reverb.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = ccma_reverb.maxpat; sourceTree = "<group>"; };
+		242CFF47201862170001EB4D /* ccma_rhythm_eq_first.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = ccma_rhythm_eq_first.maxpat; sourceTree = "<group>"; };
+		242CFF48201862170001EB4D /* ccma_rhythm_eq_second.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = ccma_rhythm_eq_second.maxpat; sourceTree = "<group>"; };
+		242CFF49201862170001EB4D /* ccma_soundtrigger_m4l.amxd */ = {isa = PBXFileReference; lastKnownFileType = file; path = ccma_soundtrigger_m4l.amxd; sourceTree = "<group>"; };
+		242CFF4A201862170001EB4D /* compressor.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = compressor.maxpat; sourceTree = "<group>"; };
+		242CFF4B201862170001EB4D /* drone-out.amxd */ = {isa = PBXFileReference; lastKnownFileType = file; path = "drone-out.amxd"; sourceTree = "<group>"; };
+		242CFF4C201862170001EB4D /* drone.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = drone.maxpat; sourceTree = "<group>"; };
+		242CFF4D201862170001EB4D /* drywet.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = drywet.maxpat; sourceTree = "<group>"; };
+		242CFF4E201862170001EB4D /* effect_sweep.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = effect_sweep.maxpat; sourceTree = "<group>"; };
+		242CFF4F201862170001EB4D /* eq.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = eq.maxpat; sourceTree = "<group>"; };
+		242CFF50201862170001EB4D /* highpass.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = highpass.maxpat; sourceTree = "<group>"; };
+		242CFF51201862170001EB4D /* highshelf.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = highshelf.maxpat; sourceTree = "<group>"; };
+		242CFF52201862170001EB4D /* limiter.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = limiter.maxpat; sourceTree = "<group>"; };
+		242CFF53201862170001EB4D /* lowshelf.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = lowshelf.maxpat; sourceTree = "<group>"; };
+		242CFF54201862170001EB4D /* playback_ratio.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = playback_ratio.maxpat; sourceTree = "<group>"; };
+		242CFF55201862170001EB4D /* redux_rhy.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = redux_rhy.maxpat; sourceTree = "<group>"; };
+		242CFF56201862170001EB4D /* redux.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = redux.maxpat; sourceTree = "<group>"; };
+		242CFF57201862170001EB4D /* resonator.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = resonator.maxpat; sourceTree = "<group>"; };
+		242CFF58201862170001EB4D /* resotest_01.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = resotest_01.maxpat; sourceTree = "<group>"; };
+		242CFF59201862170001EB4D /* reverb.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = reverb.maxpat; sourceTree = "<group>"; };
+		242CFF5A201862170001EB4D /* rhythm-out.amxd */ = {isa = PBXFileReference; lastKnownFileType = file; path = "rhythm-out.amxd"; sourceTree = "<group>"; };
+		242CFF5B201862170001EB4D /* rhythm.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = rhythm.maxpat; sourceTree = "<group>"; };
+		242CFF5C201862170001EB4D /* sender_for_m4l.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = sender_for_m4l.maxpat; sourceTree = "<group>"; };
+		242CFF5D201862170001EB4D /* SimpleDelay_First.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = SimpleDelay_First.maxpat; sourceTree = "<group>"; };
+		242CFF5E201862170001EB4D /* SimpleDelay_Second.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = SimpleDelay_Second.maxpat; sourceTree = "<group>"; };
+		242CFF5F201862170001EB4D /* sliceBuf.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = sliceBuf.maxpat; sourceTree = "<group>"; };
+		242CFF60201862170001EB4D /* slicePlay.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = slicePlay.maxpat; sourceTree = "<group>"; };
+		242CFF61201862170001EB4D /* soundproto_origin.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = soundproto_origin.wav; sourceTree = "<group>"; };
+		242CFF62201862170001EB4D /* soundproto_origin.wav.asd */ = {isa = PBXFileReference; lastKnownFileType = file; path = soundproto_origin.wav.asd; sourceTree = "<group>"; };
+		242CFF63201862170001EB4D /* storm-out.amxd */ = {isa = PBXFileReference; lastKnownFileType = file; path = "storm-out.amxd"; sourceTree = "<group>"; };
+		242CFF64201862170001EB4D /* storm.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = storm.maxpat; sourceTree = "<group>"; };
+		242CFF65201862170001EB4D /* stringen.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = stringen.maxpat; sourceTree = "<group>"; };
+		242CFF66201862170001EB4D /* test_reading.amxd */ = {isa = PBXFileReference; lastKnownFileType = file; path = test_reading.amxd; sourceTree = "<group>"; };
+		242CFF67201862170001EB4D /* ut_drone.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = ut_drone.maxpat; sourceTree = "<group>"; };
+		242CFF68201862170001EB4D /* ut_effect_sweep.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = ut_effect_sweep.maxpat; sourceTree = "<group>"; };
+		242CFF69201862170001EB4D /* ut_playback_ratio.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = ut_playback_ratio.maxpat; sourceTree = "<group>"; };
+		242CFF6A201862170001EB4D /* ut_reverb.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = ut_reverb.maxpat; sourceTree = "<group>"; };
+		242CFF6B201862170001EB4D /* ut_rhythm.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = ut_rhythm.maxpat; sourceTree = "<group>"; };
+		242CFF6C201862170001EB4D /* ut_SimpleDelay.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = ut_SimpleDelay.maxpat; sourceTree = "<group>"; };
+		242CFF6D201862170001EB4D /* ut_slicePlay.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = ut_slicePlay.maxpat; sourceTree = "<group>"; };
+		242CFF6E201862180001EB4D /* ut_storm.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = ut_storm.maxpat; sourceTree = "<group>"; };
 		2449807420185B6B00F98CC5 /* _soundtrigger_for_app_v1.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = _soundtrigger_for_app_v1.maxpat; sourceTree = "<group>"; };
 		2449807520185B6B00F98CC5 /* audio_status.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = audio_status.maxpat; sourceTree = "<group>"; };
 		2449807620185B6B00F98CC5 /* ccma_drone_eq.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = ccma_drone_eq.maxpat; sourceTree = "<group>"; };
@@ -141,49 +184,6 @@
 		2449809520185B6B00F98CC5 /* ut_SimpleDelay.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = ut_SimpleDelay.maxpat; sourceTree = "<group>"; };
 		2449809620185B6B00F98CC5 /* ut_slicePlay.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = ut_slicePlay.maxpat; sourceTree = "<group>"; };
 		2449809720185B6B00F98CC5 /* ut_storm.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; path = ut_storm.maxpat; sourceTree = "<group>"; };
-		24AEB01F2018616700ED9AFB /* audio_status.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = audio_status.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/audio_status.maxpat"; sourceTree = "<group>"; };
-		24AEB0202018616700ED9AFB /* ccma_drone_eq.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = ccma_drone_eq.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/ccma_drone_eq.maxpat"; sourceTree = "<group>"; };
-		24AEB0212018616700ED9AFB /* ccma_reverb.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = ccma_reverb.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/ccma_reverb.maxpat"; sourceTree = "<group>"; };
-		24AEB0222018616700ED9AFB /* ccma_rhythm_eq_first.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = ccma_rhythm_eq_first.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/ccma_rhythm_eq_first.maxpat"; sourceTree = "<group>"; };
-		24AEB0232018616700ED9AFB /* ccma_rhythm_eq_second.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = ccma_rhythm_eq_second.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/ccma_rhythm_eq_second.maxpat"; sourceTree = "<group>"; };
-		24AEB0242018616700ED9AFB /* ccma_soundtrigger_m4l.amxd */ = {isa = PBXFileReference; lastKnownFileType = file; name = ccma_soundtrigger_m4l.amxd; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/ccma_soundtrigger_m4l.amxd"; sourceTree = "<group>"; };
-		24AEB0252018616700ED9AFB /* compressor.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = compressor.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/compressor.maxpat"; sourceTree = "<group>"; };
-		24AEB0262018616700ED9AFB /* drone-out.amxd */ = {isa = PBXFileReference; lastKnownFileType = file; name = "drone-out.amxd"; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/drone-out.amxd"; sourceTree = "<group>"; };
-		24AEB0272018616700ED9AFB /* drone.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = drone.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/drone.maxpat"; sourceTree = "<group>"; };
-		24AEB0282018616700ED9AFB /* drywet.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = drywet.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/drywet.maxpat"; sourceTree = "<group>"; };
-		24AEB0292018616700ED9AFB /* effect_sweep.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = effect_sweep.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/effect_sweep.maxpat"; sourceTree = "<group>"; };
-		24AEB02A2018616700ED9AFB /* eq.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = eq.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/eq.maxpat"; sourceTree = "<group>"; };
-		24AEB02B2018616700ED9AFB /* highpass.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = highpass.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/highpass.maxpat"; sourceTree = "<group>"; };
-		24AEB02C2018616700ED9AFB /* highshelf.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = highshelf.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/highshelf.maxpat"; sourceTree = "<group>"; };
-		24AEB02D2018616700ED9AFB /* limiter.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = limiter.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/limiter.maxpat"; sourceTree = "<group>"; };
-		24AEB02E2018616700ED9AFB /* lowshelf.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = lowshelf.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/lowshelf.maxpat"; sourceTree = "<group>"; };
-		24AEB02F2018616700ED9AFB /* playback_ratio.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = playback_ratio.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/playback_ratio.maxpat"; sourceTree = "<group>"; };
-		24AEB0302018616700ED9AFB /* redux_rhy.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = redux_rhy.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/redux_rhy.maxpat"; sourceTree = "<group>"; };
-		24AEB0312018616700ED9AFB /* redux.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = redux.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/redux.maxpat"; sourceTree = "<group>"; };
-		24AEB0322018616700ED9AFB /* resonator.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = resonator.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/resonator.maxpat"; sourceTree = "<group>"; };
-		24AEB0332018616700ED9AFB /* resotest_01.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = resotest_01.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/resotest_01.maxpat"; sourceTree = "<group>"; };
-		24AEB0342018616700ED9AFB /* reverb.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = reverb.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/reverb.maxpat"; sourceTree = "<group>"; };
-		24AEB0352018616700ED9AFB /* rhythm-out.amxd */ = {isa = PBXFileReference; lastKnownFileType = file; name = "rhythm-out.amxd"; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/rhythm-out.amxd"; sourceTree = "<group>"; };
-		24AEB0362018616700ED9AFB /* rhythm.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = rhythm.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/rhythm.maxpat"; sourceTree = "<group>"; };
-		24AEB0372018616700ED9AFB /* sender_for_m4l.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = sender_for_m4l.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/sender_for_m4l.maxpat"; sourceTree = "<group>"; };
-		24AEB0382018616700ED9AFB /* SimpleDelay_First.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = SimpleDelay_First.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/SimpleDelay_First.maxpat"; sourceTree = "<group>"; };
-		24AEB0392018616700ED9AFB /* SimpleDelay_Second.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = SimpleDelay_Second.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/SimpleDelay_Second.maxpat"; sourceTree = "<group>"; };
-		24AEB03A2018616700ED9AFB /* sliceBuf.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = sliceBuf.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/sliceBuf.maxpat"; sourceTree = "<group>"; };
-		24AEB03B2018616700ED9AFB /* slicePlay.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = slicePlay.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/slicePlay.maxpat"; sourceTree = "<group>"; };
-		24AEB03C2018616700ED9AFB /* soundproto_origin.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = soundproto_origin.wav; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/soundproto_origin.wav"; sourceTree = "<group>"; };
-		24AEB03D2018616700ED9AFB /* soundproto_origin.wav.asd */ = {isa = PBXFileReference; lastKnownFileType = file; name = soundproto_origin.wav.asd; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/soundproto_origin.wav.asd"; sourceTree = "<group>"; };
-		24AEB03E2018616700ED9AFB /* storm-out.amxd */ = {isa = PBXFileReference; lastKnownFileType = file; name = "storm-out.amxd"; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/storm-out.amxd"; sourceTree = "<group>"; };
-		24AEB03F2018616700ED9AFB /* storm.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = storm.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/storm.maxpat"; sourceTree = "<group>"; };
-		24AEB0402018616700ED9AFB /* stringen.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = stringen.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/stringen.maxpat"; sourceTree = "<group>"; };
-		24AEB0412018616700ED9AFB /* test_reading.amxd */ = {isa = PBXFileReference; lastKnownFileType = file; name = test_reading.amxd; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/test_reading.amxd"; sourceTree = "<group>"; };
-		24AEB0422018616700ED9AFB /* ut_drone.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = ut_drone.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/ut_drone.maxpat"; sourceTree = "<group>"; };
-		24AEB0432018616700ED9AFB /* ut_effect_sweep.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = ut_effect_sweep.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/ut_effect_sweep.maxpat"; sourceTree = "<group>"; };
-		24AEB0442018616700ED9AFB /* ut_playback_ratio.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = ut_playback_ratio.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/ut_playback_ratio.maxpat"; sourceTree = "<group>"; };
-		24AEB0452018616700ED9AFB /* ut_reverb.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = ut_reverb.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/ut_reverb.maxpat"; sourceTree = "<group>"; };
-		24AEB0462018616700ED9AFB /* ut_rhythm.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = ut_rhythm.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/ut_rhythm.maxpat"; sourceTree = "<group>"; };
-		24AEB0472018616700ED9AFB /* ut_SimpleDelay.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = ut_SimpleDelay.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/ut_SimpleDelay.maxpat"; sourceTree = "<group>"; };
-		24AEB0482018616700ED9AFB /* ut_slicePlay.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = ut_slicePlay.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/ut_slicePlay.maxpat"; sourceTree = "<group>"; };
-		24AEB0492018616700ED9AFB /* ut_storm.maxpat */ = {isa = PBXFileReference; lastKnownFileType = text; name = ut_storm.maxpat; path = "../../../../../../../../../Desktop/180114_ccma/stable/_ccma_sound Project/src/ut_storm.maxpat"; sourceTree = "<group>"; };
 		2834D88A62CD23F3DE2C47D1 /* ofxButton.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxButton.h; path = ../../../addons/ofxGui/src/ofxButton.h; sourceTree = SOURCE_ROOT; };
 		2B40EDA85BEB63E46785BC29 /* tinyxml.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = tinyxml.cpp; path = ../../../addons/ofxXmlSettings/libs/tinyxml.cpp; sourceTree = SOURCE_ROOT; };
 		2FD4B0329909D3527F003494 /* UdpSocket.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = UdpSocket.h; path = ../../../addons/ofxOsc/libs/oscpack/src/ip/UdpSocket.h; sourceTree = SOURCE_ROOT; };
@@ -355,49 +355,49 @@
 		2449807220185B6B00F98CC5 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				24AEB01F2018616700ED9AFB /* audio_status.maxpat */,
-				24AEB0202018616700ED9AFB /* ccma_drone_eq.maxpat */,
-				24AEB0212018616700ED9AFB /* ccma_reverb.maxpat */,
-				24AEB0222018616700ED9AFB /* ccma_rhythm_eq_first.maxpat */,
-				24AEB0232018616700ED9AFB /* ccma_rhythm_eq_second.maxpat */,
-				24AEB0242018616700ED9AFB /* ccma_soundtrigger_m4l.amxd */,
-				24AEB0252018616700ED9AFB /* compressor.maxpat */,
-				24AEB0262018616700ED9AFB /* drone-out.amxd */,
-				24AEB0272018616700ED9AFB /* drone.maxpat */,
-				24AEB0282018616700ED9AFB /* drywet.maxpat */,
-				24AEB0292018616700ED9AFB /* effect_sweep.maxpat */,
-				24AEB02A2018616700ED9AFB /* eq.maxpat */,
-				24AEB02B2018616700ED9AFB /* highpass.maxpat */,
-				24AEB02C2018616700ED9AFB /* highshelf.maxpat */,
-				24AEB02D2018616700ED9AFB /* limiter.maxpat */,
-				24AEB02E2018616700ED9AFB /* lowshelf.maxpat */,
-				24AEB02F2018616700ED9AFB /* playback_ratio.maxpat */,
-				24AEB0302018616700ED9AFB /* redux_rhy.maxpat */,
-				24AEB0312018616700ED9AFB /* redux.maxpat */,
-				24AEB0322018616700ED9AFB /* resonator.maxpat */,
-				24AEB0332018616700ED9AFB /* resotest_01.maxpat */,
-				24AEB0342018616700ED9AFB /* reverb.maxpat */,
-				24AEB0352018616700ED9AFB /* rhythm-out.amxd */,
-				24AEB0362018616700ED9AFB /* rhythm.maxpat */,
-				24AEB0372018616700ED9AFB /* sender_for_m4l.maxpat */,
-				24AEB0382018616700ED9AFB /* SimpleDelay_First.maxpat */,
-				24AEB0392018616700ED9AFB /* SimpleDelay_Second.maxpat */,
-				24AEB03A2018616700ED9AFB /* sliceBuf.maxpat */,
-				24AEB03B2018616700ED9AFB /* slicePlay.maxpat */,
-				24AEB03C2018616700ED9AFB /* soundproto_origin.wav */,
-				24AEB03D2018616700ED9AFB /* soundproto_origin.wav.asd */,
-				24AEB03E2018616700ED9AFB /* storm-out.amxd */,
-				24AEB03F2018616700ED9AFB /* storm.maxpat */,
-				24AEB0402018616700ED9AFB /* stringen.maxpat */,
-				24AEB0412018616700ED9AFB /* test_reading.amxd */,
-				24AEB0422018616700ED9AFB /* ut_drone.maxpat */,
-				24AEB0432018616700ED9AFB /* ut_effect_sweep.maxpat */,
-				24AEB0442018616700ED9AFB /* ut_playback_ratio.maxpat */,
-				24AEB0452018616700ED9AFB /* ut_reverb.maxpat */,
-				24AEB0462018616700ED9AFB /* ut_rhythm.maxpat */,
-				24AEB0472018616700ED9AFB /* ut_SimpleDelay.maxpat */,
-				24AEB0482018616700ED9AFB /* ut_slicePlay.maxpat */,
-				24AEB0492018616700ED9AFB /* ut_storm.maxpat */,
+				242CFF44201862170001EB4D /* audio_status.maxpat */,
+				242CFF45201862170001EB4D /* ccma_drone_eq.maxpat */,
+				242CFF46201862170001EB4D /* ccma_reverb.maxpat */,
+				242CFF47201862170001EB4D /* ccma_rhythm_eq_first.maxpat */,
+				242CFF48201862170001EB4D /* ccma_rhythm_eq_second.maxpat */,
+				242CFF49201862170001EB4D /* ccma_soundtrigger_m4l.amxd */,
+				242CFF4A201862170001EB4D /* compressor.maxpat */,
+				242CFF4B201862170001EB4D /* drone-out.amxd */,
+				242CFF4C201862170001EB4D /* drone.maxpat */,
+				242CFF4D201862170001EB4D /* drywet.maxpat */,
+				242CFF4E201862170001EB4D /* effect_sweep.maxpat */,
+				242CFF4F201862170001EB4D /* eq.maxpat */,
+				242CFF50201862170001EB4D /* highpass.maxpat */,
+				242CFF51201862170001EB4D /* highshelf.maxpat */,
+				242CFF52201862170001EB4D /* limiter.maxpat */,
+				242CFF53201862170001EB4D /* lowshelf.maxpat */,
+				242CFF54201862170001EB4D /* playback_ratio.maxpat */,
+				242CFF55201862170001EB4D /* redux_rhy.maxpat */,
+				242CFF56201862170001EB4D /* redux.maxpat */,
+				242CFF57201862170001EB4D /* resonator.maxpat */,
+				242CFF58201862170001EB4D /* resotest_01.maxpat */,
+				242CFF59201862170001EB4D /* reverb.maxpat */,
+				242CFF5A201862170001EB4D /* rhythm-out.amxd */,
+				242CFF5B201862170001EB4D /* rhythm.maxpat */,
+				242CFF5C201862170001EB4D /* sender_for_m4l.maxpat */,
+				242CFF5D201862170001EB4D /* SimpleDelay_First.maxpat */,
+				242CFF5E201862170001EB4D /* SimpleDelay_Second.maxpat */,
+				242CFF5F201862170001EB4D /* sliceBuf.maxpat */,
+				242CFF60201862170001EB4D /* slicePlay.maxpat */,
+				242CFF61201862170001EB4D /* soundproto_origin.wav */,
+				242CFF62201862170001EB4D /* soundproto_origin.wav.asd */,
+				242CFF63201862170001EB4D /* storm-out.amxd */,
+				242CFF64201862170001EB4D /* storm.maxpat */,
+				242CFF65201862170001EB4D /* stringen.maxpat */,
+				242CFF66201862170001EB4D /* test_reading.amxd */,
+				242CFF67201862170001EB4D /* ut_drone.maxpat */,
+				242CFF68201862170001EB4D /* ut_effect_sweep.maxpat */,
+				242CFF69201862170001EB4D /* ut_playback_ratio.maxpat */,
+				242CFF6A201862170001EB4D /* ut_reverb.maxpat */,
+				242CFF6B201862170001EB4D /* ut_rhythm.maxpat */,
+				242CFF6C201862170001EB4D /* ut_SimpleDelay.maxpat */,
+				242CFF6D201862170001EB4D /* ut_slicePlay.maxpat */,
+				242CFF6E201862180001EB4D /* ut_storm.maxpat */,
 			);
 			path = src;
 			sourceTree = "<group>";
