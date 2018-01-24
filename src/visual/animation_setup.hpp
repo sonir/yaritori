@@ -9,6 +9,10 @@
 #ifndef animation_setup_h
 #define animation_setup_h
 
+/////////////////// GLOBAL ///////////////////
+constexpr float BACKGROUND_DEFAULT_COLOR = 1.0;
+constexpr float ANIMATION_DEFAULT_COLOR = 0.0;
+
 
 /////////////////// AGENT ///////////////////
 
@@ -35,9 +39,9 @@ constexpr float EASING_RATIO = 0.05;
 
 /////////////////// WAVEFORM ///////////////////
 static constexpr float cycle = 1. * 1000.;   //msec
-static constexpr float maxR = 0.01;    //Max amplitude
-static const int TURN_NUM = 15;  //num of feature points
-
+static constexpr float maxR = 1.0;    //Max amplitude
+static constexpr float minR = 0.001;    //Min amplitude
+static const int TURN_NUM_MAX = 100;  //num of feature points
 
 
 /////////////////// Ripple ///////////////////

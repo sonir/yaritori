@@ -79,6 +79,7 @@
 #include "DrawPerformance.hpp"
 #include "DrawAgentsWithChar.hpp"
 #include "RippleManager.hpp"
+#include "VboRenderer.hpp"
 
 //Sound
 #include "SoundTrigger.hpp"
@@ -156,6 +157,8 @@ class VSyn : public Event {
         //AGENT VISUAL
         RippleManager ripple;
         visual_container_t visual;
+    
+    VboRenderer renderer;
     
 };
 

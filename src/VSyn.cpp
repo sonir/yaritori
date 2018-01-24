@@ -61,13 +61,19 @@ void VSyn::setup(){
     
     //Set ag_shape_t and gismo pointer
     visual.motion.setShapePtr(ag_shapes);
-    //visual.motion.setGismoPtr(&gismo);
     visual.events.setMotionManagerPtr(&visual.motion);
     visual.events.setRippleManagerPtr(&ripple);
     
     //Set window size for yaritori
     scManager.setup();
-    initCanvasSize(ORIGINAL_WIDTH, ORIGINAL_HEIGHT);
+    renderer.setup(ORIGINAL_WIDTH, ORIGINAL_HEIGHT);
+    
+    
+    //Color settings
+    scManager.setBackground(BACKGROUND_DEFAULT_COLOR);
+    visual.motion.setColor(ANIMATION_DEFAULT_COLOR);
+    renderer.setColor(ANIMATION_DEFAULT_COLOR);
+    ripple.setColor(ANIMATION_DEFAULT_COLOR);
     
     //Create TestClass
     myTest = new Test(&sound, &ripple);
@@ -81,9 +87,8 @@ void VSyn::setup(){
     this->test();
     
     //Reset State
-//    agBuffReset(&gismo.agents);
-//    agBuffReset(&gismo.add);
-    
+    agBuffReset(&gismo.agents);
+    agBuffReset(&gismo.add);
 }
 
 
@@ -307,7 +312,6 @@ void VSyn::update(){
     
     particle.update();
 
-
 }
 
 
@@ -426,6 +430,8 @@ void VSyn::draw(){
     performanceManager.updateLines();
     performanceManager.updateLinesInverted();
     drawPerformance(&performanceManager);
+    
+    renderer.draw();
 #endif
     scManager.end();
     
@@ -525,9 +531,68 @@ void VSyn::draw(){
 
 void VSyn::keyPressed(int key) {
     switch (key) {
-        case 'i': {
-            gismo.bang("/invert");
+        case 's': {
+            param_u params[2];
+            params[0].ival = 1;
+            params[1].fval = 1000;
+            gismo.bang("/solo", params);
+            
             break;
+        }
+        case 'i': {
+            param_u params;
+            params.bval = true;
+            gismo.lambdaBang("/invert", &params);
+            
+            break;
+        }
+        case 'k': {
+            param_u params[2];
+            params[0].bval = 1;
+            params[1].fval = 1000;
+            gismo.lambdaBang("/timedInvert", &params);
+            
+            break;
+        }
+        case 'm': {
+            param_u params[4];
+            params[0].ival = 0;
+            params[1].ival = 0;
+            params[2].fval = 0.1;
+            params[3].fval = 0.;
+            gismo.lambdaBang("/mask", params);
+            
+            params[0].ival = 0;
+            params[1].ival = 1;
+            params[2].fval = 0.8;
+            params[3].fval = 0.;
+            gismo.lambdaBang("/mask", params);
+            
+            
+            params[0].ival = 1;
+            params[1].ival = 0;
+            params[2].fval = 0.2;
+            params[3].fval = 0.;
+            gismo.lambdaBang("/mask", params);
+            
+            params[0].ival = 1;
+            params[1].ival = 1;
+            params[2].fval = 0.9;
+            params[3].fval = 0.;
+            gismo.lambdaBang("/mask", params);
+            
+            params[0].ival = 1;
+            params[1].ival = 2;
+            params[2].fval = 0.8;
+            params[3].fval = 1.0;
+            gismo.lambdaBang("/mask", params);
+            
+            params[0].ival = 1;
+            params[1].ival = 1;
+            params[2].fval = 0.1;
+            params[3].fval = 1.0;
+            gismo.lambdaBang("/mask", params);
+            
         }
         default:
             break;

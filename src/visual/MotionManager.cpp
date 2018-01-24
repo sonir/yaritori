@@ -30,8 +30,31 @@ MotionManager::MotionManager() {
     
     sendOSC("/foo", params, 4);
     
-    GismoManager& gismo = GismoManager::getInstance();
     aspect = gismo.width_rate;
+    
+    setEvents();
+}
+
+void MotionManager::setColor(float c) {
+    for(int i = 0; i < AG_MAX; i++){
+        agent[i].setColor(c);
+    }
+}
+
+
+void MotionManager::setEvents() {
+    GismoManager& gismo = GismoManager::getInstance();
+    
+    auto colorEvent = [&](void* args){ //<- keep this desctiption
+        param_u* params = (param_u *)args;
+        float c = params[0].fval;
+        
+        this->setColor(c);
+    };
+    
+    gismo.lambdaAdd("/agentColor", colorEvent);
+    
+    
 }
 
 void MotionManager::setShapes() {
@@ -59,6 +82,12 @@ void MotionManager::addSolo(int _id, float duration) {
     isSolo[_id] = true;
     soloTimers[_id].bang(duration);
     soloCount++;
+    
+    float args[2];
+    ag_t* ag = gismo.getAgent(_id);
+    args[0] = ag->posi.x;
+    args[1] = ag->posi.y;
+    gismo.bang("/ripple", args);
 }
 
 void MotionManager::deleteSolo(int _id) {
@@ -103,6 +132,7 @@ void MotionManager::update() {
 
 
 void MotionManager::drawAll() {
+    
     int count = gismo.agents.count;
     ag_t* agents = gismo.getAgents(); //sets agents pointer
     ag_t* ag;
@@ -141,6 +171,7 @@ void MotionManager::drawAll() {
 }
 
 void MotionManager::drawSolo() {
+    
     int count = gismo.agents.count;
     ag_t* agents = gismo.getAgents(); //sets agents pointer
     ag_t* ag;
@@ -189,6 +220,10 @@ void MotionManager::draw() {
     } else {
         drawSolo();
     }
+    
+//    debugLine.myPos.x = 0.15;
+//    debugLine.myPos.y = 0.5;
+//    debugLine.lineTo(0.155, 0.5);
     
 //    ofSetColor(ofFloatColor(color));
 //    nodeVbo.updateVertexData(vbo.nodePos, vbo.nodeNum);

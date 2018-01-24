@@ -16,7 +16,29 @@ RippleManager::RippleManager(){
         ripples[i].isRunning = false;
         ripples[i].colorState = colorState;
     }
+    
+    setEvents();
 }
+
+void RippleManager::setEvents() {
+    GismoManager& gismo = GismoManager::getInstance();
+    
+    auto colorEvent = [&](void* args){ //<- keep this desctiption
+        param_u* params = (param_u *)args;
+        float c = params[0].fval;
+        
+        this->setColor(c);
+    };
+    
+    gismo.lambdaAdd("/rippleColor", colorEvent);
+}
+
+void RippleManager::setColor(float c) {
+    for(int i = 0; i < NUM; i++){
+        ripples[i].setColor(c);
+    }
+}
+
 
 void RippleManager::initVertices(){
     for(int k = 0; k < NUM; k++){
@@ -109,6 +131,7 @@ void RippleManager::invert(){
         ripples[i].colorState = colorState;
     }
 }
+
 
 int RippleManager::trigger(void* args) {    // To call from eventhandler
     float *val = (float *)args;

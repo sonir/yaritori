@@ -11,10 +11,13 @@
 
 #include "ofMain.h"
 #include "RippleDrawer.hpp"
+#include "ofxGismo.h"
 
 class RippleManager : public Event {
 public:
     RippleManager();
+    void setEvents();
+    void setColor(float c);
     
     void initVertices();
     void initIndices();
@@ -30,6 +33,7 @@ public:
     
     void invert();
     
+    
 private:
     static constexpr float lineWidth = 0.8; //pixel
     
@@ -38,6 +42,7 @@ private:
     static const int NUM = 3000; //max num of ripples that can be drawn at once
     
     bool colorState;    //true: black, false: white(ripples)
+    float color;
     
     int activeNumCounter;
     

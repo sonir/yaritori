@@ -24,16 +24,12 @@ void PerformanceManager::updateLines(){
     ag_t *agents = gismo.getAgents();
     
     for(int i=0; i<AG_MAX; i++){
-
         if(agents[i].active==true)lines[i].active = true;
         else lines[i].active = false;
 
         lines[i].node_a = &agents[i].posi;
         lines[i].node_b = &performers.position[i%PERFORMER_NUM];
-        
-        
     }
-    
 }
 
 

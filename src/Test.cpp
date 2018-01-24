@@ -476,12 +476,12 @@ void Test::runVisualTest(visual_container_t* visual) {
     
     
     //Test invert
-    cout << "Calling Invert...";
-    gismo.eventAdd("/invert", &visual->events.invert);
-    int invArg = 1;
-    assert(gismo.bang("/invert") == 1);
-    assert(gismo.bang("/invert") == 1);
-    cout << "OK" << endl;
+//    cout << "Calling Invert...";
+//    gismo.eventAdd("/invert", &visual->events.invert);
+//    int invArg = 1;
+//    assert(gismo.bang("/invert") == 1);
+//    assert(gismo.bang("/invert") == 1);
+//    cout << "OK" << endl;
     
     //Test line
 //    cout << "Calling line through event....";

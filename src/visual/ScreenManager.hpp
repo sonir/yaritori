@@ -14,6 +14,7 @@
 #include "screen_setup.h"
 #include "ofxGismo.h"
 #include "drawer.hpp"
+#include "animation_setup.hpp"
 
 //Define Structs
 typedef struct pos_t {
@@ -25,6 +26,7 @@ typedef struct pos_t {
 
 static bool drawWhiteBack = true;
 void invertBackground();
+
 
 typedef enum{UP, RIGHT, DOWN, LEFT} swap_direction;
 
@@ -38,21 +40,26 @@ public:
     void end();
     void draw();
     
+    void setWindowPos(int window, float x, float y);
+    void resetWindowPos(int window);
+    
     void setMask(int window, int vertexId, float x, float y);
+    void maskUpdate();
     void mask();
     
     void swap(int window, swap_direction direction);
     void swap(int window, float x, float y);
     void setSwapDuration(float go, float out, float back);
-    //    void setOriginPosition(pos_t o1, pos_t o2, pos_t o3);
-    //    void setZoom(int window, pos_t centerPos, float ratio);
-    //    void resetScreen(int window);
     
+    void setBackground(float c);
     void drawBackground();
     bool colorState;
+    void setAllColor(float bgColor);
     
     void setFullScreen();
     ofColor getDrawColor();
+    
+    float width, height;
     
 private:
     void init();
@@ -70,13 +77,10 @@ private:
     ofFloatColor mask_cols[8 * 3];
     
     ofFbo fbo;
-    ofMesh mesh[3];
+    ofVec2f texture_originPos[3];
     
     pos_t pos[3];  //up-left point of window
     
-    //    pos_t centerPos[3];
-    //    pos_t centerPos_origin[3]; //standard pos
-    //    float ratio[3];
     
     float swapDur_go, swapDur_out, swapDur_back;    //msec
     
@@ -86,6 +90,13 @@ private:
     int state_h[3];
     TimedInterpolation interpolation_w[3];
     TimedInterpolation interpolation_h[3];
+    
+    TimedInterpolation invertTimer;
+    
+    float bgColor;  //Background Color;
+    bool invertState;
+    bool timerOn;
+    ofShader shader;
 };
 
 #endif /* ScreenManager_hpp */
