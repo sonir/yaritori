@@ -269,6 +269,11 @@ void AgentMotion::setShapePtr(ag_shape_t * shapePtr) {
     
 }
 
+void AgentMotion::setColor(float c) {
+    color = c;
+    this->updateColors();
+}
+
 void AgentMotion::invertColor() {
     if (color == 1.0) {
         color = 0.0f;

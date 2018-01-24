@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		0546D1A38E13BD319CC9755B /* OscReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BF3AA0D4FAA89D0F8A0E545 /* OscReceivedElements.cpp */; };
 		1CD33E884D9E3358252E82A1 /* ofxToggle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 907C5B5E104864A2D3A25745 /* ofxToggle.cpp */; };
+		33124EFA20181016007DACA5 /* VboCircleRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33124EF420181016007DACA5 /* VboCircleRenderer.cpp */; };
+		33124EFB20181016007DACA5 /* VboLineRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33124EF620181016007DACA5 /* VboLineRenderer.cpp */; };
+		33124EFC20181016007DACA5 /* VboRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33124EF820181016007DACA5 /* VboRenderer.cpp */; };
 		33ACF2A7200C032700268C3D /* RippleDrawer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33ACF295200C032700268C3D /* RippleDrawer.cpp */; };
 		33ACF2A8200C032700268C3D /* RippleManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33ACF297200C032700268C3D /* RippleManager.cpp */; };
 		33ACF2A9200C032700268C3D /* timed_interpolation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33ACF299200C032700268C3D /* timed_interpolation.cpp */; };
@@ -109,6 +112,12 @@
 		2B40EDA85BEB63E46785BC29 /* tinyxml.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = tinyxml.cpp; path = ../../../addons/ofxXmlSettings/libs/tinyxml.cpp; sourceTree = SOURCE_ROOT; };
 		2FD4B0329909D3527F003494 /* UdpSocket.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = UdpSocket.h; path = ../../../addons/ofxOsc/libs/oscpack/src/ip/UdpSocket.h; sourceTree = SOURCE_ROOT; };
 		318ABED90EADFB757FFDCCAF /* ofxVectorGraphics.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxVectorGraphics.cpp; path = ../../../addons/ofxVectorGraphics/src/ofxVectorGraphics.cpp; sourceTree = SOURCE_ROOT; };
+		33124EF420181016007DACA5 /* VboCircleRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VboCircleRenderer.cpp; sourceTree = "<group>"; };
+		33124EF520181016007DACA5 /* VboCircleRenderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = VboCircleRenderer.hpp; sourceTree = "<group>"; };
+		33124EF620181016007DACA5 /* VboLineRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VboLineRenderer.cpp; sourceTree = "<group>"; };
+		33124EF720181016007DACA5 /* VboLineRenderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = VboLineRenderer.hpp; sourceTree = "<group>"; };
+		33124EF820181016007DACA5 /* VboRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VboRenderer.cpp; sourceTree = "<group>"; };
+		33124EF920181016007DACA5 /* VboRenderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = VboRenderer.hpp; sourceTree = "<group>"; };
 		335603932010F4B6009A34D4 /* animation_setup.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = animation_setup.hpp; sourceTree = "<group>"; };
 		33612B0320110CD200AD7A2B /* screen_setup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = screen_setup.h; sourceTree = "<group>"; };
 		33ACF295200C032700268C3D /* RippleDrawer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RippleDrawer.cpp; sourceTree = "<group>"; };
@@ -273,6 +282,20 @@
 				C6937888E126BADC8777423B /* OscTypes.h */,
 			);
 			name = osc;
+			sourceTree = "<group>";
+		};
+		33124EF320180FED007DACA5 /* VboRenderer */ = {
+			isa = PBXGroup;
+			children = (
+				33124EF420181016007DACA5 /* VboCircleRenderer.cpp */,
+				33124EF520181016007DACA5 /* VboCircleRenderer.hpp */,
+				33124EF620181016007DACA5 /* VboLineRenderer.cpp */,
+				33124EF720181016007DACA5 /* VboLineRenderer.hpp */,
+				33124EF820181016007DACA5 /* VboRenderer.cpp */,
+				33124EF920181016007DACA5 /* VboRenderer.hpp */,
+			);
+			name = VboRenderer;
+			path = visual;
 			sourceTree = "<group>";
 		};
 		33ACF294200C032700268C3D /* ripple */ = {
@@ -553,13 +576,9 @@
 				F2ABF1271FEFF227006773CE /* Network.hpp */,
 				F2FFCEB21F62AFF800E71BAA /* osc2shape.cpp */,
 				F2FFCEB31F62AFF800E71BAA /* osc2shape.hpp */,
-				F2FFCEB91F62C5FC00E71BAA /* drawer.hpp */,
-				F2FFCEB61F62C5C500E71BAA /* drawer.cpp */,
-				F2FFCEB51F62B3EA00E71BAA /* shape.h */,
-				F2545E8C1F99B73F0029709A /* Particle.hpp */,
-				F2545E8D1F99B73F0029709A /* Particle.cpp */,
 				33ACF294200C032700268C3D /* ripple */,
 				33ACF29B200C032700268C3D /* visual */,
+				33124EF320180FED007DACA5 /* VboRenderer */,
 			);
 			name = Network_OSC;
 			sourceTree = "<group>";
@@ -732,6 +751,7 @@
 			files = (
 				F2FFCEB41F62AFF800E71BAA /* osc2shape.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
+				33124EFB20181016007DACA5 /* VboLineRenderer.cpp in Sources */,
 				33ACF2AC200C032700268C3D /* LineDrawer.cpp in Sources */,
 				F2E7003D2007145100A90022 /* Performance.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
@@ -765,7 +785,9 @@
 				33ACF2A9200C032700268C3D /* timed_interpolation.cpp in Sources */,
 				67FE4C7B15C2F0478C8126C2 /* NetworkingUtils.cpp in Sources */,
 				510CAFE035E576A4E1502D52 /* UdpSocket.cpp in Sources */,
+				33124EFA20181016007DACA5 /* VboCircleRenderer.cpp in Sources */,
 				33ACF2AE200C032700268C3D /* ScreenManager.cpp in Sources */,
+				33124EFC20181016007DACA5 /* VboRenderer.cpp in Sources */,
 				62545D179C94265CA1389D4A /* OscOutboundPacketStream.cpp in Sources */,
 				F27A52FE1FEC78FE00942A31 /* Event.cpp in Sources */,
 				C4782ECC372420ACE0615B74 /* OscPrintReceivedElements.cpp in Sources */,

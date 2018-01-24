@@ -29,19 +29,83 @@ void ScreenManager::setEvents() {
         this->setMask(window, vertexId, x, y);
     };
     
+    auto trimEvent = [&](void* args) {
+        param_u* params = (param_u *)args;
+        int window = params[0].ival;
+        float x = params[1].fval;
+        float y = params[2].fval;
+        this->setWindowPos(window, x, y);
+    };
+    
+    auto resetTrimEvent = [&](void* args) {
+        param_u* params = (param_u *)args;
+        int window = params[0].ival;
+        this->resetWindowPos(window);
+    };
+    
+    auto bgColorEvent = [&](void* args) {
+        param_u* params = (param_u *)args;
+        float c = params[0].fval;
+        this->setBackground(c);
+    };
+    
+    auto timedInvertEvent = [&](void* args) {
+        param_u* params = (param_u *)args;
+        float bgColor = params[0].fval;
+        float duration = params[1].fval;
+        this->invertTimer.bang(duration);
+        invertState = true;
+    };
+    
+    auto invertEvent = [&](void* args) {
+        param_u* params = (param_u *)args;
+        invertState = params[0].bval;
+    };
+    
     
     GismoManager& gismo = GismoManager::getInstance();
     gismo.lambdaAdd("/swap", swapEvent);
     gismo.lambdaAdd("/mask", maskEvent);
-    
+    gismo.lambdaAdd("/trim", trimEvent);
+    gismo.lambdaAdd("/resetTrim", resetTrimEvent);
+    gismo.lambdaAdd("/bgColor", bgColorEvent);
+    gismo.lambdaAdd("/timedInvert", timedInvertEvent);
+    gismo.lambdaAdd("/invert", invertEvent);
 }
 
 void invertBackground() {
     drawWhiteBack = !drawWhiteBack;
 }
 
-ScreenManager::ScreenManager(){
+
+
+void ScreenManager::setAllColor(float bgColor) {
     
+    GismoManager& gismo = GismoManager::getInstance();
+    if(bgColor == 0.0) {
+        //Reset Colors for solo;
+        param_u param;
+        param.fval = 1.0;
+        gismo.lambdaBang("/rippleColor", &param);
+        gismo.lambdaBang("/agentColor", &param);
+        gismo.lambdaBang("/performanceColor", &param);
+        
+        param.fval = 0.0;
+        gismo.lambdaBang("/bgColor", &param);
+    } else {
+        //Reset Colors for solo;
+        param_u param;
+        param.fval = ANIMATION_DEFAULT_COLOR;
+        gismo.lambdaBang("/rippleColor", &param);
+        gismo.lambdaBang("/agentColor", &param);
+        gismo.lambdaBang("/performanceColor", &param);
+        
+        param.fval = BACKGROUND_DEFAULT_COLOR;
+        gismo.lambdaBang("/bgColor", &param);
+    }
+}
+
+ScreenManager::ScreenManager(){
     
     for(int i = 0; i < 3; i++){
         pos[i].x = 0;
@@ -62,7 +126,8 @@ void ScreenManager::setup() {
 #endif
     
     initCanvasSize(ORIGINAL_WIDTH, ORIGINAL_HEIGHT);    //Tell original width and original height to vsyn
-    
+    invertTimer.ready();
+    invertState = false;
 }
 
 void ScreenManager::init(){
@@ -92,7 +157,7 @@ void ScreenManager::initStatus(){
     swapDur_back = 700;
     
     for(int i = 0; i < 3; i++){
-        resetWindowPlace(i);
+        resetWindowPos(i);
     }
 }
 
@@ -130,8 +195,8 @@ void ScreenManager::initMask(){
     for(int i = 0; i < 3; i++){
         mask_pos[i * 4].set(0, 0);
         mask_pos[i * 4 + 1].set(DISPLAY_WIDTH, 0);
-        mask_pos[i * 4 + 2].set(DISPLAY_WIDTH, DISPLAY_WIDTH);
-        mask_pos[i * 4 + 3].set(0, DISPLAY_WIDTH);
+        mask_pos[i * 4 + 2].set(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+        mask_pos[i * 4 + 3].set(0, DISPLAY_HEIGHT);
     }
     
     for(int i = 0; i < 3; i++){
@@ -147,7 +212,11 @@ void ScreenManager::initMask(){
     }
     
     for(int i = 0; i < 24; i++){
-        mask_cols[i] = ofFloatColor(0, 0, 0);
+#ifdef DEBUG_MODE_SCREEN
+        mask_cols[i] = ofFloatColor(0, 0, 0, 100);
+#else
+        mask_cols[i] = ofFloatColor(0, 0, 0, 255);
+#endif
     }
     
     mask_vbo.setVertexData(mask_verts, 4 * 6, GL_DYNAMIC_DRAW);
@@ -155,63 +224,103 @@ void ScreenManager::initMask(){
     mask_vbo.setIndexData(mask_indices, 6 * 6 * 2, GL_STATIC_DRAW);
 }
 
-void ScreenManager::setWindowPlace(int window, float x, float y){
+void ScreenManager::setWindowPos(int window, float x, float y){
     texture_originPos[window].set(x * ORIGINAL_WIDTH, y * ORIGINAL_HEIGHT);
 }
 
-void ScreenManager::resetWindowPlace(int window){
-    texture_originPos[0].set(MARGIN_W, MARGIN_H);
-    texture_originPos[1].set(MARGIN_W + MARGIN_0 + DISPLAY_WIDTH, MARGIN_H);
-    texture_originPos[2].set(MARGIN_W + MARGIN_0 + MARGIN_1 + DISPLAY_WIDTH * 2, MARGIN_H);
+void ScreenManager::resetWindowPos(int window){
+    texture_originPos[0].set(0, MARGIN_H);
+    texture_originPos[1].set(DISPLAY_WIDTH + MARGIN_0 , MARGIN_H);
+    texture_originPos[2].set(DISPLAY_WIDTH * 2 + MARGIN_0 + MARGIN_1, MARGIN_H);
 }
 
 void ScreenManager::setMask(int window, int vertexId, float x, float y){
     mask_pos[window * 4 + vertexId].set(x * DISPLAY_WIDTH, y * DISPLAY_HEIGHT);
 }
 
-void ScreenManager::mask(){
+void ScreenManager::maskUpdate(){
+#ifdef DEBUG_MODE_SCREEN
+    for(int i = 0; i < 3; i++){
+        mask_verts[i * 8].set(texture_originPos[i].x, texture_originPos[i].y);
+        mask_verts[i * 8 + 1].set(texture_originPos[i].x + DISPLAY_WIDTH, texture_originPos[i].y);
+        mask_verts[i * 8 + 2].set(texture_originPos[i].x + DISPLAY_WIDTH, texture_originPos[i].y + DISPLAY_HEIGHT);
+        mask_verts[i * 8 + 3].set(texture_originPos[i].x, texture_originPos[i].y + DISPLAY_HEIGHT);
+        
+        mask_verts[i * 8 + 4].set(mask_pos[i * 4] + ofVec2f(texture_originPos[i].x, texture_originPos[i].y));
+        mask_verts[i * 8 + 5].set(mask_pos[i * 4 + 1] + ofVec2f(texture_originPos[i].x, texture_originPos[i].y));
+        mask_verts[i * 8 + 6].set(mask_pos[i * 4 + 2] + ofVec2f(texture_originPos[i].x, texture_originPos[i].y));
+        mask_verts[i * 8 + 7].set(mask_pos[i * 4 + 3] + ofVec2f(texture_originPos[i].x, texture_originPos[i].y));
+    }
+#else
     for(int i = 0; i < 3; i++){
         mask_verts[i * 8 + 4].set(mask_pos[i * 4] + ofVec2f(DISPLAY_WIDTH * i, 0));
         mask_verts[i * 8 + 5].set(mask_pos[i * 4 + 1] + ofVec2f(DISPLAY_WIDTH * i, 0));
         mask_verts[i * 8 + 6].set(mask_pos[i * 4 + 2] + ofVec2f(DISPLAY_WIDTH * i, 0));
         mask_verts[i * 8 + 7].set(mask_pos[i * 4 + 3] + ofVec2f(DISPLAY_WIDTH * i, 0));
     }
+#endif
+
+}
+
+void ScreenManager::mask(){
     mask_vbo.updateVertexData(mask_verts, 24);
     mask_vbo.drawElements(GL_TRIANGLES, 72);
 }
 
 void ScreenManager::begin(){
+//    float invDur = invertTimer.get();
+//    if (!invertTimer.waiting) {
+//        if(0.0 < invDur && invDur < 1.0) {
+//                invertState = true;
+//            } else {
+//                invertState = false;
+//        }
+//    }
+    
+    
+    if(invertState) {
+        setAllColor(0.0);
+    } else {
+        setAllColor(BACKGROUND_DEFAULT_COLOR);
+    }
+    
+    
     fbo.begin();
     ofClear(0);
     drawBackground();
-    
-#ifdef DEBUG_MODE_SCREEN
-    //Draw Rectangle to show trimmed area here
-    
-    
-#endif
-    
 }
 
 void ScreenManager::end(){
-    
-#ifdef DEBUG_MODE_SCREEN
-    //Draw Rectangle to show trimmed area here
-    
-    
-#endif
-    
     fbo.end();
-    
-
 }
 
 void ScreenManager::draw(){
+    maskUpdate();
+    
     ofBackground(0);
     
 #ifdef DEBUG_MODE_SCREEN   //Debug mode
+//    fbo.draw(0, 100, 1920, 662);
     
-    fbo.draw(0, 100, 1920, 662);
+    float fix_ORIGINAL_WIDTH = 1920;
+    float aspect = fix_ORIGINAL_WIDTH / ORIGINAL_WIDTH;
+    float fix_ORIGINAL_HEIGHT = ORIGINAL_HEIGHT * aspect;
+
+    ofPushMatrix();
+    ofTranslate(0, 300);
+    ofScale(aspect, aspect);
+    fbo.draw(0, 0, ORIGINAL_WIDTH, ORIGINAL_HEIGHT);
+    
+    ofSetColor(255, 0, 0);
+    ofNoFill();
+    for(int i = 0; i < 3; i++){
+        ofDrawBitmapString(ofToString(i), texture_originPos[i].x, texture_originPos[i].y);
+        ofDrawRectangle(texture_originPos[i].x, texture_originPos[i].y, DISPLAY_WIDTH, DISPLAY_HEIGHT);
+    }
+    
+    ofFill();
+    mask();
+    ofPopMatrix();
     
 #else   //Normal mode
     swap_cal();
@@ -252,12 +361,17 @@ void ScreenManager::draw(){
 #endif
 }
 
+void ScreenManager::setBackground(float c) {
+    bgColor = c;
+}
+
 void ScreenManager::drawBackground(){
-    if(drawWhiteBack == true) {
-        ofBackground(255);
-    }else{
-        ofBackground(0);
-    }
+//    if(drawWhiteBack == true) {
+//        ofBackground(255);
+//    }else{
+//        ofBackground(0);
+//    }
+    ofBackground(ofFloatColor(bgColor));
 }
 
 void ScreenManager::setSwapDuration(float go, float out, float down){

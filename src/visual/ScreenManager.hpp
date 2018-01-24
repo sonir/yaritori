@@ -14,6 +14,7 @@
 #include "screen_setup.h"
 #include "ofxGismo.h"
 #include "drawer.hpp"
+#include "animation_setup.hpp"
 
 //Define Structs
 typedef struct pos_t {
@@ -25,6 +26,7 @@ typedef struct pos_t {
 
 static bool drawWhiteBack = true;
 void invertBackground();
+
 
 typedef enum{UP, RIGHT, DOWN, LEFT} swap_direction;
 
@@ -38,18 +40,21 @@ public:
     void end();
     void draw();
     
-    void setWindowPlace(int window, float x, float y);
-    void resetWindowPlace(int window);
+    void setWindowPos(int window, float x, float y);
+    void resetWindowPos(int window);
     
     void setMask(int window, int vertexId, float x, float y);
+    void maskUpdate();
     void mask();
     
     void swap(int window, swap_direction direction);
     void swap(int window, float x, float y);
     void setSwapDuration(float go, float out, float back);
     
+    void setBackground(float c);
     void drawBackground();
     bool colorState;
+    void setAllColor(float bgColor);
     
     void setFullScreen();
     ofColor getDrawColor();
@@ -85,6 +90,12 @@ private:
     int state_h[3];
     TimedInterpolation interpolation_w[3];
     TimedInterpolation interpolation_h[3];
+    
+    TimedInterpolation invertTimer;
+    
+    float bgColor;  //Background Color;
+    bool invertState;
+    ofShader shader;
 };
 
 #endif /* ScreenManager_hpp */
