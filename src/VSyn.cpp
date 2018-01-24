@@ -89,10 +89,6 @@ void VSyn::setup(){
     //Reset State
     agBuffReset(&gismo.agents);
     agBuffReset(&gismo.add);
-    
-    
-    cout << float(ORIGINAL_WIDTH) / float(ORIGINAL_HEIGHT) << endl;
-    
 }
 
 
