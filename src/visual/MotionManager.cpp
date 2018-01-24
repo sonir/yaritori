@@ -182,10 +182,7 @@ void MotionManager::drawSolo() {
         
         if(ag->active)  {
             agent[i].pAg = ag;
-            agent[i].dest.x = ag->posi.x;
-            agent[i].dest.y = ag->posi.y;
-//            agent[i].center.x = ag->posi.x;
-//            agent[i].center.y = ag->posi.y;
+            agent[i].move(ag->posi.x, ag->posi.y);
             
             agent[i].update();
             
@@ -232,6 +229,17 @@ void MotionManager::draw() {
     
 }
 
+bool MotionManager::isSoloMode() {
+    bool result = false;
+    if (soloCount == 0) {
+        result = false;
+    } else {
+        result = true;
+    }
+    
+    return result;
+}
+
 void MotionManager::sendOSC(const string adr, param_u* args,  int numArgs) {
     ofxOscMessage m;
     m.setAddress(adr);
@@ -249,3 +257,5 @@ void MotionManager::addNode(ofVec2f pos) {
 void MotionManager::addEdge(ofVec2f node_a, ofVec2f node_b) {
     
 }
+
+

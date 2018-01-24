@@ -427,11 +427,15 @@ void VSyn::draw(){
     
     ofSetColor(scManager.getDrawColor());
 #ifdef PERFORMANCE_MODE
-    performanceManager.updateLines();
-    performanceManager.updateLinesInverted();
-    drawPerformance(&performanceManager);
     
-    renderer.draw();
+        performanceManager.updateLines();
+        performanceManager.updateLinesInverted();
+    
+    if(!visual.motion.isSoloMode()) {
+        drawPerformance(&performanceManager);
+    
+        renderer.draw();
+    }
 #endif
     scManager.end();
     
