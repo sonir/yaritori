@@ -34,13 +34,13 @@ void ScreenManager::setEvents() {
         int window = params[0].ival;
         float x = params[1].fval;
         float y = params[2].fval;
-        this->setWindowPos(window, x, y);
+        this->setTrimPos(window, x, y);
     };
     
     auto resetTrimEvent = [&](void* args) {
         param_u* params = (param_u *)args;
         int window = params[0].ival;
-        this->resetWindowPos(window);
+        this->resetTrimPos(window);
     };
     
     auto bgColorEvent = [&](void* args) {
@@ -50,11 +50,20 @@ void ScreenManager::setEvents() {
     };
     
     auto timedInvertEvent = [&](void* args) {
-        param_u* params = (param_u *)args;
-        float duration = params[0].fval;
-        this->invertTimer.bang(duration);
-        invertState = true;
-        timerOn = true;
+        if(timerOn) {
+            param_u* params = (param_u *)args;
+            float duration = params[0].fval;
+            invertOnNext = true;
+            invertState = false;
+            timerOn = false;
+            nextDuration = duration;
+        } else {
+            param_u* params = (param_u *)args;
+            float duration = params[0].fval;
+            this->invertTimer.bang(duration * 1000.0);
+            invertState = true;
+            timerOn = true;
+        }
     };
     
     auto invertEvent = [&](void* args) {
@@ -63,15 +72,53 @@ void ScreenManager::setEvents() {
         if(timerOn) timerOn = false;
     };
     
+    auto shakeEvent = [&](void* args) {
+        param_u* params = (param_u *)args;
+        int window = params[0].ival;
+        int velX = params[1].ival;
+        int velY = params[2].ival;
+        
+        
+        
+        if(window == 0) {
+            for (int i = 0; i < WINDOW_NUM; i++) {
+                switch (velY) {
+                    case 1:
+                        shake(i, UP);
+                        break;
+                    case -1:
+                        shake(i, DOWN);
+                        break;
+                    default:
+                        break;
+                }
+                
+            }
+        } else {
+            switch (velY) {
+                case 1:
+                    shake(window-1, UP);
+                    break;
+                case -1:
+                    shake(window-1, DOWN);
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+    
     
     GismoManager& gismo = GismoManager::getInstance();
-    gismo.lambdaAdd("/swap", swapEvent);
+    gismo.lambdaAdd("/sc_posi", swapEvent);
     gismo.lambdaAdd("/mask", maskEvent);
     gismo.lambdaAdd("/trim", trimEvent);
     gismo.lambdaAdd("/resetTrim", resetTrimEvent);
     gismo.lambdaAdd("/bgColor", bgColorEvent);
-    gismo.lambdaAdd("/timedInvert", timedInvertEvent);
+    gismo.lambdaAdd("/visual/timed_invert", timedInvertEvent);
     gismo.lambdaAdd("/invert", invertEvent);
+    gismo.lambdaAdd("/visual/shake", shakeEvent);
+    
 }
 
 void invertBackground() {
@@ -130,6 +177,7 @@ void ScreenManager::setup() {
     invertTimer.ready();
     invertState = false;
     timerOn = false;
+    invertOnNext = false;
 }
 
 void ScreenManager::init(){
@@ -139,7 +187,6 @@ void ScreenManager::init(){
     
     colorState = true;
 }
-
 
 void ScreenManager::initFbo(){
     fbo.allocate(ORIGINAL_WIDTH, ORIGINAL_HEIGHT);
@@ -155,12 +202,12 @@ void ScreenManager::initStatus(){
         state_h[i] = 0;
     }
     
-    swapDur_go = 500;   //msec
-    swapDur_out = 100;
-    swapDur_back = 700;
+    shakeDur_go = 500;   //msec
+    shakeDur_out = 100;
+    shakeDur_back = 700;
     
     for(int i = 0; i < 3; i++){
-        resetWindowPos(i);
+        resetTrimPos(i);
     }
 }
 
@@ -227,14 +274,20 @@ void ScreenManager::initMask(){
     mask_vbo.setIndexData(mask_indices, 6 * 6 * 2, GL_STATIC_DRAW);
 }
 
-void ScreenManager::setWindowPos(int window, float x, float y){
-    texture_originPos[window].set(x * ORIGINAL_WIDTH, y * ORIGINAL_HEIGHT);
+void ScreenManager::setTrimPos(int window, float x, float y){
+    texture_diffPos_x[window] = x * ORIGINAL_WIDTH;
+    texture_diffPos_y[window] = y * ORIGINAL_WIDTH;
+    
+    texture_pos_x[window] = texture_originPos_x[window] + texture_diffPos_x[window];
+    texture_pos_y[window] = texture_originPos_y[window] + texture_diffPos_y[window];
 }
 
-void ScreenManager::resetWindowPos(int window){
-    texture_originPos[0].set(0, MARGIN_H);
-    texture_originPos[1].set(DISPLAY_WIDTH + MARGIN_0 , MARGIN_H);
-    texture_originPos[2].set(DISPLAY_WIDTH * 2 + MARGIN_0 + MARGIN_1, MARGIN_H);
+void ScreenManager::resetTrimPos(int window){
+    texture_diffPos_x[window] = 0.;
+    texture_diffPos_y[window] = 0.;
+    
+    texture_pos_x[window] = texture_originPos_x[window] + texture_diffPos_x[window];
+    texture_pos_y[window] = texture_originPos_y[window] + texture_diffPos_y[window];
 }
 
 void ScreenManager::setMask(int window, int vertexId, float x, float y){
@@ -244,15 +297,15 @@ void ScreenManager::setMask(int window, int vertexId, float x, float y){
 void ScreenManager::maskUpdate(){
 #ifdef DEBUG_MODE_SCREEN
     for(int i = 0; i < 3; i++){
-        mask_verts[i * 8].set(texture_originPos[i].x, texture_originPos[i].y);
-        mask_verts[i * 8 + 1].set(texture_originPos[i].x + DISPLAY_WIDTH, texture_originPos[i].y);
-        mask_verts[i * 8 + 2].set(texture_originPos[i].x + DISPLAY_WIDTH, texture_originPos[i].y + DISPLAY_HEIGHT);
-        mask_verts[i * 8 + 3].set(texture_originPos[i].x, texture_originPos[i].y + DISPLAY_HEIGHT);
+        mask_verts[i * 8].set(texture_pos_x[i], texture_pos_y[i]);
+        mask_verts[i * 8 + 1].set(texture_pos_x[i] + DISPLAY_WIDTH, texture_pos_y[i]);
+        mask_verts[i * 8 + 2].set(texture_pos_x[i] + DISPLAY_WIDTH, texture_pos_y[i] + DISPLAY_HEIGHT);
+        mask_verts[i * 8 + 3].set(texture_pos_x[i], texture_pos_y[i] + DISPLAY_HEIGHT);
         
-        mask_verts[i * 8 + 4].set(mask_pos[i * 4] + ofVec2f(texture_originPos[i].x, texture_originPos[i].y));
-        mask_verts[i * 8 + 5].set(mask_pos[i * 4 + 1] + ofVec2f(texture_originPos[i].x, texture_originPos[i].y));
-        mask_verts[i * 8 + 6].set(mask_pos[i * 4 + 2] + ofVec2f(texture_originPos[i].x, texture_originPos[i].y));
-        mask_verts[i * 8 + 7].set(mask_pos[i * 4 + 3] + ofVec2f(texture_originPos[i].x, texture_originPos[i].y));
+        mask_verts[i * 8 + 4].set(mask_pos[i * 4] + ofVec2f(texture_pos_x[i], texture_pos_y[i]));
+        mask_verts[i * 8 + 5].set(mask_pos[i * 4 + 1] + ofVec2f(texture_pos_x[i], texture_pos_y[i]));
+        mask_verts[i * 8 + 6].set(mask_pos[i * 4 + 2] + ofVec2f(texture_pos_x[i], texture_pos_y[i]));
+        mask_verts[i * 8 + 7].set(mask_pos[i * 4 + 3] + ofVec2f(texture_pos_x[i], texture_pos_y[i]));
     }
 #else
     for(int i = 0; i < 3; i++){
@@ -262,7 +315,7 @@ void ScreenManager::maskUpdate(){
         mask_verts[i * 8 + 7].set(mask_pos[i * 4 + 3] + ofVec2f(DISPLAY_WIDTH * i, 0));
     }
 #endif
-
+    
 }
 
 void ScreenManager::mask(){
@@ -290,6 +343,13 @@ void ScreenManager::begin(){
         setAllColor(BACKGROUND_DEFAULT_COLOR);
     }
     
+    if(invertOnNext) {
+        invertTimer.bang(nextDuration * 1000.0);
+        invertState = true;
+        timerOn = true;
+        invertOnNext = false;
+    }
+    
     
     fbo.begin();
     ofClear(0);
@@ -306,12 +366,10 @@ void ScreenManager::draw(){
     ofBackground(0);
     
 #ifdef DEBUG_MODE_SCREEN   //Debug mode
-//    fbo.draw(0, 100, 1920, 662);
-    
     float fix_ORIGINAL_WIDTH = 1920;
     float aspect = fix_ORIGINAL_WIDTH / ORIGINAL_WIDTH;
     float fix_ORIGINAL_HEIGHT = ORIGINAL_HEIGHT * aspect;
-
+    
     ofPushMatrix();
     ofTranslate(0, 300);
     ofScale(aspect, aspect);
@@ -320,8 +378,8 @@ void ScreenManager::draw(){
     ofSetColor(255, 0, 0);
     ofNoFill();
     for(int i = 0; i < 3; i++){
-        ofDrawBitmapString(ofToString(i), texture_originPos[i].x, texture_originPos[i].y);
-        ofDrawRectangle(texture_originPos[i].x, texture_originPos[i].y, DISPLAY_WIDTH, DISPLAY_HEIGHT);
+        ofDrawBitmapString(ofToString(i), texture_pos_x[i], texture_pos_y[i]);
+        ofDrawRectangle(texture_pos_x[i], texture_pos_y[i], DISPLAY_WIDTH, DISPLAY_HEIGHT);
     }
     
     ofFill();
@@ -329,7 +387,7 @@ void ScreenManager::draw(){
     ofPopMatrix();
     
 #else   //Normal mode
-    swap_cal();
+    shake_cal();
     
     for(int i = 0; i < 3; i++){
         ofPushMatrix();
@@ -339,23 +397,23 @@ void ScreenManager::draw(){
         if(pos[i].x > 0) {
             x = pos[i].x;
             w = DISPLAY_WIDTH - pos[i].x;
-            sx = texture_originPos[i].x;
+            sx = texture_pos_x[i];
             sw = DISPLAY_WIDTH - pos[i].x;
         }else{
             x = 0;
             w = DISPLAY_WIDTH + pos[i].x;
-            sx = texture_originPos[i].x - pos[i].x;
+            sx = texture_pos_x[i] - pos[i].x;
             sw = DISPLAY_WIDTH + pos[i].x;
         }
         if(pos[i].y > 0) {
             y = pos[i].y;
             h = DISPLAY_HEIGHT - pos[i].y;
-            sy = texture_originPos[i].y;
+            sy = texture_pos_y[i];
             sh = DISPLAY_HEIGHT - pos[i].y;
         }else{
             y = 0;
             h = DISPLAY_HEIGHT + pos[i].y;
-            sy = texture_originPos[i].y - pos[i].y;
+            sy = texture_pos_y[i] - pos[i].y;
             sh = DISPLAY_HEIGHT + pos[i].y;
         }
         
@@ -372,43 +430,38 @@ void ScreenManager::setBackground(float c) {
 }
 
 void ScreenManager::drawBackground(){
-//    if(drawWhiteBack == true) {
-//        ofBackground(255);
-//    }else{
-//        ofBackground(0);
-//    }
     ofBackground(ofFloatColor(bgColor));
 }
 
-void ScreenManager::setSwapDuration(float go, float out, float down){
-    swapDur_go = go;
-    swapDur_out = out;
-    swapDur_back = down;
+void ScreenManager::setShakeDuration(float go, float out, float down){
+    shakeDur_go = go;
+    shakeDur_out = out;
+    shakeDur_back = down;
 }
 
-void ScreenManager::swap(int window, swap_direction direction){
+void ScreenManager::shake(int window, shake_direction_e direction){
     startPos[window] = pos[window];
     
     switch(direction){
         case UP:
             endPos[window].y = -DISPLAY_HEIGHT;
             state_h[window] = 1;
-            interpolation_h[window].bang(swapDur_go);
+            interpolation_h[window].bang(shakeDur_go);
             break;
         case DOWN:
             endPos[window].y = DISPLAY_HEIGHT;
             state_h[window] = 1;
-            interpolation_h[window].bang(swapDur_go);
+            interpolation_h[window].bang(shakeDur_go);
             break;
         case RIGHT:
             endPos[window].x = DISPLAY_WIDTH;
             state_w[window] = 1;
-            interpolation_w[window].bang(swapDur_go);
+            interpolation_w[window].bang(shakeDur_go);
             break;
         case LEFT:
             endPos[window].x = -DISPLAY_WIDTH;
             state_w[window] = 1;
-            interpolation_w[window].bang(swapDur_go);
+            interpolation_w[window].bang(shakeDur_go);
             break;
     }
 }
@@ -418,7 +471,7 @@ void ScreenManager::swap(int window, float x, float y) {
     pos[window].y = y * DISPLAY_HEIGHT;
 }
 
-void ScreenManager::swap_cal(){
+void ScreenManager::shake_cal(){
     for(int i = 0; i < 3; i++){
         switch(state_w[i]){
             case 1:
@@ -448,11 +501,11 @@ void ScreenManager::swap_cal(){
         if(interpolation_w[i].get() == 1.0){
             switch(state_w[i]){
                 case 1: //go
-                    interpolation_w[i].bang(swapDur_out);
+                    interpolation_w[i].bang(shakeDur_out);
                     state_w[i] = 2;
                     break;
                 case 2: //out
-                    interpolation_w[i].bang(swapDur_back);
+                    interpolation_w[i].bang(shakeDur_back);
                     startPos[i].x = pos[i].x;
                     endPos[i].x = 0.;
                     state_w[i] = 3;
@@ -467,11 +520,11 @@ void ScreenManager::swap_cal(){
         if(interpolation_h[i].get() == 1.0){
             switch(state_h[i]){
                 case 1: //go
-                    interpolation_h[i].bang(swapDur_out);
+                    interpolation_h[i].bang(shakeDur_out);
                     state_h[i] = 2;
                     break;
                 case 2: //out
-                    interpolation_h[i].bang(swapDur_back);
+                    interpolation_h[i].bang(shakeDur_back);
                     startPos[i].y = pos[i].y;
                     endPos[i].y = 0.;
                     state_h[i] = 3;

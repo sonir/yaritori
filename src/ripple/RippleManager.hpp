@@ -12,6 +12,7 @@
 #include "ofMain.h"
 #include "RippleDrawer.hpp"
 #include "ofxGismo.h"
+#include "MotionManager.hpp"
 
 class RippleManager : public Event {
 public:
@@ -28,10 +29,15 @@ public:
     void update();
     void draw();
     
-    void bang(float posX, float posY);  //define each value as 0. - 1.
+    void agBang(int id, float size, float time);
+    void bang(float posX, float posY, float size_ratio, float time_ratio);  //define each value as 0. - 1.
     int trigger(void *args);     // To be called from eventhandler
     
     void invert();
+    
+    inline void setMotionManagerPtr(MotionManager* pMotion) {
+        motion = pMotion;
+    }
     
     
 private:
@@ -39,7 +45,8 @@ private:
     
     static const int res = 64;
     static const int rippleNum = 2;
-    static const int NUM = 3000; //max num of ripples that can be drawn at once
+    static const int RIPPLE_MAX = 1000;
+    static const int NUM = AG_MAX + RIPPLE_MAX; //max num of ripples that can be drawn at once
     
     bool colorState;    //true: black, false: white(ripples)
     float color;
@@ -52,6 +59,9 @@ private:
     ofIndexType indices[res * rippleNum * NUM * 2];
     ofFloatColor cols[res * rippleNum * NUM];
     ofVbo vbo;
+    
+    GismoManager& gismo = GismoManager::getInstance();
+    MotionManager* motion;
 };
 
 

@@ -19,16 +19,7 @@ MotionManager::MotionManager() {
     }
     
     //OSC
-    sender.setup(SOUND_HOST, SOUND_PORT);
-    
-    //TEST Osc Send
-    param_u params[4];
-    params[0].fval = 1.0f;
-    params[1].ival = 87;
-    params[2].bval = true;
-    params[3].ival = 87;
-    
-    sendOSC("/foo", params, 4);
+    //sender.setup(SOUND_HOST, SOUND_PORT);
     
     aspect = gismo.width_rate;
     
@@ -38,6 +29,7 @@ MotionManager::MotionManager() {
 void MotionManager::setColor(float c) {
     for(int i = 0; i < AG_MAX; i++){
         agent[i].setColor(c);
+        interactLine[i].setColor(c);
     }
 }
 
@@ -83,11 +75,15 @@ void MotionManager::addSolo(int _id, float duration) {
     soloTimers[_id].bang(duration);
     soloCount++;
     
-    float args[2];
-    ag_t* ag = gismo.getAgent(_id);
-    args[0] = ag->posi.x;
-    args[1] = ag->posi.y;
-    gismo.bang("/ripple", args);
+//    float args[2];
+//    ag_t* ag = gismo.getAgent(_id);
+//    args[0] = ag->posi.x;
+//    args[1] = ag->posi.y;
+//    gismo.bang("/ripple", args);
+    
+//    param_u param;
+//    param.ival = _id;
+//    gismo.bang("/ag_ripple", &param);
 }
 
 void MotionManager::deleteSolo(int _id) {
@@ -182,10 +178,7 @@ void MotionManager::drawSolo() {
         
         if(ag->active)  {
             agent[i].pAg = ag;
-            agent[i].dest.x = ag->posi.x;
-            agent[i].dest.y = ag->posi.y;
-//            agent[i].center.x = ag->posi.x;
-//            agent[i].center.y = ag->posi.y;
+            agent[i].move(ag->posi.x, ag->posi.y);
             
             agent[i].update();
             
@@ -221,15 +214,22 @@ void MotionManager::draw() {
         drawSolo();
     }
     
-//    debugLine.myPos.x = 0.15;
-//    debugLine.myPos.y = 0.5;
-//    debugLine.lineTo(0.155, 0.5);
-    
 //    ofSetColor(ofFloatColor(color));
 //    nodeVbo.updateVertexData(vbo.nodePos, vbo.nodeNum);
 //    nodeVbo.updateColorData(vbo.nodeColors,  vbo.nodeNum);
 //    nodeVbo.draw(GL_POINTS, 0, vbo.nodeNum);
     
+}
+
+bool MotionManager::isSoloMode() {
+    bool result = false;
+    if (soloCount == 0) {
+        result = false;
+    } else {
+        result = true;
+    }
+    
+    return result;
 }
 
 void MotionManager::sendOSC(const string adr, param_u* args,  int numArgs) {
@@ -249,3 +249,5 @@ void MotionManager::addNode(ofVec2f pos) {
 void MotionManager::addEdge(ofVec2f node_a, ofVec2f node_b) {
     
 }
+
+

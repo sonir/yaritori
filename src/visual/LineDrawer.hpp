@@ -34,7 +34,7 @@ private:
     void update();
     
     int turn_num;
-    float currentPhase, theta;
+    float currentPhase, preCurrentPhase, theta;
     
     ofVec2f verts[TURN_NUM_MAX + 2]; // + myPos + targetPos
     ofFloatColor cols[TURN_NUM_MAX + 2];
@@ -42,7 +42,7 @@ private:
     
     TimedInterpolation interpolation;
     
-    float aspect; 
+    float aspect;
 };
 
 

@@ -38,20 +38,20 @@ constexpr float EASING_RATIO = 0.05;
 
 
 /////////////////// WAVEFORM ///////////////////
-static constexpr float cycle = 1. * 1000.;   //msec
-static constexpr float maxR = 1.0;    //Max amplitude
-static constexpr float minR = 0.001;    //Min amplitude
+static constexpr float cycle = 200;   //msec
+static constexpr float maxR = 0.05;    //Max amplitude
+static constexpr float minR = 0.01;    //Min amplitude
 static const int TURN_NUM_MAX = 100;  //num of feature points
+
 
 
 /////////////////// Ripple ///////////////////
 constexpr float RIPPLE_ALPHA_FIX_BLACK = 0.3;
 constexpr float RIPPLE_ALPHA_FIX_WHITE = 0.7;
-static constexpr float r_Min = 0.15;
-static constexpr float r_Max = 0.17;
 
-static constexpr float durMin = 0.5;
-static constexpr float durMax = 1.2;
+static constexpr float radius_default = 1.0;
+
+static constexpr float duration_default = 1.0;
 
 static constexpr float lagMin = 0.1;
 static constexpr float lagMax = 0.25;

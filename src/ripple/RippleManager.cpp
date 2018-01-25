@@ -31,6 +31,17 @@ void RippleManager::setEvents() {
     };
     
     gismo.lambdaAdd("/rippleColor", colorEvent);
+    
+    auto agRipple = [&](void* args){ //<- keep this desctiption
+        param_u* params = (param_u *)args;
+        float id = params[0].ival;
+        float size = params[1].fval;
+        float time = params[2].fval;
+        
+        this->agBang(id, size, time);   //FIRE!!!!!!!!!!!!!!!!
+    };
+    
+    gismo.lambdaAdd("/ag_ripple", agRipple);
 }
 
 void RippleManager::setColor(float c) {
@@ -93,16 +104,30 @@ void RippleManager::update(){
         ripples[i].update();
     }
     
-    activeNumCounter = 0;
-    for(int j = 0; j < NUM; j++){
-        if(ripples[j].isRunning == true){
-            for(int i = 0; i < res * rippleNum; i++){
-                verts[activeNumCounter * res * rippleNum + i] = ripples[j].verts[i];
-                cols[activeNumCounter * res * rippleNum + i] = ripples[j].cols[i];
+    if(motion->isSoloMode()) { //When solo, update only ag ripples
+        activeNumCounter = 0;
+        for(int j = 0; j < AG_MAX; j++){
+            if(ripples[j].isRunning == true && motion->isSolo[j]){
+                for(int i = 0; i < res * rippleNum; i++){
+                    verts[activeNumCounter * res * rippleNum + i] = ripples[j].verts[i];
+                    cols[activeNumCounter * res * rippleNum + i] = ripples[j].cols[i];
+                }
+                activeNumCounter++;
             }
-            activeNumCounter++;
+        }
+    } else {
+        activeNumCounter = 0;
+        for(int j = 0; j < NUM; j++){
+            if(ripples[j].isRunning == true){
+                for(int i = 0; i < res * rippleNum; i++){
+                    verts[activeNumCounter * res * rippleNum + i] = ripples[j].verts[i];
+                    cols[activeNumCounter * res * rippleNum + i] = ripples[j].cols[i];
+                }
+                activeNumCounter++;
+            }
         }
     }
+    
     vbo.updateVertexData(verts, res * rippleNum * activeNumCounter);
     vbo.updateColorData(cols, res * rippleNum * activeNumCounter);
 }
@@ -112,7 +137,12 @@ void RippleManager::draw(){
     vbo.drawElements(GL_LINES, res * rippleNum * activeNumCounter * 2);
 }
 
-void RippleManager::bang(float posX, float posY){
+void RippleManager::agBang(int id, float size, float time) {
+    ag_t* ag = gismo.getAgent(id);
+    ripples[id].bang(ag->posi.x, ag->posi.y, size, time);
+}
+
+void RippleManager::bang(float posX, float posY, float size_ratio, float time_ratio){
     int index = 0;
     while(ripples[index].isRunning == true){
         index++;
@@ -122,9 +152,8 @@ void RippleManager::bang(float posX, float posY){
         }
     }
     
-    ripples[index].bang(posX, posY);
+    ripples[index].bang(posX, posY, size_ratio, time_ratio);
 }
-
 void RippleManager::invert(){
     colorState = !colorState;
     for(int i = 0; i < NUM; i++){
@@ -136,7 +165,7 @@ void RippleManager::invert(){
 int RippleManager::trigger(void* args) {    // To call from eventhandler
     float *val = (float *)args;
         
-    this->bang(val[0], val[1]);
+    this->bang(val[0], val[1], val[2], val[3]); //FIRE!!!!!!!!!!!!!!
     
     return 1;
 }

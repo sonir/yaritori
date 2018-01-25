@@ -37,6 +37,10 @@ void VboRenderer::setLineWidth(float _thick) {
     lineRenderer.setLineWidth(_thick);
 }
 
+void VboRenderer::setCircleBaseRad(int baseRad) {
+    circleRenderer.setBeseRad(baseRad);
+}
+
 void VboRenderer::draw() {
     circleRenderer.draw();
     lineRenderer.draw();

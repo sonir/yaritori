@@ -28,9 +28,9 @@ static bool drawWhiteBack = true;
 void invertBackground();
 
 
-typedef enum{UP, RIGHT, DOWN, LEFT} swap_direction;
+typedef enum{ UP, RIGHT, DOWN, LEFT } shake_direction_e;
 
-
+constexpr int WINDOW_NUM = 3;
 
 class ScreenManager {
 public:
@@ -40,16 +40,16 @@ public:
     void end();
     void draw();
     
-    void setWindowPos(int window, float x, float y);
-    void resetWindowPos(int window);
+    void setTrimPos(int window, float x, float y);
+    void resetTrimPos(int window);
     
     void setMask(int window, int vertexId, float x, float y);
     void maskUpdate();
     void mask();
     
-    void swap(int window, swap_direction direction);
+    void shake(int window, shake_direction_e direction);
     void swap(int window, float x, float y);
-    void setSwapDuration(float go, float out, float back);
+    void setShakeDuration(float go, float out, float back);
     
     void setBackground(float c);
     void drawBackground();
@@ -67,7 +67,7 @@ private:
     void initStatus();
     void initMask();
     
-    void swap_cal();
+    void shake_cal();
     void setEvents();
     
     ofVbo mask_vbo;
@@ -77,12 +77,15 @@ private:
     ofFloatColor mask_cols[8 * 3];
     
     ofFbo fbo;
-    ofVec2f texture_originPos[3];
+    float texture_diffPos_x[3];
+    float texture_diffPos_y[3];
+    float texture_pos_x[3];
+    float texture_pos_y[3];
     
     pos_t pos[3];  //up-left point of window
     
     
-    float swapDur_go, swapDur_out, swapDur_back;    //msec
+    float shakeDur_go, shakeDur_out, shakeDur_back;    //msec
     
     pos_t startPos[3];    //pos when called as start pos
     pos_t endPos[3];
@@ -96,7 +99,12 @@ private:
     float bgColor;  //Background Color;
     bool invertState;
     bool timerOn;
+    
+    bool invertOnNext;
+    float nextDuration;
     ofShader shader;
+    
+    
 };
 
 #endif /* ScreenManager_hpp */

@@ -17,6 +17,7 @@ VboCircleRenderer::VboCircleRenderer() {
 void VboCircleRenderer::setup() {
     width = ofGetWidth();
     height = ofGetHeight();
+    baseRad = width;
     
     initVbo();
 }
@@ -24,6 +25,7 @@ void VboCircleRenderer::setup() {
 void VboCircleRenderer::setup(float w, float h) {
     width = w;
     height = h;
+    baseRad = width;
     
     initVbo();
 }
@@ -44,6 +46,10 @@ void VboCircleRenderer::initVbo() {
     noFillCircleVbo.setVertexData(noFillCirclePos, VERTICES_MAX, GL_DYNAMIC_DRAW);
     noFillCircleVbo.setIndexData(noFillCircleIndices, VERTICES_MAX, GL_DYNAMIC_DRAW);
     noFillCircleVbo.setColorData(noFillCircleColors, VERTICES_MAX, GL_DYNAMIC_DRAW);
+}
+
+void VboCircleRenderer::setBeseRad(int _baseRad) {
+    baseRad = _baseRad;
 }
 
 void VboCircleRenderer::draw() {
@@ -142,8 +148,11 @@ void VboCircleRenderer::noFillCircle(float x, float y, float size) {
 
 ofVec2f VboCircleRenderer::getVertPos(float centerX, float centerY, float rad, float size) {
     
-    float x = cos(rad) * size * width; //Get Circle track X
-    float y = sin(rad) * size * width; //Get Circle track Y
+//    float x = cos(rad) * size * width; //Get Circle track X
+//    float y = sin(rad) * size * width; //Get Circle track Y
+
+    float x = cos(rad) * size * baseRad; //Get Circle track X
+    float y = sin(rad) * size * baseRad; //Get Circle track Y
     
     float px = centerX * width + x;     //Get position X
     float py = centerY * height + y;    //Get position

@@ -158,7 +158,8 @@ void AgentMotion::updatePosition() {
         float nodeY = (pShape->nodes[i].y + velocityY[i] * phase[i % MOD_NUM ] ) * pAg->size * sizeMod * SIZE_FIX;
 
         ofVec2f pos;
-        pos.x = (center.x * aspect + nodeX) * ORIGINAL_HEIGHT ;
+//        pos.x = (center.x * aspect + nodeX) * ORIGINAL_HEIGHT ;
+        pos.x = (center.x * ORIGINAL_WIDTH) + (nodeX * ORIGINAL_HEIGHT) ;
         pos.y = (center.y + nodeY) * ORIGINAL_HEIGHT;
         
         
@@ -176,11 +177,14 @@ void AgentMotion::updatePosition() {
 
 void AgentMotion::updateIndex() {
     for (int i = 0; i < pShape->edge_count; i++) {
-        int edge_index = i*2;
-        edgeIndices[edge_index] = pShape->edges[i].node_id_a;
-        edgeIndices[edge_index+1] = pShape->edges[i].node_id_b;
-        edgeColors[edge_index] = ofFloatColor(color);
-        edgeColors[edge_index+1] = ofFloatColor(color);
+        if(pShape->edges[i].node_id_a < pShape->node_count && pShape->edges[i].node_id_b < pShape->node_count) {
+            int edge_index = i*2;
+            
+            edgeIndices[edge_index] = pShape->edges[i].node_id_a;
+            edgeIndices[edge_index+1] = pShape->edges[i].node_id_b;
+            edgeColors[edge_index] = ofFloatColor(color);
+            edgeColors[edge_index+1] = ofFloatColor(color);
+        }
     }
     edgeVbo.updateIndexData(edgeIndices, pShape->edge_count*2);
 }

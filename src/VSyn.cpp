@@ -63,17 +63,29 @@ void VSyn::setup(){
     visual.motion.setShapePtr(ag_shapes);
     visual.events.setMotionManagerPtr(&visual.motion);
     visual.events.setRippleManagerPtr(&ripple);
+    ripple.setMotionManagerPtr(&visual.motion);
     
     //Set window size for yaritori
+#ifdef DEBUG_MODE
+    ofSetWindowShape(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+    renderer.setup(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+#else
     scManager.setup();
     renderer.setup(ORIGINAL_WIDTH, ORIGINAL_HEIGHT);
-    
+    renderer.setCircleBaseRad(DISPLAY_WIDTH);
+#endif
     
     //Color settings
+#ifdef DEBUG_MODE
+    renderer.setColor(1.0);
+    ripple.setColor(1.0);
+    ofBackground(0);
+#else
     scManager.setBackground(BACKGROUND_DEFAULT_COLOR);
     visual.motion.setColor(ANIMATION_DEFAULT_COLOR);
     renderer.setColor(ANIMATION_DEFAULT_COLOR);
     ripple.setColor(ANIMATION_DEFAULT_COLOR);
+#endif
     
     //Create TestClass
     myTest = new Test(&sound, &ripple);
@@ -416,6 +428,17 @@ void VSyn::draw(){
     //drawAgentsForSimpleGraphics for debugging
     drawAgentsWithChar.draw(&gismo, screen_w, screen_h);
     
+    //Ripple
+    ripple.draw();
+    
+    performanceManager.updateLines();
+    performanceManager.updateLinesInverted();
+    
+    drawPerformance(&performanceManager);
+        
+    renderer.draw();
+    
+    
 #else
     //drawAgents
     scManager.begin();
@@ -548,53 +571,19 @@ void VSyn::keyPressed(int key) {
         }
         case 'k': {
             param_u params;
-            params.fval = 1000.0;
-            gismo.lambdaBang("/timedInvert", &params);
+            params.fval = 4.0;
+            gismo.lambdaBang("/visual/timed_invert", &params);
             
             break;
         }
-        case 'm': {
-            param_u params[4];
-            params[0].ival = 0;
-            params[1].ival = 0;
-            params[2].fval = 0.1;
-            params[3].fval = 0.;
-            gismo.lambdaBang("/mask", params);
-            
-            params[0].ival = 0;
-            params[1].ival = 1;
-            params[2].fval = 0.8;
-            params[3].fval = 0.;
-            gismo.lambdaBang("/mask", params);
-            
-            
-            params[0].ival = 1;
-            params[1].ival = 0;
-            params[2].fval = 0.2;
-            params[3].fval = 0.;
-            gismo.lambdaBang("/mask", params);
-            
-            params[0].ival = 1;
-            params[1].ival = 1;
-            params[2].fval = 0.9;
-            params[3].fval = 0.;
-            gismo.lambdaBang("/mask", params);
-            
-            params[0].ival = 1;
-            params[1].ival = 2;
-            params[2].fval = 0.8;
-            params[3].fval = 1.0;
-            gismo.lambdaBang("/mask", params);
-            
-            params[0].ival = 1;
-            params[1].ival = 1;
-            params[2].fval = 0.1;
-            params[3].fval = 1.0;
-            gismo.lambdaBang("/mask", params);
-            
+        case 'r': {
+            float vals[4];
+            vals[0] = 0.25;
+            vals[1] = 0.5;
+            vals[2] = 1.0;
+            vals[3] = 1.0;
+            gismo.bang("/ripple", vals);
         }
-        default:
-            break;
     }
     
 }

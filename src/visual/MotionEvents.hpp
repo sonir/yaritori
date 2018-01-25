@@ -37,7 +37,7 @@ private:
 class Solo : public Event {
 public:
     Solo() {
-        sender.setup(SOUND_HOST, SOUND_PORT);
+        //sender.setup(SOUND_HOST, SOUND_PORT);
     }
     
     int trigger(void *arg) {        
@@ -55,7 +55,7 @@ public:
     
 private:
     MotionManager* motionManager;
-    ofxOscSender sender;
+    //ofxOscSender sender;
 };
 
 
