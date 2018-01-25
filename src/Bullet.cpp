@@ -58,29 +58,36 @@ bullet_shape_t UniBullet::update(){
     return bullet_shape;
 }
 
-bullet_shape_t UniBullet::update(pline_t aLine){
 
+bullet_shape_t UniBullet::update(pline_t aLine){
+    
     bullet_shape_t bullet_shape;
     float fval = fade.update();
     
     //deactivate draw when star and end position of bullet
     if(fval == 1.0f || fval == 0.0f){
         
-        if (bullet_shape.active == true) { //When the timing of Changing from true to false
+        
+        if (fval >= 1.0f) { //When the timing of Changing from true to false
             
+            //Create ripple when
             GismoManager& gismo = GismoManager::getInstance();
-            float tmp[2];
+            float tmp[4];
             posi_t posi =  moveOnLine(fval, aLine.node_a->x, aLine.node_a->y, aLine.node_b->x, aLine.node_b->y);
-
+            
             tmp[0] = posi.x;
             tmp[1] = posi.y;
+            tmp[2] = 2.5f; // set size ratio
+            tmp[3] = 1.0f; //set time ratio
+            
             gismo.bang("/ripple" , &tmp);
             
         }
+        fval == 0.0f;
         bullet_shape.active = false;
     }
     else bullet_shape.active = true;
-
+    
     bullet_shape.posi =  moveOnLine(fval, aLine.node_a->x, aLine.node_a->y, aLine.node_b->x, aLine.node_b->y);
     
     return bullet_shape;
