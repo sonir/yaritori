@@ -29,7 +29,7 @@ public:
     void update();
     void draw();
     
-    void agBang(int id);
+    void agBang(int id, float size, float time);
     void bang(float posX, float posY);  //define each value as 0. - 1.
     int trigger(void *args);     // To be called from eventhandler
     

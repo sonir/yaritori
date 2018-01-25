@@ -21,6 +21,7 @@ public:
     void setColor(float c);
     void setColor(ofFloatColor c);
     void setLineWidth(float _thick);
+    void setCircleBaseRad(int baseRad);
     void draw();
     void circle(float x, float y, float size, bool fill);
     void line(float x1, float y1, float x2, float y2, float _thick);

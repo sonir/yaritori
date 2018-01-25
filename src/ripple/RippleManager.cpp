@@ -35,8 +35,10 @@ void RippleManager::setEvents() {
     auto agRipple = [&](void* args){ //<- keep this desctiption
         param_u* params = (param_u *)args;
         float id = params[0].ival;
+        float size = params[1].fval;
+        float time = params[2].fval;
         
-        this->agBang(id);
+        this->agBang(id, size, time);   //FIRE!!!!!!!!!!!!!!!!
     };
     
     gismo.lambdaAdd("/ag_ripple", agRipple);
@@ -135,9 +137,10 @@ void RippleManager::draw(){
     vbo.drawElements(GL_LINES, res * rippleNum * activeNumCounter * 2);
 }
 
-void RippleManager::agBang(int id) {
+void RippleManager::agBang(int id, float size, float time) {
     ag_t* ag = gismo.getAgent(id);
     ripples[id].bang(ag->posi.x, ag->posi.y);
+//    ripples[id].bang(ag->posi.x, ag->posi.y, size, time);
 }
 
 void RippleManager::bang(float posX, float posY){
@@ -163,8 +166,8 @@ void RippleManager::invert(){
 
 int RippleManager::trigger(void* args) {    // To call from eventhandler
     float *val = (float *)args;
-        
     this->bang(val[0], val[1]);
+//    this->bang(val[0], val[1], val[2], val[3]); //FIRE!!!!!!!!!!!!!!
     
     return 1;
 }

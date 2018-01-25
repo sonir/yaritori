@@ -19,7 +19,7 @@ MotionManager::MotionManager() {
     }
     
     //OSC
-    sender.setup(SOUND_HOST, SOUND_PORT);
+    //sender.setup(SOUND_HOST, SOUND_PORT);
     
     aspect = gismo.width_rate;
     
@@ -81,9 +81,9 @@ void MotionManager::addSolo(int _id, float duration) {
 //    args[1] = ag->posi.y;
 //    gismo.bang("/ripple", args);
     
-    param_u param;
-    param.ival = _id;
-    gismo.bang("/ag_ripple", &param);
+//    param_u param;
+//    param.ival = _id;
+//    gismo.bang("/ag_ripple", &param);
 }
 
 void MotionManager::deleteSolo(int _id) {

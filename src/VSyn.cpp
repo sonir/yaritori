@@ -72,6 +72,7 @@ void VSyn::setup(){
 #else
     scManager.setup();
     renderer.setup(ORIGINAL_WIDTH, ORIGINAL_HEIGHT);
+    renderer.setCircleBaseRad(DISPLAY_WIDTH);
 #endif
     
     //Color settings
