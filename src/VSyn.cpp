@@ -69,7 +69,6 @@ void VSyn::setup(){
 #ifdef DEBUG_MODE
     ofSetWindowShape(DISPLAY_WIDTH, DISPLAY_HEIGHT);
     renderer.setup(DISPLAY_WIDTH, DISPLAY_HEIGHT);
-    
 #else
     scManager.setup();
     renderer.setup(ORIGINAL_WIDTH, ORIGINAL_HEIGHT);
@@ -427,6 +426,10 @@ void VSyn::draw(){
 #ifdef DEBUG_MODE
     //drawAgentsForSimpleGraphics for debugging
     drawAgentsWithChar.draw(&gismo, screen_w, screen_h);
+    
+    //Ripple
+    ripple.draw();
+    
     performanceManager.updateLines();
     performanceManager.updateLinesInverted();
     
@@ -768,8 +771,8 @@ void VSyn::test(){
     
     std::cout << "test method has finished." << std::endl;
     //Reset State
-//    agBuffReset(&gismo.agents);
-//    agBuffReset(&gismo.add);
+    agBuffReset(&gismo.agents);
+    agBuffReset(&gismo.add);
 
 
     
