@@ -373,12 +373,12 @@ void VSyn::draw(){
     //drawAgents normally
     drawAgents(&gismo, screen_w, screen_h);
 #endif
-    
-#ifdef PERFORMANCE_MODE
+
     performanceManager.updateLines();
     performanceManager.updateLinesInverted();
-    drawPerformance(&performanceManager);
-#endif
+    if(performanceManager.mode == PHASE1_AG_SLAVE || performanceManager.mode == PHASE1_AG_MASTER){
+        drawPerformance(&performanceManager);
+    }
     
     
     for(int i=0; i<CONTAINER_MAX; i++){
