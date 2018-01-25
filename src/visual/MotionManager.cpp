@@ -81,9 +81,11 @@ void MotionManager::addSolo(int _id, float duration) {
 //    args[1] = ag->posi.y;
 //    gismo.bang("/ripple", args);
     
-//    param_u param;
-//    param.ival = _id;
-//    gismo.bang("/ag_ripple", &param);
+    param_u params[3];
+    params[0].ival = _id;
+    params[1].fval = 1.0;
+    params[2].fval = 1.0;
+    gismo.bang("/ag_ripple", params);
 }
 
 void MotionManager::deleteSolo(int _id) {
@@ -112,7 +114,7 @@ void MotionManager::update() {
         if(bSolo == false) {    //if solo turns on
             param_u params[1];
             params[0].fval = 1.0f;
-            sendOSC("/solo_sound", params, 1);
+            //sendOSC("/solo_sound", params, 1);
             
             bSolo = true;
         }
@@ -120,7 +122,7 @@ void MotionManager::update() {
         if(bSolo == true) { //if solo turns off
             param_u params[1];
             params[0].fval = 0.0f;
-            sendOSC("/solo_sound", params, 1);
+            //sendOSC("/solo_sound", params, 1);
             bSolo = false;
         }
     }
@@ -238,7 +240,7 @@ void MotionManager::sendOSC(const string adr, param_u* args,  int numArgs) {
     for(int i = 0; i < numArgs; i++) {
         m.addFloatArg(args[i].fval);
     }
-    sender.sendMessage(m, false);
+    //sender.sendMessage(m, false);
 }
 
 
