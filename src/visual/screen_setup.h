@@ -55,4 +55,8 @@ constexpr int APP_WIDTH = DISPLAY_WIDTH * 3;
 constexpr int APP_HEIGHT = DISPLAY_HEIGHT;
 #endif
 
+//default window pos
+constexpr float texture_originPos_x[] = {0., DISPLAY_WIDTH + MARGIN_0, DISPLAY_WIDTH * 2 + MARGIN_0 + MARGIN_1};
+constexpr float texture_originPos_y[] = {0., 0., 0.};
+
 #endif /* screen_setup_h */
