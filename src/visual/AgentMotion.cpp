@@ -159,7 +159,7 @@ void AgentMotion::updatePosition() {
 
         ofVec2f pos;
 //        pos.x = (center.x * aspect + nodeX) * ORIGINAL_HEIGHT ;
-        pos.x = (center.x + nodeX) * ORIGINAL_WIDTH;
+        pos.x = (center.x * ORIGINAL_WIDTH) + (nodeX * ORIGINAL_HEIGHT) ;
         pos.y = (center.y + nodeY) * ORIGINAL_HEIGHT;
         
         

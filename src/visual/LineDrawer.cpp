@@ -28,7 +28,6 @@ LineDrawer::LineDrawer(){
     aspect = gismo.width_rate;
     
     colorState = true;
-    
     setEvents();
 }
 
@@ -115,7 +114,8 @@ void LineDrawer::update(){
             x = myPos.x + (targetPos.x - myPos.x) * dist + r * cos(th);
             y = myPos.y + (targetPos.y - myPos.y) * dist + r * sin(th);
         }
-        verts[i].set(x * ORIGINAL_HEIGHT * aspect, y * ORIGINAL_HEIGHT);
+        //verts[i].set(x * ORIGINAL_HEIGHT * aspect, y * ORIGINAL_HEIGHT);
+        verts[i].set(x * ORIGINAL_WIDTH, y * ORIGINAL_HEIGHT);
     }
 }
 

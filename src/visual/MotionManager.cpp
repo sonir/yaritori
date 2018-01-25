@@ -38,6 +38,7 @@ MotionManager::MotionManager() {
 void MotionManager::setColor(float c) {
     for(int i = 0; i < AG_MAX; i++){
         agent[i].setColor(c);
+        interactLine[i].setColor(c);
     }
 }
 
@@ -221,10 +222,6 @@ void MotionManager::draw() {
     } else {
         drawSolo();
     }
-    
-//    debugLine.myPos.x = 0.15;
-//    debugLine.myPos.y = 0.5;
-//    debugLine.lineTo(0.155, 0.5);
     
 //    ofSetColor(ofFloatColor(color));
 //    nodeVbo.updateVertexData(vbo.nodePos, vbo.nodeNum);

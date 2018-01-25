@@ -128,6 +128,7 @@ void ScreenManager::setAllColor(float bgColor) {
         gismo.lambdaBang("/rippleColor", &param);
         gismo.lambdaBang("/agentColor", &param);
         gismo.lambdaBang("/performanceColor", &param);
+        gismo.lambdaBang("/lineColor", &param);
         
         param.fval = 0.0;
         gismo.lambdaBang("/bgColor", &param);
@@ -138,6 +139,7 @@ void ScreenManager::setAllColor(float bgColor) {
         gismo.lambdaBang("/rippleColor", &param);
         gismo.lambdaBang("/agentColor", &param);
         gismo.lambdaBang("/performanceColor", &param);
+        gismo.lambdaBang("/lineColor", &param);
         
         param.fval = BACKGROUND_DEFAULT_COLOR;
         gismo.lambdaBang("/bgColor", &param);

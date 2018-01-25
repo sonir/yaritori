@@ -42,7 +42,7 @@ private:
     
     TimedInterpolation interpolation;
     
-    float aspect; 
+    float aspect;
 };
 
 

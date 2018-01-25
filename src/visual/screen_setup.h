@@ -10,6 +10,7 @@
 #define screen_setup_h
 
 //#define DEBUG_MODE_SCREEN
+//#define SINGLE_MODE_SCREEN
 
 //Length: real length(mm) | input figures on the site
 constexpr float DISPLAY_LENGTH_W = 7111.;
@@ -38,19 +39,20 @@ constexpr int MARGIN_1 = MARGIN_1_LENGTH * PixPerMm_H;
 constexpr int MARGIN_W = 0;
 constexpr int MARGIN_H = 0;
 
-//constexpr int ORIGINAL_HEIGHT = DISPLAY_HEIGHT + MARGIN_H * 2;  //That is 1.0
-//constexpr int ORIGINAL_WIDTH = ORIGINAL_HEIGHT * 2.9;
-//constexpr int ORIGINAL_WIDTH = DISPLAY_WIDTH * 3 + MARGIN_W * 2 + MARGIN_0 + MARGIN_1;  //ORIGINAL_WIDTH = 4 * DISPLAY_WIDTH
-//constexpr int ORIGINAL_HEIGHT = DISPLAY_HEIGHT + MARGIN_H * 2;  //ORIGINAL_HEIGHT = 2 * DISPLAY_HEIGHT.
-//constexpr int ORIGINAL_WIDTH = ORIGINAL_HEIGHT * 2.9;
-
-
-
-//Ratio :: 5.43333
+#ifdef SINGLE_MODE_SCREEN
+constexpr int ORIGINAL_WIDTH = DISPLAY_WIDTH;   //Ratio :: 5.43333
+constexpr int ORIGINAL_HEIGHT = DISPLAY_HEIGHT;
+#else
 constexpr int ORIGINAL_WIDTH = DISPLAY_WIDTH * 3 + MARGIN_0 * 2. ;
 constexpr int ORIGINAL_HEIGHT = DISPLAY_HEIGHT;
+#endif
 
+#ifdef SINGLE_MODE_SCREEN
+constexpr int APP_WIDTH = DISPLAY_WIDTH;
+constexpr int APP_HEIGHT = DISPLAY_HEIGHT;
+#else
 constexpr int APP_WIDTH = DISPLAY_WIDTH * 3;
 constexpr int APP_HEIGHT = DISPLAY_HEIGHT;
+#endif
 
 #endif /* screen_setup_h */
