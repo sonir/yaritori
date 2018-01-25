@@ -120,6 +120,14 @@ void Network :: update(){
             float fval = m.getArgAsFloat(0);
             gismo.bang("/fps", &fval );
             
+        }else if (m.getAddress() == "/performance/set_position" ) {
+            
+            param_u args[3];
+            args[0].ival = m.getArgAsInt32(0); //performer_id
+            args[1].fval = m.getArgAsFloat(1); //x posi
+            args[2].fval = m.getArgAsFloat(2); //y posi
+            gismo.bang("/performance/set_position" , args);
+            
             
         }else if (  m.getAddress() == "/ch1" ) { //Receiving bullet bang from performer
             
@@ -128,7 +136,14 @@ void Network :: update(){
             gismo.bang("/performance/atk" , &performer_id);
             
             
-        } else if (  m.getAddress() == "/reset" ) { //Reset Agents
+        } else if ( m.getAddress() == "/performance/mode" ){
+        
+            param_u mode;
+            mode.ival = m.getArgAsInt32(0);
+            gismo.bang("/performance/mode" , &mode);
+        
+        
+        }else if (  m.getAddress() == "/reset" ) { //Reset Agents
             
             int key_num = m.getArgAsInt32(0);
             if (key_num == 137) gismo.bang("/reset" , &key_num);

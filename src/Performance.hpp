@@ -40,7 +40,7 @@ int count_ring(int now, int max);
 
 //
 typedef enum performer_e { PIANO, TROMBONE, GUITAR, BASS, DRUMS } performer_e;
-
+typedef enum performance_mode_e { INSTALLATION , PHASE1_AG_MASTER , PHASE1_AG_SLAVE , PHASE2_CLIMAX } performance_mode_e;
 
 
 class Performers : public Event{
@@ -73,8 +73,8 @@ class Performers : public Event{
             
             param_u *params = (param_u *)args;
             performer_e perf = (performer_e)params[0].ival;
-            position[params[perf].ival].x = params[1].fval;
-            position[params[perf].ival].y = params[2].fval;
+            position[perf].x = params[1].fval;
+            position[perf].y = params[2].fval;
             
         }
 
@@ -87,6 +87,7 @@ class PerformanceManager : public Event {
 
         GismoManager& gismo = GismoManager::getInstance(); //Pointer for gismoManager instance
         Performers performers;
+        performance_mode_e mode = INSTALLATION;
         pline_t lines[AG_MAX];
         pline_t invertedLines[AG_MAX];
         Bullet bullets[AG_MAX];
@@ -94,35 +95,50 @@ class PerformanceManager : public Event {
     
         PerformanceManager (){
             
-            gismo.eventAdd("/performance/setPosition" , &performers);
+            gismo.eventAdd("/performance/set_position" , &performers);
             gismo.eventAdd("/performance/atk" , this);
             
-            //Example of invoking </setPerformerPosition>
-            
-                // param_u tmp[3];
-                // tmp[0].ival = PIANO;
-                // tmp[1].fval = 0.5f;
-                // tmp[2].fval = 0.51f;
-                // gismo.bang("/setPerformerPosition" , tmp);
             
             //SetupEvents
+            
+            //bullet_bang
             auto f = [&](void* args){ //<- keep this desctiption
                 //draw your code
                 param_u *params = (param_u *)args;
                 int bang_id = params[0].ival;
                 bullets[bang_id].bang();
             };
-            gismo.lambdaAdd("/bullet_bang", f);
+            gismo.lambdaAdd("/bullet_from_agent", f);
 
+            //bullet_bang_reverse_direction
             auto f2 = [&](void* args){ //<- keep this desctiption
                 //draw your code
                 param_u *params = (param_u *)args;
                 performer_e pfm = (performer_e)params[0].ival;
                 performerBang(pfm);
             };
-            gismo.lambdaAdd("/bullet_bang_return", f2);
+            gismo.lambdaAdd("/bullet_to_agent", f2);
+            
+            //Setting Performance Mode
+            auto f3 = [&](void* args){ //<- keep this desctiption
+                //draw your code
+                param_u *params = (param_u *)args;
+                performance_mode_e tmp = (performance_mode_e)params[0].ival;
+                mode = tmp;
+            };
+            gismo.lambdaAdd("/performance/mode", f3);
 
-                
+            //Test Shake
+//            auto f4 = [&](void* args){ //<- keep this desctiption
+//                //draw your code
+//                param_u *params = (param_u *)args;
+//                int x = (int)params[1].ival;
+//                int y = (int)params[2].ival;
+//                cout << x << " , " << y << endl;
+//            };
+//            gismo.lambdaAdd("/visual/shake", f4);
+
+            
         }
     
         void updateLines();
@@ -132,10 +148,26 @@ class PerformanceManager : public Event {
     
         int trigger(void *args){ //Event for set performers' position
             
+            //Code for EVENT "/performance/atk"
             param_u *param = (param_u *)args;
             performer_e perf = (performer_e)param->ival;
-            gismo.bang("/bullet_bang_return" , &perf);
-//            performerBang(perf);
+
+            if(mode == PHASE1_AG_MASTER) {
+                gismo.bang("/bullet_from_agent" , &perf);
+
+            } else if(mode == PHASE1_AG_SLAVE) {
+                gismo.bang("/bullet_to_agent" , &perf);
+                
+            } else if(mode == PHASE2_CLIMAX){
+                param_u newArgs[3];
+                newArgs[0].ival = 0; //set all as shaking screen
+                newArgs[1].ival = 0; //set X_direction as NOMOVE
+                
+                if (performers.position[perf].y>0.5) newArgs[2].ival = -1;
+                else newArgs[2].ival = 1;
+                gismo.bang("/visual/shake" , newArgs);
+                
+            }
             
         }
 

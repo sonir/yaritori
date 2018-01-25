@@ -52,12 +52,9 @@ void ofApp::keyReleased(int key){
             break;
         case 'a':
             flg = 1;
-//            gismo.bang("/bullet_bang", &num);
-//            vsyn.performanceManager.bullets[0].bang();
             break;
         case 's':
             flg=2;
-            //vsyn.performanceManager.reverseBullets[1].bang();
             break;
             
     }
@@ -66,13 +63,15 @@ void ofApp::keyReleased(int key){
     
     if(flg==1)
     {
-        int num = 0;
-        gismo.bang("/bullet_bang", &num);
+        performer_e pfmr = GUITAR;
+        gismo.bang("/performance/atk" , &pfmr);
+        
         
     }else if(flg==2){
         
-        int num = 0;
-        gismo.bang("/bullet_bang_return", &num);
+        performer_e pfmr = DRUMS;
+        gismo.bang("/performance/atk" , &pfmr);
+
         
     }
     
