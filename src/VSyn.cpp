@@ -434,8 +434,10 @@ void VSyn::draw(){
     performanceManager.updateLines();
     performanceManager.updateLinesInverted();
     
-    drawPerformance(&performanceManager);
-        
+    if(performanceManager.mode == PHASE1_AG_SLAVE || performanceManager.mode == PHASE1_AG_MASTER){
+        drawPerformance(&performanceManager);
+    }
+    
     renderer.draw();
     
     
