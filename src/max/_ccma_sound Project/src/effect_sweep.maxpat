@@ -45,7 +45,7 @@
 					"outlettype" : [ "signal" ],
 					"patching_rect" : [ 194.0, 473.0, 42.0, 22.0 ],
 					"style" : "",
-					"text" : "*~ 0.6"
+					"text" : "*~ 0.4"
 				}
 
 			}
@@ -316,7 +316,7 @@
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "" ],
+					"outlettype" : [ "float" ],
 					"patching_rect" : [ 619.0, 27.0, 30.0, 30.0 ],
 					"style" : ""
 				}
