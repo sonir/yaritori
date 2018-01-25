@@ -81,11 +81,11 @@ void MotionManager::addSolo(int _id, float duration) {
 //    args[1] = ag->posi.y;
 //    gismo.bang("/ripple", args);
     
-    param_u params[3];
-    params[0].ival = _id;
-    params[1].fval = 1.0;
-    params[2].fval = 1.0;
-    gismo.bang("/ag_ripple", params);
+//    param_u params[3];
+//    params[0].ival = _id;
+//    params[1].fval = 1.0;
+//    params[2].fval = 1.0;
+//    gismo.bang("/ag_ripple", params);
 }
 
 void MotionManager::deleteSolo(int _id) {
