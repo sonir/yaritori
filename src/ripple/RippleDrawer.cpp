@@ -11,6 +11,9 @@ RippleDrawer::RippleDrawer(){
     centerX = 0.f;
     centerY = 0.f;
     color = 0.0;
+    size_ratio = 1.0;
+    time_ratio = 1.0;
+    
     init();
     
     GismoManager& gismo = GismoManager::getInstance();
@@ -35,9 +38,9 @@ void RippleDrawer::initVertices() {
 
 void RippleDrawer::initStatus() {
     //Set default duration
-    duration = ((durMax - durMin) * frand() + durMin) * 1000.;   //sec -> msec
+    duration = duration_default * 1000. * time_ratio;   //sec -> msec
     //Set default radius
-    radius = (r_Max - r_Min) * frand() + r_Min;
+    radius = radius_default * size_ratio;
     
     lag[0] = 0.;
     sp_noise[0] = 1.;
@@ -64,7 +67,7 @@ void RippleDrawer::updateColor(){
         
         
         ofFloatColor col;
-        if(colorState == true){
+        if(color == 0.0){
             alpha *= RIPPLE_ALPHA_FIX_BLACK;
             col = ofFloatColor(color, color, color, alpha);
         }else{
@@ -108,9 +111,12 @@ void RippleDrawer::update(){
     }
 }
 
-void RippleDrawer::bang(float x, float y) {
+void RippleDrawer::bang(float x, float y, float sz_ratio, float tm_ratio) {
     centerX = x;
     centerY = y;
+    size_ratio = sz_ratio;
+    time_ratio = tm_ratio;
+    
     init();
     
     interpolation.bang(duration);    //msec

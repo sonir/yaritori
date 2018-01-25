@@ -24,7 +24,7 @@ public:
     void initStatus();
     void init();
     void update();
-    void bang(float x, float y);
+    void bang(float x, float y, float size_ratio, float time_ratio);
     
     
     float centerX, centerY;
@@ -48,6 +48,8 @@ private:
     float radius;    //1. <-> CANVAS_HEIGHT
     static constexpr float theta = 2. * PI * 0.015625;   // / 64
     static constexpr float fadeOutRatio = 0.4;  //1 <-> duration
+    
+    float size_ratio, time_ratio;
     
     TimedInterpolation interpolation;   //return 0. to 1. during "duration"
     float currentTime;

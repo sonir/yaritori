@@ -580,29 +580,14 @@ void VSyn::keyPressed(int key) {
             
             break;
         }
-        case '0': {
-            param_u params[3];
-            params[0].ival = 0;
-            params[1].ival = -1;
-            params[2].ival = 1;
-            gismo.lambdaBang("/visual/shake", params);
+        case 'r': {
+            float vals[4];
+            vals[0] = 0.25;
+            vals[1] = 0.5;
+            vals[2] = 1.0;
+            vals[3] = 1.0;
+            gismo.bang("/ripple", vals);
         }
-        case '1': {
-            param_u params[3];
-            params[0].ival = 2;
-            params[1].ival = -1;
-            params[2].ival = 1;
-            gismo.lambdaBang("/visual/shake", params);
-        }
-        case '2': {
-            param_u params[3];
-            params[0].ival = 1;
-            params[1].ival = -1;
-            params[2].ival = 1;
-            gismo.lambdaBang("/visual/shake", params);
-        }
-        default:
-            break;
     }
     
 }

@@ -139,23 +139,21 @@ void RippleManager::draw(){
 
 void RippleManager::agBang(int id, float size, float time) {
     ag_t* ag = gismo.getAgent(id);
-    ripples[id].bang(ag->posi.x, ag->posi.y);
-//    ripples[id].bang(ag->posi.x, ag->posi.y, size, time);
+    ripples[id].bang(ag->posi.x, ag->posi.y, size, time);
 }
 
-void RippleManager::bang(float posX, float posY){
-    int index = AG_MAX;
+void RippleManager::bang(float posX, float posY, float size_ratio, float time_ratio){
+    int index = 0;
     while(ripples[index].isRunning == true){
         index++;
-        if(NUM < index){
-            index = AG_MAX;
+        if(index > NUM){
+            index = 0;
             break;
         }
     }
     
-    ripples[index].bang(posX, posY);
+    ripples[index].bang(posX, posY, size_ratio, time_ratio);
 }
-
 void RippleManager::invert(){
     colorState = !colorState;
     for(int i = 0; i < NUM; i++){
@@ -166,8 +164,8 @@ void RippleManager::invert(){
 
 int RippleManager::trigger(void* args) {    // To call from eventhandler
     float *val = (float *)args;
-    this->bang(val[0], val[1]);
-//    this->bang(val[0], val[1], val[2], val[3]); //FIRE!!!!!!!!!!!!!!
+        
+    this->bang(val[0], val[1], val[2], val[3]); //FIRE!!!!!!!!!!!!!!
     
     return 1;
 }

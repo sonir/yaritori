@@ -30,7 +30,7 @@ public:
     void draw();
     
     void agBang(int id, float size, float time);
-    void bang(float posX, float posY);  //define each value as 0. - 1.
+    void bang(float posX, float posY, float size_ratio, float time_ratio);  //define each value as 0. - 1.
     int trigger(void *args);     // To be called from eventhandler
     
     void invert();
