@@ -64,7 +64,21 @@ bullet_shape_t UniBullet::update(pline_t aLine){
     float fval = fade.update();
     
     //deactivate draw when star and end position of bullet
-    if(fval == 1.0f || fval == 0.0f) bullet_shape.active = false;
+    if(fval == 1.0f || fval == 0.0f){
+        
+        if (bullet_shape.active == true) { //When the timing of Changing from true to false
+            
+            GismoManager& gismo = GismoManager::getInstance();
+            float tmp[2];
+            posi_t posi =  moveOnLine(fval, aLine.node_a->x, aLine.node_a->y, aLine.node_b->x, aLine.node_b->y);
+
+            tmp[0] = posi.x;
+            tmp[1] = posi.y;
+            gismo.bang("/ripple" , &tmp);
+            
+        }
+        bullet_shape.active = false;
+    }
     else bullet_shape.active = true;
 
     bullet_shape.posi =  moveOnLine(fval, aLine.node_a->x, aLine.node_a->y, aLine.node_b->x, aLine.node_b->y);
