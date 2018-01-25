@@ -445,7 +445,7 @@ void VSyn::draw(){
     //Draw Agents normally
     drawAgents(&visual);
     //Ripple
-    ripple.draw();
+//    ripple.draw();
     
     ofSetColor(scManager.getDrawColor());
 #ifdef PERFORMANCE_MODE
@@ -574,8 +574,8 @@ void VSyn::keyPressed(int key) {
         }
         case 'k': {
             param_u params;
-            params.fval = 1000.0;
-            gismo.lambdaBang("/timedInvert", &params);
+            params.fval = 4.0;
+            gismo.lambdaBang("/visual/timed_invert", &params);
             
             break;
         }

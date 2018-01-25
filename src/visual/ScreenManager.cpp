@@ -50,11 +50,20 @@ void ScreenManager::setEvents() {
     };
     
     auto timedInvertEvent = [&](void* args) {
-        param_u* params = (param_u *)args;
-        float duration = params[0].fval;
-        this->invertTimer.bang(duration);
-        invertState = true;
-        timerOn = true;
+        if(timerOn) {
+            param_u* params = (param_u *)args;
+            float duration = params[0].fval;
+            invertOnNext = true;
+            invertState = false;
+            timerOn = false;
+            nextDuration = duration;
+        } else {
+            param_u* params = (param_u *)args;
+            float duration = params[0].fval;
+            this->invertTimer.bang(duration * 1000.0);
+            invertState = true;
+            timerOn = true;
+        }
     };
     
     auto invertEvent = [&](void* args) {
@@ -168,6 +177,7 @@ void ScreenManager::setup() {
     invertTimer.ready();
     invertState = false;
     timerOn = false;
+    invertOnNext = false;
 }
 
 void ScreenManager::init(){
@@ -331,6 +341,13 @@ void ScreenManager::begin(){
         setAllColor(0.0);
     } else {
         setAllColor(BACKGROUND_DEFAULT_COLOR);
+    }
+    
+    if(invertOnNext) {
+        invertTimer.bang(nextDuration * 1000.0);
+        invertState = true;
+        timerOn = true;
+        invertOnNext = false;
     }
     
     
