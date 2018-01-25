@@ -21,15 +21,6 @@ MotionManager::MotionManager() {
     //OSC
     sender.setup(SOUND_HOST, SOUND_PORT);
     
-    //TEST Osc Send
-    param_u params[4];
-    params[0].fval = 1.0f;
-    params[1].ival = 87;
-    params[2].bval = true;
-    params[3].ival = 87;
-    
-    sendOSC("/foo", params, 4);
-    
     aspect = gismo.width_rate;
     
     setEvents();

@@ -445,7 +445,7 @@ void VSyn::draw(){
     //Draw Agents normally
     drawAgents(&visual);
     //Ripple
-//    ripple.draw();
+    ripple.draw();
     
     ofSetColor(scManager.getDrawColor());
 #ifdef PERFORMANCE_MODE

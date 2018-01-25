@@ -544,6 +544,7 @@ void triggerRipple(ag_t *focus){
     
 #ifndef KILL_RIPPLES
     gismo.bang("/ripple", posi);
+    cout << "RIPPLE" << endl;
 #endif
     
 }

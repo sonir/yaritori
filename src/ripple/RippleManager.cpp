@@ -144,7 +144,7 @@ void RippleManager::bang(float posX, float posY){
     int index = AG_MAX;
     while(ripples[index].isRunning == true){
         index++;
-        if(index > NUM){
+        if(NUM < index){
             index = AG_MAX;
             break;
         }
