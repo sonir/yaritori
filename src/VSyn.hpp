@@ -10,7 +10,7 @@
 #define VSyn_hpp
 
 //Set running mode
-//#define DEBUG_MODE
+#define DEBUG_MODE
 #define PERFORMANCE_MODE
 #define GISMO_UPDATE_INTERVAL 0.033
 

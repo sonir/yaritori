@@ -66,15 +66,26 @@ void VSyn::setup(){
     ripple.setMotionManagerPtr(&visual.motion);
     
     //Set window size for yaritori
+#ifdef DEBUG_MODE
+    ofSetWindowShape(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+    renderer.setup(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+    
+#else
     scManager.setup();
     renderer.setup(ORIGINAL_WIDTH, ORIGINAL_HEIGHT);
-    
+#endif
     
     //Color settings
+#ifdef DEBUG_MODE
+    renderer.setColor(1.0);
+    ripple.setColor(1.0);
+    ofBackground(0);
+#else
     scManager.setBackground(BACKGROUND_DEFAULT_COLOR);
     visual.motion.setColor(ANIMATION_DEFAULT_COLOR);
     renderer.setColor(ANIMATION_DEFAULT_COLOR);
     ripple.setColor(ANIMATION_DEFAULT_COLOR);
+#endif
     
     //Create TestClass
     myTest = new Test(&sound, &ripple);
@@ -416,6 +427,13 @@ void VSyn::draw(){
 #ifdef DEBUG_MODE
     //drawAgentsForSimpleGraphics for debugging
     drawAgentsWithChar.draw(&gismo, screen_w, screen_h);
+    performanceManager.updateLines();
+    performanceManager.updateLinesInverted();
+    
+    drawPerformance(&performanceManager);
+        
+    renderer.draw();
+    
     
 #else
     //drawAgents
@@ -750,8 +768,8 @@ void VSyn::test(){
     
     std::cout << "test method has finished." << std::endl;
     //Reset State
-    agBuffReset(&gismo.agents);
-    agBuffReset(&gismo.add);
+//    agBuffReset(&gismo.agents);
+//    agBuffReset(&gismo.add);
 
 
     
