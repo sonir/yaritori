@@ -28,9 +28,9 @@ static bool drawWhiteBack = true;
 void invertBackground();
 
 
-typedef enum{UP, RIGHT, DOWN, LEFT} swap_direction;
+typedef enum{ UP, RIGHT, DOWN, LEFT } shake_direction_e;
 
-
+constexpr int WINDOW_NUM = 3;
 
 class ScreenManager {
 public:
@@ -47,7 +47,7 @@ public:
     void maskUpdate();
     void mask();
     
-    void swap(int window, swap_direction direction);
+    void shake(int window, shake_direction_e direction);
     void swap(int window, float x, float y);
     void setSwapDuration(float go, float out, float back);
     
@@ -97,6 +97,8 @@ private:
     bool invertState;
     bool timerOn;
     ofShader shader;
+    
+    
 };
 
 #endif /* ScreenManager_hpp */

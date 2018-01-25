@@ -63,15 +63,53 @@ void ScreenManager::setEvents() {
         if(timerOn) timerOn = false;
     };
     
+    auto shakeEvent = [&](void* args) {
+        param_u* params = (param_u *)args;
+        int window = params[0].ival;
+        int velX = params[1].ival;
+        int velY = params[2].ival;
+        
+        
+        
+        if(window == 0) {
+            for (int i = 0; i < WINDOW_NUM; i++) {
+                switch (velY) {
+                    case 1:
+                        shake(i, UP);
+                        break;
+                    case -1:
+                        shake(i, DOWN);
+                        break;
+                    default:
+                        break;
+                }
+                
+            }
+        } else {
+            switch (velY) {
+                case 1:
+                    shake(window-1, UP);
+                    break;
+                case -1:
+                    shake(window-1, DOWN);
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+    
     
     GismoManager& gismo = GismoManager::getInstance();
-    gismo.lambdaAdd("/swap", swapEvent);
+    gismo.lambdaAdd("/sc_posi", swapEvent);
     gismo.lambdaAdd("/mask", maskEvent);
     gismo.lambdaAdd("/trim", trimEvent);
     gismo.lambdaAdd("/resetTrim", resetTrimEvent);
     gismo.lambdaAdd("/bgColor", bgColorEvent);
-    gismo.lambdaAdd("/timedInvert", timedInvertEvent);
+    gismo.lambdaAdd("/visual/timed_invert", timedInvertEvent);
     gismo.lambdaAdd("/invert", invertEvent);
+    gismo.lambdaAdd("/visual/shake", shakeEvent);
+    
 }
 
 void invertBackground() {
@@ -385,7 +423,7 @@ void ScreenManager::setSwapDuration(float go, float out, float down){
     swapDur_back = down;
 }
 
-void ScreenManager::swap(int window, swap_direction direction){
+void ScreenManager::shake(int window, shake_direction_e direction){
     startPos[window] = pos[window];
     
     switch(direction){

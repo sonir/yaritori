@@ -83,11 +83,15 @@ void MotionManager::addSolo(int _id, float duration) {
     soloTimers[_id].bang(duration);
     soloCount++;
     
-    float args[2];
-    ag_t* ag = gismo.getAgent(_id);
-    args[0] = ag->posi.x;
-    args[1] = ag->posi.y;
-    gismo.bang("/ripple", args);
+//    float args[2];
+//    ag_t* ag = gismo.getAgent(_id);
+//    args[0] = ag->posi.x;
+//    args[1] = ag->posi.y;
+//    gismo.bang("/ripple", args);
+    
+    param_u param;
+    param.ival = _id;
+    gismo.bang("/ag_ripple", &param);
 }
 
 void MotionManager::deleteSolo(int _id) {

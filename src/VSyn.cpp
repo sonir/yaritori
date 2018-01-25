@@ -63,6 +63,7 @@ void VSyn::setup(){
     visual.motion.setShapePtr(ag_shapes);
     visual.events.setMotionManagerPtr(&visual.motion);
     visual.events.setRippleManagerPtr(&ripple);
+    ripple.setMotionManagerPtr(&visual.motion);
     
     //Set window size for yaritori
     scManager.setup();
@@ -557,45 +558,26 @@ void VSyn::keyPressed(int key) {
             
             break;
         }
-        case 'm': {
-            param_u params[4];
+        case '0': {
+            param_u params[3];
             params[0].ival = 0;
-            params[1].ival = 0;
-            params[2].fval = 0.1;
-            params[3].fval = 0.;
-            gismo.lambdaBang("/mask", params);
-            
-            params[0].ival = 0;
-            params[1].ival = 1;
-            params[2].fval = 0.8;
-            params[3].fval = 0.;
-            gismo.lambdaBang("/mask", params);
-            
-            
+            params[1].ival = -1;
+            params[2].ival = 1;
+            gismo.lambdaBang("/visual/shake", params);
+        }
+        case '1': {
+            param_u params[3];
+            params[0].ival = 2;
+            params[1].ival = -1;
+            params[2].ival = 1;
+            gismo.lambdaBang("/visual/shake", params);
+        }
+        case '2': {
+            param_u params[3];
             params[0].ival = 1;
-            params[1].ival = 0;
-            params[2].fval = 0.2;
-            params[3].fval = 0.;
-            gismo.lambdaBang("/mask", params);
-            
-            params[0].ival = 1;
-            params[1].ival = 1;
-            params[2].fval = 0.9;
-            params[3].fval = 0.;
-            gismo.lambdaBang("/mask", params);
-            
-            params[0].ival = 1;
-            params[1].ival = 2;
-            params[2].fval = 0.8;
-            params[3].fval = 1.0;
-            gismo.lambdaBang("/mask", params);
-            
-            params[0].ival = 1;
-            params[1].ival = 1;
-            params[2].fval = 0.1;
-            params[3].fval = 1.0;
-            gismo.lambdaBang("/mask", params);
-            
+            params[1].ival = -1;
+            params[2].ival = 1;
+            gismo.lambdaBang("/visual/shake", params);
         }
         default:
             break;

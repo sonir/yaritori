@@ -17,7 +17,7 @@ constexpr float DISPLAY_LENGTH_H = 4000.;
 constexpr float MARGIN_0_LENGTH = 200.;
 constexpr float MARGIN_1_LENGTH = 200.;
 
-//display resolution(projector)
+//display reslution (projector)
 constexpr int DISPLAY_WIDTH = 1920;
 constexpr int DISPLAY_HEIGHT = 1080;
 
@@ -43,6 +43,7 @@ constexpr int MARGIN_H = 0;
 //constexpr int ORIGINAL_WIDTH = DISPLAY_WIDTH * 3 + MARGIN_W * 2 + MARGIN_0 + MARGIN_1;  //ORIGINAL_WIDTH = 4 * DISPLAY_WIDTH
 //constexpr int ORIGINAL_HEIGHT = DISPLAY_HEIGHT + MARGIN_H * 2;  //ORIGINAL_HEIGHT = 2 * DISPLAY_HEIGHT.
 //constexpr int ORIGINAL_WIDTH = ORIGINAL_HEIGHT * 2.9;
+
 
 
 //Ratio :: 5.43333
