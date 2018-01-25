@@ -10,7 +10,7 @@
 #define screen_setup_h
 
 //#define DEBUG_MODE_SCREEN
-#define SINGLE_MODE_SCREEN
+//#define SINGLE_MODE_SCREEN
 
 //Length: real length(mm) | input figures on the site
 constexpr float DISPLAY_LENGTH_W = 7111.;
