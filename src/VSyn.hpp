@@ -17,8 +17,8 @@
 /// Includes ///
 
 //#define DEBUG_MODE
-#define DUMMY_AG_A_NUM 10
-#define DUMMY_AG_B_NUM 10
+#define DUMMY_AG_A_NUM 0
+#define DUMMY_AG_B_NUM 0
 
 //#define PERFORMANCE_MODE
 #define GISMO_UPDATE_INTERVAL 0.033
@@ -83,6 +83,7 @@
 
 //Sound
 #include "SoundTrigger.hpp"
+
 
 
 class VSyn : public Event {
@@ -150,15 +151,15 @@ class VSyn : public Event {
         GismoManager& gismo = GismoManager::getInstance(); //Pointer for gismoManager instance
         DrawAgentsWithChar drawAgentsWithChar;
         Sound sound; //AudioTrigger with OSC
-    
-        SoundTrigger soundTrigger;
-    
+        //Sound
+        SoundTrigger soundTrigger;    
 
         //AGENT VISUAL
         RippleManager ripple;
         visual_container_t visual;
     
     VboRenderer renderer;
+    
 };
 
 #endif /* VSyn_hpp */

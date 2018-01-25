@@ -771,8 +771,8 @@ void VSyn::test(){
     
     std::cout << "test method has finished." << std::endl;
     //Reset State
-    agBuffReset(&gismo.agents);
-    agBuffReset(&gismo.add);
+//    agBuffReset(&gismo.agents);
+//    agBuffReset(&gismo.add);
 
 
     

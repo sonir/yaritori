@@ -178,6 +178,7 @@ void ScreenManager::init(){
     colorState = true;
 }
 
+
 void ScreenManager::initFbo(){
     fbo.allocate(ORIGINAL_WIDTH, ORIGINAL_HEIGHT);
 }
