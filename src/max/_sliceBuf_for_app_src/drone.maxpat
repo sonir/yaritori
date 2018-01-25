@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 751.0, 79.0, 1135.0, 1007.0 ],
+		"rect" : [ 751.0, 79.0, 315.0, 342.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -43,7 +43,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "signal" ],
-					"patching_rect" : [ 98.0, 99.0, 80.0, 22.0 ],
+					"patching_rect" : [ 98.0, 96.0, 80.0, 22.0 ],
 					"style" : "",
 					"text" : "ccma_reverb"
 				}
@@ -69,9 +69,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 176.0, 207.0, 36.0, 22.0 ],
+					"patching_rect" : [ 176.0, 207.0, 42.0, 22.0 ],
 					"style" : "",
-					"text" : "*~ 2."
+					"text" : "*~ 1.5"
 				}
 
 			}
@@ -82,9 +82,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 98.0, 207.0, 36.0, 22.0 ],
+					"patching_rect" : [ 98.0, 207.0, 42.0, 22.0 ],
 					"style" : "",
-					"text" : "*~ 2."
+					"text" : "*~ 1.5"
 				}
 
 			}
@@ -92,7 +92,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-18",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -105,7 +105,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-17",
-					"index" : 0,
+					"index" : 2,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -118,11 +118,11 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-16",
-					"index" : 0,
+					"index" : 2,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "" ],
+					"outlettype" : [ "signal" ],
 					"patching_rect" : [ 140.0, 23.0, 30.0, 30.0 ],
 					"style" : ""
 				}
@@ -132,11 +132,11 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-15",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "" ],
+					"outlettype" : [ "signal" ],
 					"patching_rect" : [ 98.0, 23.0, 30.0, 30.0 ],
 					"style" : ""
 				}
@@ -309,93 +309,7 @@
 				}
 
 			}
- ],
-		"dependency_cache" : [ 			{
-				"name" : "resonator.maxpat",
-				"bootpath" : "~/Sonilab/1802_CCMA/sound/yaritori-sound/src/max/_sliceBuf_for_app_src",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "redux.maxpat",
-				"bootpath" : "~/Sonilab/1802_CCMA/sound/yaritori-sound/src/max/_sliceBuf_for_app_src",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "ccma_drone_eq.maxpat",
-				"bootpath" : "~/Sonilab/1802_CCMA/sound/yaritori-sound/src/max/_sliceBuf_for_app_src",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "eq.maxpat",
-				"bootpath" : "~/Sonilab/1802_CCMA/sound/yaritori-sound/src/max/_sliceBuf_for_app_src",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "highpass.maxpat",
-				"bootpath" : "~/Sonilab/1802_CCMA/sound/yaritori-sound/src/max/_sliceBuf_for_app_src",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "ccma_reverb.maxpat",
-				"bootpath" : "~/Sonilab/1802_CCMA/sound/yaritori-sound/src/max/_sliceBuf_for_app_src",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "DryWet.maxpat",
-				"bootpath" : "~/Sonilab/1802_CCMA/sound/yaritori-sound/src/max/_sliceBuf_for_app_src",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "reverb.maxpat",
-				"bootpath" : "~/Sonilab/1802_CCMA/sound/yaritori-sound/src/max/_sliceBuf_for_app_src",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "lowshelf.maxpat",
-				"bootpath" : "~/Sonilab/1802_CCMA/sound/yaritori-sound/src/max/_sliceBuf_for_app_src",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "rev3~.maxpat",
-				"bootpath" : "~/Sonilab/1802_CCMA/sound/yaritori-sound/src/max/_sliceBuf_for_app_src",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "yafr2.maxpat",
-				"bootpath" : "~/Documents/Max 7/Packages/RISE/RISE_Cantor/patchers",
-				"patcherrelativepath" : "../../../../../../../Documents/Max 7/Packages/RISE/RISE_Cantor/patchers",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "yafr.maxpat",
-				"bootpath" : "/Users/Shared/Max 7/Examples/legacy-examples/effects/reverb",
-				"patcherrelativepath" : "../../../../../../../../Shared/Max 7/Examples/legacy-examples/effects/reverb",
-				"type" : "JSON",
-				"implicit" : 1
-			}
- ],
-		"autosave" : 0
+ ]
 	}
 
 }
