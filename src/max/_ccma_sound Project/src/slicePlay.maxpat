@@ -45,7 +45,7 @@
 					"outlettype" : [ "signal" ],
 					"patching_rect" : [ 122.0, 336.0, 42.0, 22.0 ],
 					"style" : "",
-					"text" : "*~ 0.7"
+					"text" : "*~ 0.6"
 				}
 
 			}
@@ -56,10 +56,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 265.5, 455.0, 44.0, 22.0 ],
-					"saved_object_attributes" : 					{
-						"attr_comment" : ""
-					}
-,
 					"style" : "",
 					"text" : "out~ 4"
 				}
@@ -72,10 +68,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 219.0, 455.0, 44.0, 22.0 ],
-					"saved_object_attributes" : 					{
-						"attr_comment" : ""
-					}
-,
 					"style" : "",
 					"text" : "out~ 3"
 				}
@@ -88,10 +80,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 172.0, 455.0, 44.0, 22.0 ],
-					"saved_object_attributes" : 					{
-						"attr_comment" : ""
-					}
-,
 					"style" : "",
 					"text" : "out~ 2"
 				}
@@ -104,10 +92,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 122.0, 457.0, 44.0, 22.0 ],
-					"saved_object_attributes" : 					{
-						"attr_comment" : ""
-					}
-,
 					"style" : "",
 					"text" : "out~ 1"
 				}
@@ -120,7 +104,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 3,
 					"outlettype" : [ "signal", "signal", "signal" ],
-					"patching_rect" : [ 172.0, 409.0, 112.5, 22.0 ],
+					"patching_rect" : [ 172.0, 409.0, 81.0, 22.0 ],
 					"style" : "",
 					"text" : "effect_sweep"
 				}
@@ -262,10 +246,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 122.0, 33.0, 30.0, 22.0 ],
-					"saved_object_attributes" : 					{
-						"attr_comment" : ""
-					}
-,
 					"style" : "",
 					"text" : "in 1"
 				}
@@ -399,7 +379,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-18", 1 ],
-					"midpoints" : [ 191.5, 389.5, 275.0, 389.5 ],
+					"midpoints" : [ 191.5, 389.5, 243.5, 389.5 ],
 					"source" : [ "obj-15", 1 ]
 				}
 
@@ -499,7 +479,16 @@
 				}
 
 			}
- ]
+ ],
+		"dependency_cache" : [ 			{
+				"name" : "effect_sweep.maxpat",
+				"bootpath" : "~/Desktop/180126_ccma/stable/_ccma_sound Project/src",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+ ],
+		"autosave" : 0
 	}
 
 }
