@@ -61,22 +61,6 @@ void Network :: update(){
                 
             }
             
-            
-            
-        }
-        
-        else if(m.getAddress() == "/solo") {
-            int id = m.getArgAsInt(0);
-            float duration = m.getArgAsFloat(1);
-            
-            param_u tmp[2];
-            tmp[0].ival = id;
-            tmp[1].fval = duration;
-            gismo.bang("/solo", &tmp);
-            
-            float args[] = {gismo.getAgent(id)->posi.x ,gismo.getAgent(id)->posi.y};
-            gismo.bang("/ripple", args);
-            
         } else if (m.getAddress() == "/mask" ) {
             param_u tmp[4];
             tmp[0].ival = m.getArgAsInt(0); //Window ID

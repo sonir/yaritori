@@ -586,6 +586,14 @@ void VSyn::keyPressed(int key) {
             vals[3] = 1.0;
             gismo.bang("/ripple", vals);
         }
+        case '1': {
+            param_u params[3];
+            params[0].ival = 1;
+            params[1].ival = 0;
+            params[2].ival = -1;
+            
+            gismo.bang("/visual/shake", params);
+        }
     }
     
 }
@@ -755,8 +763,8 @@ void VSyn::test(){
     
     std::cout << "test method has finished." << std::endl;
     //Reset State
-//    agBuffReset(&gismo.agents);
-//    agBuffReset(&gismo.add);
+    agBuffReset(&gismo.agents);
+    agBuffReset(&gismo.add);
 
 
     
