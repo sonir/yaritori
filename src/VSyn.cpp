@@ -556,6 +556,10 @@ void VSyn::draw(){
 
 void VSyn::keyPressed(int key) {
     switch (key) {
+        case 'y': {
+            scManager.setFullScreen();
+            break;
+        }
         case 's': {
             param_u params[2];
             params[0].ival = 1;

@@ -26,7 +26,7 @@ constexpr float STEP_MIN = M_2XPI * 4.0f;
 
 constexpr float TREMOR_RATIO = 0.18f;//180119 MODIFIED BY 137 //0.12f;
 constexpr float STAY_RATIO = 1.0 - TREMOR_RATIO;
-constexpr float MOV_FIX = 0.008;
+constexpr float MOV_FIX = 0.04;
 
 //Size modulation
 constexpr float SIZE_MOD_STRENGTH = 0.12;

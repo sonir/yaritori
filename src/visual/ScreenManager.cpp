@@ -542,7 +542,12 @@ void ScreenManager::shake_cal(){
 void ScreenManager::setFullScreen() {
     ofSetFullscreen(true);
     ofSetWindowShape(APP_WIDTH, APP_HEIGHT);
-    ofSetWindowPosition(0, MASTER_HEGHT); //y: height of mbpr display
+    ofSetWindowPosition(MASTER_WIDTH, 0); //y: height of mbpr display
+}
+
+void ScreenManager::setFullScreenConfig() {
+    ofSetWindowShape(APP_WIDTH, APP_HEIGHT);
+    ofSetWindowPosition(MASTER_WIDTH, 0); //y: height of mbpr display
 }
 
 ofColor ScreenManager::getDrawColor() {
