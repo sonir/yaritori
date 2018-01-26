@@ -81,6 +81,8 @@ bullet_shape_t UniBullet::update(pline_t aLine){
             tmp[3] = 1.0f; //set time ratio
             
             gismo.bang("/ripple" , &tmp);
+            //Don't play sound when the bullets from ag to performance
+            if(agid != -1) gismo.bang("/soundTriggerWithAgent", gismo.getAgent(agid) ); //trigger sound
             
         }
         fval == 0.0f;

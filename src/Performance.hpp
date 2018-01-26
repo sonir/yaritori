@@ -95,6 +95,14 @@ class PerformanceManager : public Event {
     
         PerformanceManager (){
             
+            //set agid to each unuBullets
+            for(int i=0; i<AG_MAX; i++){
+                
+                bullets[i].setup(-1);
+                reverseBullets[i].setup(i);
+                
+            }
+            
             gismo.eventAdd("/performance/set_position" , &performers);
             gismo.eventAdd("/performance/atk" , this);
             

@@ -72,6 +72,7 @@ class UniBullet {
         void set(int ms);
         bullet_shape_t update();
         bullet_shape_t update(pline_t aLine);
+        int agid = 0;
     
 };
 
@@ -79,6 +80,17 @@ class Bullet {
     
     public:
         Bullet(){
+            
+        }
+
+    
+        void setup(int agid){
+         
+            for(int i=0; i<BULLET_NUM; i++){
+                
+                buf[i].agid = agid;
+                
+            }
             
         }
 

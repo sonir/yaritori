@@ -16,8 +16,8 @@
 #include "ag_shape.h"
 
 
-#define SOUND_HOST "localhost"
-#define SOUND_PORT 56137
+#define SOUND_HOST_FOR_TRIGGER "localhost"
+#define SOUND_PORT_FOR_TRIGGER 56137
 
 //Define for node to agent
 #define GENRE0 25
@@ -68,7 +68,7 @@ class SoundTrigger {
     
         SoundTrigger(){
             
-            sender.setup(SOUND_HOST , SOUND_PORT);
+            sender.setup(SOUND_HOST_FOR_TRIGGER , SOUND_PORT_FOR_TRIGGER);
             
             //CreateEvents
             auto f = [&](void *args){ trigger(args); };
