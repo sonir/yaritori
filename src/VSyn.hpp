@@ -28,6 +28,12 @@
 //#define CONTAINER_MAX 128 //Size of Buffer for Shapes
 #define CONTAINER_MAX AG_MAX*128 //Size of Buffer for Shapes
 
+//Ripple
+#define DEFAULT_RIPPLE_SIZE 1.0f
+#define DEFAULT_RIPPLE_TIME 1.0f
+//SOLO MODE when incoming an agent
+#define SOLO_DURATION 2.0
+
 
 
 /// Includes ///
@@ -79,6 +85,42 @@
 class VSyn : public Event {
  
     public:
+        VSyn(){
+            
+            //SetupEvents
+            
+            //event for added agent
+            auto f = [&](void* args){ //<- keep this desctiption
+                //draw your code
+                param_u *params = (param_u *)args;
+
+                param_u soloArg[2];
+                soloArg[0].ival = params[0].ival; //set agid
+                soloArg[1].fval = SOLO_DURATION; //set duration
+                gismo.bang("/solo" , soloArg); //bang solo
+                
+                param_u dur;
+                dur.fval = SOLO_DURATION; //set duration
+                gismo.bang("/visual/timed_invert", &dur); //bang timed invert
+                
+            };
+            gismo.lambdaAdd("/gismo/added", f);
+
+            //ripplle by reacted
+            auto f2 = [&](void* args){ //<- keep this desctiption
+                param_u *params = (param_u *)args;
+                param_u rippleArg[3];
+                rippleArg[0].ival = params[0].ival;
+                rippleArg[1].fval = DEFAULT_RIPPLE_SIZE;
+                rippleArg[2].fval = DEFAULT_RIPPLE_TIME;
+                gismo.bang("/ag_ripple" , rippleArg);
+                
+                
+            };
+            gismo.lambdaAdd("/gismo/reacted", f2);
+
+            
+        }
         void setup();
         void update();
         void draw();

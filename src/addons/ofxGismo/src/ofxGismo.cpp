@@ -359,10 +359,9 @@ void interactWith(ag_t *focus , ag_t *target){
             if( !conditionCheck(focus->condition, cond) ){
                 
                 focus->condition=cond;
-//                setSound( (int)focus->condition );
                 gismo.bang("/soundTriggerWithAgent", focus); //trigger sound
                 gismo.bang("/bullet_from_agent", &focus->agid); //trigger bullet
-                triggerRipple(focus);
+                reacted(focus); //notice the agent reacted
                 
             }else{
                 
@@ -377,7 +376,7 @@ void interactWith(ag_t *focus , ag_t *target){
                 
                 target->size-=AG_DMG; //decrease the target size in 50% rate.
                 focus->size+=AG_DMG; //Increasing the atacked agent
-                triggerRipple(focus);
+                reacted(focus); //notice the agent reacted
 
             }
             
@@ -389,8 +388,7 @@ void interactWith(ag_t *focus , ag_t *target){
                 
                 //do running code
                 focus->condition=RUN;
-//                setSound( (int)focus->condition );
-                triggerRipple(focus);
+                reacted(focus); //notice the agent reacted
                 gismo.bang("/soundTriggerWithAgent", focus);
                 
                 
@@ -533,28 +531,16 @@ int setSound(int sound_id){
     
 }
 
-void triggerRipple(ag_t *focus){
+void reacted(ag_t *focus){
     
 
     //Get singleton to get width rate
     GismoManager& gismo = GismoManager::getInstance();
     
-//    float args[4];
-//    args[0] = focus->posi.x;
-//    args[1] = focus->posi.y;
-//    args[2] = DEFAULT_RIPPLE_SIZE; //size
-//    args[3] = DEFAULT_RIPPLE_TIME; //time
-
-    param_u args[3];
-    args[0].ival = focus->agid;
-    args[1].fval = DEFAULT_RIPPLE_SIZE;
-    args[2].fval = DEFAULT_RIPPLE_TIME;
+    param_u arg;
+    arg.ival = focus->agid;
     
-#ifndef KILL_RIPPLES
-    //gismo.bang("/ripple", args);
-    cout << "foo" <<endl;
-    gismo.bang("/ag_ripple" , args);
-#endif
+    gismo.bang("/gismo/reacted" , &arg);
     
 }
 
@@ -609,11 +595,10 @@ void GismoManager::addSync(){
         agents.buf[agents.count]=add.buf[i];
         agents.buf[agents.count].agid = agents.count;
 
-        param_u args[2];
-        args[0].ival = agents.count;
-        args[1].fval = SOLO_DURATION;
+        param_u arg;
+        arg.ival = agents.count;
         
-        this->bang("/solo" , &args);
+        this->bang("/gismo/added" , &arg);
 
         agents.count++;
         
