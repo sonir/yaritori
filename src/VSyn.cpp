@@ -428,8 +428,6 @@ void VSyn::draw(){
     //drawAgentsForSimpleGraphics for debugging
     drawAgentsWithChar.draw(&gismo, screen_w, screen_h);
     
-    //Ripple
-    ripple.draw();
     
     performanceManager.updateLines();
     performanceManager.updateLinesInverted();
@@ -454,8 +452,12 @@ void VSyn::draw(){
 
     performanceManager.updateLines();
     performanceManager.updateLinesInverted();
-    if(performanceManager.mode == PHASE1_AG_SLAVE || performanceManager.mode == PHASE1_AG_MASTER){
-        drawPerformance(&performanceManager);
+    if(!visual.motion.isSoloMode()) {
+        if(performanceManager.mode == PHASE1_AG_SLAVE || performanceManager.mode == PHASE1_AG_MASTER){
+            drawPerformance(&performanceManager);
+        }
+        
+        renderer.draw();
     }
     
     renderer.draw();
