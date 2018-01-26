@@ -500,6 +500,7 @@ void VSyn::addAgShape(ag_shape_t shape){
     ag_shapes_count += 1;
     
     gismo.addAgent( shape2Agent(shape) );
+
     
 }
 

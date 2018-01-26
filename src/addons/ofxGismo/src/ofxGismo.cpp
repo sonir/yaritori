@@ -534,16 +534,26 @@ int setSound(int sound_id){
 }
 
 void triggerRipple(ag_t *focus){
+    
 
     //Get singleton to get width rate
     GismoManager& gismo = GismoManager::getInstance();
     
-    float posi[2];
-    posi[0] = focus->posi.x;
-    posi[1] = focus->posi.y;
+//    float args[4];
+//    args[0] = focus->posi.x;
+//    args[1] = focus->posi.y;
+//    args[2] = DEFAULT_RIPPLE_SIZE; //size
+//    args[3] = DEFAULT_RIPPLE_TIME; //time
+
+    param_u args[3];
+    args[0].ival = focus->agid;
+    args[1].fval = DEFAULT_RIPPLE_SIZE;
+    args[2].fval = DEFAULT_RIPPLE_TIME;
     
 #ifndef KILL_RIPPLES
-    gismo.bang("/ripple", posi);
+    //gismo.bang("/ripple", args);
+    cout << "foo" <<endl;
+    gismo.bang("/ag_ripple" , args);
 #endif
     
 }
@@ -598,6 +608,13 @@ void GismoManager::addSync(){
         
         agents.buf[agents.count]=add.buf[i];
         agents.buf[agents.count].agid = agents.count;
+
+        param_u args[2];
+        args[0].ival = agents.count;
+        args[1].fval = SOLO_DURATION;
+        
+        this->bang("/solo" , &args);
+
         agents.count++;
         
     }

@@ -89,9 +89,11 @@ void Network :: update(){
             }
             
             gismo.bang("/addShape" , &shape);
-            param_u invert_duration;
-            invert_duration.fval = INVERT_DURATION;
-            gismo.bang("/visual/timed_invert" , &invert_duration);
+//            param_u duration;
+//            duration.fval = SOLO_DURATION;
+//            gismo.bang("/solo" , &duration));
+            
+///            gismo.bang("/visual/timed_invert" , &invert_duration);
             dispParams(shape);
             
             
