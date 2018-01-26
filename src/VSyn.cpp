@@ -563,7 +563,7 @@ void VSyn::keyPressed(int key) {
         case 's': {
             param_u params[2];
             params[0].ival = 1;
-            params[1].fval = 1000;
+            params[1].fval = 1.0;
             gismo.bang("/solo", params);
             
             break;
