@@ -83,7 +83,6 @@ bullet_shape_t UniBullet::update(pline_t aLine){
             gismo.bang("/ripple" , &tmp);
             //Don't play sound when the bullets from ag to performance
             if(agid != -1) gismo.bang("/soundTriggerWithAgent", gismo.getAgent(agid) ); //trigger sound
-            cout << "@@@@" << endl;
             
         }
         fval == 0.0f;
