@@ -21,6 +21,9 @@
 //DRAWING PARAMS
 #define SIZE_OF_PERFORMER_INDICATE 0.01f
 
+//Default speed of bullet
+#define BULLET_SPD_DEFAULT 250
+
 //SETUP PERFORMERS POSITION
 #define PIANO_X 0.0f
 #define PIANO_Y 0.0f
@@ -92,6 +95,7 @@ class PerformanceManager : public Event {
         pline_t invertedLines[AG_MAX];
         Bullet bullets[AG_MAX];
         Bullet reverseBullets[AG_MAX];
+        int bulletSpd = BULLET_SPD_DEFAULT;
     
         PerformanceManager (){
             
@@ -145,6 +149,15 @@ class PerformanceManager : public Event {
 //                cout << x << " , " << y << endl;
 //            };
 //            gismo.lambdaAdd("/visual/shake", f4);
+            
+            //Set Bullet Speed
+            auto f5 = [&](void* args){ //<- keep this desctiption
+                //draw your code
+                param_u *params = (param_u *)args;
+                bulletSpd = (int)params[0].ival;
+                cout << bulletSpd << endl;
+            };
+            gismo.lambdaAdd("/performance/bullets/speed", f5);
 
             
         }

@@ -62,14 +62,14 @@ void drawLines (pline_t *lines, int line_num, float width){
     
 }
 
-void drawBullets(pline_t *lines, Bullet *bullets, int bullets_num){
+void drawBullets(pline_t *lines, Bullet *bullets, int bullets_num, int spd_ms){
     
     bullet_shapes_t tmp;
     GismoManager& gismo = GismoManager::getInstance();
     
     for(int i = 0; i<bullets_num; i++){
         
-        bullets[i].updateWithDuration(lines[i], &tmp, BULLET_SPD);
+        bullets[i].updateWithDuration(lines[i], &tmp, spd_ms);
         
         for(int i=0; i<BULLET_NUM; i++){
             
@@ -96,8 +96,8 @@ void drawPerformance(PerformanceManager *pPerformance){
     
     drawCirclesWithPositions(pPerformance->performers.position, PERFORMER_NUM, SIZE_OF_PERFORMER_INDICATE);
     drawLines(pPerformance->lines, AG_MAX, 0.1f);
-    drawBullets(pPerformance->lines , pPerformance->bullets, AG_MAX);
-    drawBullets(pPerformance->invertedLines , pPerformance->reverseBullets, AG_MAX);
+    drawBullets(pPerformance->lines , pPerformance->bullets, AG_MAX, pPerformance->bulletSpd);
+    drawBullets(pPerformance->invertedLines , pPerformance->reverseBullets, AG_MAX, pPerformance->bulletSpd);
 
     
 }
