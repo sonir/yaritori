@@ -56,7 +56,9 @@ public:
     bool colorState;
     void setAllColor(float bgColor);
     
+    
     void setFullScreen();
+    void setFullScreenConfig();
     ofColor getDrawColor();
     
     float width, height;
