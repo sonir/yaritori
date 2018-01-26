@@ -498,7 +498,6 @@
 				33124EF920181016007DACA5 /* VboRenderer.hpp */,
 			);
 			name = VboRenderer;
-			path = visual;
 			sourceTree = "<group>";
 		};
 		33ACF294200C032700268C3D /* ripple */ = {
@@ -511,12 +510,15 @@
 				33ACF299200C032700268C3D /* timed_interpolation.cpp */,
 				33ACF29A200C032700268C3D /* timed_interpolation.hpp */,
 			);
-			path = ripple;
+			name = ripple;
+			path = ../ripple;
 			sourceTree = "<group>";
 		};
 		33ACF29B200C032700268C3D /* visual */ = {
 			isa = PBXGroup;
 			children = (
+				33ACF294200C032700268C3D /* ripple */,
+				33124EF320180FED007DACA5 /* VboRenderer */,
 				33612B0320110CD200AD7A2B /* screen_setup.h */,
 				335603932010F4B6009A34D4 /* animation_setup.hpp */,
 				33ACF29E200C032700268C3D /* AgentMotion.cpp */,
@@ -709,6 +711,7 @@
 				F2AD098A2012EC1300D6676F /* Utilities */,
 				F2AD098B2012EC2400D6676F /* Performance */,
 				F2AD098C2012EC4300D6676F /* AgentManagemt */,
+				33ACF29B200C032700268C3D /* visual */,
 				F2AD098D2012EC6300D6676F /* Network_OSC */,
 				F2AD098F2012EC8700D6676F /* Sound */,
 				2449807020185B6B00F98CC5 /* max */,
@@ -780,9 +783,6 @@
 				F2ABF1271FEFF227006773CE /* Network.hpp */,
 				F2FFCEB21F62AFF800E71BAA /* osc2shape.cpp */,
 				F2FFCEB31F62AFF800E71BAA /* osc2shape.hpp */,
-				33ACF294200C032700268C3D /* ripple */,
-				33ACF29B200C032700268C3D /* visual */,
-				33124EF320180FED007DACA5 /* VboRenderer */,
 			);
 			name = Network_OSC;
 			sourceTree = "<group>";
