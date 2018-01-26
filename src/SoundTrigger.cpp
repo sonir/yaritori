@@ -95,7 +95,8 @@ sound_t ag2sound(ag_t *ag, sound_t *snd){
 
 //soundTrigger
 void SoundTrigger::trigger(void *args){
-        
+    
+    
     param_u *params = (param_u *)args;
     
     ofxOscMessage m;
@@ -106,16 +107,8 @@ void SoundTrigger::trigger(void *args){
     m.addFloatArg(params[3].fval); //set Effect val
     //Send Created Message
     sender.sendMessage(m,false);
-
-    
     
     
 }
-
-//void SoundTrigger::triggerWithAgent(void *args){
-//    
-//    
-//    
-//}
 
 
