@@ -20,12 +20,22 @@
 #define SOUND_PORT_FOR_TRIGGER 56137
 
 //Define for node to agent
+/*
 #define GENRE0 25
 #define GENRE1 20
 #define GENRE2 15
 #define GENRE3 10
 #define GENRE4 7
 #define GENRE5 5
+*/
+
+#define GENRE0 0.83
+#define GENRE1 0.66
+#define GENRE2 0.49
+#define GENRE3 0.32
+#define GENRE4 0.15
+
+
 //EffectValue
 
 //#define PERFORMANCE_SOUND

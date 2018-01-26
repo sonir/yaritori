@@ -396,7 +396,6 @@ void Test :: run(){
     gismo.bang("/lambdaTest", myArg);
 
     //TestSoundTrigger
-    /*
     param_u params[4];
     params[0].ival = 0; //Genre
     params[1].ival = 1; //Song
@@ -407,10 +406,12 @@ void Test :: run(){
     //Test shape2Sound
     ag_shape_t shapeForSound;
     shapeForSound.node_count = 12;
+    shapeForSound.color = 0.50f;
     sound_t snd = shape2sound(shapeForSound,5);
     assert(snd.genre == 2);
     assert(snd.song == 5);
     shapeForSound.node_count = 6;
+    shapeForSound.color = 1.0f;
     snd = shape2sound(shapeForSound,1137);
     assert(snd.genre == 0);
     assert(snd.song == 137);
@@ -437,7 +438,6 @@ void Test :: run(){
     assert(snd.slice == 4);
     assert(snd.effect_val == 1.0f);    
     cout << "SoundTrigger::ag2Sound is OK" << endl;
-     */
     
 }
 
