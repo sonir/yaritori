@@ -428,8 +428,6 @@ void VSyn::draw(){
     //drawAgentsForSimpleGraphics for debugging
     drawAgentsWithChar.draw(&gismo, screen_w, screen_h);
     
-    //Ripple
-    ripple.draw();
     
     performanceManager.updateLines();
     performanceManager.updateLinesInverted();
@@ -454,8 +452,12 @@ void VSyn::draw(){
 
     performanceManager.updateLines();
     performanceManager.updateLinesInverted();
-    if(performanceManager.mode == PHASE1_AG_SLAVE || performanceManager.mode == PHASE1_AG_MASTER){
-        drawPerformance(&performanceManager);
+    if(!visual.motion.isSoloMode()) {
+        if(performanceManager.mode == PHASE1_AG_SLAVE || performanceManager.mode == PHASE1_AG_MASTER){
+            drawPerformance(&performanceManager);
+        }
+        
+        renderer.draw();
     }
     
     renderer.draw();
@@ -589,6 +591,7 @@ void VSyn::keyPressed(int key) {
             vals[2] = 1.0;
             vals[3] = 1.0;
             gismo.bang("/ripple", vals);
+            break;
         }
         case '1': {
             param_u params[3];
@@ -597,6 +600,7 @@ void VSyn::keyPressed(int key) {
             params[2].ival = -1;
             
             gismo.bang("/visual/shake", params);
+            break;
         }
     }
     
