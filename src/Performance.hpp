@@ -118,7 +118,7 @@ class PerformanceManager : public Event {
                 //draw your code
                 param_u *params = (param_u *)args;
                 int bang_id = params[0].ival;
-                bullets[bang_id].bang();
+                if(mode == PHASE1_AG_MASTER) bullets[bang_id].bang(); //Bang when AG_MASTER MODE
             };
             gismo.lambdaAdd("/bullet_from_agent", f);
 
@@ -155,7 +155,7 @@ class PerformanceManager : public Event {
                 //draw your code
                 param_u *params = (param_u *)args;
                 bulletSpd = (int)params[0].ival;
-                cout << bulletSpd << endl;
+                
             };
             gismo.lambdaAdd("/performance/bullets/speed", f5);
 
