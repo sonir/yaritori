@@ -122,7 +122,12 @@ void Network :: update(){
             mode.ival = m.getArgAsInt32(0);
             gismo.bang("/performance/mode" , &mode);
         
-        
+        } else if ( m.getAddress() == "/performance/bullets/speed" ){
+            
+            param_u spd;
+            spd.ival = m.getArgAsInt32(0);
+            gismo.bang("/performance/bullets/speed" , &spd);
+            
         }else if (  m.getAddress() == "/reset" ) { //Reset Agents
             
             int key_num = m.getArgAsInt32(0);
