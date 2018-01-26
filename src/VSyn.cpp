@@ -589,6 +589,7 @@ void VSyn::keyPressed(int key) {
             vals[2] = 1.0;
             vals[3] = 1.0;
             gismo.bang("/ripple", vals);
+            break;
         }
         case '1': {
             param_u params[3];
@@ -597,6 +598,7 @@ void VSyn::keyPressed(int key) {
             params[2].ival = -1;
             
             gismo.bang("/visual/shake", params);
+            break;
         }
     }
     
