@@ -31,7 +31,7 @@ void ofApp::draw(){
 #ifdef DEBUG_MODE
     ofDrawBitmapString("fps = " + ofToString(ofGetFrameRate()), 10, 20);
 #endif
-    ofDrawBitmapString("fps = " + ofToString(ofGetFrameRate()), 10, 20);
+//    ofDrawBitmapString("fps = " + ofToString(ofGetFrameRate()), 10, 20);
 }
 
 //--------------------------------------------------------------
