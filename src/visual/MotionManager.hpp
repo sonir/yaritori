@@ -32,7 +32,7 @@ public:
     
     void updateSolo();
     void update();
-    void solo(int _id, bool status, float duration = 1000.0);
+    void solo(int _id, bool status, float duration = 1.0);
     void addSolo(int _id, float duration);
     void deleteSolo(int _id);
     void draw();

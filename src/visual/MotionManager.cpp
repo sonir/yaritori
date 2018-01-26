@@ -72,7 +72,7 @@ void MotionManager::solo(int _id, bool status, float duration) {
 
 void MotionManager::addSolo(int _id, float duration) {
     isSolo[_id] = true;
-    soloTimers[_id].bang(duration);
+    soloTimers[_id].bang(duration * 1000.0);
     soloCount++;
     
 //    float args[2];
