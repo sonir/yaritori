@@ -8,8 +8,8 @@ void initAgent(ag_t *tmp){
     
     tmp->agid = -1;
     tmp->active = false;
-    tmp->posi.x = frand();
-    tmp->posi.y = frand();
+    tmp->posi.x = frand()*WORLD_WIDTH;
+    tmp->posi.y = frand()*WORLD_HEIGHT;
     tmp->size = AG_DEF_SIZE;
     tmp->view = AG_DEF_VIEW;
     tmp->mov = AG_DEF_MOV;
