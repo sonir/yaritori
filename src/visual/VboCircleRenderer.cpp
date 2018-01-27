@@ -167,7 +167,7 @@ int VboCircleRenderer::getResolution(float size) {  //Set resolution depening on
     else if (0.3 <= size && size < 0.5) resolution = 60;
     else if (0.1 <= size && size < 0.3) resolution = 45;
     else if (0.05 <= size && size < 0.1) resolution = 30;
-    else resolution = 20;
+    else resolution = 15;
     
     return resolution;
 }
