@@ -156,11 +156,16 @@ void MotionManager::drawAll() {
                 ag_t* target = gismo.getAgent(targetID);
                 
                 if(ag->condition == CHASE && target->condition == RUN) {
-                    interactLine[i].myPos.x = agent[i].center.x;
-                    interactLine[i].myPos.y = agent[i].center.y;
+//                    interactLine[i].myPos.x = agent[i].center.x;
+//                    interactLine[i].myPos.y = agent[i].center.y;
+//                    
+//                    ofSetColor(0);
+//                    interactLine[i].lineTo(agent[targetID].center.x, agent[targetID].center.y);
+                    interactLine[i].myPos.x = agent[targetID].center.x;
+                    interactLine[i].myPos.y = agent[targetID].center.y;
                     
                     ofSetColor(0);
-                    interactLine[i].lineTo(agent[targetID].center.x, agent[targetID].center.y);
+                    interactLine[i].lineTo(agent[i].center.x, agent[i].center.y);
                 }
             }
         }
@@ -194,11 +199,16 @@ void MotionManager::drawSolo() {
                     ag_t* target = gismo.getAgent(targetID);
                     
                     if(ag->condition == CHASE && target->condition == RUN) {
-                        interactLine[i].myPos.x = agent[i].center.x;
-                        interactLine[i].myPos.y = agent[i].center.y;
-                        
+//                        interactLine[i].myPos.x = agent[i].center.x;
+//                        interactLine[i].myPos.y = agent[i].center.y;
+//                        
+//                        ofSetColor(0);
+//                        interactLine[i].lineTo(agent[targetID].center.x, agent[targetID].center.y);
+                        interactLine[i].myPos.x = agent[targetID].center.x;
+                        interactLine[i].myPos.y = agent[targetID].center.y;
+
                         ofSetColor(0);
-                        interactLine[i].lineTo(agent[targetID].center.x, agent[targetID].center.y);
+                        interactLine[i].lineTo(agent[i].center.x, agent[i].center.y);
                     }
                 }
             }
