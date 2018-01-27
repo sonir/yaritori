@@ -60,5 +60,10 @@ static constexpr float sp_noiseMin = 1.5;
 static constexpr float sp_noiseMax = 1.7;
 
 
+/////////////////// SHAKE ///////////////////
+constexpr float SHAKE_DEFAULT_TIME_OUT = 150;   //msec
+constexpr float SHAKE_DEFAULT_TIME_STAY = 100;
+constexpr float SHAKE_DEFAULT_TIME_IN = 150;
+
 
 #endif /* animation_setup_h */

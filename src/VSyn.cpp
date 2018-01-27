@@ -602,6 +602,16 @@ void VSyn::keyPressed(int key) {
             gismo.bang("/visual/shake", params);
             break;
         }
+        
+        case '2': {
+            param_u params[3];
+            params[0].ival = 1;
+            params[1].ival = 0;
+            params[2].ival = 1;
+            
+            gismo.bang("/visual/shake", params);
+            break;
+        }
     }
     
 }
