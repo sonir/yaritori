@@ -75,7 +75,7 @@ private:
     float color;
     
     //Modulation
-    static constexpr int MOD_NUM = 3;
+    static constexpr int MOD_NUM = 7;
     float velocityX[NODE_MAX];
     float velocityY[NODE_MAX];
     float modStep[MOD_NUM];
