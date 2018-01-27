@@ -7,11 +7,12 @@ void ofApp::setup(){
     ofSetVerticalSync(true);
 //    ofEnableSmoothing();
 
-    network.setup();
     
     vsyn.initWindowSize();
     vsyn.setup();
-    
+
+    network.setup();
+
     
 }
 

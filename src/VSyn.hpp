@@ -32,7 +32,7 @@
 #define DEFAULT_RIPPLE_SIZE 1.0f
 #define DEFAULT_RIPPLE_TIME 1.0f
 //SOLO MODE when incoming an agent
-#define SOLO_DURATION 2.0
+#define SOLO_DURATION 4.0
 
 
 
@@ -102,6 +102,13 @@ class VSyn : public Event {
                 param_u dur;
                 dur.fval = SOLO_DURATION; //set duration
                 gismo.bang("/visual/timed_invert", &dur); //bang timed invert
+                
+                param_u rpl[3];
+                rpl[0].ival = params[0].ival; //agid
+                rpl[1].fval = 7.0f; //size ratio
+                rpl[2].fval = 7.0f; //time ratio
+                gismo.bang("/ag_ripple" , rpl);
+
                 
             };
             gismo.lambdaAdd("/gismo/added", f);
