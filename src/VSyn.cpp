@@ -59,6 +59,11 @@ void VSyn::setup(){
     //SetupEvents
     gismo.eventAdd("/addShape", this);
     
+    //Set events
+    gismo.eventAdd("/ripple", &ripple);
+    gismo.eventAdd("/solo", &visual.events.solo);
+    
+    
     //Set ag_shape_t and gismo pointer
     visual.motion.setShapePtr(ag_shapes);
     visual.events.setMotionManagerPtr(&visual.motion);
