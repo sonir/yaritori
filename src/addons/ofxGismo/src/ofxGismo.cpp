@@ -155,18 +155,18 @@ void move(ag_t *ag, posi_t *posi){
     //decision X
     float x_move = frand()*ag->mov*SPD_FIX;
     if ( isLarge(ag->posi.x, posi->x) ) ag->spd.x -= x_move; //WHEN LARGE change xspd to negative
-    else ag->spd.x += ( x_move * gismo.mov_ratio ); //WHEN SMALL change xspd to negative
+    else ag->spd.x += x_move; //WHEN SMALL change xspd to negative
     
     ag->spd.x = limitter(ag->spd.x, SPD_LIMIT); //LimitCheck
-    ag->posi.x += (ag->spd.x); //Move with the refleshed sppd
+    ag->posi.x += ( ag->spd.x * gismo.mov_ratio); //Move with the refleshed sppd
 
     //decision Y
     float y_move = frand()*ag->mov*SPD_FIX;
     if ( isLarge(ag->posi.y, posi->y) ) ag->spd.y -= y_move; //WHEN LARGE change xspd to negative
-    else ag->spd.y += (y_move * gismo.mov_ratio); //WHEN SMALL change xspd to negative
+    else ag->spd.y += y_move; //WHEN SMALL change xspd to negative
     
     ag->spd.y = limitter(ag->spd.y, SPD_LIMIT); //LimitCheck
-    ag->posi.y += (ag->spd.y); //Move with the refleshed sppd
+    ag->posi.y += ( ag->spd.y * gismo.mov_ratio ); //Move with the refleshed sppd
 
     
     //Stop when mov= 0
