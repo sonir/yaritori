@@ -57,7 +57,8 @@ void LineDrawer::setColor(float c) {
 
 
 void LineDrawer::update(){
-    float distance = ofDist(myPos.x, myPos.y, targetPos.x, targetPos.y) * ofDist(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
+//    float distance = ofDist(myPos.x, myPos.y, targetPos.x, targetPos.y) * ofDist(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
+    float distance = ofDist(myPos.x, myPos.y, targetPos.x, targetPos.y);
     float max_width;
     
     turn_num = int(ofMap(distance, 0., DISPLAY_HEIGHT, 2., TURN_NUM_MAX));
@@ -83,10 +84,10 @@ void LineDrawer::update(){
             th = theta + PI * 1.5 + PI * (i-1);
         }
         if(i == 0){
-            x = myPos.x * ORIGINAL_WIDTH;
+            x = myPos.x * ORIGINAL_HEIGHT;
             y = myPos.y * ORIGINAL_HEIGHT;
         }else if(i == turn_num + 1){
-            x = targetPos.x * ORIGINAL_WIDTH;
+            x = targetPos.x * ORIGINAL_HEIGHT;
             y = targetPos.y * ORIGINAL_HEIGHT;
         }else{
             if(preCurrentPhase < 0.5){
@@ -100,7 +101,9 @@ void LineDrawer::update(){
                 r = max_width * (1. - dist) * 1.4286;
             }
             
-            x = (myPos.x + (targetPos.x - myPos.x) * dist) * ORIGINAL_WIDTH + r * cos(th) * ORIGINAL_HEIGHT;
+//            x = (myPos.x + (targetPos.x - myPos.x) * dist) * ORIGINAL_WIDTH + r * cos(th) * ORIGINAL_HEIGHT;
+//            y = (myPos.y + (targetPos.y - myPos.y) * dist) * ORIGINAL_HEIGHT + r * sin(th) * ORIGINAL_HEIGHT;
+            x = (myPos.x + (targetPos.x - myPos.x) * dist) * ORIGINAL_HEIGHT + r * cos(th) * ORIGINAL_HEIGHT;
             y = (myPos.y + (targetPos.y - myPos.y) * dist) * ORIGINAL_HEIGHT + r * sin(th) * ORIGINAL_HEIGHT;
         }
         verts[i].set(x, y);

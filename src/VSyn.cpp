@@ -76,7 +76,7 @@ void VSyn::setup(){
     renderer.setup(DISPLAY_WIDTH, DISPLAY_HEIGHT);
 #else
     scManager.setup();
-    renderer.setup(ORIGINAL_WIDTH, ORIGINAL_HEIGHT);
+    renderer.setup(ORIGINAL_HEIGHT, ORIGINAL_HEIGHT);
     renderer.setCircleBaseRad(DISPLAY_WIDTH);
 #endif
     
