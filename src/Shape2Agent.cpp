@@ -15,6 +15,10 @@ ag_t shape2Agent(ag_shape_t shape){
     
     ag.view = shape.edge_count * V_FIX;
     ag.size = shape.node_count * S_FIX;
+    
+    //limit mini
+    if (ag.size < AG_SIZE_MIN)ag.size = AG_SIZE_MIN;
+    
     if (shape.node_count !=0){
         ag.mov = ( NODE_AVG / shape.node_count ) * M_FIX;
     } else {
