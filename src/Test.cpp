@@ -366,7 +366,8 @@ void Test :: run(){
     shape.edge_count = 1;
     ag_t tmpAg = shape2Agent(shape);
     assert(tmpAg.view == 0.005f);
-    assert(tmpAg.size == 0.011f);
+    //assert(tmpAg.size == 0.011f);
+    assert(tmpAg.size == 0.05f);
     assert(tmpAg.mov == 0.35f);
     cout << "Shape2Agent.hpp::shape2Agent() is OK" << endl;
     
