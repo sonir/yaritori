@@ -45,7 +45,7 @@
 					"outlettype" : [ "signal" ],
 					"patching_rect" : [ 194.0, 473.0, 42.0, 22.0 ],
 					"style" : "",
-					"text" : "*~ 0.3"
+					"text" : "*~ 0.4"
 				}
 
 			}
