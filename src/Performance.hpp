@@ -177,6 +177,8 @@ class PerformanceManager : public Event {
                 gismo.bang("/bullet_to_agent" , &perf);
                 
             } else if(mode == PHASE2_CLIMAX){
+                
+                /*
                 param_u newArgs[3];
                 newArgs[0].ival = 0; //set all as shaking screen
                 newArgs[1].ival = 0; //set X_direction as NOMOVE
@@ -184,6 +186,22 @@ class PerformanceManager : public Event {
                 if (performers.position[perf].y>0.5) newArgs[2].ival = -1;
                 else newArgs[2].ival = 1;
                 gismo.bang("/visual/shake" , newArgs);
+                */
+                
+                performer_e perf = (performer_e)param->ival;
+                param_u flg;
+                flg.bval = true;
+                
+                if( perf==PIANO || perf==TROMBONE ) flg.bval = true;
+                else if( perf==DRUMS || perf==BASS ) flg.bval = false;
+                else if(perf==GUITAR){
+                    
+                    if(brand())flg.bval = true;
+                    else flg.bval =false;
+                    
+                }
+                gismo.bang("/yaritori/run" , &flg);
+                
                 
             }
             

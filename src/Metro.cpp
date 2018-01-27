@@ -16,6 +16,8 @@ void Metro::set(float dur){
 
 bool Metro::update(){
     
+    if(stop)return false;
+    
     if(metro->alart()) return true;
     else return false;
     
