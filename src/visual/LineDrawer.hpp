@@ -16,6 +16,8 @@
 #include "animation_setup.hpp"
 
 
+constexpr int VERT_NUM = TURN_NUM_MAX * 6 + 2;  //6 mins a bit more than aspect(5.4333)
+
 class LineDrawer{
 public:
     LineDrawer();
