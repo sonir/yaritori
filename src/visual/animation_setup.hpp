@@ -26,10 +26,10 @@ constexpr float STEP_MIN = M_2XPI * 4.0f;
 
 constexpr float TREMOR_RATIO = 0.18f;//180119 MODIFIED BY 137 //0.12f;
 constexpr float STAY_RATIO = 1.0 - TREMOR_RATIO;
-constexpr float MOV_FIX = 0.04;
+constexpr float MOV_FIX = 0.02;
 
 //Size modulation
-constexpr float SIZE_MOD_STRENGTH = 0.12;
+constexpr float SIZE_MOD_STRENGTH = 0.18;
 constexpr float SIZE_MOD_FLOOR = 1.0 - SIZE_MOD_STRENGTH;
 constexpr float SIZE_MOD_STEP = 0.04;
 
@@ -39,9 +39,9 @@ constexpr float EASING_RATIO = 0.05;
 
 /////////////////// WAVEFORM ///////////////////
 static constexpr float cycle = 200;   //msec
-static constexpr float maxR = 0.032;    //Max amplitude
-static constexpr float minR = 0.01;    //Min amplitude
-static const int TURN_NUM_MAX = 100;  //num of feature points
+static constexpr float maxR = 0.09;    //Max amplitude
+static constexpr float minR = 0.03;    //Min amplitude
+static const int TURN_NUM_MAX = 200;  //num of feature points
 
 
 
@@ -61,9 +61,9 @@ static constexpr float sp_noiseMax = 1.7;
 
 
 /////////////////// SHAKE ///////////////////
-constexpr float SHAKE_DEFAULT_TIME_OUT = 150;   //msec
-constexpr float SHAKE_DEFAULT_TIME_STAY = 100;
-constexpr float SHAKE_DEFAULT_TIME_IN = 150;
+constexpr float SHAKE_DEFAULT_TIME_OUT = 300;   //msec
+constexpr float SHAKE_DEFAULT_TIME_STAY = 200;
+constexpr float SHAKE_DEFAULT_TIME_IN = 300;
 
 
 #endif /* animation_setup_h */

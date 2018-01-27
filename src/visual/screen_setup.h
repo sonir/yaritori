@@ -40,6 +40,7 @@ constexpr int MARGIN_W = 0;
 constexpr int MARGIN_H = 0;
 
 #ifdef SINGLE_MODE_SCREEN
+constexpr float ASPECT_RATE =  5.43333;
 constexpr int ORIGINAL_WIDTH = DISPLAY_WIDTH;   //Ratio :: 5.43333
 constexpr int ORIGINAL_HEIGHT = DISPLAY_HEIGHT;
 #else

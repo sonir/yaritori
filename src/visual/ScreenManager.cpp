@@ -53,6 +53,7 @@ void ScreenManager::setEvents() {
         if(timerOn) {
             param_u* params = (param_u *)args;
             float duration = params[0].fval;
+            invertTimer.ready();
             invertOnNext = true;
             invertState = false;
             timerOn = false;

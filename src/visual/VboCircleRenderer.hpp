@@ -10,6 +10,7 @@
 #define VboCircleRenderer_hpp
 
 #include "ofMain.h"
+#include "ofxGismo.h"
 
 struct vbo_count_t {
     int num;
@@ -22,7 +23,8 @@ enum circle_type_e {
     filled, noFill,
 };
 
-static constexpr int CIRCLE_NUM_MAX = 1024;
+static constexpr int CIRCLE_NUM_PER_AG = 64;
+static constexpr int CIRCLE_NUM_MAX = AG_MAX;
 static constexpr int RESOLUTION_MAX = 120;
 static constexpr int VERTICES_MAX = CIRCLE_NUM_MAX * RESOLUTION_MAX;
 

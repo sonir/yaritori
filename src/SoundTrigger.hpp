@@ -16,12 +16,14 @@
 #include "ag_shape.h"
 
 
-#define SOUND_HOST_FOR_TRIGGER "localhost"
+#define SOUND_HOST_FOR_TRIGGER "172.29.9.118"
+//#define SOUND_HOST_FOR_TRIGGER "localhost"
 #define SOUND_PORT_FOR_TRIGGER 56137
 
 //Define for node to agent
 /*
-#define GENRE0 25
+
+ #define GENRE0 25
 #define GENRE1 20
 #define GENRE2 15
 #define GENRE3 10
