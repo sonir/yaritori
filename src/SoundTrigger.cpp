@@ -8,6 +8,7 @@
 
 #include "SoundTrigger.hpp"
 
+/*
 sound_t shape2sound(ag_shape_t shape, int ag_id){
     
     sound_t snd;
@@ -48,7 +49,45 @@ sound_t shape2sound(ag_shape_t shape, int ag_id){
     
     
 }
+*/
 
+sound_t shape2sound(ag_shape_t shape, int ag_id){
+    
+    sound_t snd;
+    
+    if ( shape.color>GENRE0 ){
+        
+        snd.genre = 0; //Electronic
+        
+    }else if( shape.color>GENRE1 ){
+        
+        snd.genre = 1; //pop
+        
+    }else if( shape.color>GENRE2 ){
+        
+        snd.genre = 2; //voice
+        
+    }else if( shape.color>GENRE3 ){
+        
+        snd.genre = 3; //tribe
+        
+    }else if( shape.color>GENRE4 ){
+        
+        snd.genre = 4; //jazz
+        
+    }else if( shape.color<GENRE4 ){
+        
+        snd.genre = 5; //classic
+        
+    }
+        
+    
+    snd.song = ag_id%1000;
+    
+    return snd;
+    
+    
+}
 
 sound_t ag2sound(ag_t *ag, sound_t *snd){
     

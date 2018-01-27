@@ -134,6 +134,16 @@ void Network :: update(){
             spd.ival = m.getArgAsInt32(0);
             gismo.bang("/performance/bullets/speed" , &spd);
             
+        } else if (  m.getAddress() == "/gismo/view_ratio") {
+            
+            gismo.view_ratio = m.getArgAsFloat(0);
+            
+        } else if (  m.getAddress() == "/gismo/mov_ratio") {
+            
+            gismo.mov_ratio = m.getArgAsFloat(0);
+            
+            
+            
         }else if (  m.getAddress() == "/reset" ) { //Reset Agents
             
             int key_num = m.getArgAsInt32(0);

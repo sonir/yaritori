@@ -12,7 +12,9 @@ void ofApp::setup(){
     
     vsyn.initWindowSize();
     vsyn.setup();
-    
+
+    network.setup();
+
     
 }
 

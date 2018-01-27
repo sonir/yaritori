@@ -12,7 +12,7 @@
 #pragma once
 
 #define BULLET_SIZE 0.003
-#define BULLET_NUM 64
+#define BULLET_NUM 128//64
 
 #include <stdio.h>
 #include "ofxGismo.h"

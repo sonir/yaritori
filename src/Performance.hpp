@@ -173,10 +173,7 @@ class PerformanceManager : public Event {
             param_u *param = (param_u *)args;
             performer_e perf = (performer_e)param->ival;
 
-            if(mode == PHASE1_AG_MASTER) {
-                gismo.bang("/bullet_from_agent" , &perf);
-
-            } else if(mode == PHASE1_AG_SLAVE) {
+            if(mode == PHASE1_AG_SLAVE) {
                 gismo.bang("/bullet_to_agent" , &perf);
                 
             } else if(mode == PHASE2_CLIMAX){

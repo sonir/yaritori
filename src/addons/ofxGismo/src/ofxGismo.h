@@ -97,7 +97,7 @@ class GismoManager : public EventHandler {
             return "Hello world!";		//to invoke, write " Singleton::getInstance().getString(); " 
         }
     
-        //Variables
+        //Variables fixed
         agent_buf_t agents;
         agent_buf_t add;
         Event *sound;
