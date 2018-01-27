@@ -106,6 +106,10 @@ class GismoManager : public EventHandler {
         float width_rate = WORLD_WIDTH;
         float height_rate = WORLD_HEIGHT;
 
+        //Global param control
+        float view_ratio = 1.0f;
+        float mov_ratio = 1.0f;
+    
     
         //Methods
         void setup();

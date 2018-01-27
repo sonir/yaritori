@@ -96,7 +96,7 @@ void VSyn::setup(){
     agBuffReset(&gismo.add);
 
     //Do Test Code
-    this->test();
+    //this->test();
     
     //Reset State
     agBuffReset(&gismo.agents);
