@@ -158,8 +158,8 @@ void AgentMotion::updatePosition() {
         float nodeY = (pShape->nodes[i].y + velocityY[i] * phase[i % MOD_NUM ] ) * pAg->size * sizeMod * SIZE_FIX;
 
         ofVec2f pos;
-//        pos.x = (center.x * aspect + nodeX) * ORIGINAL_HEIGHT ;
-        pos.x = (center.x * ORIGINAL_WIDTH) + (nodeX * ORIGINAL_HEIGHT) ;
+        pos.x = (center.x + nodeX) * ORIGINAL_HEIGHT ;
+//        pos.x = (center.x * ORIGINAL_WIDTH) + (nodeX * ORIGINAL_HEIGHT) ;
         pos.y = (center.y + nodeY) * ORIGINAL_HEIGHT;
         
         

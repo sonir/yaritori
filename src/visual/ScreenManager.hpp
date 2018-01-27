@@ -49,6 +49,7 @@ public:
     
     void shake(int window, shake_direction_e direction);
     void swap(int window, float x, float y);
+    float getSwapCurve(float val);
     void setShakeDuration(float go, float out, float back);
     
     void setBackground(float c);

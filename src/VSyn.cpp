@@ -59,6 +59,11 @@ void VSyn::setup(){
     //SetupEvents
     gismo.eventAdd("/addShape", this);
     
+    //Set events
+    gismo.eventAdd("/ripple", &ripple);
+    gismo.eventAdd("/solo", &visual.events.solo);
+    
+    
     //Set ag_shape_t and gismo pointer
     visual.motion.setShapePtr(ag_shapes);
     visual.events.setMotionManagerPtr(&visual.motion);
@@ -71,7 +76,7 @@ void VSyn::setup(){
     renderer.setup(DISPLAY_WIDTH, DISPLAY_HEIGHT);
 #else
     scManager.setup();
-    renderer.setup(ORIGINAL_WIDTH, ORIGINAL_HEIGHT);
+    renderer.setup(ORIGINAL_HEIGHT, ORIGINAL_HEIGHT);
     renderer.setCircleBaseRad(DISPLAY_WIDTH);
 #endif
     
@@ -598,6 +603,16 @@ void VSyn::keyPressed(int key) {
             params[0].ival = 1;
             params[1].ival = 0;
             params[2].ival = -1;
+            
+            gismo.bang("/visual/shake", params);
+            break;
+        }
+        
+        case '2': {
+            param_u params[3];
+            params[0].ival = 1;
+            params[1].ival = 0;
+            params[2].ival = 1;
             
             gismo.bang("/visual/shake", params);
             break;

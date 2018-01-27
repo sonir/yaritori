@@ -39,9 +39,9 @@ constexpr float EASING_RATIO = 0.05;
 
 /////////////////// WAVEFORM ///////////////////
 static constexpr float cycle = 200;   //msec
-static constexpr float maxR = 0.03;    //Max amplitude
+static constexpr float maxR = 0.032;    //Max amplitude
 static constexpr float minR = 0.01;    //Min amplitude
-static const int TURN_NUM_MAX = 50;  //num of feature points
+static const int TURN_NUM_MAX = 100;  //num of feature points
 
 
 
@@ -59,6 +59,11 @@ static constexpr float lagMax = 0.25;
 static constexpr float sp_noiseMin = 1.5;
 static constexpr float sp_noiseMax = 1.7;
 
+
+/////////////////// SHAKE ///////////////////
+constexpr float SHAKE_DEFAULT_TIME_OUT = 150;   //msec
+constexpr float SHAKE_DEFAULT_TIME_STAY = 100;
+constexpr float SHAKE_DEFAULT_TIME_IN = 150;
 
 
 #endif /* animation_setup_h */

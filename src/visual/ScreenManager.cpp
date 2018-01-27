@@ -202,9 +202,9 @@ void ScreenManager::initStatus(){
         state_h[i] = 0;
     }
     
-    shakeDur_go = 500;   //msec
-    shakeDur_out = 100;
-    shakeDur_back = 700;
+    shakeDur_go = SHAKE_DEFAULT_TIME_OUT;   //msec
+    shakeDur_out = SHAKE_DEFAULT_TIME_STAY;
+    shakeDur_back = SHAKE_DEFAULT_TIME_IN;
     
     for(int i = 0; i < 3; i++){
         resetTrimPos(i);
@@ -325,6 +325,7 @@ void ScreenManager::mask(){
 
 void ScreenManager::begin(){
     
+    //Invert
     if(timerOn) {
         float invDur = invertTimer.get();
         if(invDur < 1.0) {
@@ -466,20 +467,37 @@ void ScreenManager::shake(int window, shake_direction_e direction){
     }
 }
 
+float ScreenManager::getSwapCurve(float val) {
+    float result = 0.;
+    
+    if(val < 0.5) {
+        result = val * 0.5;
+    } else {
+        result = val * 1.5 - 0.5;
+    }
+    
+    //result = pow(val, 3.0);
+    
+    return result;
+}
+
 void ScreenManager::swap(int window, float x, float y) {
     pos[window].x = x * DISPLAY_WIDTH;
     pos[window].y = y * DISPLAY_HEIGHT;
 }
 
 void ScreenManager::shake_cal(){
+    float ratio = 0.0;
     for(int i = 0; i < 3; i++){
         switch(state_w[i]){
             case 1:
-                pos[i].x = (endPos[i].x - startPos[i].x) * cos(PI * 0.5 * interpolation_w[i].get()) - (endPos[i].x - startPos[i].x);
+                ratio = getSwapCurve(interpolation_w[i].get());
+                pos[i].x = (endPos[i].x - startPos[i].x) * cos(PI * 0.5 * ratio) - (endPos[i].x - startPos[i].x);
                 break;
             case 2:
                 break;
             case 3:
+                ratio = getSwapCurve(interpolation_w[i].get());
                 pos[i].x = (endPos[i].x - startPos[i].x) * cos(PI * 0.5 * (1.0 - interpolation_w[i].get())) - (endPos[i].x - startPos[i].x);
                 break;
             default:
@@ -487,11 +505,13 @@ void ScreenManager::shake_cal(){
         }
         switch(state_h[i]){
             case 1:
-                pos[i].y = (endPos[i].y - startPos[i].y) * cos(PI * 0.5 * interpolation_h[i].get()) - (endPos[i].y - startPos[i].y);
+                ratio = getSwapCurve(interpolation_h[i].get());
+                pos[i].y = (endPos[i].y - startPos[i].y) * cos(PI * 0.5 * ratio) - (endPos[i].y - startPos[i].y);
                 break;
             case 2:
                 break;
             case 3:
+                ratio = getSwapCurve(interpolation_h[i].get());
                 pos[i].y = (endPos[i].y - startPos[i].y) * cos(PI * 0.5 * (1.0 - interpolation_h[i].get())) - (endPos[i].y - startPos[i].y);
                 break;
             default:
