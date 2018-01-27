@@ -130,8 +130,9 @@ void AgentMotion::updateCenter() {
 void AgentMotion::updatePhase() {
     // Update Phases
 //    for(int i = 0; i < pShape->node_count; i++) {
+    float fixedAgMov = 0.1 + (pAg->mov * 0.9) ;
     for(int i = 0; i < MOD_NUM; i++) {
-        carPhase[i] += carStep[i] * pAg->mov * MOV_FIX;    //Carrier
+        carPhase[i] += carStep[i] * fixedAgMov * MOV_FIX;    //Carrier
         if(M_2XPI < carPhase[i]) {
             carPhase[i] = 0.0;
         }

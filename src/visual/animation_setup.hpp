@@ -29,7 +29,7 @@ constexpr float STAY_RATIO = 1.0 - TREMOR_RATIO;
 constexpr float MOV_FIX = 0.04;
 
 //Size modulation
-constexpr float SIZE_MOD_STRENGTH = 0.12;
+constexpr float SIZE_MOD_STRENGTH = 0.18;
 constexpr float SIZE_MOD_FLOOR = 1.0 - SIZE_MOD_STRENGTH;
 constexpr float SIZE_MOD_STEP = 0.04;
 
@@ -61,9 +61,9 @@ static constexpr float sp_noiseMax = 1.7;
 
 
 /////////////////// SHAKE ///////////////////
-constexpr float SHAKE_DEFAULT_TIME_OUT = 150;   //msec
-constexpr float SHAKE_DEFAULT_TIME_STAY = 100;
-constexpr float SHAKE_DEFAULT_TIME_IN = 150;
+constexpr float SHAKE_DEFAULT_TIME_OUT = 300;   //msec
+constexpr float SHAKE_DEFAULT_TIME_STAY = 200;
+constexpr float SHAKE_DEFAULT_TIME_IN = 300;
 
 
 #endif /* animation_setup_h */

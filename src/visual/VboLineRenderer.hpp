@@ -10,8 +10,10 @@
 #define VboLineRenderer_hpp
 
 #include "ofMain.h"
+#include "ofxGismo.h"
 
-constexpr int VBOLINE_NUM_MAX = 4096;
+constexpr int VBOLINE_NUM_PER_AG = 64;
+constexpr int VBOLINE_NUM_MAX = VBOLINE_NUM_PER_AG * AG_MAX;
 constexpr int VBOLINE_VERT_MAX = VBOLINE_NUM_MAX * 2;
 
 class VboLineRenderer {
