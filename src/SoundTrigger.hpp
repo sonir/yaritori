@@ -31,6 +31,12 @@
 #define GENRE5 5
 */
 
+
+//Yaritori SPEAKER REGION :: (Num Multi Screen)
+#define REGION_NUM 3
+
+
+//Threath to decision genre fron shape
 #define GENRE0 0.83
 #define GENRE1 0.66
 #define GENRE2 0.49
@@ -61,18 +67,26 @@
 #endif
 
 
+
+//SpeakerPosition
+typedef enum region_e {MAIN, LEFT, CENTER, RIGHT} region_e;
+
+//Sound Data
 typedef struct sound_t {
     
     int genre = 0;
     int song = 0;
     int slice = 0;
     float effect_val = 0.5f;
+    region_e region = MAIN;
     
 } sound_t;
 
 
+region_e whereAmI(posi_t posi, float width);
 sound_t shape2sound(ag_shape_t shape, int ag_id);
 sound_t ag2sound(ag_t *ag, sound_t *snd);
+
 
 class SoundTrigger {
     
@@ -83,9 +97,12 @@ class SoundTrigger {
             sender.setup(SOUND_HOST_FOR_TRIGGER , SOUND_PORT_FOR_TRIGGER);
             
             //CreateEvents
+            
+            //EV :: SimpleSountTriger
             auto f = [&](void *args){ trigger(args); };
             gismo.lambdaAdd("/soundTrg" , f);
 
+            //EV :: SoundTriggerWithAgent
             auto f2 = [&](void *args){
                 
                 ag_t *tmp = (ag_t *)args;
@@ -95,12 +112,14 @@ class SoundTrigger {
                 params[1].ival = sounds[tmp->agid].song;
                 params[2].ival = sounds[tmp->agid].slice;
                 params[3].fval = sounds[tmp->agid].effect_val;
+                params[4].ival = (int)sounds[tmp->agid].region;
                 //Send osc val
                 trigger(params);
                 
             };
             gismo.lambdaAdd("/soundTriggerWithAgent" , f2);
-
+            
+            
             
         }
     
