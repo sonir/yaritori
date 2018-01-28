@@ -60,7 +60,7 @@ void DrawAgentsWithChar::draw(GismoManager *gismo, float screen_w, float screen_
             }
             
             //square(ag->posi.x, ag->posi.y, ag->size*10.0f, 0.0f, false);
-            ofDrawBitmapString( cond_flg, tmp_x, tmp_y);
+            ofDrawBitmapString( cond_flg, tmp_x/gismo->width_rate, tmp_y/gismo->height_rate);
             //circle(ag->posi.x+0.0078f, ag->posi.y+0.00078f, ag->view,false);
             ofSetColor(255,255,255);
         }
