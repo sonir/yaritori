@@ -104,7 +104,7 @@ sound_t ag2sound(ag_t *ag, sound_t *snd){
     snd->effect_val = fval;
     //Set SpeakerRegion
     GismoManager& gismo = GismoManager::getInstance();
-    snd->region = whereAmI(ag->posi, 1.0f/*gismo.width_rate*/);
+    snd->region = whereAmI(ag->posi, gismo.width_rate);
     
 }
 
