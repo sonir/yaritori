@@ -5,7 +5,7 @@
 			"major" : 7,
 			"minor" : 3,
 			"revision" : 4,
-			"architecture" : "x86",
+			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
@@ -41,32 +41,33 @@
 					"id" : "obj-1",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 213.0, 158.0, 83.0, 22.0 ],
+					"numoutlets" : 10,
+					"outlettype" : [ "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal" ],
+					"patching_rect" : [ 147.0, 169.0, 113.5, 22.0 ],
 					"style" : "",
-					"text" : "poly~ storm 1"
+					"text" : "poly~ slicePlay 1"
 				}
 
 			}
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
-				"name" : "storm.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf",
+				"name" : "slicePlay.maxpat",
+				"bootpath" : "~/Development/openFrameworks/of_v0.9.8_osx_release/apps/1802_CCMA/yaritori/src/max/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "SimpleDelay_First.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf",
+				"name" : "effect_sweep.maxpat",
+				"bootpath" : "~/Development/openFrameworks/of_v0.9.8_osx_release/apps/1802_CCMA/yaritori/src/max/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "drywet.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf",
+				"name" : "ccma_divider.maxpat",
+				"bootpath" : "~/Development/openFrameworks/of_v0.9.8_osx_release/apps/1802_CCMA/yaritori/src/max/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1

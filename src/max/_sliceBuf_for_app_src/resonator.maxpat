@@ -421,9 +421,9 @@
 					"numinlets" : 5,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 1135.5, 128.0, 157.0, 22.0 ],
+					"patching_rect" : [ 1135.5, 128.0, 164.0, 22.0 ],
 					"style" : "",
-					"text" : "comb~ 3 2.55105 0. 0.5 0.9"
+					"text" : "comb~ 3 2.55105 0. 0.5 0.92"
 				}
 
 			}
@@ -437,9 +437,9 @@
 					"numinlets" : 5,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 973.0, 128.0, 150.0, 22.0 ],
+					"patching_rect" : [ 973.0, 128.0, 157.0, 22.0 ],
 					"style" : "",
-					"text" : "comb~ 6 5.1021 0. 0.5 0.9"
+					"text" : "comb~ 6 5.1021 0. 0.5 0.92"
 				}
 
 			}
@@ -501,9 +501,9 @@
 					"numinlets" : 5,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 792.5, 128.0, 164.0, 22.0 ],
+					"patching_rect" : [ 792.5, 128.0, 170.0, 22.0 ],
 					"style" : "",
-					"text" : "comb~ 8 7.664451 0. 0.5 0.9"
+					"text" : "comb~ 8 7.664451 0. 0.5 0.92"
 				}
 
 			}
@@ -611,9 +611,9 @@
 					"numinlets" : 5,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 622.5, 128.0, 157.0, 22.0 ],
+					"patching_rect" : [ 622.5, 128.0, 164.0, 22.0 ],
 					"style" : "",
-					"text" : "comb~ 4 3.82256 0. 0.5 0.9"
+					"text" : "comb~ 4 3.82256 0. 0.5 0.92"
 				}
 
 			}
@@ -627,9 +627,9 @@
 					"numinlets" : 5,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 436.0, 128.0, 164.0, 22.0 ],
+					"patching_rect" : [ 436.0, 128.0, 170.0, 22.0 ],
 					"style" : "",
-					"text" : "comb~ 7 6.067454 0. 0.5 0.9"
+					"text" : "comb~ 7 6.067454 0. 0.5 0.92"
 				}
 
 			}
