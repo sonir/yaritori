@@ -187,8 +187,8 @@ void randomMove(ag_t *ag){
     
     //Set next target position with random
     posi_t rand;
-    rand.x = frand();
-    rand.y = frand();
+    rand.x = frand()*WORLD_WIDTH;
+    rand.y = frand()*WORLD_HEIGHT;
     
     //decision X
     float x_move = frand()*ag->mov*SPD_FIX*SPD_RANDOM_WALK_FIX;
