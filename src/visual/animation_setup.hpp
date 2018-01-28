@@ -12,7 +12,8 @@
 /////////////////// GLOBAL ///////////////////
 constexpr float BACKGROUND_DEFAULT_COLOR = 1.0;
 constexpr float ANIMATION_DEFAULT_COLOR = 0.0;
-
+constexpr float BACKGROUND_INVERT_COLOR = 0.0;
+constexpr float ANIMATION_INVERT_COLOR = 1.0;
 
 /////////////////// AGENT ///////////////////
 
@@ -39,9 +40,10 @@ constexpr float EASING_RATIO = 0.05;
 
 /////////////////// WAVEFORM ///////////////////
 static constexpr float cycle = 200;   //msec
-static constexpr float maxR = 0.09;    //Max amplitude
-static constexpr float minR = 0.03;    //Min amplitude
-static const int TURN_NUM_MAX = 200;  //num of feature points
+static constexpr float maxR = 0.05;    //Max amplitude
+static constexpr float minR = 0.01;    //Min amplitude
+static const int TURN_NUM_MAX = 100;  //num of feature points
+static constexpr float PEAK = 0.3;  //peak of wave amplitude
 
 
 

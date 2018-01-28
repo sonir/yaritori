@@ -48,7 +48,7 @@ void VboCircleRenderer::initVbo() {
     noFillCircleVbo.setColorData(noFillCircleColors, VERTICES_MAX, GL_DYNAMIC_DRAW);
 }
 
-void VboCircleRenderer::setBeseRad(int _baseRad) {
+void VboCircleRenderer::setBaseRad(int _baseRad) {
     baseRad = _baseRad;
 }
 

@@ -16,18 +16,17 @@
 #include "animation_setup.hpp"
 
 
-constexpr int VERT_NUM = TURN_NUM_MAX * 6 + 2;  //6 mins a bit more than aspect(5.4333)
-
 class LineDrawer{
 public:
     LineDrawer();
     
-    void lineTo(float target_x, float target_y);
+    void lineTo(float fromPos_x, float fromPos_y, float toPos_x, float toPos_y, float size);
     void invert();
     void setColor(float _c);
     void setEvents();
     
-    posi_t myPos, targetPos;
+    posi_t fromPos, toPos;
+    float size;
     
     bool colorState;
     ofFloatColor color;

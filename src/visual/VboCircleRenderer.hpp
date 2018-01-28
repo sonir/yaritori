@@ -36,7 +36,7 @@ public:
     void setColor(ofFloatColor _color);
     void setColor(float c);
     void setLineWidth(float w);
-    void setBeseRad(int _baseRad);
+    void setBaseRad(int _baseRad);
     void draw();
     void circle(float x, float y, float size, bool fill);
     void filledCircle(float x, float y, float size);

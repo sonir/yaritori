@@ -131,15 +131,15 @@ void invertBackground() {
 void ScreenManager::setAllColor(float bgColor) {
     
     GismoManager& gismo = GismoManager::getInstance();
-    if(bgColor == 0.0) {
+    if(bgColor == BACKGROUND_INVERT_COLOR) {
         //Reset Colors for solo;
         param_u param;
-        param.fval = 1.0;
+        param.fval = ANIMATION_INVERT_COLOR;
         gismo.lambdaBang("/rippleColor", &param);
         gismo.lambdaBang("/agentColor", &param);
         gismo.lambdaBang("/performanceColor", &param);
         
-        param.fval = 0.0;
+        param.fval = BACKGROUND_INVERT_COLOR;
         gismo.lambdaBang("/bgColor", &param);
     } else {
         //Reset Colors for solo;
