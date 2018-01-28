@@ -10,6 +10,10 @@
 
 using namespace std;
 
+
+
+//C++ Class
+
 void VSyn::setup(){
     
     //// EventSetup ////
@@ -514,6 +518,8 @@ void VSyn::test(){
     //Run test codes
     myTest->run();
     
+
+    
     //Test addAgShape
     ag_shape_t shape;
     shape.nodes[0].x = 0.5f;
@@ -530,6 +536,23 @@ void VSyn::test(){
     assert (ag_shapes[0].edges[0].node_id_b == 1);
     std::cout << "VSyn:: addAgShape is ok." << std::endl;
     
+    //Test Where am I
+    
+    region_e where;
+    //float width = gismo.width_rate;
+    float width = 1.5;
+    posi_t posi;
+    posi.x = 0.49f;
+    posi.y = 0.5f;
+    where = whereAmI(posi, width);
+    assert(where == LEFT);
+    posi.x = 0.5f;
+    where = whereAmI(posi, width);
+    assert(where == CENTER);
+    posi.x = 1.0f;
+    where = whereAmI(posi, width);
+    assert(where == RIGHT);
+    cout << "VSyn :: CFunc :: whereAmI is OK." << endl;
     
     //Reset all agents
     agBuffReset(&gismo.agents);

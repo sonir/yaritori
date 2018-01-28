@@ -82,6 +82,7 @@
 #include "SoundTrigger.hpp"
 
 
+
 class VSyn : public Event {
  
     public:

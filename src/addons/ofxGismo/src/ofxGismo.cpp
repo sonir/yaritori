@@ -343,7 +343,7 @@ bool deadCheck(float *size, bool *active){
 
 
 void interactWith(ag_t *focus , ag_t *target){
-
+    
     GismoManager& gismo = GismoManager::getInstance();
     
     float dist = distance(focus->posi, target->posi);
