@@ -43,7 +43,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "signal" ],
-					"patching_rect" : [ 98.0, 96.0, 80.0, 22.0 ],
+					"patching_rect" : [ 98.0, 99.0, 80.0, 22.0 ],
 					"style" : "",
 					"text" : "ccma_reverb"
 				}
@@ -69,9 +69,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 176.0, 207.0, 42.0, 22.0 ],
+					"patching_rect" : [ 176.0, 207.0, 36.0, 22.0 ],
 					"style" : "",
-					"text" : "*~ 1.5"
+					"text" : "*~ 2."
 				}
 
 			}
@@ -82,9 +82,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 98.0, 207.0, 42.0, 22.0 ],
+					"patching_rect" : [ 98.0, 207.0, 36.0, 22.0 ],
 					"style" : "",
-					"text" : "*~ 1.5"
+					"text" : "*~ 2."
 				}
 
 			}
@@ -96,7 +96,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 98.0, 276.0, 30.0, 30.0 ],
+					"patching_rect" : [ 98.0, 308.0, 30.0, 30.0 ],
 					"style" : ""
 				}
 
@@ -109,7 +109,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 130.0, 276.0, 30.0, 30.0 ],
+					"patching_rect" : [ 130.0, 308.0, 30.0, 30.0 ],
 					"style" : ""
 				}
 

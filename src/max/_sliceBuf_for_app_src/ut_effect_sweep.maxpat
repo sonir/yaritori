@@ -5,11 +5,11 @@
 			"major" : 7,
 			"minor" : 3,
 			"revision" : 4,
-			"architecture" : "x64",
+			"architecture" : "x86",
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 145.0, 79.0, 772.0, 887.0 ],
+		"rect" : [ 874.0, 79.0, 772.0, 887.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -157,25 +157,25 @@
 				"box" : 				{
 					"data" : 					{
 						"clips" : [ 							{
-								"filename" : "/Users/rin/Desktop/180114_ccma/stable/_sliceBuf_for_app_src/soundproto_origin.wav",
+								"filename" : "/Users/rin/Desktop/180126_ccma/stable/_sliceBuf_for_app_src/soundproto_origin.wav",
 								"filekind" : "audiofile",
 								"loop" : 1,
 								"content_state" : 								{
-									"formantcorrection" : [ 0 ],
-									"pitchcorrection" : [ 0 ],
-									"mode" : [ "basic" ],
-									"quality" : [ "basic" ],
 									"pitchshift" : [ 1.0 ],
-									"timestretch" : [ 0 ],
-									"formant" : [ 1.0 ],
-									"originallengthms" : [ 0.0 ],
-									"originaltempo" : [ 120.0 ],
 									"slurtime" : [ 0.0 ],
+									"timestretch" : [ 0 ],
 									"basictuning" : [ 440 ],
-									"originallength" : [ 0.0, "ticks" ],
+									"quality" : [ "basic" ],
+									"formant" : [ 1.0 ],
 									"play" : [ 0 ],
-									"speed" : [ 1.0 ],
-									"followglobaltempo" : [ 0 ]
+									"formantcorrection" : [ 0 ],
+									"originallengthms" : [ 0.0 ],
+									"followglobaltempo" : [ 0 ],
+									"originallength" : [ 0.0, "ticks" ],
+									"mode" : [ "basic" ],
+									"pitchcorrection" : [ 0 ],
+									"originaltempo" : [ 120.0 ],
+									"speed" : [ 1.0 ]
 								}
 
 							}
@@ -187,7 +187,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 5,
 					"outlettype" : [ "signal", "signal", "signal", "", "dictionary" ],
-					"patching_rect" : [ 228.333328, 105.0, 187.0, 31.0 ],
+					"patching_rect" : [ 228.333328, 106.0, 187.0, 31.0 ],
 					"style" : ""
 				}
 
@@ -254,7 +254,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 37.0, 206.0, 187.0, 31.0 ],
+					"patching_rect" : [ 37.0, 205.0, 187.0, 31.0 ],
 					"size" : 1.0,
 					"style" : ""
 				}
@@ -298,7 +298,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-3", 1 ],
-					"midpoints" : [ 46.5, 308.0, 299.833328, 308.0 ],
+					"midpoints" : [ 46.5, 308.0, 299.833313, 308.0 ],
 					"source" : [ "obj-14", 0 ]
 				}
 
@@ -446,99 +446,99 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-8" : [ "live.gain~[4]", "live.gain~[2]", 0 ],
-			"obj-2::obj-8::obj-55" : [ "Threshold", "Threshold", 0 ],
 			"obj-2::obj-8::obj-7" : [ "Output Gain", "Output Gain", 5 ],
-			"obj-2::obj-8::obj-13" : [ "Attack", "Attack", 2 ],
-			"obj-2::obj-8::obj-15" : [ "Makeup", "Makeup", 4 ],
-			"obj-15" : [ "live.gain~[5]", "live.gain~", 0 ],
-			"obj-7" : [ "live.gain~[3]", "live.gain~[2]", 0 ],
-			"obj-6" : [ "live.gain~[2]", "live.gain~[2]", 0 ],
 			"obj-2::obj-8::obj-14" : [ "Release", "Release", 3 ],
+			"obj-6" : [ "live.gain~[2]", "live.gain~[2]", 0 ],
+			"obj-2::obj-8::obj-13" : [ "Attack", "Attack", 2 ],
+			"obj-15" : [ "live.gain~[5]", "live.gain~", 0 ],
+			"obj-2::obj-8::obj-15" : [ "Makeup", "Makeup", 4 ],
+			"obj-2::obj-8::obj-55" : [ "Threshold", "Threshold", 0 ],
+			"obj-8" : [ "live.gain~[4]", "live.gain~[2]", 0 ],
+			"obj-7" : [ "live.gain~[3]", "live.gain~[2]", 0 ],
 			"obj-2::obj-8::obj-30" : [ "Ratio", "Ratio", 1 ]
 		}
 ,
 		"dependency_cache" : [ 			{
 				"name" : "effect_sweep.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Desktop/180126_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "soundproto_origin.wav",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Desktop/180126_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "WAVE",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "drone.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Desktop/180126_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "resonator.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Desktop/180126_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "redux.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Desktop/180126_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "ccma_drone_eq.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Desktop/180126_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "eq.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Desktop/180126_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "highpass.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Desktop/180126_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "ccma_reverb.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Desktop/180126_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "DryWet.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Desktop/180126_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "lowshelf.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Desktop/180126_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "yafr2.maxpat",
-				"bootpath" : "/Users/Shared/Max 7/Examples/effects/reverb/lib",
-				"patcherrelativepath" : "../../../../../Shared/Max 7/Examples/effects/reverb/lib",
+				"name" : "yafr3.maxpat",
+				"bootpath" : "~/Desktop/180126_ccma/stable/_sliceBuf_for_app_src",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
@@ -551,63 +551,63 @@
 			}
 , 			{
 				"name" : "rhythm.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Desktop/180126_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "ccma_rhythm_eq_first.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Desktop/180126_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "ccma_rhythm_eq_second.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Desktop/180126_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "redux_rhy.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Desktop/180126_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "compressor.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Desktop/180126_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "storm.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Desktop/180126_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "SimpleDelay_First.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Desktop/180126_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "drywet.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Desktop/180126_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "SimpleDelay_Second.maxpat",
-				"bootpath" : "~/Desktop/180114_ccma/stable/_sliceBuf_for_app_src",
+				"bootpath" : "~/Desktop/180126_ccma/stable/_sliceBuf_for_app_src",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1

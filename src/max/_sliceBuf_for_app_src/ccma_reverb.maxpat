@@ -394,7 +394,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 360.0, 322.0, 31.0, 22.0 ],
 					"style" : "",
-					"text" : "110"
+					"text" : "105"
 				}
 
 			}

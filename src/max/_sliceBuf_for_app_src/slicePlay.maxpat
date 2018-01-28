@@ -5,7 +5,7 @@
 			"major" : 7,
 			"minor" : 3,
 			"revision" : 4,
-			"architecture" : "x64",
+			"architecture" : "x86",
 			"modernui" : 1
 		}
 ,
@@ -43,9 +43,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 122.0, 312.0, 42.0, 22.0 ],
+					"patching_rect" : [ 122.0, 309.0, 42.0, 22.0 ],
 					"style" : "",
-					"text" : "*~ 0.6"
+					"text" : "*~ 0.8"
 				}
 
 			}
