@@ -545,13 +545,13 @@ void VSyn::test(){
     posi.x = 0.49f;
     posi.y = 0.5f;
     where = whereAmI(posi, width);
-    assert(where == LEFT);
+    assert(where == REGION_LEFT);
     posi.x = 0.5f;
     where = whereAmI(posi, width);
-    assert(where == CENTER);
+    assert(where == REGION_CENTER);
     posi.x = 1.0f;
     where = whereAmI(posi, width);
-    assert(where == RIGHT);
+    assert(where == REGION_RIGHT);
     cout << "VSyn :: CFunc :: whereAmI is OK." << endl;
     
     //Reset all agents

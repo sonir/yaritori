@@ -67,7 +67,7 @@
 
 
 //SpeakerPosition
-typedef enum region_e {MAIN, LEFT, CENTER, RIGHT} region_e;
+typedef enum region_e {REGION_MAIN, REGION_LEFT, REGION_CENTER, REGION_RIGHT} region_e;
 
 //Sound Data
 typedef struct sound_t {
@@ -76,7 +76,7 @@ typedef struct sound_t {
     int song = 0;
     int slice = 0;
     float effect_val = 0.5f;
-    region_e region = MAIN;
+    region_e region = REGION_MAIN;
     
 } sound_t;
 
