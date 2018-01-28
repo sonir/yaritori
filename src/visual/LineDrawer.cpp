@@ -13,10 +13,8 @@ LineDrawer::LineDrawer(){
     interpolation.setDuration(cycle);
     interpolation.bang();
     
-    fromPos.x = 0.25;
-    fromPos.y = 0.5;
-    
-    size = 1.0;
+    myPos.x = 0.25;
+    myPos.y = 0.5;
     
     for(int i = 0; i < TURN_NUM_MAX + 2; i++){
         verts[i].set(0.5 * ORIGINAL_HEIGHT, 0.5 * ORIGINAL_HEIGHT);
@@ -59,11 +57,12 @@ void LineDrawer::setColor(float c) {
 
 
 void LineDrawer::update(){
-    float distance = ofDist(fromPos.x, fromPos.y, toPos.x, toPos.y) * ofDist(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
+    //    float distance = ofDist(myPos.x, myPos.y, targetPos.x, targetPos.y) * ofDist(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
+    float distance = ofDist(myPos.x, myPos.y, targetPos.x, targetPos.y);
     float max_width;
     
     turn_num = int(ofMap(distance, 0., DISPLAY_HEIGHT, 2., TURN_NUM_MAX));
-    max_width = ofMap(distance, 0., DISPLAY_HEIGHT, minR, maxR) * size;
+    max_width = ofMap(distance, 0., DISPLAY_HEIGHT, minR, maxR);
     
     currentPhase = interpolation.get();
     
@@ -71,7 +70,7 @@ void LineDrawer::update(){
         interpolation.bang();
     }
     
-    theta = atan2(toPos.y - fromPos.y, toPos.x - fromPos.x);
+    theta = atan2(targetPos.y - myPos.y, targetPos.x - myPos.x);
     
     float x, y;
     float r;
@@ -85,25 +84,27 @@ void LineDrawer::update(){
             th = theta + PI * 1.5 + PI * (i-1);
         }
         if(i == 0){
-            x = fromPos.x * ORIGINAL_WIDTH;
-            y = fromPos.y * ORIGINAL_HEIGHT;
+            x = myPos.x * ORIGINAL_HEIGHT;
+            y = myPos.y * ORIGINAL_HEIGHT;
         }else if(i == turn_num + 1){
-            x = toPos.x * ORIGINAL_WIDTH;
-            y = toPos.y * ORIGINAL_HEIGHT;
+            x = targetPos.x * ORIGINAL_HEIGHT;
+            y = targetPos.y * ORIGINAL_HEIGHT;
         }else{
             if(preCurrentPhase < 0.5){
                 dist = 1. / turn_num * (i-1 + 2 * preCurrentPhase);
             }else{
                 dist = 1. / turn_num * (i-1 + 2 * (preCurrentPhase - 0.5));
             }
-            if(dist < PEAK){
+            if(dist < 0.3){
                 r = max_width * dist * 3.3333;
             }else{
                 r = max_width * (1. - dist) * 1.4286;
             }
             
-            x = (fromPos.x + (toPos.x - fromPos.x) * dist) * ORIGINAL_WIDTH + r * cos(th) * ORIGINAL_HEIGHT;
-            y = (fromPos.y + (toPos.y - fromPos.y) * dist) * ORIGINAL_HEIGHT + r * sin(th) * ORIGINAL_HEIGHT;
+            //            x = (myPos.x + (targetPos.x - myPos.x) * dist) * ORIGINAL_WIDTH + r * cos(th) * ORIGINAL_HEIGHT;
+            //            y = (myPos.y + (targetPos.y - myPos.y) * dist) * ORIGINAL_HEIGHT + r * sin(th) * ORIGINAL_HEIGHT;
+            x = (myPos.x + (targetPos.x - myPos.x) * dist) * ORIGINAL_HEIGHT + r * cos(th) * ORIGINAL_HEIGHT;
+            y = (myPos.y + (targetPos.y - myPos.y) * dist) * ORIGINAL_HEIGHT + r * sin(th) * ORIGINAL_HEIGHT;
         }
         verts[i].set(x, y);
     }
@@ -111,15 +112,16 @@ void LineDrawer::update(){
     preCurrentPhase = currentPhase;
 }
 
-void LineDrawer::lineTo(float fromPos_x, float fromPos_y, float toPos_x, float toPos_y, float sz){
-    fromPos.x = fromPos_x;
-    fromPos.y = fromPos_y;
-    toPos.x = toPos_x;
-    toPos.y = toPos_y;
-    
-    size = sz;
+void LineDrawer::lineTo(float target_x, float target_y){
+    targetPos.x = target_x;
+    targetPos.y = target_y;
     
     update();
+    
+    glLineWidth(0.02);
+    vbo.updateColorData(cols, turn_num + 2);
+    vbo.updateVertexData(verts, turn_num + 2);
+    vbo.draw(GL_LINE_STRIP, 0, turn_num + 2);
 }
 
 void LineDrawer::invert(){
