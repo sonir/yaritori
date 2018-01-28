@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 51.0, 79.0, 1211.0, 887.0 ],
+		"rect" : [ 51.0, 79.0, 810.0, 887.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -258,7 +258,8 @@
 							"parameter_type" : 0,
 							"parameter_mmin" : -70.0,
 							"parameter_mmax" : 6.0,
-							"parameter_initial" : [ 0.0 ],
+							"parameter_initial_enable" : 1,
+							"parameter_initial" : [ 3.0 ],
 							"parameter_unitstyle" : 4
 						}
 
@@ -288,7 +289,8 @@
 							"parameter_type" : 0,
 							"parameter_mmin" : -70.0,
 							"parameter_mmax" : 6.0,
-							"parameter_initial" : [ 0.0 ],
+							"parameter_initial_enable" : 1,
+							"parameter_initial" : [ -11 ],
 							"parameter_unitstyle" : 4
 						}
 
@@ -318,7 +320,8 @@
 							"parameter_type" : 0,
 							"parameter_mmin" : -70.0,
 							"parameter_mmax" : 6.0,
-							"parameter_initial" : [ 0.0 ],
+							"parameter_initial_enable" : 1,
+							"parameter_initial" : [ -19 ],
 							"parameter_unitstyle" : 4
 						}
 
@@ -433,7 +436,8 @@
 							"parameter_type" : 0,
 							"parameter_mmin" : -70.0,
 							"parameter_mmax" : 6.0,
-							"parameter_initial" : [ 0.0 ],
+							"parameter_initial_enable" : 1,
+							"parameter_initial" : [ 3.0 ],
 							"parameter_unitstyle" : 4
 						}
 
@@ -463,7 +467,8 @@
 							"parameter_type" : 0,
 							"parameter_mmin" : -70.0,
 							"parameter_mmax" : 6.0,
-							"parameter_initial" : [ 0.0 ],
+							"parameter_initial_enable" : 1,
+							"parameter_initial" : [ -11 ],
 							"parameter_unitstyle" : 4
 						}
 
@@ -493,7 +498,8 @@
 							"parameter_type" : 0,
 							"parameter_mmin" : -70.0,
 							"parameter_mmax" : 6.0,
-							"parameter_initial" : [ 0.0 ],
+							"parameter_initial_enable" : 1,
+							"parameter_initial" : [ -19 ],
 							"parameter_unitstyle" : 4
 						}
 
@@ -945,7 +951,8 @@
 							"parameter_type" : 0,
 							"parameter_mmin" : -70.0,
 							"parameter_mmax" : 6.0,
-							"parameter_initial" : [ 0.0 ],
+							"parameter_initial_enable" : 1,
+							"parameter_initial" : [ 3.0 ],
 							"parameter_unitstyle" : 4
 						}
 
@@ -975,7 +982,8 @@
 							"parameter_type" : 0,
 							"parameter_mmin" : -70.0,
 							"parameter_mmax" : 6.0,
-							"parameter_initial" : [ 0.0 ],
+							"parameter_initial_enable" : 1,
+							"parameter_initial" : [ -11 ],
 							"parameter_unitstyle" : 4
 						}
 
@@ -1005,7 +1013,8 @@
 							"parameter_type" : 0,
 							"parameter_mmin" : -70.0,
 							"parameter_mmax" : 6.0,
-							"parameter_initial" : [ 0.0 ],
+							"parameter_initial_enable" : 1,
+							"parameter_initial" : [ -19 ],
 							"parameter_unitstyle" : 4
 						}
 
@@ -3032,7 +3041,7 @@
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 43.0, 215.0, 50.0, 22.0 ],
 									"style" : "",
-									"text" : "3893"
+									"text" : "0"
 								}
 
 							}
@@ -6989,7 +6998,7 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 25.0, 116.833328, 345.0, 25.0 ],
 					"style" : "",
-					"text" : "Adding audio to buffer ...[0%]"
+					"text" : "Setup completed."
 				}
 
 			}
@@ -10960,8 +10969,8 @@
 			"obj-133::obj-8::obj-13" : [ "Attack", "Attack", 2 ],
 			"obj-169" : [ "Master_R", "R", 0 ],
 			"obj-120::obj-8::obj-7" : [ "Output Gain[1]", "Output Gain", 5 ],
-			"obj-37" : [ "Rhythm_C", "Rhythm", 0 ],
 			"obj-148" : [ "Playback", "Playback", 0 ],
+			"obj-37" : [ "Rhythm_C", "Rhythm", 0 ],
 			"obj-166::obj-8::obj-15" : [ "Makeup[2]", "Makeup", 4 ],
 			"obj-51" : [ "Drone_C", "Drone", 0 ],
 			"obj-133::obj-8::obj-30" : [ "Ratio", "Ratio", 1 ],
