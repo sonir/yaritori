@@ -41,6 +41,7 @@ public:
     void drawSolo();
     void sendOSC(const string adr, param_u* args, int argNum);
     bool isSoloMode();
+    void setTremble(float val);
     
     void addNode(ofVec2f pos);
     void addEdge(ofVec2f node_a, ofVec2f node_b);

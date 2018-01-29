@@ -27,6 +27,7 @@ AgentMotion::AgentMotion() {
     
     GismoManager& gismo = GismoManager::getInstance();
     aspect = gismo.width_rate;
+    tremble = 1.0;
 }
 
 void AgentMotion::resetShape() {
@@ -201,6 +202,7 @@ void AgentMotion::update() {
 //    if(M_2XPI < t) {
 //        t = 0.0f;
 //    }
+    //tremble = 4.0;
     
     size_t += SIZE_MOD_STEP * frand();
     if(M_2XPI < size_t) {

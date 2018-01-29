@@ -58,7 +58,7 @@ public:
     float width_rate;
     ofVec2f center, dest;
     float centerX ,centerY;
-    
+    float tremble;
 
 private:
     //VBO
@@ -87,6 +87,7 @@ private:
     float grayScale;
     float t;
     float size_t;
+    
 };
 
 

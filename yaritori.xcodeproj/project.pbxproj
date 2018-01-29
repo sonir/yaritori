@@ -208,7 +208,7 @@
 		33ACF298200C032700268C3D /* RippleManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RippleManager.hpp; sourceTree = "<group>"; };
 		33ACF299200C032700268C3D /* timed_interpolation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = timed_interpolation.cpp; sourceTree = "<group>"; };
 		33ACF29A200C032700268C3D /* timed_interpolation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = timed_interpolation.hpp; sourceTree = "<group>"; };
-		33ACF29E200C032700268C3D /* AgentMotion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AgentMotion.cpp; sourceTree = "<group>"; };
+		33ACF29E200C032700268C3D /* AgentMotion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AgentMotion.cpp; sourceTree = "<group>"; wrapsLines = 0; };
 		33ACF29F200C032700268C3D /* AgentMotion.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AgentMotion.hpp; sourceTree = "<group>"; };
 		33ACF2A0200C032700268C3D /* LineDrawer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LineDrawer.cpp; sourceTree = "<group>"; };
 		33ACF2A1200C032700268C3D /* LineDrawer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LineDrawer.hpp; sourceTree = "<group>"; };

@@ -10,10 +10,12 @@
 #define animation_setup_h
 
 /////////////////// GLOBAL ///////////////////
-constexpr float BACKGROUND_DEFAULT_COLOR = 1.0;
-constexpr float ANIMATION_DEFAULT_COLOR = 0.0;
-constexpr float BACKGROUND_INVERT_COLOR = 0.0;
-constexpr float ANIMATION_INVERT_COLOR = 1.0;
+//Default colors
+constexpr float BACKGROUND_COLOR_DEFAULT = 1.0;
+constexpr float ANIMATION_COLOR_DEFAULT = 0.0;
+//Inverted colors
+constexpr float BACKGROUND_COLOR_INVERTED = 0.0;
+constexpr float ANIMATION_COLOR_INVERTED = 1.0;
 
 /////////////////// AGENT ///////////////////
 
@@ -27,12 +29,12 @@ constexpr float STEP_MIN = M_2XPI * 4.0f;
 
 constexpr float TREMOR_RATIO = 0.18f;//180119 MODIFIED BY 137 //0.12f;
 constexpr float STAY_RATIO = 1.0 - TREMOR_RATIO;
-constexpr float MOV_FIX = 0.02;
+constexpr float MOV_FIX = 0.02; //0.08; //0.02
 
 //Size modulation
 constexpr float SIZE_MOD_STRENGTH = 0.18;
 constexpr float SIZE_MOD_FLOOR = 1.0 - SIZE_MOD_STRENGTH;
-constexpr float SIZE_MOD_STEP = 0.04;
+constexpr float SIZE_MOD_STEP = 0.04;  //0.8;   //0.04
 
 //constexpr float dx = 0.0166f;
 constexpr float EASING_RATIO = 0.05;

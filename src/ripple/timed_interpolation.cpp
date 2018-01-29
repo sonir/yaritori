@@ -42,6 +42,17 @@ void TimedInterpolation::bang(double _durationMsec) {
     }
 }
 
+void TimedInterpolation::overBang() {
+    this->ready();
+    this->bang();
+}
+
+void TimedInterpolation::overBang(double _durationMsec) {
+    duration = _durationMsec;
+    waiting = false;
+    start = system_clock::now();
+}
+
 double TimedInterpolation::getd() {
     double result = 0.0;
     if (waiting) {

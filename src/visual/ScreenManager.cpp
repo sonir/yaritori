@@ -53,23 +53,22 @@ void ScreenManager::setEvents() {
         if(timerOn) {
             param_u* params = (param_u *)args;
             float duration = params[0].fval;
-            invertTimer.ready();
             invertOnNext = true;
-            invertState = false;
+            isInvert = false;
             timerOn = false;
             nextDuration = duration;
         } else {
             param_u* params = (param_u *)args;
             float duration = params[0].fval;
             this->invertTimer.bang(duration * 1000.0);
-            invertState = true;
+            isInvert = true;
             timerOn = true;
         }
     };
     
     auto invertEvent = [&](void* args) {
         param_u* params = (param_u *)args;
-        invertState = params[0].bval;
+        isInvert = params[0].bval;
         if(timerOn) timerOn = false;
     };
     
@@ -122,36 +121,30 @@ void ScreenManager::setEvents() {
     
 }
 
-void invertBackground() {
-    drawWhiteBack = !drawWhiteBack;
-}
-
-
-
 void ScreenManager::setAllColor(float bgColor) {
     
     GismoManager& gismo = GismoManager::getInstance();
-    if(bgColor == BACKGROUND_INVERT_COLOR) {
+    if(bgColor == BACKGROUND_COLOR_DEFAULT) {
         //Reset Colors for solo;
         param_u param;
-        param.fval = ANIMATION_INVERT_COLOR;
+        param.fval = ANIMATION_COLOR_INVERTED;
         gismo.lambdaBang("/rippleColor", &param);
         gismo.lambdaBang("/agentColor", &param);
         gismo.lambdaBang("/performanceColor", &param);
         gismo.lambdaBang("/lineColor", &param);
         
-        param.fval = BACKGROUND_INVERT_COLOR;
+        param.fval = BACKGROUND_COLOR_INVERTED;
         gismo.lambdaBang("/bgColor", &param);
     } else {
         //Reset Colors for solo;
         param_u param;
-        param.fval = ANIMATION_DEFAULT_COLOR;
+        param.fval = ANIMATION_COLOR_DEFAULT;
         gismo.lambdaBang("/rippleColor", &param);
         gismo.lambdaBang("/agentColor", &param);
         gismo.lambdaBang("/performanceColor", &param);
         gismo.lambdaBang("/lineColor", &param);
         
-        param.fval = BACKGROUND_DEFAULT_COLOR;
+        param.fval = BACKGROUND_COLOR_DEFAULT;
         gismo.lambdaBang("/bgColor", &param);
     }
 }
@@ -178,7 +171,7 @@ void ScreenManager::setup() {
     
     initCanvasSize(ORIGINAL_WIDTH, ORIGINAL_HEIGHT);    //Tell original width and original height to vsyn
     invertTimer.ready();
-    invertState = false;
+    isInvert = false;
     timerOn = false;
     invertOnNext = false;
 }
@@ -188,7 +181,7 @@ void ScreenManager::init(){
     initStatus();
     initMask();
     
-    colorState = true;
+    invertState = INVERT_STATE_DEFAULT;
 }
 
 void ScreenManager::initFbo(){
@@ -328,31 +321,7 @@ void ScreenManager::mask(){
 
 void ScreenManager::begin(){
     
-    //Invert
-    if(timerOn) {
-        float invDur = invertTimer.get();
-        if(invDur < 1.0) {
-            invertState = true;
-        } else if(1.0 <= invDur) {
-            invertState = false;
-            timerOn = false;
-        }else {
-            invertState = false;
-        }
-    }
-    
-    if(invertState) {
-        setAllColor(0.0);
-    } else {
-        setAllColor(BACKGROUND_DEFAULT_COLOR);
-    }
-    
-    if(invertOnNext) {
-        invertTimer.bang(nextDuration * 1000.0);
-        invertState = true;
-        timerOn = true;
-        invertOnNext = false;
-    }
+    updateColor();
     
     
     fbo.begin();
@@ -574,9 +543,72 @@ void ScreenManager::setFullScreenConfig() {
 }
 
 ofColor ScreenManager::getDrawColor() {
-    if(drawWhiteBack) {
-        return ofColor(0);
-    } else {
-        return ofColor(255);
+//    if(drawWhiteBack) {
+//        return ofColor(0);
+//    } else {
+//        return ofColor(255);
+//    }
+    
+    switch (invertState) {
+        case INVERT_STATE_DEFAULT:
+            return ofFloatColor(0);
+            break;
+        case INVERT_STATE_FLASH:
+            return ofFloatColor(0);
+            break;
+        case INVERT_STATE_INVERTED:
+            return ofFloatColor(255);
+            break;
+        default:
+            return ofFloatColor(0);
+            break;
+    }
+}
+
+
+void ScreenManager::updateColor() {
+    //update timed invert
+    if(timerOn) {
+        float invDur = invertTimer.get();
+        if(invDur < 1.0) {
+            isInvert = true;
+        } else if(1.0 <= invDur) {
+            isInvert = false;
+            timerOn = false;
+        }else {
+            isInvert = false;
+        }
+    }
+    
+    
+    
+    //set color
+    switch (invertState) {
+        case INVERT_STATE_DEFAULT:
+            setAllColor(BACKGROUND_COLOR_DEFAULT);
+            break;
+        case INVERT_STATE_FLASH:
+            setAllColor(BACKGROUND_COLOR_DEFAULT);
+            break;
+        case INVERT_STATE_INVERTED:
+            setAllColor(BACKGROUND_COLOR_INVERTED);
+            break;
+        default:
+            setAllColor(BACKGROUND_COLOR_DEFAULT);
+            break;
+    }
+    
+
+    //    if(isInvert) {
+    //        setAllColor(0.0);
+    //    } else {
+    //        setAllColor(BACKGROUND_DEFAULT_COLOR);
+    //    }
+    
+    if(invertOnNext) {
+        invertTimer.bang(nextDuration * 1000.0);
+        isInvert = true;
+        timerOn = true;
+        invertOnNext = false;
     }
 }

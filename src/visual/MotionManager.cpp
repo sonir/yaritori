@@ -47,6 +47,19 @@ void MotionManager::setEvents() {
     gismo.lambdaAdd("/agentColor", colorEvent);
     
     
+    auto trembleEvent = [&](void* args){ //<- keep this desctiption
+        param_u* params = (param_u *)args;
+        int enable = params[0].ival;
+        
+        if(enable == 1) {
+            this -> setTremble(8.0);
+        } else {
+            this -> setTremble(1.0);
+        }
+    };
+    
+    gismo.lambdaAdd("/tremble", trembleEvent);
+    
 }
 
 void MotionManager::setShapes() {
@@ -256,6 +269,13 @@ void MotionManager::addNode(ofVec2f pos) {
 
 void MotionManager::addEdge(ofVec2f node_a, ofVec2f node_b) {
     
+}
+
+void MotionManager::setTremble(float val) {
+    for(int i = 0; i < AG_MAX; i++) {
+        agent[i].tremble = val;
+        
+    }
 }
 
 
