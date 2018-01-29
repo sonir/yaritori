@@ -31,7 +31,11 @@ public:
         
     }
     
+    //Variables
     slMetro *metro;
+    bool stop = false;
+    
+    //Methods
     void set(float dur);
     bool update();
 

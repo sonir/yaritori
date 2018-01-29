@@ -10,6 +10,10 @@
 
 using namespace std;
 
+
+
+//C++ Class
+
 void VSyn::setup(){
     
   ofSetFrameRate(30);
@@ -689,6 +693,23 @@ void VSyn::test(){
     std::cout << "VSyn:: addAgShape is ok." << std::endl;
 
     
+    //Test Where am I
+    
+    region_e where;
+    //float width = gismo.width_rate;
+    float width = 1.5;
+    posi_t posi;
+    posi.x = 0.49f;
+    posi.y = 0.5f;
+    where = whereAmI(posi, width);
+    assert(where == REGION_LEFT);
+    posi.x = 0.5f;
+    where = whereAmI(posi, width);
+    assert(where == REGION_CENTER);
+    posi.x = 1.0f;
+    where = whereAmI(posi, width);
+    assert(where == REGION_RIGHT);
+    cout << "VSyn :: CFunc :: whereAmI is OK." << endl;
     
     
     

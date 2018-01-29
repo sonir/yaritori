@@ -8,48 +8,20 @@
 
 #include "SoundTrigger.hpp"
 
-/*
-sound_t shape2sound(ag_shape_t shape, int ag_id){
-    
-    sound_t snd;
-    
-    if ( shape.node_count>GENRE0 ){
-        
-        snd.genre = 5;
-        
-    }else if( shape.node_count>GENRE1 ){
 
-        snd.genre = 4;
-        
-    }else if( shape.node_count>GENRE2 ){
-
-        snd.genre = 3;
-        
-    }else if( shape.node_count>GENRE3 ){
-
-        snd.genre = 2;
-        
-    }else if( shape.node_count>GENRE4 ){
-
-        snd.genre = 1;
-        
-    }else if( shape.node_count>GENRE5 ){
-
-        snd.genre = 0;
-        
-    }else if( shape.node_count<GENRE5 ){
-        
-        snd.genre = 0;
-        
-    }
+//C Functions
+region_e whereAmI(posi_t posi, float width){
     
-    snd.song = ag_id%1000;
     
-    return snd;
     
+    float regionWidth = width/REGION_NUM;
+    float here = posi.x / regionWidth;
+    
+    region_e result = (region_e)(here+1);
+    return result;
     
 }
-*/
+
 
 sound_t shape2sound(ag_shape_t shape, int ag_id){
     
@@ -82,6 +54,7 @@ sound_t shape2sound(ag_shape_t shape, int ag_id){
     }
         
     
+    //SetSong
     snd.song = ag_id%1000;
     
     return snd;
@@ -129,6 +102,9 @@ sound_t ag2sound(ag_t *ag, sound_t *snd){
     snd->slice = ival;
     //Set the efval according to condition
     snd->effect_val = fval;
+    //Set SpeakerRegion
+    GismoManager& gismo = GismoManager::getInstance();
+    snd->region = whereAmI(ag->posi, gismo.width_rate);
     
 }
 
@@ -144,6 +120,8 @@ void SoundTrigger::trigger(void *args){
     m.addIntArg(params[1].ival); //set SongID
     m.addIntArg(params[2].ival); //set SliceID
     m.addFloatArg(params[3].fval); //set Effect val
+    m.addIntArg(params[4].ival); //set Region Num (0=Main, 1=LEFT, 2=CENTER, 3=RIGHT)
+    
     //Send Created Message
     sender.sendMessage(m,false);
     
