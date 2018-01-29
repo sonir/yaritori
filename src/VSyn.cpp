@@ -67,11 +67,9 @@ void VSyn::setup(){
     gismo.eventAdd("/ripple", &ripple);
     gismo.eventAdd("/solo", &visual.events.solo);
     
-    
     //Set ag_shape_t and gismo pointer
     visual.motion.setShapePtr(ag_shapes);
     visual.events.setMotionManagerPtr(&visual.motion);
-    visual.events.setRippleManagerPtr(&ripple);
     ripple.setMotionManagerPtr(&visual.motion);
     
     //Set window size for yaritori
@@ -80,7 +78,7 @@ void VSyn::setup(){
     renderer.setup(DISPLAY_WIDTH, DISPLAY_HEIGHT);
 #else
     scManager.setup();
-    renderer.setup(ORIGINAL_HEIGHT, ORIGINAL_HEIGHT);
+    renderer.setup(BASE_HEIGHT, BASE_HEIGHT);
     renderer.setCircleBaseRad(DISPLAY_WIDTH);
 #endif
     
@@ -90,10 +88,10 @@ void VSyn::setup(){
     ripple.setColor(1.0);
     ofBackground(0);
 #else
-    scManager.setBackground(BACKGROUND_DEFAULT_COLOR);
-    visual.motion.setColor(ANIMATION_DEFAULT_COLOR);
-    renderer.setColor(ANIMATION_DEFAULT_COLOR);
-    ripple.setColor(ANIMATION_DEFAULT_COLOR);
+    scManager.setBackground(BACKGROUND_COLOR_DEFAULT);
+    visual.motion.setColor(ANIMATION_COLOR_DEFAULT);
+    renderer.setColor(ANIMATION_COLOR_DEFAULT);
+    ripple.setColor(ANIMATION_COLOR_DEFAULT);
 #endif
     
     //Create TestClass
@@ -405,33 +403,6 @@ void VSyn::draw(){
 
     //drawing particle
     particle.draw();
-    
-
-//#ifdef DEBUG_MODE
-//    //drawAgentsForSimpleGraphics for debugging
-//    drawAgentsWithChar.draw(&gismo, screen_w, screen_h);
-//
-//#else
-//    //drawAgents
-//    for(int i = 0; i < 3; i++){
-//        scManager.begin(i);
-//
-//        //Draw Agents normally
-//        drawAgents(&visual);
-//
-//        //Ripple
-//        ripple.draw();
-//
-//#ifdef PERFORMANCE_MODE
-//    performanceManager.updateLines();
-//    performanceManager.updateLinesInverted();
-//    drawPerformance(&performanceManager);
-//#endif
-//        scManager.end(i);
-//    }
-//
-//    scManager.draw();
-//#endif
     
 #ifdef DEBUG_MODE
     //drawAgentsForSimpleGraphics for debugging

@@ -16,6 +16,10 @@
 #include "ag_shape.h"
 
 
+enum animation_mode_e {
+    ANIMATION_MODE_NORMAL,
+    ANIMATION_MODE_TREMBLE,
+};
 
 struct vec2 {
     float x;
@@ -32,6 +36,7 @@ public:
     
     void draw();
     void update();
+    void updateStep();
     void updatePhase();
     void updateCenter();
     void updatePosition();
@@ -44,7 +49,7 @@ public:
     void setShapePtr(ag_shape_t *shapePtr);
     
     //event
-    void invertColor();
+//    void invertColor();
     void setColor(float c);
     
     
@@ -58,7 +63,7 @@ public:
     float width_rate;
     ofVec2f center, dest;
     float centerX ,centerY;
-    float tremble;
+    animation_mode_e animationMode;
 
 private:
     //VBO
@@ -83,7 +88,13 @@ private:
     float modPhase[MOD_NUM];
     float carPhase[MOD_NUM];
     float phase[MOD_NUM];
+    float tremorRatio;
+    float stayRatio;
     float sizeMod;
+    float sizeModStrength;
+    float sizeModFloor;
+    float sizeModStep;
+    float trembleCenter;
     float grayScale;
     float t;
     float size_t;

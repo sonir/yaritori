@@ -8,18 +8,18 @@
 
 #include "VboRenderer.hpp"
 
+VboRenderer::VboRenderer() {
+    setEvents();
+}
+
 void VboRenderer::setup() {
     circleRenderer.setup();
     lineRenderer.setup();
-    
-    setEvents();
 }
 
 void VboRenderer::setup(float w, float h) {
     circleRenderer.setup(w, h);
     lineRenderer.setup(w, h);
-    
-    setEvents();
 }
 
 

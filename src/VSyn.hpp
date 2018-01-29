@@ -143,28 +143,6 @@ class VSyn : public Event {
 
                     //metro->resetStart();
                     metro->stop = false;
-                    
-                } else if (!flg){
-                    //metro->stop();
-                    metro->stop = true;
-                    
-                }
-                
-            };
-            gismo.lambdaAdd("/yaritori/run", f3);
-            
-
-            
-            //Run or Stop gismodel in PHASE2
-            auto f3 = [&](void* args){ //<- keep this desctiption
-                param_u *params = (param_u *)args;
-                
-                bool flg = (bool)params->bval;
-                
-                if(flg){
-
-                    //metro->resetStart();
-                    metro->stop = false;
                     param_u param ;
                     param.bval = false;
 //                    gismo.lambdaBang("/invert", &param);
@@ -182,8 +160,6 @@ class VSyn : public Event {
                 
             };
             gismo.lambdaAdd("/yaritori/run", f3);
-            
-
             
         }
         void setup();

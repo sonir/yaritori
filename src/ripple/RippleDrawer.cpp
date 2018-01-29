@@ -29,7 +29,7 @@ void RippleDrawer::initVertices() {
     //init verts
     for(int j = 0; j < rippleNum; j++){
         for(int i = 0; i < res; i++){
-            verts[j * res + i].set(centerX * ORIGINAL_HEIGHT, centerY * ORIGINAL_HEIGHT);
+            verts[j * res + i].set(centerX * BASE_WIDTH, centerY * BASE_HEIGHT);
 //            verts[j * res + i].set(centerX * ORIGINAL_WIDTH, centerY * ORIGINAL_HEIGHT);
             cols[j * res + i] = ofFloatColor(0., 0., 0., 1.);
         }
@@ -89,9 +89,9 @@ void RippleDrawer::updateVertex(){
         for(int i = 0; i < res; i++){
             float th = theta * i;
             if(currentTime - lag[j] > 0){
-                float x = centerX * ORIGINAL_HEIGHT + currentRadius * cos(th) * ORIGINAL_HEIGHT;
+                float x = centerX * BASE_HEIGHT + currentRadius * cos(th) * BASE_HEIGHT;
 //                float x = centerX * ORIGINAL_WIDTH + currentRadius * cos(th) * ORIGINAL_HEIGHT;
-                float y = centerY * ORIGINAL_HEIGHT + currentRadius * sin(th) * ORIGINAL_HEIGHT;
+                float y = centerY * BASE_HEIGHT + currentRadius * sin(th) * BASE_HEIGHT;
                 verts[j * res + i].set(x, y);
             }
         }

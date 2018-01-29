@@ -49,12 +49,12 @@ void MotionManager::setEvents() {
     
     auto trembleEvent = [&](void* args){ //<- keep this desctiption
         param_u* params = (param_u *)args;
-        int enable = params[0].ival;
+        bool enable = params[0].bval;
         
-        if(enable == 1) {
-            this -> setTremble(8.0);
+        if(enable) {
+            this -> setTremble(ANIMATION_MODE_TREMBLE);
         } else {
-            this -> setTremble(1.0);
+            this -> setTremble(ANIMATION_MODE_NORMAL);
         }
     };
     
@@ -66,12 +66,6 @@ void MotionManager::setShapes() {
     for(int i = 0; i < AG_MAX; i++){
         agent[i].pShape = &pShapes[i];
         agent[i].initVbo();
-    }
-}
-
-void MotionManager::invertColor() {
-    for(int i = 0; i < AG_MAX; i++){
-        agent[i].invertColor();
     }
 }
 
@@ -87,18 +81,7 @@ void MotionManager::addSolo(int _id, float duration) {
     isSolo[_id] = true;
     soloTimers[_id].bang(duration * 1000.0);
     soloCount++;
-    
-//    float args[2];
-//    ag_t* ag = gismo.getAgent(_id);
-//    args[0] = ag->posi.x;
-//    args[1] = ag->posi.y;
-//    gismo.bang("/ripple", args);
-    
-//    param_u params[3];
-//    params[0].ival = _id;
-//    params[1].fval = 1.0;
-//    params[2].fval = 1.0;
-//    gismo.bang("/ag_ripple", params);
+
 }
 
 void MotionManager::deleteSolo(int _id) {
@@ -160,8 +143,8 @@ void MotionManager::drawAll() {
             agent[i].draw();
             
 //            ofSetColor(255, 0, 0);
-//            ofDrawBitmapString(i, ag->posi.x * aspect * ORIGINAL_HEIGHT, ag->posi.y * ORIGINAL_HEIGHT);
-//            ofDrawCircle(ag->posi.x * ORIGINAL_HEIGHT * aspect, ag->posi.y * ORIGINAL_HEIGHT, 3);
+//            ofDrawBitmapString(i, ag->posi.x * aspect * BASE_HEIGHT, ag->posi.y * BASE_HEIGHT);
+//            ofDrawCircle(ag->posi.x * BASE_HEIGHT * aspect, ag->posi.y * BASE_HEIGHT, 3);
             
             //Draw interaction
             if(ag->interact_with != -1) {
@@ -271,9 +254,10 @@ void MotionManager::addEdge(ofVec2f node_a, ofVec2f node_b) {
     
 }
 
-void MotionManager::setTremble(float val) {
+void MotionManager::setTremble(animation_mode_e state) {
+
     for(int i = 0; i < AG_MAX; i++) {
-        agent[i].tremble = val;
+        agent[i].animationMode = state;
         
     }
 }

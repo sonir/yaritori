@@ -57,11 +57,11 @@ public:
     void setShakeDuration(float go, float out, float back);
     
     void setBackground(float c);
+    void setAllColor(float _bgColor);
     void drawBackground();
-    bool colorState;
-    void setAllColor(float bgColor);
     
     
+    //FullSCreen
     void setFullScreen();
     void setFullScreenConfig();
     ofColor getDrawColor();
@@ -104,16 +104,16 @@ private:
     
     //Invert of color and bg
     void updateColor();
-    
+    void updateInvert();
     TimedInterpolation invertTimer;
-    
     float bgColor;  //Background Color;
     bool isInvert;
+    bool drawFlash, drawInverted;
     invert_state_e invertState;
     bool timerOn;
     bool invertOnNext;
     float nextDuration;
-    ofShader shader;
+//    ofShader shader;
     
     
 };

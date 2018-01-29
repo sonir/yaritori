@@ -39,13 +39,20 @@ constexpr int MARGIN_1 = MARGIN_1_LENGTH * PixPerMm_H;
 constexpr int MARGIN_W = 0;
 constexpr int MARGIN_H = 0;
 
-#ifdef SINGLE_MODE_SCREEN
+
 constexpr float ASPECT_RATE =  5.43333;
+#ifdef SINGLE_MODE_SCREEN
 constexpr int ORIGINAL_WIDTH = DISPLAY_WIDTH;   //Ratio :: 5.43333
 constexpr int ORIGINAL_HEIGHT = DISPLAY_HEIGHT;
+
+constexpr int BASE_WIDTH = DISPLAY_HEIGHT / ASPECT_RATE;
+constexpr int BASE_HEIGHT = DISPLAY_HEIGHT;
 #else
 constexpr int ORIGINAL_WIDTH = DISPLAY_WIDTH * 3 + MARGIN_0 * 2. ;
 constexpr int ORIGINAL_HEIGHT = DISPLAY_HEIGHT;
+
+constexpr int BASE_WIDTH = ORIGINAL_HEIGHT;
+constexpr int BASE_HEIGHT = ORIGINAL_HEIGHT;
 #endif
 
 #ifdef SINGLE_MODE_SCREEN

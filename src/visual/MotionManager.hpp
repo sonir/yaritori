@@ -26,7 +26,7 @@ public:
     bool isSolo[AG_MAX];
     void setShapes();
     
-    void invertColor();
+//    void invertColor();
     void setColor(float c);
     void setEvents();
     
@@ -41,7 +41,7 @@ public:
     void drawSolo();
     void sendOSC(const string adr, param_u* args, int argNum);
     bool isSoloMode();
-    void setTremble(float val);
+    void setTremble(animation_mode_e state);
     
     void addNode(ofVec2f pos);
     void addEdge(ofVec2f node_a, ofVec2f node_b);

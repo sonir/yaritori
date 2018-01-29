@@ -17,7 +17,7 @@ LineDrawer::LineDrawer(){
     myPos.y = 0.5;
     
     for(int i = 0; i < TURN_NUM_MAX + 2; i++){
-        verts[i].set(0.5 * ORIGINAL_HEIGHT, 0.5 * ORIGINAL_HEIGHT);
+        verts[i].set(0.5 * BASE_WIDTH, 0.5 * BASE_HEIGHT);
         cols[i].set(0., 0., 0., 1.);
     }
     
@@ -84,11 +84,11 @@ void LineDrawer::update(){
             th = theta + PI * 1.5 + PI * (i-1);
         }
         if(i == 0){
-            x = myPos.x * ORIGINAL_HEIGHT;
-            y = myPos.y * ORIGINAL_HEIGHT;
+            x = myPos.x * BASE_HEIGHT;
+            y = myPos.y * BASE_HEIGHT;
         }else if(i == turn_num + 1){
-            x = targetPos.x * ORIGINAL_HEIGHT;
-            y = targetPos.y * ORIGINAL_HEIGHT;
+            x = targetPos.x * BASE_HEIGHT;
+            y = targetPos.y * BASE_HEIGHT;
         }else{
             if(preCurrentPhase < 0.5){
                 dist = 1. / turn_num * (i-1 + 2 * preCurrentPhase);
@@ -101,10 +101,10 @@ void LineDrawer::update(){
                 r = max_width * (1. - dist) * 1.4286;
             }
             
-            //            x = (myPos.x + (targetPos.x - myPos.x) * dist) * ORIGINAL_WIDTH + r * cos(th) * ORIGINAL_HEIGHT;
-            //            y = (myPos.y + (targetPos.y - myPos.y) * dist) * ORIGINAL_HEIGHT + r * sin(th) * ORIGINAL_HEIGHT;
-            x = (myPos.x + (targetPos.x - myPos.x) * dist) * ORIGINAL_HEIGHT + r * cos(th) * ORIGINAL_HEIGHT;
-            y = (myPos.y + (targetPos.y - myPos.y) * dist) * ORIGINAL_HEIGHT + r * sin(th) * ORIGINAL_HEIGHT;
+            //            x = (myPos.x + (targetPos.x - myPos.x) * dist) * BASE_WIDTH + r * cos(th) * BASE_HEIGHT;
+            //            y = (myPos.y + (targetPos.y - myPos.y) * dist) * BASE_HEIGHT + r * sin(th) * BASE_HEIGHT;
+            x = (myPos.x + (targetPos.x - myPos.x) * dist) * BASE_WIDTH + r * cos(th) * BASE_HEIGHT;
+            y = (myPos.y + (targetPos.y - myPos.y) * dist) * BASE_HEIGHT + r * sin(th) * BASE_HEIGHT;
         }
         verts[i].set(x, y);
     }

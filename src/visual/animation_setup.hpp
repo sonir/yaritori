@@ -27,14 +27,23 @@ constexpr float SIZE_FIX = 0.5;
 constexpr float STEP_MAX = M_2XPI * 6.0f;
 constexpr float STEP_MIN = M_2XPI * 4.0f;
 
-constexpr float TREMOR_RATIO = 0.18f;//180119 MODIFIED BY 137 //0.12f;
+constexpr float TREMOR_RATIO = 0.09f;//180119 MODIFIED BY 137 //0.12f;
 constexpr float STAY_RATIO = 1.0 - TREMOR_RATIO;
-constexpr float MOV_FIX = 0.02; //0.08; //0.02
+constexpr float MOV_FIX = 0.04; //0.08; //0.02
 
 //Size modulation
 constexpr float SIZE_MOD_STRENGTH = 0.18;
 constexpr float SIZE_MOD_FLOOR = 1.0 - SIZE_MOD_STRENGTH;
 constexpr float SIZE_MOD_STEP = 0.04;  //0.8;   //0.04
+
+//Tremble configuration
+constexpr float TREMBLE_TREMOR_RATIO = 0.24f;//180119 MODIFIED BY 137 //0.12f;
+constexpr float TREMBLE_STAY_RATIO = 1.0 - TREMOR_RATIO;
+constexpr float TREMBLE_RATIO_CENTER = 0.008;
+
+constexpr float TREMBLE_SIZE_MOD_STRENGTH = 0.2;
+constexpr float TREMBLE_SIZE_MOD_FLOOR = 1.0 - TREMBLE_SIZE_MOD_STRENGTH;
+constexpr float TREMBLE_SIZE_MOD_STEP =  0.8;
 
 //constexpr float dx = 0.0166f;
 constexpr float EASING_RATIO = 0.05;
