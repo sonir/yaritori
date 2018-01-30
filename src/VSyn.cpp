@@ -564,11 +564,11 @@ void VSyn::test(){
     
     initAgentActive(&ag);
     ag.posi.x = 0.25f; ag.posi.y = 0.5f;
-    gismo.addAgent(ag);
+//    gismo.addAgent(ag);
     ag.posi.x = 0.75f; ag.posi.y = 0.5f;
-    gismo.addAgent(ag);
-    gismo.addAgent(ag);
-    
+//    gismo.addAgent(ag);
+//    gismo.addAgent(ag);
+    ag.mov = MOV_MINIMUM;
     
     
     for(int i=0;i<DUMMY_AG_A_NUM;i++) gismo.addAgent(ag);

@@ -12,7 +12,7 @@
 //Set running mode
 #define DEBUG_MODE
 #define DUMMY_AG_A_NUM 12//1000
-#define DUMMY_AG_B_NUM 5//1000
+#define DUMMY_AG_B_NUM 0//5//1000
 
 #define PERFORMANCE_MODE
 #define GISMO_UPDATE_INTERVAL 0.033

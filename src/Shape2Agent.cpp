@@ -20,11 +20,16 @@ ag_t shape2Agent(ag_shape_t shape){
     if (ag.size < AG_SIZE_MIN)ag.size = AG_SIZE_MIN;
     
     if (shape.node_count !=0){
-        ag.mov = ( NODE_AVG / shape.node_count ) * M_FIX;
+        ag.mov = ( (float) NODE_AVG / shape.node_count ) * M_FIX;
     } else {
 
         ag.mov = ( (NODE_AVG * 2) * M_FIX );
         
+    }
+    if(ag.mov < MOV_MINIMUM){
+
+        ag.mov = MOV_MINIMUM;
+
     }
     
     cout << "view: " << ag.view << endl;

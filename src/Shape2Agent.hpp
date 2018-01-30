@@ -15,6 +15,8 @@
 #define M_FIX 0.035 //0.0005 //Basic param for move
 #define NODE_AVG 20
 #define AG_SIZE_MIN 0.05f
+#define MOV_MINIMUM 0.0005f
+
 
 #include <stdio.h>
 #include "ag_shape.h"
