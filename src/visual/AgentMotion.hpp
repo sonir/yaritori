@@ -63,7 +63,7 @@ public:
     bool isActive;
     float size;
     float width_rate;
-    ofVec2f center, dest;
+    ofVec2f center, dest, noise;
     float centerX ,centerY;
     
     animation_mode_e animationMode;

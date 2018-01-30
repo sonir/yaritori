@@ -61,7 +61,7 @@ void LineDrawer::update(){
     float max_width;
     
     turn_num = int(ofMap(distance, 0., DISPLAY_HEIGHT, 2., TURN_NUM_MAX));
-    max_width = ofMap(distance, 0., DISPLAY_HEIGHT, minR, maxR) * (size + 1.) / 2.;
+    max_width = WAVE_SIZE_RATIO * ofMap(distance, 0., DISPLAY_HEIGHT, minR, maxR) * (size + 1.) * 0.5;
     
     currentPhase = interpolation.get();
     

@@ -26,11 +26,8 @@ AgentMotion::AgentMotion() {
 //    animationMode = ANIMATION_MODE_NORMAL;
     animationMode = ANIMATION_MODE_TREMBLE;
     
-    sizeModStrength =SIZE_MOD_STRENGTH;
-    sizeModFloor = SIZE_MOD_FLOOR;
-    sizeModStep = SIZE_MOD_STEP;
-    modBoost = 1.0;
     setModValues();
+    
 }
 
 void AgentMotion::resetShape() {
@@ -133,8 +130,12 @@ void AgentMotion::updateCenter() {
                 break;
             case ANIMATION_MODE_TREMBLE:
                 //Set tremble
-                dest.x += (frand() * 2.0 - 1.0 ) * TREMBLE_RATIO_CENTER * ( 1.0 -  pAg->size);
-                dest.y += (frand() * 2.0 - 1.0 ) * TREMBLE_RATIO_CENTER * ( 1.0 -  pAg->size);
+
+                if(dest.distance(center) < 0.0001 ) {
+                    dest.x += (frand() * 2.0 - 1.0 ) * TREMBLE_RATIO_CENTER * ( 1.0 -  pAg->size);
+                    dest.y += (frand() * 2.0 - 1.0 ) * TREMBLE_RATIO_CENTER * ( 1.0 -  pAg->size);
+                }
+                
                 
                 center += (dest - center) * TREMBLE_EASING_RATIO;
                 break;

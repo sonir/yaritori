@@ -42,7 +42,7 @@ constexpr float TREMBLE_STAY_RATIO = 1.0 - TREMOR_RATIO;
 constexpr float TREMBLE_STEP_BOOST = 70.3;
 
 constexpr float TREMBLE_RATIO_CENTER = 0.3;    //Center position jumping
-constexpr float TREMBLE_EASING_RATIO = 0.01;    //Slow easing
+constexpr float TREMBLE_EASING_RATIO = 0.03;    //Slow easing
 
 constexpr float TREMBLE_SIZE_MOD_STRENGTH = 0.02;
 constexpr float TREMBLE_SIZE_MOD_FLOOR = 1.0 - TREMBLE_SIZE_MOD_STRENGTH;
@@ -53,13 +53,12 @@ constexpr float EASING_RATIO = 0.05;
 
 
 /////////////////// WAVEFORM ///////////////////
-static constexpr float cycle = 200;   //msec
-static constexpr float maxR = 0.5;    //Max amplitude
-static constexpr float minR = 0.03;    //Min amplitude
-static const int TURN_NUM_MAX = 100;  //num of feature points
-static constexpr float PEAK = 0.3;  //peak point of wave amplitude
-
-
+constexpr float cycle = 200;   //msec
+constexpr float maxR = 1.0;    //Max amplitude
+constexpr float minR = 0.03;    //Min amplitude
+constexpr int TURN_NUM_MAX = 100;  //num of feature points
+constexpr float PEAK = 0.3;  //peak point of wave amplitude
+constexpr float WAVE_SIZE_RATIO = 0.5;
 
 /////////////////// Ripple ///////////////////
 constexpr float RIPPLE_ALPHA_FIX_BLACK = 0.3;

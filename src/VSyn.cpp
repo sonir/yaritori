@@ -425,6 +425,7 @@ void VSyn::draw(){
     
     //Draw Agents normally
     drawAgents(&visual);
+    
     //Ripple
     ripple.draw();
     
