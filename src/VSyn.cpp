@@ -443,6 +443,9 @@ void VSyn::draw(){
     renderer.draw();
     scManager.end();
     scManager.draw();
+    
+    ofSetColor(scManager.getDrawColor());
+    ofDrawBitmapString("fps = " + ofToString(ofGetFrameRate()), 10, 20);
 #endif
     
     
@@ -537,62 +540,6 @@ void VSyn::draw(){
 }
 
 void VSyn::keyPressed(int key) {
-    switch (key) {
-        case 'y': {
-            scManager.setFullScreen();
-            break;
-        }
-        case 's': {
-            param_u params[2];
-            params[0].ival = 1;
-            params[1].fval = 1.0;
-            gismo.bang("/solo", params);
-            
-            break;
-        }
-        case 'i': {
-            param_u params;
-            params.bval = true;
-            gismo.lambdaBang("/invert", &params);
-            
-            break;
-        }
-        case 'k': {
-            param_u params;
-            params.fval = 4.0;
-            gismo.lambdaBang("/visual/timed_invert", &params);
-            
-            break;
-        }
-        case 'r': {
-            float vals[4];
-            vals[0] = 0.25;
-            vals[1] = 0.5;
-            vals[2] = 1.0;
-            vals[3] = 1.0;
-            gismo.bang("/ripple", vals);
-            break;
-        }
-        case '1': {
-            param_u params[3];
-            params[0].ival = 1;
-            params[1].ival = 0;
-            params[2].ival = -1;
-            
-            gismo.bang("/visual/shake", params);
-            break;
-        }
-        
-        case '2': {
-            param_u params[3];
-            params[0].ival = 1;
-            params[1].ival = 0;
-            params[2].ival = 1;
-            
-            gismo.bang("/visual/shake", params);
-            break;
-        }
-    }
     
 }
 

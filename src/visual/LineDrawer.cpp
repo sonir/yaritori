@@ -57,12 +57,11 @@ void LineDrawer::setColor(float c) {
 
 
 void LineDrawer::update(){
-    //    float distance = ofDist(myPos.x, myPos.y, targetPos.x, targetPos.y) * ofDist(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
-    float distance = ofDist(myPos.x, myPos.y, targetPos.x, targetPos.y);
+    float distance = ofDist(myPos.x * BASE_WIDTH, myPos.y * BASE_HEIGHT, targetPos.x * BASE_WIDTH, targetPos.y * BASE_HEIGHT);
     float max_width;
     
     turn_num = int(ofMap(distance, 0., DISPLAY_HEIGHT, 2., TURN_NUM_MAX));
-    max_width = ofMap(distance, 0., DISPLAY_HEIGHT, minR, maxR);
+    max_width = ofMap(distance, 0., DISPLAY_HEIGHT, minR, maxR) * (size + 1.) / 2.;
     
     currentPhase = interpolation.get();
     
@@ -100,9 +99,7 @@ void LineDrawer::update(){
             }else{
                 r = max_width * (1. - dist) * 1.4286;
             }
-            
-            //            x = (myPos.x + (targetPos.x - myPos.x) * dist) * BASE_WIDTH + r * cos(th) * BASE_HEIGHT;
-            //            y = (myPos.y + (targetPos.y - myPos.y) * dist) * BASE_HEIGHT + r * sin(th) * BASE_HEIGHT;
+
             x = (myPos.x + (targetPos.x - myPos.x) * dist) * BASE_WIDTH + r * cos(th) * BASE_HEIGHT;
             y = (myPos.y + (targetPos.y - myPos.y) * dist) * BASE_HEIGHT + r * sin(th) * BASE_HEIGHT;
         }
@@ -112,9 +109,11 @@ void LineDrawer::update(){
     preCurrentPhase = currentPhase;
 }
 
-void LineDrawer::lineTo(float target_x, float target_y){
+void LineDrawer::lineTo(float target_x, float target_y, float _size){
     targetPos.x = target_x;
     targetPos.y = target_y;
+    
+    size = _size;
     
     update();
     
@@ -122,6 +121,7 @@ void LineDrawer::lineTo(float target_x, float target_y){
     vbo.updateColorData(cols, turn_num + 2);
     vbo.updateVertexData(verts, turn_num + 2);
     vbo.draw(GL_LINE_STRIP, 0, turn_num + 2);
+    
 }
 
 void LineDrawer::invert(){

@@ -34,16 +34,19 @@ constexpr float MOV_FIX = 0.04; //0.08; //0.02
 //Size modulation
 constexpr float SIZE_MOD_STRENGTH = 0.18;
 constexpr float SIZE_MOD_FLOOR = 1.0 - SIZE_MOD_STRENGTH;
-constexpr float SIZE_MOD_STEP = 0.04;  //0.8;   //0.04
+constexpr float SIZE_MOD_STEP = 0.03;  //0.8;   //0.04
 
 //Tremble configuration
-constexpr float TREMBLE_TREMOR_RATIO = 0.24f;//180119 MODIFIED BY 137 //0.12f;
+constexpr float TREMBLE_TREMOR_RATIO = 0.09f;//180119 MODIFIED BY 137 //0.12f;
 constexpr float TREMBLE_STAY_RATIO = 1.0 - TREMOR_RATIO;
-constexpr float TREMBLE_RATIO_CENTER = 0.008;
+constexpr float TREMBLE_STEP_BOOST = 70.3;
 
-constexpr float TREMBLE_SIZE_MOD_STRENGTH = 0.2;
+constexpr float TREMBLE_RATIO_CENTER = 0.3;    //Center position jumping
+constexpr float TREMBLE_EASING_RATIO = 0.01;    //Slow easing
+
+constexpr float TREMBLE_SIZE_MOD_STRENGTH = 0.02;
 constexpr float TREMBLE_SIZE_MOD_FLOOR = 1.0 - TREMBLE_SIZE_MOD_STRENGTH;
-constexpr float TREMBLE_SIZE_MOD_STEP =  0.8;
+constexpr float TREMBLE_SIZE_MOD_STEP =  4.73;
 
 //constexpr float dx = 0.0166f;
 constexpr float EASING_RATIO = 0.05;
@@ -51,10 +54,10 @@ constexpr float EASING_RATIO = 0.05;
 
 /////////////////// WAVEFORM ///////////////////
 static constexpr float cycle = 200;   //msec
-static constexpr float maxR = 0.032;    //Max amplitude
-static constexpr float minR = 0.01;    //Min amplitude
+static constexpr float maxR = 0.5;    //Max amplitude
+static constexpr float minR = 0.03;    //Min amplitude
 static const int TURN_NUM_MAX = 100;  //num of feature points
-static constexpr float PEAK = 0.3;  //peak of wave amplitude
+static constexpr float PEAK = 0.3;  //peak point of wave amplitude
 
 
 

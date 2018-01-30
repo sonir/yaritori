@@ -22,7 +22,7 @@ class LineDrawer{
 public:
     LineDrawer();
     
-    void lineTo(float target_x, float target_y);
+    void lineTo(float target_x, float target_y, float size);
     void invert();
     void setColor(float _c);
     void setEvents();
@@ -35,7 +35,7 @@ public:
 private:
     void update();
     
-    int turn_num;
+    int turn_num, size;
     float currentPhase, preCurrentPhase, theta;
     
     ofVec2f verts[TURN_NUM_MAX + 2]; // + myPos + targetPos
