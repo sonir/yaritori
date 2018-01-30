@@ -45,6 +45,8 @@ public:
     float getPointSize();
     float getLineWidth();
     void move(float x, float y);
+    void setModValues();
+    void setAnimationMode(animation_mode_e _animationMode);
     
     void setShapePtr(ag_shape_t *shapePtr);
     
@@ -63,6 +65,7 @@ public:
     float width_rate;
     ofVec2f center, dest;
     float centerX ,centerY;
+    
     animation_mode_e animationMode;
 
 private:
@@ -88,6 +91,7 @@ private:
     float modPhase[MOD_NUM];
     float carPhase[MOD_NUM];
     float phase[MOD_NUM];
+    float modBoost;
     float tremorRatio;
     float stayRatio;
     float sizeMod;

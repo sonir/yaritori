@@ -33,6 +33,7 @@ AgentMotion::AgentMotion() {
     sizeModStrength =SIZE_MOD_STRENGTH;
     sizeModFloor = SIZE_MOD_FLOOR;
     sizeModStep = SIZE_MOD_STEP;
+    modBoost = 1.0;
 }
 
 void AgentMotion::resetShape() {
@@ -150,12 +151,12 @@ void AgentMotion::updatePhase() {
     }
     
     for(int i = 0; i < MOD_NUM; i++) {
-        carPhase[i] += carStep[i] * fixedAgMov * MOV_FIX;    //Carrier
+        carPhase[i] += carStep[i] * fixedAgMov * MOV_FIX * modBoost;    //Carrier
         if(M_2XPI < carPhase[i]) {
             carPhase[i] = 0.0;
         }
 
-        modPhase[i] += modStep[i] * fixedAgMov * MOV_FIX;    //Modulater
+        modPhase[i] += modStep[i] * fixedAgMov * MOV_FIX * modBoost;    //Modulater
         if(M_2XPI < modPhase[i]) {
             modPhase[i] = 0.0;
         }
@@ -220,26 +221,8 @@ void AgentMotion::update() {
 //        t = 0.0f;
 //    }
     
-    switch(animationMode) {
-        case ANIMATION_MODE_NORMAL: {
-            tremorRatio = TREMOR_RATIO;
-            stayRatio = STAY_RATIO;
-            
-            sizeModStrength =SIZE_MOD_STRENGTH;
-            sizeModFloor = SIZE_MOD_FLOOR;
-            sizeModStep = SIZE_MOD_STEP;
-            break;
-        }
-        case ANIMATION_MODE_TREMBLE: {
-            tremorRatio = TREMBLE_TREMOR_RATIO;
-            stayRatio = TREMBLE_STAY_RATIO;
-            
-            sizeModStrength = TREMBLE_SIZE_MOD_STRENGTH;
-            sizeModFloor = TREMBLE_SIZE_MOD_FLOOR;
-            sizeModStep = TREMBLE_SIZE_MOD_STEP;
-        }
-    }
-
+   
+    setModValues();
     
     updateStep();
     updateCenter();
@@ -342,3 +325,32 @@ void AgentMotion::move(float x, float y) {
     }
 }
 
+
+void AgentMotion::setAnimationMode(animation_mode_e _animationMode) {
+    animationMode = _animationMode;
+    setModValues();
+}
+
+void AgentMotion::setModValues() {
+    switch(animationMode) {
+        case ANIMATION_MODE_NORMAL: {
+            tremorRatio = TREMOR_RATIO;
+            stayRatio = STAY_RATIO;
+            
+            sizeModStrength =SIZE_MOD_STRENGTH;
+            sizeModFloor = SIZE_MOD_FLOOR;
+            sizeModStep = SIZE_MOD_STEP;
+            break;
+        }
+        case ANIMATION_MODE_TREMBLE: {
+            tremorRatio = TREMBLE_TREMOR_RATIO;
+            stayRatio = TREMBLE_STAY_RATIO;
+            
+            sizeModStrength = TREMBLE_SIZE_MOD_STRENGTH;
+            sizeModFloor = TREMBLE_SIZE_MOD_FLOOR;
+            sizeModStep = TREMBLE_SIZE_MOD_STEP;
+            
+            modBoost = 3.0;
+        }
+    }
+}

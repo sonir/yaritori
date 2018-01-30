@@ -254,10 +254,10 @@ void MotionManager::addEdge(ofVec2f node_a, ofVec2f node_b) {
     
 }
 
-void MotionManager::setTremble(animation_mode_e state) {
+void MotionManager::setTremble(animation_mode_e mode) {
 
     for(int i = 0; i < AG_MAX; i++) {
-        agent[i].animationMode = state;
+        agent[i].setAnimationMode(mode);
         
     }
 }
