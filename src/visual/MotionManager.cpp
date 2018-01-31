@@ -18,9 +18,6 @@ MotionManager::MotionManager() {
         
     }
     
-    //OSC
-    //sender.setup(SOUND_HOST, SOUND_PORT);
-    
     aspect = gismo.width_rate;
     
     setEvents();
@@ -105,23 +102,6 @@ void MotionManager::updateSolo() {
 
 void MotionManager::update() {
     updateSolo();
-    if(0 < soloCount) {
-        
-        if(bSolo == false) {    //if solo turns on
-            param_u params[1];
-            params[0].fval = 1.0f;
-            //sendOSC("/solo_sound", params, 1);
-            
-            bSolo = true;
-        }
-    } else {
-        if(bSolo == true) { //if solo turns off
-            param_u params[1];
-            params[0].fval = 0.0f;
-            //sendOSC("/solo_sound", params, 1);
-            bSolo = false;
-        }
-    }
 }
 
 
@@ -151,12 +131,7 @@ void MotionManager::drawAll() {
                 ag_t* target = gismo.getAgent(targetID);
                 
                 if(ag->condition == CHASE && target->condition == RUN) {
-//                    float size = (agent[i].size + agent[targetID].size) * 0.5;
                     lineManager.lineTo(i, agent[i].center.x, agent[i].center.y, agent[targetID].center.x, agent[targetID].center.y, agent[i].size);
-                    
-//                    ofSetColor(0);
-//                    interactLine[i].lineTo(ag->posi.x, ag->posi.y, target->posi.x, target->posi.y, ag->size);
-//                    interactLine[i].lineTo(ag->center.x, ag->center.y, target->center.x, target->center.y, ag->size);
                 }
             }
         }
@@ -191,9 +166,7 @@ void MotionManager::drawSolo() {
                     ag_t* target = gismo.getAgent(targetID);
                     
                     if(ag->condition == CHASE && target->condition == RUN) {
-//                        float size = (agent[i].size + agent[targetID].size) * 0.5 * 20.;
                         lineManager.lineTo(i, agent[i].center.x, agent[i].center.y, agent[targetID].center.x, agent[targetID].center.y, agent[i].size);
-
 
                     }
                 }
@@ -231,26 +204,8 @@ bool MotionManager::isSoloMode() {
     return result;
 }
 
-void MotionManager::sendOSC(const string adr, param_u* args,  int numArgs) {
-    ofxOscMessage m;
-    m.setAddress(adr);
-    for(int i = 0; i < numArgs; i++) {
-        m.addFloatArg(args[i].fval);
-    }
-    //sender.sendMessage(m, false);
-}
-
-
-void MotionManager::addNode(ofVec2f pos) {
-    
-}
-
-void MotionManager::addEdge(ofVec2f node_a, ofVec2f node_b) {
-    
-}
 
 void MotionManager::setTremble(animation_mode_e state) {
-
     for(int i = 0; i < AG_MAX; i++) {
         agent[i].animationMode = state;
         

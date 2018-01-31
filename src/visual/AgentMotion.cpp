@@ -98,7 +98,6 @@ void AgentMotion::initVbo() {
     
     nodeVbo.setVertexData(nodePos, NODE_MAX, GL_DYNAMIC_DRAW);
     nodeVbo.setColorData(nodeColors, NODE_MAX, GL_DYNAMIC_DRAW);
-    //nodeVbo.setAttributeData(shader.getAttributeLocation("point_size"), &pointSize[0], 1, NODE_MAX, GL_DYNAMIC_DRAW, sizeof(float));
 
     edgeVbo.setVertexData(nodePos, NODE_MAX, GL_DYNAMIC_DRAW);
     edgeVbo.setColorData(edgeColors, EDGE_MAX * 2, GL_DYNAMIC_DRAW);

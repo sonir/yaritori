@@ -39,19 +39,12 @@ public:
     void drawAgent(ag_t* ag);
     void drawAll();
     void drawSolo();
-    void sendOSC(const string adr, param_u* args, int argNum);
     bool isSoloMode();
     void setTremble(animation_mode_e state);
-    
-    void addNode(ofVec2f pos);
-    void addEdge(ofVec2f node_a, ofVec2f node_b);
     float aspect;
     
     
-    //Methods to set pointer;
-//    inline void setGismoPtr(GismoManager* _gismo) {
-//        gismo = _gismo;
-//    }
+    //Method to set pointer;
     inline void setShapePtr(ag_shape_t* _pShapes) {
         pShapes = _pShapes;
         this->setShapes();
@@ -65,16 +58,15 @@ private:
 //    ofShader shader;
     TimedInterpolation soloTimers[AG_MAX];
     
-    ofxOscSender sender;
-    
     bool bSolo;
     
-    ofVbo nodeVbo, edgeVbo;
-    ofVec2f nodePos[NODE_MAX * AG_MAX];
-    ofFloatColor nodeColors[NODE_MAX * AG_MAX];
-    ofVec2f edgePos[NODE_MAX * AG_MAX];
-    ofIndexType edgeIndices[EDGE_MAX * 2 * AG_MAX];
-    ofFloatColor edgeColors[EDGE_MAX * 2 * AG_MAX];
+//    ofVbo nodeVbo, edgeVbo;
+//    int nodeCount, edgeCount;
+//    ofVec2f nodePos[NODE_MAX * AG_MAX];
+//    ofFloatColor nodeColors[NODE_MAX * AG_MAX];
+//    ofVec2f edgePos[NODE_MAX * AG_MAX];
+//    ofIndexType edgeIndices[EDGE_MAX * 2 * AG_MAX];
+//    ofFloatColor edgeColors[EDGE_MAX * 2 * AG_MAX];
 
 };
 
