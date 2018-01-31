@@ -36,6 +36,7 @@
 		E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */; };
 		F01092BB147FA462845C38C7 /* CreEPS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34BF591C646B5F6EF968D620 /* CreEPS.cpp */; };
 		F20C6C2A2013168800CF0DA3 /* SoundTrigger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F20C6C282013168800CF0DA3 /* SoundTrigger.cpp */; };
+		F2155D882020EF8F00DABE96 /* Csv2Buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2155D862020EF8F00DABE96 /* Csv2Buffer.cpp */; };
 		F21DCD072007BFE4003BCC42 /* Fade.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F21DCD062007BFE4003BCC42 /* Fade.cpp */; };
 		F21DCD0A2008D0D7003BCC42 /* Metro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F21DCD082008D0D7003BCC42 /* Metro.cpp */; };
 		F245008B2009F9F600454D28 /* DrawAgentsWithChar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F24500892009F9F600454D28 /* DrawAgentsWithChar.cpp */; };
@@ -49,6 +50,8 @@
 		F285EB3169F1566CA3D93C20 /* ofxPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E112B3AEBEA2C091BF2B40AE /* ofxPanel.cpp */; };
 		F28AF43D1FF35DC200D48FEB /* Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F28AF43B1FF35DC200D48FEB /* Test.cpp */; };
 		F2ABF1281FEFF227006773CE /* Network.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2ABF1261FEFF227006773CE /* Network.cpp */; };
+		F2AD7E4A2021BB9100EA22B2 /* Buffer2Csv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2AD7E492021BB9100EA22B2 /* Buffer2Csv.cpp */; };
+		F2AD7E4D2021CA8400EA22B2 /* mv_agent.sh in CopyFiles */ = {isa = PBXBuildFile; fileRef = F2AD7E4C2021C88E00EA22B2 /* mv_agent.sh */; };
 		F2C099001FDD12400075255C /* ofxGismo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2C098E51FDD12400075255C /* ofxGismo.cpp */; };
 		F2E7003D2007145100A90022 /* Performance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2E7003B2007145100A90022 /* Performance.cpp */; };
 		F2E7007B20071E2000A90022 /* slMetro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2E7006A20071E2000A90022 /* slMetro.cpp */; };
@@ -79,8 +82,9 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 10;
+			dstSubfolderSpec = 7;
 			files = (
+				F2AD7E4D2021CA8400EA22B2 /* mv_agent.sh in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +158,8 @@
 		ECF8674C7975F1063C5E30CA /* ofxGuiGroup.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxGuiGroup.cpp; path = ../../../addons/ofxGui/src/ofxGuiGroup.cpp; sourceTree = SOURCE_ROOT; };
 		F20C6C282013168800CF0DA3 /* SoundTrigger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundTrigger.cpp; sourceTree = "<group>"; };
 		F20C6C292013168800CF0DA3 /* SoundTrigger.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SoundTrigger.hpp; sourceTree = "<group>"; };
+		F2155D862020EF8F00DABE96 /* Csv2Buffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Csv2Buffer.cpp; sourceTree = "<group>"; };
+		F2155D872020EF8F00DABE96 /* Csv2Buffer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Csv2Buffer.hpp; sourceTree = "<group>"; };
 		F21DCD052007BFE4003BCC42 /* Fade.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Fade.hpp; sourceTree = "<group>"; };
 		F21DCD062007BFE4003BCC42 /* Fade.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fade.cpp; sourceTree = "<group>"; };
 		F21DCD082008D0D7003BCC42 /* Metro.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Metro.cpp; sourceTree = "<group>"; };
@@ -181,6 +187,9 @@
 		F28AF43C1FF35DC200D48FEB /* Test.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Test.hpp; sourceTree = "<group>"; };
 		F2ABF1261FEFF227006773CE /* Network.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Network.cpp; sourceTree = "<group>"; };
 		F2ABF1271FEFF227006773CE /* Network.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Network.hpp; sourceTree = "<group>"; };
+		F2AD7E492021BB9100EA22B2 /* Buffer2Csv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Buffer2Csv.cpp; sourceTree = "<group>"; };
+		F2AD7E4B2021BB9C00EA22B2 /* Buffer2Csv.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Buffer2Csv.hpp; sourceTree = "<group>"; };
+		F2AD7E4C2021C88E00EA22B2 /* mv_agent.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = mv_agent.sh; sourceTree = "<group>"; };
 		F2C098E51FDD12400075255C /* ofxGismo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxGismo.cpp; sourceTree = "<group>"; };
 		F2C098E61FDD12400075255C /* ofxGismo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxGismo.h; sourceTree = "<group>"; };
 		F2C099011FDD7DB30075255C /* drawAgents.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = drawAgents.hpp; sourceTree = "<group>"; };
@@ -418,6 +427,7 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				F2AD7E4C2021C88E00EA22B2 /* mv_agent.sh */,
 				F28AF43B1FF35DC200D48FEB /* Test.cpp */,
 				F28AF43C1FF35DC200D48FEB /* Test.hpp */,
 				F2FFCEB01F62A27D00E71BAA /* VSyn.hpp */,
@@ -425,6 +435,7 @@
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
+				F2AD7E452021ABA300EA22B2 /* SaveAndLoad */,
 				F2AD098A2012EC1300D6676F /* Utilities */,
 				F2AD098B2012EC2400D6676F /* Performance */,
 				F2AD098C2012EC4300D6676F /* AgentManagemt */,
@@ -524,6 +535,17 @@
 				F27A52F71FEC634F00942A31 /* Sound.hpp */,
 			);
 			name = Sound;
+			sourceTree = "<group>";
+		};
+		F2AD7E452021ABA300EA22B2 /* SaveAndLoad */ = {
+			isa = PBXGroup;
+			children = (
+				F2155D862020EF8F00DABE96 /* Csv2Buffer.cpp */,
+				F2155D872020EF8F00DABE96 /* Csv2Buffer.hpp */,
+				F2AD7E492021BB9100EA22B2 /* Buffer2Csv.cpp */,
+				F2AD7E4B2021BB9C00EA22B2 /* Buffer2Csv.hpp */,
+			);
+			name = SaveAndLoad;
 			sourceTree = "<group>";
 		};
 		F2C0989F1FDD12400075255C /* ofxGismo */ = {
@@ -707,11 +729,13 @@
 				879A251454401BC0B6E4F238 /* OscTypes.cpp in Sources */,
 				F21DCD072007BFE4003BCC42 /* Fade.cpp in Sources */,
 				603044E656EA8D499FCF7DEA /* ofxVectorGraphics.cpp in Sources */,
+				F2155D882020EF8F00DABE96 /* Csv2Buffer.cpp in Sources */,
 				F01092BB147FA462845C38C7 /* CreEPS.cpp in Sources */,
 				63B57AC5BF4EF088491E0317 /* ofxXmlSettings.cpp in Sources */,
 				933A2227713C720CEFF80FD9 /* tinyxml.cpp in Sources */,
 				F21DCD0A2008D0D7003BCC42 /* Metro.cpp in Sources */,
 				F27A52F81FEC634F00942A31 /* Sound.cpp in Sources */,
+				F2AD7E4A2021BB9100EA22B2 /* Buffer2Csv.cpp in Sources */,
 				9D44DC88EF9E7991B4A09951 /* tinyxmlerror.cpp in Sources */,
 				5A4349E9754D6FA14C0F2A3A /* tinyxmlparser.cpp in Sources */,
 				F251DC9B2006A49E005D2472 /* Shape2Agent.cpp in Sources */,

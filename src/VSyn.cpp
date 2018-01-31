@@ -537,7 +537,6 @@ void VSyn::test(){
     std::cout << "VSyn:: addAgShape is ok." << std::endl;
     
     //Test Where am I
-    
     region_e where;
     //float width = gismo.width_rate;
     float width = 1.5;
@@ -553,6 +552,70 @@ void VSyn::test(){
     where = whereAmI(posi, width);
     assert(where == REGION_RIGHT);
     cout << "VSyn :: CFunc :: whereAmI is OK." << endl;
+    
+
+    //Test BUFFER2CSV
+    ag_t agsOrg[3];
+    agsOrg[0].agid = 0;
+    agsOrg[0].active = true;
+    agsOrg[0].posi.x = 0.001f;
+    agsOrg[0].posi.y = 0.01f;
+    agsOrg[0].size = 0.1f;
+    agsOrg[0].view = 1.1f;
+    agsOrg[0].mov = 11.1f;
+    agsOrg[0].condition = (condition_e)0;
+    agsOrg[0].spd.x = 111.1f;
+    agsOrg[0].spd.y = 111.1f;
+    agsOrg[0].interact_with = 110;
+
+    agsOrg[1].agid = 1;
+    agsOrg[1].active = true;
+    agsOrg[1].posi.x = 0.002f;
+    agsOrg[1].posi.y = 0.02f;
+    agsOrg[1].size = 0.2f;
+    agsOrg[1].view = 2.2f;
+    agsOrg[1].mov = 22.2f;
+    agsOrg[1].condition = (condition_e)1;
+    agsOrg[1].spd.x = 222.2;
+    agsOrg[1].spd.y = 2222.2;
+    agsOrg[1].interact_with = 220;
+    
+    agsOrg[2].agid = 2;
+    agsOrg[2].active = false;
+    agsOrg[2].posi.x = 0.003f;
+    agsOrg[2].posi.y = 0.03f;
+    agsOrg[2].size = 0.3f;
+    agsOrg[2].view = 3.3f;
+    agsOrg[2].mov = 33.3f;
+    agsOrg[2].condition = (condition_e)RUN;
+    agsOrg[2].spd.x = 333.3;
+    agsOrg[2].spd.y = 3333.3;
+    agsOrg[2].interact_with = 330;
+
+    buffer2csv.exportAgents(agsOrg, 3);
+    
+    //Test CSV2BUFFER
+    ag_t ags[3];
+    csv2buffter.createAgents(ags);
+    assert(ags[0].agid == 0);
+    assert(ags[0].size == 0.1f);
+    assert(ags[1].agid == 1);
+    assert(ags[1].view == 2.2f);
+    assert(ags[2].agid == 2);
+    assert(ags[2].active == false);
+    assert(ags[2].posi.x == 0.003f);
+    assert(ags[2].posi.y == 0.03f);
+    assert(ags[2].size == 0.3f);
+    assert(ags[2].view == 3.3f);
+    assert(ags[2].mov == 33.3f);
+    assert(ags[2].condition == RUN);
+    cout << ags[2].spd.x << endl;
+    assert(ags[2].spd.x == 333.3f);
+    assert(ags[2].spd.y == 3333.3f);
+    assert(ags[2].interact_with == 330);
+    cout << "CSV to Buffer is OK" << endl;
+    
+    
     
     //Reset all agents
     agBuffReset(&gismo.agents);
@@ -584,6 +647,13 @@ void VSyn::test(){
 //        performanceManager.bullets[i].bang();
 //        
 //    }
+    
+    
+    
+    
+    
+    
+    
     
     
     std::cout << "test method has finished." << std::endl;

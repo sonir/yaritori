@@ -81,6 +81,10 @@
 //Sound
 #include "SoundTrigger.hpp"
 
+//DataStore
+#include "Csv2Buffer.hpp"
+#include "Buffer2Csv.hpp"
+
 
 
 class VSyn : public Event {
@@ -150,6 +154,7 @@ class VSyn : public Event {
 
             
         }
+    
         void setup();
         void update();
         void draw();
@@ -167,6 +172,7 @@ class VSyn : public Event {
         }
 
     
+        //Variables for VSyn
         shapeContainer shapes[CONTAINER_MAX];
         ofColor colors[CONTAINER_MAX];
         ofxOscReceiver receiver;
@@ -193,6 +199,10 @@ class VSyn : public Event {
         line_t aLine;
         Bullet *bullet;
         Metro *metro;
+    
+        //Yaritori Core
+        Csv2Buffer csv2buffter;
+        Buffer2Csv buffer2csv;
 
     
     
