@@ -555,7 +555,7 @@ void VSyn::test(){
     
 
     //Test BUFFER2CSV
-    ag_t agsOrg[3];
+    ag_t agsOrg[4];
     agsOrg[0].agid = 0;
     agsOrg[0].active = true;
     agsOrg[0].posi.x = 0.001f;
@@ -591,11 +591,12 @@ void VSyn::test(){
     agsOrg[2].spd.x = 333.3;
     agsOrg[2].spd.y = 3333.3;
     agsOrg[2].interact_with = 330;
-
-    buffer2csv.exportAgents(agsOrg, 3);
+    
+    initAgent(&agsOrg[3]);
+    buffer2csv.exportAgents(agsOrg, 4);
     
     //Test CSV2BUFFER
-    ag_t ags[3];
+    ag_t ags[4];
     csv2buffter.createAgents(ags);
     assert(ags[0].agid == 0);
     assert(ags[0].size == 0.1f);
@@ -631,7 +632,7 @@ void VSyn::test(){
     ag.posi.x = 0.75f; ag.posi.y = 0.5f;
 //    gismo.addAgent(ag);
 //    gismo.addAgent(ag);
-    ag.mov = MOV_MINIMUM;
+    //ag.mov = MOV_MINIMUM;
     
     
     for(int i=0;i<DUMMY_AG_A_NUM;i++) gismo.addAgent(ag);
@@ -641,12 +642,7 @@ void VSyn::test(){
     ag.view *= 1.0f;
     for(int i=0;i<DUMMY_AG_B_NUM;i++) gismo.addAgent(ag);
     
-    
-//    for(int i=0; i<1600; i++){
-//        
-//        performanceManager.bullets[i].bang();
-//        
-//    }
+    csv2buffter.createAgents(gismo.add.buf);
     
     
     

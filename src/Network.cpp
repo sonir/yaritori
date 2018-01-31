@@ -96,6 +96,13 @@ void Network :: update(){
 ///            gismo.bang("/visual/timed_invert" , &invert_duration);
             dispParams(shape);
             
+        } else if (m.getAddress() == "/yaritori/save"){
+            
+            
+            int flg = 1;
+            gismo.bang("/yaritori/save", &flg);
+
+            
             
         } else if ( m.getAddress() == "/fps" ) { //Set fps
             

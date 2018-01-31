@@ -19,6 +19,8 @@ void Csv2Buffer :: test () {
 void Csv2Buffer::createAgents(ag_t *agents){
     
     
+    cout << "CSV2BuF" << endl;
+    
     //Create a vector to storage scenes
     // vector<ag_t> scenes;
     //Path to the comma delimited file
@@ -71,8 +73,8 @@ void Csv2Buffer::createAgents(ag_t *agents){
          }
      } //End of for
      
-    gismo.agents.count += count;
-    
+//    gismo.agents.count += count;
+    gismo.add.count += count;
     
 }
 
