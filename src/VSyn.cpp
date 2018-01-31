@@ -444,9 +444,6 @@ void VSyn::draw(){
     renderer.draw();
     scManager.end();
     scManager.draw();
-    
-    ofSetColor(scManager.getDrawColor());
-    ofDrawBitmapString("fps = " + ofToString(ofGetFrameRate()), 10, 20);
 #endif
     
     

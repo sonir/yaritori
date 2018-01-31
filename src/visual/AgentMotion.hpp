@@ -14,6 +14,7 @@
 #include "animation_setup.hpp"
 #include "ofxGismo.h"
 #include "ag_shape.h"
+#include "timed_interpolation.hpp"
 
 
 enum animation_mode_e {
@@ -65,6 +66,7 @@ public:
     float width_rate;
     ofVec2f center, dest, noise;
     float centerX ,centerY;
+    TimedInterpolation trembleTimer;
     
     animation_mode_e animationMode;
 
@@ -102,6 +104,7 @@ private:
     float grayScale;
     float t;
     float size_t;
+    bool isFirst;
     
 };
 

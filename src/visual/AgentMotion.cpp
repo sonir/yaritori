@@ -25,8 +25,10 @@ AgentMotion::AgentMotion() {
     
 //    animationMode = ANIMATION_MODE_NORMAL;
     animationMode = ANIMATION_MODE_TREMBLE;
+    trembleTimer.ready();
     
     setModValues();
+    isFirst = true;
     
 }
 
@@ -96,6 +98,7 @@ void AgentMotion::initVbo() {
     
     nodeVbo.setVertexData(nodePos, NODE_MAX, GL_DYNAMIC_DRAW);
     nodeVbo.setColorData(nodeColors, NODE_MAX, GL_DYNAMIC_DRAW);
+    //nodeVbo.setAttributeData(shader.getAttributeLocation("point_size"), &pointSize[0], 1, NODE_MAX, GL_DYNAMIC_DRAW, sizeof(float));
 
     edgeVbo.setVertexData(nodePos, NODE_MAX, GL_DYNAMIC_DRAW);
     edgeVbo.setColorData(edgeColors, EDGE_MAX * 2, GL_DYNAMIC_DRAW);
@@ -130,14 +133,13 @@ void AgentMotion::updateCenter() {
                 break;
             case ANIMATION_MODE_TREMBLE:
                 //Set tremble
-
-                if(dest.distance(center) < 0.0001 ) {
-                    dest.x += (frand() * 2.0 - 1.0 ) * TREMBLE_RATIO_CENTER * ( 1.0 -  pAg->size);
-                    dest.y += (frand() * 2.0 - 1.0 ) * TREMBLE_RATIO_CENTER * ( 1.0 -  pAg->size);
+                if(trembleTimer.get() == 1.0) {
+                    noise.x = (frand() - 0.5 ) * 2.0 * TREMBLE_RATIO_CENTER * ( 1.0 -  pAg->size);
+                    noise.y = (frand() - 0.5 ) * 2.0 * TREMBLE_RATIO_CENTER * ( 1.0 -  pAg->size);
+                    trembleTimer.bang(TREMBLE_INTERVAL_CENTER);
                 }
                 
-                
-                center += (dest - center) * TREMBLE_EASING_RATIO;
+                center += (dest + noise - center) * TREMBLE_EASING_RATIO;
                 break;
         }        
     }
@@ -306,11 +308,12 @@ void AgentMotion::setColor(float c) {
 
 
 void AgentMotion::move(float x, float y) {
-    if(center.x != -100 && center.y != -100) {
+    if(isFirst) {
         dest.x = x;
         dest.y = y;
         center.x = x;
         center.y = y;
+        isFirst = false;
     } else {
         dest.x = x;
         dest,y = y;
@@ -344,6 +347,7 @@ void AgentMotion::setModValues() {
             sizeModStep = TREMBLE_SIZE_MOD_STEP;
             
             modBoost = TREMBLE_STEP_BOOST;
+            trembleTimer.bang(TREMBLE_INTERVAL_CENTER);
         }
     }
 }
