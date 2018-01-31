@@ -124,12 +124,13 @@ void AgentMotion::updateCenter() {
     ofVec2f diff = dest - center;
     float length = diff.length() * BASE_HEIGHT;
 
-    if(DISPLAY_HEIGHT < length) {
+    if(DISPLAY_HEIGHT * 0.8 < length) {
         center = dest;
     } else {
         switch(animationMode) {
             case ANIMATION_MODE_NORMAL:
-                center += (dest - center) * EASING_RATIO;
+//                center += (dest - center) * EASING_RATIO;
+                center = dest;
                 break;
             case ANIMATION_MODE_TREMBLE:
                 //Set tremble
