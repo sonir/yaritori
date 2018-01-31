@@ -29,7 +29,7 @@ MotionManager::MotionManager() {
 void MotionManager::setColor(float c) {
     for(int i = 0; i < AG_MAX; i++){
         agent[i].setColor(c);
-        interactLine[i].setColor(c);
+        lineManager.interactLine[i].setColor(c);
     }
 }
 
@@ -125,8 +125,7 @@ void MotionManager::update() {
 }
 
 
-void MotionManager::drawAll() {
-    
+void MotionManager::drawAll() {    
     int count = gismo.agents.count;
     ag_t* agents = gismo.getAgents(); //sets agents pointer
     ag_t* ag;
@@ -152,18 +151,22 @@ void MotionManager::drawAll() {
                 ag_t* target = gismo.getAgent(targetID);
                 
                 if(ag->condition == CHASE && target->condition == RUN) {
-                    interactLine[i].myPos.x = agent[i].center.x;
-                    interactLine[i].myPos.y = agent[i].center.y;
-                    interactLine[i].lineTo(agent[targetID].center.x, agent[targetID].center.y, agent[i].size);
+//                    float size = (agent[i].size + agent[targetID].size) * 0.5;
+                    lineManager.lineTo(i, agent[i].center.x, agent[i].center.y, agent[targetID].center.x, agent[targetID].center.y, agent[i].size);
+                    
+//                    ofSetColor(0);
+//                    interactLine[i].lineTo(ag->posi.x, ag->posi.y, target->posi.x, target->posi.y, ag->size);
+//                    interactLine[i].lineTo(ag->center.x, ag->center.y, target->center.x, target->center.y, ag->size);
                 }
             }
         }
         agents++;
     }
+
+    lineManager.draw();
 }
 
 void MotionManager::drawSolo() {
-    
     int count = gismo.agents.count;
     ag_t* agents = gismo.getAgents(); //sets agents pointer
     ag_t* ag;
@@ -188,9 +191,9 @@ void MotionManager::drawSolo() {
                     ag_t* target = gismo.getAgent(targetID);
                     
                     if(ag->condition == CHASE && target->condition == RUN) {
-                        interactLine[i].myPos.x = agent[i].center.x;
-                        interactLine[i].myPos.y = agent[i].center.y;
-                        interactLine[i].lineTo(agent[targetID].center.x, agent[targetID].center.y, agent[i].size);
+//                        float size = (agent[i].size + agent[targetID].size) * 0.5 * 20.;
+                        lineManager.lineTo(i, agent[i].center.x, agent[i].center.y, agent[targetID].center.x, agent[targetID].center.y, agent[i].size);
+
 
                     }
                 }
@@ -198,6 +201,7 @@ void MotionManager::drawSolo() {
         }
         //agents++;
     }
+    lineManager.draw();
 }
 
 
@@ -208,7 +212,7 @@ void MotionManager::draw() {
     } else {
         drawSolo();
     }
-    
+
 //    ofSetColor(ofFloatColor(color));
 //    nodeVbo.updateVertexData(vbo.nodePos, vbo.nodeNum);
 //    nodeVbo.updateColorData(vbo.nodeColors,  vbo.nodeNum);
@@ -245,10 +249,10 @@ void MotionManager::addEdge(ofVec2f node_a, ofVec2f node_b) {
     
 }
 
-void MotionManager::setTremble(animation_mode_e mode) {
+void MotionManager::setTremble(animation_mode_e state) {
 
     for(int i = 0; i < AG_MAX; i++) {
-        agent[i].setAnimationMode(mode);
+        agent[i].animationMode = state;
         
     }
 }

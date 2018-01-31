@@ -18,6 +18,7 @@
 
 constexpr int VERT_NUM = TURN_NUM_MAX * 6 + 2;  //6 mins a bit more than aspect(5.4333)
 
+
 class LineDrawer{
 public:
     LineDrawer();
@@ -29,19 +30,22 @@ public:
     
     posi_t myPos, targetPos;
     
+    int turn_num;
+    
     bool colorState;
     ofFloatColor color;
+    
+    ofVec2f verts[TURN_NUM_MAX + 2]; // + myPos + targetPos
+    ofFloatColor cols[TURN_NUM_MAX + 2];
+    
+    bool isRunning;
     
 private:
     void update();
     
-    int turn_num, size;
+    float size;
     float currentPhase, preCurrentPhase, theta;
-    
-    ofVec2f verts[TURN_NUM_MAX + 2]; // + myPos + targetPos
-    ofFloatColor cols[TURN_NUM_MAX + 2];
-    ofVbo vbo;
-    
+        
     TimedInterpolation interpolation;
     
     float aspect;

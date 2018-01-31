@@ -23,8 +23,8 @@ AgentMotion::AgentMotion() {
     
     //shader.load("shader/shader.vert", "shader/shader.frag");
     
-//    animationMode = ANIMATION_MODE_NORMAL;
-    animationMode = ANIMATION_MODE_TREMBLE;
+    animationMode = ANIMATION_MODE_NORMAL;
+//    animationMode = ANIMATION_MODE_TREMBLE;
     trembleTimer.ready();
     
     setModValues();
@@ -126,6 +126,7 @@ void AgentMotion::updateCenter() {
 
     if(DISPLAY_HEIGHT < length) {
         center = dest;
+        cout << "HOGE" << endl;
     } else {
         switch(animationMode) {
             case ANIMATION_MODE_NORMAL:
@@ -138,7 +139,6 @@ void AgentMotion::updateCenter() {
                     noise.y = (frand() - 0.5 ) * 2.0 * TREMBLE_RATIO_CENTER * ( 1.0 -  pAg->size);
                     trembleTimer.bang(TREMBLE_INTERVAL_CENTER);
                 }
-                
                 center += (dest + noise - center) * TREMBLE_EASING_RATIO;
                 break;
         }        

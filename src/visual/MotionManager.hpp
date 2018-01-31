@@ -13,7 +13,7 @@
 #include "ofxGismo.h"
 #include "ag_shape.h"
 #include "AgentMotion.hpp"
-#include "LineDrawer.hpp"
+#include "LineManager.hpp"
 #include "timed_interpolation.hpp"
 #include "Sound.hpp"
 
@@ -41,7 +41,7 @@ public:
     void drawSolo();
     void sendOSC(const string adr, param_u* args, int argNum);
     bool isSoloMode();
-    void setTremble(animation_mode_e mode);
+    void setTremble(animation_mode_e state);
     
     void addNode(ofVec2f pos);
     void addEdge(ofVec2f node_a, ofVec2f node_b);
@@ -54,17 +54,15 @@ public:
 //    }
     inline void setShapePtr(ag_shape_t* _pShapes) {
         pShapes = _pShapes;
-        setShapes();
+        this->setShapes();
     }
     
 private:
     GismoManager& gismo = GismoManager::getInstance();
     ag_shape_t* pShapes;
 
-    
-    LineDrawer interactLine[AG_MAX];
-    LineDrawer debugLine;
-    ofShader shader;
+    LineManager lineManager;
+//    ofShader shader;
     TimedInterpolation soloTimers[AG_MAX];
     
     ofxOscSender sender;

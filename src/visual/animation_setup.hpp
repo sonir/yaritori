@@ -50,7 +50,7 @@ constexpr float TREMBLE_SIZE_MOD_FLOOR = 1.0 - TREMBLE_SIZE_MOD_STRENGTH;
 constexpr float TREMBLE_SIZE_MOD_STEP =  4.73;
 
 //constexpr float dx = 0.0166f;
-constexpr float EASING_RATIO = 0.05;
+constexpr float EASING_RATIO = 0.1;
 
 /////////////////// WAVEFORM ///////////////////
 constexpr float cycle = 200;   //msec

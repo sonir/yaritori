@@ -21,9 +21,6 @@ LineDrawer::LineDrawer(){
         cols[i].set(0., 0., 0., 1.);
     }
     
-    vbo.setVertexData(verts, TURN_NUM_MAX + 2, GL_DYNAMIC_DRAW);
-    vbo.setColorData(cols, TURN_NUM_MAX + 2, GL_DYNAMIC_DRAW);
-    
     GismoManager& gismo = GismoManager::getInstance();
     aspect = gismo.width_rate;
     
@@ -50,8 +47,6 @@ void LineDrawer::setColor(float c) {
     for(int i = 0; i < TURN_NUM_MAX + 2; i++){
         cols[i] = color;
     }
-    
-    vbo.updateColorData(cols, TURN_NUM_MAX + 2);
 }
 
 
@@ -61,7 +56,14 @@ void LineDrawer::update(){
     float max_width;
     
     turn_num = int(ofMap(distance, 0., DISPLAY_HEIGHT, 2., TURN_NUM_MAX));
-    max_width = WAVE_SIZE_RATIO * ofMap(distance, 0., DISPLAY_HEIGHT, minR, maxR) * (size + 1.) * 0.5;
+    
+    max_width = size;
+    if(max_width > maxR){
+        max_width = maxR;
+    }
+    if(max_width < minR){
+        max_width = minR;
+    }
     
     currentPhase = interpolation.get();
     
@@ -118,9 +120,6 @@ void LineDrawer::lineTo(float target_x, float target_y, float _size){
     update();
     
     glLineWidth(0.02);
-    vbo.updateColorData(cols, turn_num + 2);
-    vbo.updateVertexData(verts, turn_num + 2);
-    vbo.draw(GL_LINE_STRIP, 0, turn_num + 2);
     
 }
 
