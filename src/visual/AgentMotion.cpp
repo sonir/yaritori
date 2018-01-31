@@ -126,7 +126,6 @@ void AgentMotion::updateCenter() {
 
     if(DISPLAY_HEIGHT < length) {
         center = dest;
-        cout << "HOGE" << endl;
     } else {
         switch(animationMode) {
             case ANIMATION_MODE_NORMAL:
@@ -316,7 +315,7 @@ void AgentMotion::move(float x, float y) {
         isFirst = false;
     } else {
         dest.x = x;
-        dest,y = y;
+        dest.y = y;
     }
 }
 
