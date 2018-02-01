@@ -98,7 +98,7 @@ void Network :: update(){
             
         } else if (m.getAddress() == "/yaritori/save"){
             
-            
+            //Save now Conditions
             int flg = 1;
             gismo.bang("/yaritori/save", &flg);
 
