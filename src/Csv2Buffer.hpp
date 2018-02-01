@@ -32,7 +32,9 @@ class Csv2Buffer {
         }
         void test();
         void loadAgents(ag_t *agents, string withFile);
-        void loadShapes(ag_shape_t *shapes, string withFile);
+        void loadShapes(string withFile);
+    
+//        void loadShapes(ag_shape_t *shapes, string withFile);
     
     private:
         string nullCheck(string word);
