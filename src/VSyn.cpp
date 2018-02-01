@@ -62,7 +62,7 @@ void VSyn::setup(){
     //Setup Gismo
     gismo.setup();
     //SetupEvents
-    gismo.eventAdd("/addShape", this);
+    gismo.eventAdd("/addAgentWithShape", this);
     
     //Create TestClass
     myTest = new Test(&sound);
@@ -71,7 +71,7 @@ void VSyn::setup(){
     
     myTest->setup();
     //Do Test Code
-    this->test();
+    //this->test();
     
     
     //Load Previous Agents
@@ -84,6 +84,23 @@ void VSyn::setup(){
 
 
 void VSyn::update(){
+    
+    
+    cout << "#########" << gismo.agents.count << endl;
+    for(int i=0;i<gismo.agents.count; i++){
+     
+        ag_t *ag = gismo.getAgent(i);
+        cout << ag->agid << " , " << ag->size << endl;
+    }
+        
+    cout << "---" << endl;
+    for(int i=0;i<ag_shapes_count; i++){
+        
+        
+        cout << ag_shapes[i].color << " , " << ag_shapes[i].node_count << endl;
+        
+        
+    }
     
     
     //Test Update
@@ -510,7 +527,7 @@ void VSyn::addAgShape(ag_shape_t shape){
     ag_shapes[ag_shapes_count] = shape;
     ag_shapes_count += 1;
     
-    gismo.addAgent( shape2Agent(shape) );
+    
 
     
 }

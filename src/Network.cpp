@@ -88,7 +88,7 @@ void Network :: update(){
                 edge_index+=1;
             }
             
-            gismo.bang("/addShape" , &shape);
+            gismo.bang("/addAgentWithShape" , &shape);
 //            param_u duration;
 //            duration.fval = SOLO_DURATION;
 //            gismo.bang("/solo" , &duration));

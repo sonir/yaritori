@@ -217,6 +217,7 @@ class VSyn : public Event {
             ag_shape_t *tmp = (ag_shape_t *)args;
             ag_shape_t tmp2 = *tmp;
             addAgShape(tmp2);
+            gismo.addAgent( shape2Agent(tmp2) );
             //make sound
             int index = gismo.agents.count;
             sound_t snd = shape2sound(tmp2, index); //Song genre and song with the shape and ag_id
