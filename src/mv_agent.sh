@@ -1,3 +1,3 @@
 echo "Hello."
 ls
-cp 0-agents.csv ../../../data
+cp $1 ../../../data

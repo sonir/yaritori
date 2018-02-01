@@ -20,15 +20,15 @@ void VSyn::setup(){
     
     //ResetFunction
     //SetUpEvents
-    auto f = [&](void* args){ //<- keep this desctiption
-        //draw your code
-        int *key_num = (int *)args;
-        //Reset State
-        agBuffReset(&gismo.agents);
-        agBuffReset(&gismo.add);
-        
-    };
-    gismo.lambdaAdd("/reset", f);
+//    auto f = [&](void* args){ //<- keep this desctiption
+//        //draw your code
+//        int *key_num = (int *)args;
+//        //Reset State
+//        agBuffReset(&gismo.agents);
+//        agBuffReset(&gismo.add);
+//        
+//    };
+//    gismo.lambdaAdd("/reset", f);
     
     
     ////////////////////
@@ -72,6 +72,13 @@ void VSyn::setup(){
     myTest->setup();
     //Do Test Code
     this->test();
+    
+    
+    //Load Previous Agents
+    int inum = 1;
+    gismo.bang("/yaritori/load" , &inum);
+//    csv2buffter.createAgents(gismo.add.buf, "0-agents.csv");
+
 
 }
 
@@ -554,7 +561,7 @@ void VSyn::test(){
     cout << "VSyn :: CFunc :: whereAmI is OK." << endl;
     
 
-    //Test BUFFER2CSV
+    //Test BUFFER2CSV::Agents
     ag_t agsOrg[4];
     agsOrg[0].agid = 0;
     agsOrg[0].active = true;
@@ -593,11 +600,11 @@ void VSyn::test(){
     agsOrg[2].interact_with = 330;
     
     initAgent(&agsOrg[3]);
-    buffer2csv.exportAgents(agsOrg, 4);
-    
-    //Test CSV2BUFFER
+    buffer2csv.saveAgents(agsOrg, 4, "test.csv");
+
+    //Test CSV2BUFFER::Agents
     ag_t ags[4];
-    csv2buffter.createAgents(ags);
+    csv2buffer.loadAgents(ags, "test.csv");
     assert(ags[0].agid == 0);
     assert(ags[0].size == 0.1f);
     assert(ags[1].agid == 1);
@@ -616,42 +623,66 @@ void VSyn::test(){
     assert(ags[2].interact_with == 330);
     cout << "CSV to Buffer is OK" << endl;
     
+    //Test CSV2BUFFER::Shapes
+    cout << "---" << endl;
+    ag_shape_t shapes[3];
+    csv2buffer.loadShapes(shapes, "test_shape.csv");
+    assert( shapes[0].color == 0.1f);
+    assert( shapes[1].color == 0.2f);
+    assert( shapes[2].color == 0.3f);
+    assert( shapes[0].node_count==4 && shapes[0].edge_count == 1 );
+    assert( shapes[1].node_count==4 && shapes[1].edge_count == 2 );
+    assert( shapes[0].nodes[1].x == 0.5f);
+    assert( shapes[0].nodes[1].y == -0.5f);
+    assert( shapes[1].edges[1].node_id_a==1 );
+    assert( shapes[1].edges[1].node_id_b==3 );
+    cout << "---2" << endl;
+
     
+    //Test BUFFER2CSV::Shapes
+    buffer2csv.saveShapes(shapes, 3, "test_shape.csv");
+//    //LoadTestOnceMore
+//    cout << "---3" << endl;
+//
+//    csv2buffter.loadShapes(shapes, "test_shape.csv");
+//    assert( shapes[0].color == 0.1f);
+//    assert( shapes[1].color == 0.2f);
+//    assert( shapes[2].color == 0.3f);
+//    assert( shapes[0].node_count==4 && shapes[0].edge_count == 1 );
+//    assert( shapes[1].node_count==4 && shapes[1].edge_count == 2 );
+//    assert( shapes[0].nodes[1].x == 0.5f);
+//    assert( shapes[0].nodes[1].y == -0.5f);
+//    assert( shapes[1].edges[1].node_id_a==1 );
+//    assert( shapes[1].edges[1].node_id_b==3 );
+
     
     //Reset all agents
-    agBuffReset(&gismo.agents);
-    agBuffReset(&gismo.add);
+    int num=1;
+    gismo.bang("/gismo/reset" , &num);
+
+//    agBuffReset(&gismo.agents);
+//    agBuffReset(&gismo.add);
     
     //Set Agents
     ag_t ag;
-
     
     initAgentActive(&ag);
     ag.posi.x = 0.25f; ag.posi.y = 0.5f;
-//    gismo.addAgent(ag);
     ag.posi.x = 0.75f; ag.posi.y = 0.5f;
-//    gismo.addAgent(ag);
-//    gismo.addAgent(ag);
-    //ag.mov = MOV_MINIMUM;
     
-    
+
+    //Add TestAgent A
     for(int i=0;i<DUMMY_AG_A_NUM;i++) gismo.addAgent(ag);
-//
+
+    //Add TestAgentB
+    //Change param for AgentB
     ag.size *= 0.8f;
     ag.mov *= 2.5f;
     ag.view *= 1.0f;
     for(int i=0;i<DUMMY_AG_B_NUM;i++) gismo.addAgent(ag);
     
-    csv2buffter.createAgents(gismo.add.buf);
     
-    
-    
-    
-    
-    
-    
-    
-    
+
     std::cout << "test method has finished." << std::endl;
 
     

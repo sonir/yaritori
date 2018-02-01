@@ -82,7 +82,7 @@ void Network :: update(){
             
             int edge_index = 0;
             for(int i=0;i<( (shape.edge_count*2) );i=i+2){
-                //cout << i << endl;
+
                 shape.edges[edge_index].node_id_a = m.getArgAsInt32( i + (index_of_edge_count+1) );
                 shape.edges[edge_index].node_id_b = m.getArgAsInt32( i + (index_of_edge_count+1) + 1 );
                 edge_index+=1;

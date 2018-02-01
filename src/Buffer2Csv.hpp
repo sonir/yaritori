@@ -13,6 +13,7 @@
 #include <fstream>
 #include <stdlib.h>
 #include "ofxGismo.h"
+#include "ag_shape.h"
 
 class Buffer2Csv {
     
@@ -21,20 +22,12 @@ class Buffer2Csv {
     
         Buffer2Csv (){
             
-            //event for added agent
-            auto f = [&](void* args){ //<- keep this desctiption
 
-                //draw your code
-                param_u *params = (param_u *)args;
-                exportAgents(gismo.agents.buf,gismo.agents.count);
-                
-                
-            };
-            gismo.lambdaAdd("/yaritori/save", f);
             
         }
     
-        void exportAgents(ag_t *agents, int index_count);
+        void saveAgents(ag_t *agents, int index_count, string withFile);
+        void saveShapes(ag_shape_t *shapes, int index_count, string withFile);
     
     
         //Variables

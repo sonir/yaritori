@@ -131,6 +131,7 @@ class VSyn : public Event {
             };
             gismo.lambdaAdd("/gismo/reacted", f2);
             
+            
             //Run or Stop gismodel in PHASE2
             auto f3 = [&](void* args){ //<- keep this desctiption
                 param_u *params = (param_u *)args;
@@ -151,7 +152,45 @@ class VSyn : public Event {
             };
             gismo.lambdaAdd("/yaritori/run", f3);
             
+            
+            //event for added agent
+            auto f4 = [&](void* args){ //<- keep this desctiption
+                
+                //draw your code
+                param_u *params = (param_u *)args;
+                buffer2csv.saveAgents(gismo.agents.buf,gismo.agents.count, "0-agent.csv");
+                buffer2csv.saveShapes(ag_shapes, gismo.agents.count, "0-shape.csv");
+                
+            };
+            gismo.lambdaAdd("/yaritori/save", f4);
+            
+            
+            //Loading
+            auto f5 = [&](void* args){ //<- keep this desctiption
+                
+                //draw your code
+                param_u *params = (param_u *)args;
+                int val =1;
+                gismo.bang("/gismo/reset", &val);
+                csv2buffer.loadShapes(ag_shapes , "0-shape.csv");
+                csv2buffer.loadAgents(gismo.add.buf , "0-agent.csv");
+                
+            };
+            gismo.lambdaAdd("/yaritori/load", f5);
 
+            
+            
+            //ripplle by reacted
+            auto f6 = [&](void* args){ //<- keep this desctiption
+                
+                param_u *params = (param_u *)args;
+                agBuffReset(&gismo.agents);
+                agBuffReset(&gismo.add);
+                
+            };
+            gismo.lambdaAdd("/gismo/reset", f6);
+            
+            
             
         }
     
@@ -201,7 +240,7 @@ class VSyn : public Event {
         Metro *metro;
     
         //Yaritori Core
-        Csv2Buffer csv2buffter;
+        Csv2Buffer csv2buffer;
         Buffer2Csv buffer2csv;
 
     

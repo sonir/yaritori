@@ -566,6 +566,7 @@ GismoManager::GismoManager() //Constructor
 void GismoManager::setup(){
     
     cout << "GismoManager setup" <<endl;
+    
 
 }
 

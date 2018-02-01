@@ -10,11 +10,13 @@
 
 using namespace std;
 
-void Buffer2Csv:: exportAgents(ag_t *agents ,  int index_count){
+void Buffer2Csv:: saveAgents(ag_t *agents ,  int index_count, string withFile){
     
+    cout << "----" << endl;
+    cout << "Buffer2Csv :: Export agents as " << withFile << endl;
     
     ofstream log;
-    log.open("0-agents.csv" , ios_base::trunc);
+    log.open(withFile , ios_base::trunc);
     
     log << "agid" << "," << "active" << "," << "posi.x" << "," << "posi.y" << "," << "size" << "," << "view" << "," << "mov" << "," << "condition" << "," << "spd.x" << "," << "spd.y" << "," << "interact_with" << endl;
     
@@ -25,15 +27,81 @@ void Buffer2Csv:: exportAgents(ag_t *agents ,  int index_count){
         
         
         agents++;
-//        cout << i << endl;
+
         
     }
     
+    //Close opened file
     log.close();
-//    cout << "CMD :: " << system("mv 0-agents.csv ../../data/.") << endl;
-    cout << "CMD1 :: " << system("sh mv_agent.sh") << endl;
-    cout << "CMD2 :: " << system("pwd") << endl;
-    cout << "CMD3 :: " << system("ls") << endl;
+
+    //Move the created files on Resources folder in your app to "data" folder.
+    char cmd[256];
+    sprintf(cmd, "sh mv_agent.sh %s" , withFile.c_str());
+    cout << cmd << endl;
     
+    cout << "CMD2 :: " << system("ls") << endl;
+    cout << "CMD1 :: " << system(cmd) << endl;
+    
+//    cout << "CMD1 :: " << system("sh mv_agent.sh") << endl;
+    
+}
+
+
+
+void Buffer2Csv::saveShapes(ag_shape_t *shapes, int index_count, string withFile){
+
+    
+    cout << "----" << endl;
+    cout << "Buffer2Csv :: Export shapes as " << withFile << endl;
+
+    ofstream log;
+    log.open(withFile , ios_base::trunc);
+    
+    //Set basic column
+    log << "color" << "," << "node_count"<< endl;
+
+    
+    for(int i=0; i<index_count; i++){
+        
+        ag_shape_t *elm = shapes;
+        log << elm->color << "," << elm->node_count << ",";
+        
+        //Add nodes
+        for(int j=0; j< elm->node_count; j++){
+            
+            log << elm->nodes[j].x << "," <<  elm->nodes[j] .y << ",";
+            
+        }
+
+        
+        log << elm->edge_count;
+        
+        //Add edges
+        for (int j=0; j<elm->edge_count; j++){
+            
+            log << "," << elm->edges[j].node_id_a << "," << elm->edges[j].node_id_b;
+            
+        }
+        
+        //Add terminator
+        log << endl;
+        
+        shapes++;
+        
+        
+    }
+    
+    
+    //Close opened file
+    log.close();
+    
+    //Move the created files on Resources folder in your app to "data" folder.
+    char cmd[256];
+    sprintf(cmd, "sh mv_agent.sh %s" , withFile.c_str());
+    cout << cmd << endl;
+    
+    cout << "CMD2 :: " << system("ls") << endl;
+    cout << "CMD1 :: " << system(cmd) << endl;
+
     
 }

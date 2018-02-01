@@ -24,7 +24,6 @@
 //Duration Time
 #define INVERT_DURATION 0.5
 
-#endif /* Network_hpp */
 
 class Network {
     
@@ -53,3 +52,7 @@ class Network {
 
     
 };
+
+
+#endif /* Network_hpp */
+
