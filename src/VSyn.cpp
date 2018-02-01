@@ -67,11 +67,9 @@ void VSyn::setup(){
     gismo.eventAdd("/ripple", &ripple);
     gismo.eventAdd("/solo", &visual.events.solo);
     
-    
     //Set ag_shape_t and gismo pointer
     visual.motion.setShapePtr(ag_shapes);
     visual.events.setMotionManagerPtr(&visual.motion);
-    visual.events.setRippleManagerPtr(&ripple);
     ripple.setMotionManagerPtr(&visual.motion);
     
     //Set window size for yaritori
@@ -80,7 +78,7 @@ void VSyn::setup(){
     renderer.setup(DISPLAY_WIDTH, DISPLAY_HEIGHT);
 #else
     scManager.setup();
-    renderer.setup(ORIGINAL_HEIGHT, ORIGINAL_HEIGHT);
+    renderer.setup(BASE_HEIGHT, BASE_HEIGHT);
     renderer.setCircleBaseRad(DISPLAY_WIDTH);
 #endif
     
@@ -90,10 +88,10 @@ void VSyn::setup(){
     ripple.setColor(1.0);
     ofBackground(0);
 #else
-    scManager.setBackground(BACKGROUND_DEFAULT_COLOR);
-    visual.motion.setColor(ANIMATION_DEFAULT_COLOR);
-    renderer.setColor(ANIMATION_DEFAULT_COLOR);
-    ripple.setColor(ANIMATION_DEFAULT_COLOR);
+    scManager.setBackground(BACKGROUND_COLOR_DEFAULT);
+    visual.motion.setColor(ANIMATION_COLOR_DEFAULT);
+    renderer.setColor(ANIMATION_COLOR_DEFAULT);
+    ripple.setColor(ANIMATION_COLOR_DEFAULT);
 #endif
     
     //Create TestClass
@@ -414,33 +412,6 @@ void VSyn::draw(){
     //drawing particle
     particle.draw();
     
-
-//#ifdef DEBUG_MODE
-//    //drawAgentsForSimpleGraphics for debugging
-//    drawAgentsWithChar.draw(&gismo, screen_w, screen_h);
-//
-//#else
-//    //drawAgents
-//    for(int i = 0; i < 3; i++){
-//        scManager.begin(i);
-//
-//        //Draw Agents normally
-//        drawAgents(&visual);
-//
-//        //Ripple
-//        ripple.draw();
-//
-//#ifdef PERFORMANCE_MODE
-//    performanceManager.updateLines();
-//    performanceManager.updateLinesInverted();
-//    drawPerformance(&performanceManager);
-//#endif
-//        scManager.end(i);
-//    }
-//
-//    scManager.draw();
-//#endif
-    
 #ifdef DEBUG_MODE
     //drawAgentsForSimpleGraphics for debugging
     drawAgentsWithChar.draw(&gismo, screen_w, screen_h);
@@ -462,6 +433,7 @@ void VSyn::draw(){
     
     //Draw Agents normally
     drawAgents(&visual);
+    
     //Ripple
     ripple.draw();
     
@@ -574,62 +546,6 @@ void VSyn::draw(){
 }
 
 void VSyn::keyPressed(int key) {
-    switch (key) {
-        case 'y': {
-            scManager.setFullScreen();
-            break;
-        }
-        case 's': {
-            param_u params[2];
-            params[0].ival = 1;
-            params[1].fval = 1.0;
-            gismo.bang("/solo", params);
-            
-            break;
-        }
-        case 'i': {
-            param_u params;
-            params.bval = true;
-            gismo.lambdaBang("/invert", &params);
-            
-            break;
-        }
-        case 'k': {
-            param_u params;
-            params.fval = 4.0;
-            gismo.lambdaBang("/visual/timed_invert", &params);
-            
-            break;
-        }
-        case 'r': {
-            float vals[4];
-            vals[0] = 0.25;
-            vals[1] = 0.5;
-            vals[2] = 1.0;
-            vals[3] = 1.0;
-            gismo.bang("/ripple", vals);
-            break;
-        }
-        case '1': {
-            param_u params[3];
-            params[0].ival = 1;
-            params[1].ival = 0;
-            params[2].ival = -1;
-            
-            gismo.bang("/visual/shake", params);
-            break;
-        }
-        
-        case '2': {
-            param_u params[3];
-            params[0].ival = 1;
-            params[1].ival = 0;
-            params[2].ival = 1;
-            
-            gismo.bang("/visual/shake", params);
-            break;
-        }
-    }
     
 }
 

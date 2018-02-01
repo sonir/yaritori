@@ -18,9 +18,6 @@ MotionManager::MotionManager() {
         
     }
     
-    //OSC
-    //sender.setup(SOUND_HOST, SOUND_PORT);
-    
     aspect = gismo.width_rate;
     
     setEvents();
@@ -29,7 +26,7 @@ MotionManager::MotionManager() {
 void MotionManager::setColor(float c) {
     for(int i = 0; i < AG_MAX; i++){
         agent[i].setColor(c);
-        interactLine[i].setColor(c);
+        lineManager.interactLine[i].setColor(c);
     }
 }
 
@@ -47,18 +44,25 @@ void MotionManager::setEvents() {
     gismo.lambdaAdd("/agentColor", colorEvent);
     
     
+    auto trembleEvent = [&](void* args){ //<- keep this desctiption
+        param_u* params = (param_u *)args;
+        bool enable = params[0].bval;
+        
+        if(enable) {
+            this -> setTremble(ANIMATION_MODE_TREMBLE);
+        } else {
+            this -> setTremble(ANIMATION_MODE_NORMAL);
+        }
+    };
+    
+    gismo.lambdaAdd("/tremble", trembleEvent);
+    
 }
 
 void MotionManager::setShapes() {
     for(int i = 0; i < AG_MAX; i++){
         agent[i].pShape = &pShapes[i];
         agent[i].initVbo();
-    }
-}
-
-void MotionManager::invertColor() {
-    for(int i = 0; i < AG_MAX; i++){
-        agent[i].invertColor();
     }
 }
 
@@ -74,18 +78,7 @@ void MotionManager::addSolo(int _id, float duration) {
     isSolo[_id] = true;
     soloTimers[_id].bang(duration * 1000.0);
     soloCount++;
-    
-//    float args[2];
-//    ag_t* ag = gismo.getAgent(_id);
-//    args[0] = ag->posi.x;
-//    args[1] = ag->posi.y;
-//    gismo.bang("/ripple", args);
-    
-//    param_u params[3];
-//    params[0].ival = _id;
-//    params[1].fval = 1.0;
-//    params[2].fval = 1.0;
-//    gismo.bang("/ag_ripple", params);
+
 }
 
 void MotionManager::deleteSolo(int _id) {
@@ -109,28 +102,10 @@ void MotionManager::updateSolo() {
 
 void MotionManager::update() {
     updateSolo();
-    if(0 < soloCount) {
-        
-        if(bSolo == false) {    //if solo turns on
-            param_u params[1];
-            params[0].fval = 1.0f;
-            //sendOSC("/solo_sound", params, 1);
-            
-            bSolo = true;
-        }
-    } else {
-        if(bSolo == true) { //if solo turns off
-            param_u params[1];
-            params[0].fval = 0.0f;
-            //sendOSC("/solo_sound", params, 1);
-            bSolo = false;
-        }
-    }
 }
 
 
-void MotionManager::drawAll() {
-    
+void MotionManager::drawAll() {    
     int count = gismo.agents.count;
     ag_t* agents = gismo.getAgents(); //sets agents pointer
     ag_t* ag;
@@ -147,8 +122,8 @@ void MotionManager::drawAll() {
             agent[i].draw();
             
 //            ofSetColor(255, 0, 0);
-//            ofDrawBitmapString(i, ag->posi.x * aspect * ORIGINAL_HEIGHT, ag->posi.y * ORIGINAL_HEIGHT);
-//            ofDrawCircle(ag->posi.x * ORIGINAL_HEIGHT * aspect, ag->posi.y * ORIGINAL_HEIGHT, 3);
+//            ofDrawBitmapString(i, ag->posi.x * aspect * BASE_HEIGHT, ag->posi.y * BASE_HEIGHT);
+//            ofDrawCircle(ag->posi.x * BASE_HEIGHT * aspect, ag->posi.y * BASE_HEIGHT, 3);
             
             //Draw interaction
             if(ag->interact_with != -1) {
@@ -156,25 +131,17 @@ void MotionManager::drawAll() {
                 ag_t* target = gismo.getAgent(targetID);
                 
                 if(ag->condition == CHASE && target->condition == RUN) {
-//                    interactLine[i].myPos.x = agent[i].center.x;
-//                    interactLine[i].myPos.y = agent[i].center.y;
-//                    
-//                    ofSetColor(0);
-//                    interactLine[i].lineTo(agent[targetID].center.x, agent[targetID].center.y);
-                    interactLine[i].myPos.x = agent[targetID].center.x;
-                    interactLine[i].myPos.y = agent[targetID].center.y;
-                    
-                    ofSetColor(0);
-                    interactLine[i].lineTo(agent[i].center.x, agent[i].center.y);
+                    lineManager.lineTo(i, agent[i].center.x, agent[i].center.y, agent[targetID].center.x, agent[targetID].center.y, agent[i].size);
                 }
             }
         }
         agents++;
     }
+
+    lineManager.draw();
 }
 
 void MotionManager::drawSolo() {
-    
     int count = gismo.agents.count;
     ag_t* agents = gismo.getAgents(); //sets agents pointer
     ag_t* ag;
@@ -199,22 +166,15 @@ void MotionManager::drawSolo() {
                     ag_t* target = gismo.getAgent(targetID);
                     
                     if(ag->condition == CHASE && target->condition == RUN) {
-//                        interactLine[i].myPos.x = agent[i].center.x;
-//                        interactLine[i].myPos.y = agent[i].center.y;
-//                        
-//                        ofSetColor(0);
-//                        interactLine[i].lineTo(agent[targetID].center.x, agent[targetID].center.y);
-                        interactLine[i].myPos.x = agent[targetID].center.x;
-                        interactLine[i].myPos.y = agent[targetID].center.y;
+                        lineManager.lineTo(i, agent[i].center.x, agent[i].center.y, agent[targetID].center.x, agent[targetID].center.y, agent[i].size);
 
-                        ofSetColor(0);
-                        interactLine[i].lineTo(agent[i].center.x, agent[i].center.y);
                     }
                 }
             }
         }
         //agents++;
     }
+    lineManager.draw();
 }
 
 
@@ -225,7 +185,7 @@ void MotionManager::draw() {
     } else {
         drawSolo();
     }
-    
+
 //    ofSetColor(ofFloatColor(color));
 //    nodeVbo.updateVertexData(vbo.nodePos, vbo.nodeNum);
 //    nodeVbo.updateColorData(vbo.nodeColors,  vbo.nodeNum);
@@ -244,22 +204,12 @@ bool MotionManager::isSoloMode() {
     return result;
 }
 
-void MotionManager::sendOSC(const string adr, param_u* args,  int numArgs) {
-    ofxOscMessage m;
-    m.setAddress(adr);
-    for(int i = 0; i < numArgs; i++) {
-        m.addFloatArg(args[i].fval);
+
+void MotionManager::setTremble(animation_mode_e state) {
+    for(int i = 0; i < AG_MAX; i++) {
+        agent[i].animationMode = state;
+        
     }
-    //sender.sendMessage(m, false);
-}
-
-
-void MotionManager::addNode(ofVec2f pos) {
-    
-}
-
-void MotionManager::addEdge(ofVec2f node_a, ofVec2f node_b) {
-    
 }
 
 

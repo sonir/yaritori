@@ -17,6 +17,8 @@ public:
     TimedInterpolation();
     void bang();
     void bang(double _durationMsec);
+    void overBang();
+    void overBang(double _durationMsec);
     double getd();
     float get();
     void ready();

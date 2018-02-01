@@ -14,8 +14,13 @@
 #include "animation_setup.hpp"
 #include "ofxGismo.h"
 #include "ag_shape.h"
+#include "timed_interpolation.hpp"
 
 
+enum animation_mode_e {
+    ANIMATION_MODE_NORMAL,
+    ANIMATION_MODE_TREMBLE,
+};
 
 struct vec2 {
     float x;
@@ -32,6 +37,7 @@ public:
     
     void draw();
     void update();
+    void updateStep();
     void updatePhase();
     void updateCenter();
     void updatePosition();
@@ -40,11 +46,13 @@ public:
     float getPointSize();
     float getLineWidth();
     void move(float x, float y);
+    void setModValues();
+    void setAnimationMode(animation_mode_e _animationMode);
     
     void setShapePtr(ag_shape_t *shapePtr);
     
     //event
-    void invertColor();
+//    void invertColor();
     void setColor(float c);
     
     
@@ -56,9 +64,11 @@ public:
     bool isActive;
     float size;
     float width_rate;
-    ofVec2f center, dest;
+    ofVec2f center, dest, noise;
     float centerX ,centerY;
+    TimedInterpolation trembleTimer;
     
+    animation_mode_e animationMode;
 
 private:
     //VBO
@@ -83,10 +93,19 @@ private:
     float modPhase[MOD_NUM];
     float carPhase[MOD_NUM];
     float phase[MOD_NUM];
+    float modBoost;
+    float tremorRatio;
+    float stayRatio;
     float sizeMod;
+    float sizeModStrength;
+    float sizeModFloor;
+    float sizeModStep;
+    float trembleCenter;
     float grayScale;
     float t;
     float size_t;
+    bool isFirst;
+    
 };
 
 

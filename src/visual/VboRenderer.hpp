@@ -16,6 +16,7 @@
 
 class VboRenderer {
 public:
+    VboRenderer();
     void setup();
     void setup(float w, float h);
     void setColor(float c);

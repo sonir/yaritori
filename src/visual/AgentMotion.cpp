@@ -13,7 +13,6 @@ AgentMotion::AgentMotion() {
     color = 0.0;
     width_rate = 1.0f;
     size = 0.03;
-    //mov = 0.01;
     center.x = -100.0;
     center.y = -100.0;
     pShape = &this->shape;
@@ -24,9 +23,13 @@ AgentMotion::AgentMotion() {
     
     //shader.load("shader/shader.vert", "shader/shader.frag");
     
+    animationMode = ANIMATION_MODE_NORMAL;
+//    animationMode = ANIMATION_MODE_TREMBLE;
+    trembleTimer.ready();
     
-    GismoManager& gismo = GismoManager::getInstance();
-    aspect = gismo.width_rate;
+    setModValues();
+    isFirst = true;
+    
 }
 
 void AgentMotion::resetShape() {
@@ -51,11 +54,10 @@ void AgentMotion::resetShape() {
     }
 }
 
-void AgentMotion::initModulation() {
-//    ofVec2f vel = ofVec2f(frand() * 2.0 - 1.0, frand() * 2.0 - 1.0).getNormalized();
-    
+void AgentMotion::initModulation() {    
+    ofVec2f vel;
     for(int i = 0; i < NODE_MAX; i++) {
-        ofVec2f vel = ofVec2f(frand() * 2.0 - 1.0, frand() * 2.0 - 1.0).getNormalized();
+        vel = ofVec2f(frand() * 2.0 - 1.0, frand() * 2.0 - 1.0).getNormalized();
         velocityX[i] = vel.x;
         velocityY[i] = vel.y;
     }
@@ -75,17 +77,19 @@ void AgentMotion::initModulation() {
 
 
 void AgentMotion::initVbo() {
+    
+    ofVec2f pos;
     for(int i = 0; i < pShape->node_count; i++) {
-        ofVec2f pos;
-        pos.x = ( center.x + (pShape->nodes[i].x * size)) * ORIGINAL_HEIGHT;
-        pos.y = ( center.y + (pShape->nodes[i].y * size)) * ORIGINAL_HEIGHT;
+        pos.x = ( center.x + (pShape->nodes[i].x * size)) * BASE_HEIGHT;
+        pos.y = ( center.y + (pShape->nodes[i].y * size)) * BASE_HEIGHT;
         
         nodePos[i] = pos;
         nodeColors[i] = ofFloatColor(color);
     }
     
+    int edge_index;
     for (int i = 0; i < pShape->edge_count; i++) {
-        int edge_index = i*2;
+        edge_index = i*2;
         edgeIndices[edge_index] = pShape->edges[i].node_id_a;
         edgeIndices[edge_index+1] = pShape->edges[i].node_id_b;
         edgeColors[edge_index] = ofFloatColor(color);
@@ -104,9 +108,9 @@ void AgentMotion::updateColors() {
     for(int i = 0; i < pShape->node_count; i++) {
         nodeColors[i] = ofFloatColor(color);
     }
-    
+    int edge_index;
     for (int i = 0; i < pShape->edge_count * 2; i += 2) {
-        int edge_index = i * 0.5;
+        edge_index = i * 0.5;
         edgeColors[i] = ofFloatColor(color);
         edgeColors[i+1] = ofFloatColor(color);
     }
@@ -117,64 +121,75 @@ void AgentMotion::updateColors() {
 
 void AgentMotion::updateCenter() {
     ofVec2f diff = dest - center;
-    float length = diff.length() * ORIGINAL_HEIGHT;
-    
-    
-    if(DISPLAY_HEIGHT < length) {
+    float length = diff.length() * BASE_HEIGHT;
+
+    if(DISPLAY_HEIGHT * 0.8 < length) {
         center = dest;
     } else {
-        center += (dest - center) * EASING_RATIO;
+        switch(animationMode) {
+            case ANIMATION_MODE_NORMAL:
+//                center += (dest - center) * EASING_RATIO;
+                center = dest;
+                break;
+            case ANIMATION_MODE_TREMBLE:
+                //Set tremble
+                if(trembleTimer.get() == 1.0) {
+                    noise.x = (frand() - 0.5 ) * 2.0 * TREMBLE_RATIO_CENTER * ( 1.0 -  pAg->size);
+                    noise.y = (frand() - 0.5 ) * 2.0 * TREMBLE_RATIO_CENTER * ( 1.0 -  pAg->size);
+                    trembleTimer.bang(TREMBLE_INTERVAL_CENTER);
+                }
+                center += (dest + noise - center) * TREMBLE_EASING_RATIO;
+                break;
+        }        
     }
 }
 
 void AgentMotion::updatePhase() {
     // Update Phases
-//    for(int i = 0; i < pShape->node_count; i++) {
-//    float fixedAgMov = 0.05 + (pAg->mov * 0.95) ;
+
+    //Set least value of mov
     float fixedAgMov = pAg->mov;
     if(fixedAgMov < 0.05) {
         fixedAgMov = 0.05;
     }
     
     for(int i = 0; i < MOD_NUM; i++) {
-        carPhase[i] += carStep[i] * fixedAgMov * MOV_FIX;    //Carrier
+        carPhase[i] += carStep[i] * fixedAgMov * MOV_FIX * modBoost;    //Carrier
         if(M_2XPI < carPhase[i]) {
             carPhase[i] = 0.0;
         }
 
-        modPhase[i] += modStep[i] * fixedAgMov * MOV_FIX;    //Modulater
+        modPhase[i] += modStep[i] * fixedAgMov * MOV_FIX * modBoost;    //Modulater
         if(M_2XPI < modPhase[i]) {
             modPhase[i] = 0.0;
         }
 
-        phase[i] = (sin(carPhase[i]) + sin(modPhase[i])) * 0.5 * TREMOR_RATIO;
+        phase[i] = (sin(carPhase[i]) + sin(modPhase[i])) * 0.5 * tremorRatio;
     }
     
-    sizeMod = (sin(size_t) + 1.0) * 0.5 * SIZE_MOD_STRENGTH + SIZE_MOD_FLOOR;
+    sizeMod = (sin(size_t) + 1.0) * 0.5 * sizeModStrength + sizeModFloor;
 }
 
 
 
 void AgentMotion::updatePosition() {
-
+    
+    ofVec2f pos;
     
     for(int i = 0; i < pShape->node_count; i++) {
         //Modulation by CPU
         float nodeX = (pShape->nodes[i].x + velocityX[i] * phase[i % MOD_NUM ] ) * pAg->size * sizeMod * SIZE_FIX;
         float nodeY = (pShape->nodes[i].y + velocityY[i] * phase[i % MOD_NUM ] ) * pAg->size * sizeMod * SIZE_FIX;
-
-        ofVec2f pos;
-        pos.x = (center.x + nodeX) * ORIGINAL_HEIGHT ;
-//        pos.x = (center.x * ORIGINAL_WIDTH) + (nodeX * ORIGINAL_HEIGHT) ;
-        pos.y = (center.y + nodeY) * ORIGINAL_HEIGHT;
         
+        pos.x = (center.x + nodeX) * BASE_WIDTH;
+        pos.y = (center.y + nodeY) * BASE_HEIGHT;
         
         //Modulation by Shader
 //        ofVec2f pos;
 //        pos.x = ( center.x + (pShape->nodes[i].x * pAg->size)) * CANVAS_HEIGHT;
 //        pos.y = ( center.y + (pShape->nodes[i].y * pAg->size)) * CANVAS_HEIGHT;
-
-    
+        
+        //Set position into array
         nodePos[i] = pos;
     }
     nodeVbo.updateVertexData(nodePos, pShape->node_count);
@@ -195,6 +210,13 @@ void AgentMotion::updateIndex() {
     edgeVbo.updateIndexData(edgeIndices, pShape->edge_count*2);
 }
 
+void AgentMotion::updateStep() {
+    size_t += sizeModStep;
+    if(M_2XPI < size_t) {
+        size_t = 0.0f;
+    }
+}
+
 void AgentMotion::update() {
     //For shader modulation
 //    t += pAg->mov * dx;
@@ -202,11 +224,10 @@ void AgentMotion::update() {
 //        t = 0.0f;
 //    }
     
-    size_t += SIZE_MOD_STEP * frand();
-    if(M_2XPI < size_t) {
-        size_t = 0.0f;
-    }
+   
+    //setModValues();
     
+    updateStep();
     updateCenter();
     updatePhase();
     updatePosition();
@@ -284,28 +305,48 @@ void AgentMotion::setColor(float c) {
     this->updateColors();
 }
 
-void AgentMotion::invertColor() {
-    if (color == 1.0) {
-        color = 0.0f;
-    } else {
-        color = 1.0;
-    }
-    
-    this->updateColors();
-}
-
 
 void AgentMotion::move(float x, float y) {
-    if(center.x != -100 && center.y != -100) {
+    if(isFirst) {
         dest.x = x;
         dest.y = y;
         center.x = x;
         center.y = y;
+        isFirst = false;
     } else {
         dest.x = x;
-        dest,y = y;
+        dest.y = y;
     }
-    
-    
 }
 
+
+void AgentMotion::setAnimationMode(animation_mode_e _animationMode) {
+    animationMode = _animationMode;
+    setModValues();
+}
+
+void AgentMotion::setModValues() {
+    switch(animationMode) {
+        case ANIMATION_MODE_NORMAL: {
+            tremorRatio = TREMOR_RATIO;
+            stayRatio = STAY_RATIO;
+            
+            sizeModStrength =SIZE_MOD_STRENGTH;
+            sizeModFloor = SIZE_MOD_FLOOR;
+            sizeModStep = SIZE_MOD_STEP;
+            modBoost = 1.0;
+            break;
+        }
+        case ANIMATION_MODE_TREMBLE: {
+            tremorRatio = TREMBLE_TREMOR_RATIO;
+            stayRatio = TREMBLE_STAY_RATIO;
+            
+            sizeModStrength = TREMBLE_SIZE_MOD_STRENGTH;
+            sizeModFloor = TREMBLE_SIZE_MOD_FLOOR;
+            sizeModStep = TREMBLE_SIZE_MOD_STEP;
+            
+            modBoost = TREMBLE_STEP_BOOST;
+            trembleTimer.bang(TREMBLE_INTERVAL_CENTER);
+        }
+    }
+}

@@ -24,8 +24,12 @@ typedef struct pos_t {
     
 } pos_t;
 
-static bool drawWhiteBack = true;
-void invertBackground();
+
+enum invert_state_e {
+    INVERT_STATE_DEFAULT,
+    INVERT_STATE_INVERTED,
+    INVERT_STATE_FLASH,
+};
 
 
 typedef enum{ UP, RIGHT, DOWN, LEFT } shake_direction_e;
@@ -53,11 +57,11 @@ public:
     void setShakeDuration(float go, float out, float back);
     
     void setBackground(float c);
+    void setAllColor(float _bgColor);
     void drawBackground();
-    bool colorState;
-    void setAllColor(float bgColor);
     
     
+    //FullSCreen
     void setFullScreen();
     void setFullScreenConfig();
     ofColor getDrawColor();
@@ -96,16 +100,20 @@ private:
     int state_h[3];
     TimedInterpolation interpolation_w[3];
     TimedInterpolation interpolation_h[3];
+
     
+    //Invert of color and bg
+    void updateColor();
+    void updateInvert();
     TimedInterpolation invertTimer;
-    
     float bgColor;  //Background Color;
-    bool invertState;
+    bool isInvert;
+    bool drawFlash, drawInverted;
+    invert_state_e invertState;
     bool timerOn;
-    
     bool invertOnNext;
     float nextDuration;
-    ofShader shader;
+//    ofShader shader;
     
     
 };

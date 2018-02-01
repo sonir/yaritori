@@ -14,26 +14,6 @@
 #include "Sound.hpp"
 
 
-class Invert : public Event {
-public:
-    int trigger() {
-        motionManager->invertColor();
-        rippleManager->invert();
-        invertBackground();
-        return 1;
-    };
-    inline void setMotionManagerPtr(MotionManager* pMotion) {
-        motionManager = pMotion;
-    }
-    inline void setRippleManagerPtr(RippleManager* pRipple) {
-        rippleManager = pRipple;
-    }
-    
-private:
-    MotionManager* motionManager;
-    RippleManager* rippleManager;
-};
-
 class Solo : public Event {
 public:
     Solo() {
@@ -61,14 +41,9 @@ private:
 
 class MotionEvents : public Event {
 public:
-    Invert invert;
     Solo solo;
     inline void setMotionManagerPtr(MotionManager* pMotion) {
-        invert.setMotionManagerPtr(pMotion);
         solo.setMotionManagerPtr(pMotion);
-    }
-    inline void setRippleManagerPtr(RippleManager* pRipple) {
-        invert.setRippleManagerPtr(pRipple);
     }
 };
 

@@ -151,10 +151,18 @@ class VSyn : public Event {
 
                     //metro->resetStart();
                     metro->stop = false;
+                    param_u param ;
+                    param.bval = false;
+//                    gismo.lambdaBang("/invert", &param);
+                    gismo.lambdaBang("/tremble", &param);
                     
                 } else if (!flg){
                     //metro->stop();
                     metro->stop = true;
+                    param_u param ;
+                    param.bval = true;
+//                    gismo.lambdaBang("/invert", &param);
+                    gismo.lambdaBang("/tremble", &param);
                     
                 }
                 
