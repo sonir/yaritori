@@ -21,15 +21,15 @@ void VSyn::setup(){
     
     //ResetFunction
     //SetUpEvents
-    auto f = [&](void* args){ //<- keep this desctiption
-        //draw your code
-        int *key_num = (int *)args;
-        //Reset State
-        agBuffReset(&gismo.agents);
-        agBuffReset(&gismo.add);
-        
-    };
-    gismo.lambdaAdd("/reset", f);
+//    auto f = [&](void* args){ //<- keep this desctiption
+//        //draw your code
+//        int *key_num = (int *)args;
+//        //Reset State
+//        agBuffReset(&gismo.agents);
+//        agBuffReset(&gismo.add);
+//        
+//    };
+//    gismo.lambdaAdd("/reset", f);
     
     
     ////////////////////
@@ -694,7 +694,6 @@ void VSyn::test(){
 
     
     //Test Where am I
-    
     region_e where;
     //float width = gismo.width_rate;
     float width = 1.5;
@@ -779,8 +778,11 @@ void VSyn::test(){
 
     
     //Reset all agents
-    agBuffReset(&gismo.agents);
-    agBuffReset(&gismo.add);
+    int num=1;
+    gismo.bang("/gismo/reset" , &num);
+
+//    agBuffReset(&gismo.agents);
+//    agBuffReset(&gismo.add);
     
     //Set Agents
     ag_t ag;
@@ -796,6 +798,8 @@ void VSyn::test(){
     
     ag.size = 0.03;
     
+
+    //Add TestAgent A
     for(int i=0;i<DUMMY_AG_A_NUM;i++) gismo.addAgent(ag);
 
     ag.size *= 0.8f;

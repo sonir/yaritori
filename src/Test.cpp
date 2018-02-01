@@ -364,6 +364,11 @@ void Test :: run(){
     assert(tmpAg.view == 0.005f);
     //assert(tmpAg.size == 0.011f);
     assert(tmpAg.mov == 0.35f);
+    ag_shape_t shape2;
+    shape2.node_count = 50000;
+    ag_t tmpAg3 = shape2Agent(shape2);
+    cout << tmpAg3.mov << endl;
+    assert(tmpAg3.mov == MOV_MINIMUM);
     cout << "Shape2Agent.hpp::shape2Agent() is OK" << endl;
     
     //Test moveOnLine()
@@ -440,7 +445,6 @@ void Test :: run(){
 void Test :: update(){
 
     
-
     
 //    float fval = fade.update();
 //    cout << "fval=" << fval << endl;

@@ -33,10 +33,10 @@ typedef struct ag_shape_t {
 
     node_t nodes[NODE_MAX];
     edge_t edges[EDGE_MAX];
-    
+
+    float color;    
     int node_count;
     int edge_count;
-    float color;
     
     
 } ag_shape_t;
