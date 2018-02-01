@@ -61,7 +61,7 @@ void VSyn::setup(){
     //Setup Gismo
     gismo.setup();
     //SetupEvents
-    gismo.eventAdd("/addShape", this);
+    gismo.eventAdd("/addAgentWithShape", this);
     
     //Set events
     gismo.eventAdd("/ripple", &ripple);
@@ -120,6 +120,23 @@ void VSyn::setup(){
 
 
 void VSyn::update(){
+    
+    
+    cout << "#########" << gismo.agents.count << endl;
+    for(int i=0;i<gismo.agents.count; i++){
+     
+        ag_t *ag = gismo.getAgent(i);
+        cout << ag->agid << " , " << ag->size << endl;
+    }
+        
+    cout << "---" << endl;
+    for(int i=0;i<ag_shapes_count; i++){
+        
+        
+        cout << ag_shapes[i].color << " , " << ag_shapes[i].node_count << endl;
+        
+        
+    }
     
     
     //Test Update
@@ -573,7 +590,7 @@ void VSyn::addAgShape(ag_shape_t shape){
     ag_shapes[ag_shapes_count] = shape;
     ag_shapes_count += 1;
     
-    gismo.addAgent( shape2Agent(shape) );
+    
 
     
 }
@@ -705,20 +722,22 @@ void VSyn::test(){
     assert(ags[2].interact_with == 330);
     cout << "CSV to Buffer is OK" << endl;
     
+    
+    //Reset at Once
+    int val = 1;
+    gismo.bang("/gismo/reset" , &val);
+
     //Test CSV2BUFFER::Shapes
-    cout << "---" << endl;
-    ag_shape_t shapes[3];
-    csv2buffer.loadShapes(shapes, "test_shape.csv");
-    assert( shapes[0].color == 0.1f);
-    assert( shapes[1].color == 0.2f);
-    assert( shapes[2].color == 0.3f);
-    assert( shapes[0].node_count==4 && shapes[0].edge_count == 1 );
-    assert( shapes[1].node_count==4 && shapes[1].edge_count == 2 );
-    assert( shapes[0].nodes[1].x == 0.5f);
-    assert( shapes[0].nodes[1].y == -0.5f);
-    assert( shapes[1].edges[1].node_id_a==1 );
-    assert( shapes[1].edges[1].node_id_b==3 );
-    cout << "---2" << endl;
+    csv2buffer.loadShapes("test_shape.csv");
+    assert( ag_shapes[0].color == 0.1f);
+    assert( ag_shapes[1].color == 0.2f);
+    assert( ag_shapes[2].color == 0.3f);
+    assert( ag_shapes[0].node_count==4 && ag_shapes[0].edge_count == 1 );
+    assert( ag_shapes[1].node_count==4 && ag_shapes[1].edge_count == 2 );
+    assert( ag_shapes[0].nodes[1].x == 0.5f);
+    assert( ag_shapes[0].nodes[1].y == -0.5f);
+    assert( ag_shapes[1].edges[1].node_id_a==1 );
+    assert( ag_shapes[1].edges[1].node_id_b==3 );
 
 //    createShape(shape);
 //    gismo.bang("/addShape" , &shape);
@@ -731,21 +750,24 @@ void VSyn::test(){
 //    }
     
     //Test BUFFER2CSV::Shapes
-    buffer2csv.saveShapes(shapes, 3, "test_shape.csv");
-//    //LoadTestOnceMore
-//    cout << "---3" << endl;
-//
-//    csv2buffter.loadShapes(shapes, "test_shape.csv");
-//    assert( shapes[0].color == 0.1f);
-//    assert( shapes[1].color == 0.2f);
-//    assert( shapes[2].color == 0.3f);
-//    assert( shapes[0].node_count==4 && shapes[0].edge_count == 1 );
-//    assert( shapes[1].node_count==4 && shapes[1].edge_count == 2 );
-//    assert( shapes[0].nodes[1].x == 0.5f);
-//    assert( shapes[0].nodes[1].y == -0.5f);
-//    assert( shapes[1].edges[1].node_id_a==1 );
-//    assert( shapes[1].edges[1].node_id_b==3 );
+    buffer2csv.saveShapes(ag_shapes, 3, "test_shape.csv");
+    //LoadTestOnceMore
+    csv2buffer.loadShapes("test_shape.csv");
+    assert( ag_shapes[0].color == 0.1f);
+    assert( ag_shapes[1].color == 0.2f);
+    assert( ag_shapes[2].color == 0.3f);
+    assert( ag_shapes[0].node_count==4 && ag_shapes[0].edge_count == 1 );
+    assert( ag_shapes[1].node_count==4 && ag_shapes[1].edge_count == 2 );
+    assert( ag_shapes[0].nodes[1].x == 0.5f);
+    assert( ag_shapes[0].nodes[1].y == -0.5f);
+    assert( ag_shapes[1].edges[1].node_id_a==1 );
+    assert( ag_shapes[1].edges[1].node_id_b==3 );
+     
 
+    //Test SOUND_LOAD
+//    buffer2csv.saveSounds()
+    
+    
     
     //Reset all agents
     int num=1;

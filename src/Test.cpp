@@ -262,7 +262,9 @@ void Test :: run(){
     cout << "GismoLibrary::logistic() is OK." << endl;        
 
     //Test
-    agBuffReset(&gismo.agents);
+    //agBuffReset(&gismo.agents);
+    int val = 1;
+    gismo.bang("/gismo/reset" , &val);
     ag_t ag1;
     initAgent(&ag1);
     ag1.view = 256.0f;

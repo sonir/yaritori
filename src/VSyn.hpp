@@ -10,7 +10,7 @@
 #define VSyn_hpp
 
 //Set running mode
-#define DEBUG_MODE
+//#define DEBUG_MODE
 #define DUMMY_AG_A_NUM 0//1000
 #define DUMMY_AG_B_NUM 0//5//1000
 
@@ -182,14 +182,14 @@ class VSyn : public Event {
             gismo.lambdaAdd("/yaritori/save", f4);
             
             
-            //Loading
+            //Loading agents and shapes
             auto f5 = [&](void* args){ //<- keep this desctiption
                 
                 //draw your code
                 param_u *params = (param_u *)args;
                 int val =1;
                 gismo.bang("/gismo/reset", &val);
-                csv2buffer.loadShapes(ag_shapes , "0-shape.csv");
+                csv2buffer.loadShapes("0-shape.csv");
                 csv2buffer.loadAgents(gismo.add.buf , "0-agent.csv");
                 
             };
@@ -197,16 +197,30 @@ class VSyn : public Event {
 
             
             
-            //ripplle by reacted
+            //reset agents and shapes
             auto f6 = [&](void* args){ //<- keep this desctiption
                 
                 param_u *params = (param_u *)args;
                 agBuffReset(&gismo.agents);
                 agBuffReset(&gismo.add);
+                ag_shapes_count = 0;
+                
                 
             };
             gismo.lambdaAdd("/gismo/reset", f6);
+
             
+            
+            //reset agents and shapes
+            auto f7 = [&](void* args){ //<- keep this desctiption
+                
+                ag_shape_t *tmp = (ag_shape_t *)args;
+                ag_shape_t shape = *tmp;
+                addAgShape(shape);
+                
+            };
+            gismo.lambdaAdd("/yaritori/add_shape", f7);
+
             
             
         }
@@ -221,6 +235,7 @@ class VSyn : public Event {
             ag_shape_t *tmp = (ag_shape_t *)args;
             ag_shape_t tmp2 = *tmp;
             addAgShape(tmp2);
+            gismo.addAgent( shape2Agent(tmp2) );
             //make sound
             int index = gismo.agents.count;
             sound_t snd = shape2sound(tmp2, index); //Song genre and song with the shape and ag_id

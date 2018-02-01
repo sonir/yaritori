@@ -82,6 +82,95 @@ void Csv2Buffer::loadAgents(ag_t *agents, string withFile){
 
 
 
+void Csv2Buffer::loadShapes(string withFile){
+    cout << "CSV2BuF::LoadShapes" << endl;
+
+    //Path to the comma delimited file
+    string filePath = withFile;
+    
+
+     //Load file placed in bin/data
+     ofFile file(filePath);
+     if(!file.exists()){
+        ofLogError("The file " + filePath + " is missing");
+     }
+     
+     ofBuffer buffer(file);
+    
+    int count = 0;
+    
+     //Read file line by line
+     for (ofBuffer::Line it = buffer.getLines().begin(), end = buffer.getLines().end(); it != end; ++it) {
+         string line = *it;
+         //Ignore first line of CSV
+         if (buffer.getLines().begin() == it){
+         
+            continue;
+         
+         }
+         
+         
+         
+         //Split line into strings
+         vector<string> words = ofSplitString(line, ",");
+         //Ignore void lines
+         if(words[0]=="")continue;
+         
+         //Store strings into a custom container
+         if (words.size()>=2) {
+         
+             
+             //Storage the params into a struct
+             ag_shape_t elm;
+             
+             // INDEX_OF_NODE
+             elm.color = std::stof(nullCheck(words[INDEX_OF_COLOR]));
+             elm.node_count = std::stoi(nullCheck(words[INDEX_OF_NODE]));
+             
+             //EDGE INDEX
+             int edge_index = (elm.node_count*2)+2;
+             
+             elm.edge_count = std::stoi( nullCheck(words[edge_index]) );
+
+             int st = INDEX_OF_NODE+1;
+             for(int i=0; i<elm.node_count; i++){
+
+                elm.nodes[i].x = std::stof(nullCheck(words[st+(i*2)]));
+                elm.nodes[i].y = std::stof(nullCheck(words[st+(i*2)+1]));
+
+             }
+
+            st = edge_index+1;
+            int max = edge_index+(elm.edge_count*2);
+            for(int i=0; i<elm.edge_count; i++){
+
+                elm.edges[i].node_id_a = std::stoi(nullCheck(words[(i*2)+st]));
+                cout << "EDGE::" << i << " :: edge.a=" << words[(i*2)+st] << endl;
+                cout << "EDGE::" << i << " :: edge.b=" << words[(i*2)+st+1] << endl;
+                elm.edges[i].node_id_b = std::stoi(nullCheck(words[(i*2)+st+1]));
+                
+            }
+
+             gismo.bang("/yaritori/add_shape" , &elm);
+
+
+         }
+         
+         
+     } //End of for
+     
+//    gismo.agents.count += count;
+//    gismo.add.count += count;
+    
+
+    
+}
+
+
+
+
+
+/*
 void Csv2Buffer::loadShapes(ag_shape_t *shapes, string withFile){
     cout << "CSV2BuF::LoadShapes" << endl;
 
@@ -97,6 +186,7 @@ void Csv2Buffer::loadShapes(ag_shape_t *shapes, string withFile){
      
      ofBuffer buffer(file);
     
+    int count = 0;
     
      //Read file line by line
      for (ofBuffer::Line it = buffer.getLines().begin(), end = buffer.getLines().end(); it != end; ++it) {
@@ -155,13 +245,19 @@ void Csv2Buffer::loadShapes(ag_shape_t *shapes, string withFile){
              shapes++;
          
          }
+         
+         count++;
+         
      } //End of for
      
 //    gismo.agents.count += count;
 //    gismo.add.count += count;
+    
 
     
 }
+ 
+ */
 
 
 
