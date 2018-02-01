@@ -69,6 +69,9 @@ void VboLineRenderer::draw() {
 }
 
 void VboLineRenderer::addVertex(ofVec2f pos) {
+    if(VBOLINE_VERT_MAX <= vertsCount) vertsCount = 0;
+    
+    
     vertices[vertsCount] = pos;
     colors[vertsCount] = color;
     vertsCount++;

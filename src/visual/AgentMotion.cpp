@@ -23,12 +23,13 @@ AgentMotion::AgentMotion() {
     
     //shader.load("shader/shader.vert", "shader/shader.frag");
     
-    animationMode = ANIMATION_MODE_NORMAL;
-//    animationMode = ANIMATION_MODE_TREMBLE;
+//    animationMode = ANIMATION_MODE_NORMAL;
+    animationMode = ANIMATION_MODE_TREMBLE;
     trembleTimer.ready();
     
     setModValues();
     isFirst = true;
+    posMod = TREMBLE_RATIO_CENTER;
     
 }
 
@@ -105,11 +106,12 @@ void AgentMotion::initVbo() {
 }
 
 void AgentMotion::updateColors() {
-    for(int i = 0; i < pShape->node_count; i++) {
+    for(int i = 0; i < nodeNum; i++) {
         nodeColors[i] = ofFloatColor(color);
     }
+    
     int edge_index;
-    for (int i = 0; i < pShape->edge_count * 2; i += 2) {
+    for (int i = 0; i < edgeNum * 2; i += 2) {
         edge_index = i * 0.5;
         edgeColors[i] = ofFloatColor(color);
         edgeColors[i+1] = ofFloatColor(color);
@@ -134,8 +136,8 @@ void AgentMotion::updateCenter() {
             case ANIMATION_MODE_TREMBLE:
                 //Set tremble
                 if(trembleTimer.get() == 1.0) {
-                    noise.x = (frand() - 0.5 ) * 2.0 * TREMBLE_RATIO_CENTER * ( 1.0 -  pAg->size);
-                    noise.y = (frand() - 0.5 ) * 2.0 * TREMBLE_RATIO_CENTER * ( 1.0 -  pAg->size);
+                    noise.x = (frand() - 0.5 ) * 2.0 * posMod * ( 1.0 -  pAg->size);
+                    noise.y = (frand() - 0.5 ) * 2.0 * posMod * ( 1.0 -  pAg->size);
                     trembleTimer.bang(TREMBLE_INTERVAL_CENTER);
                 }
                 center += (dest + noise - center) * TREMBLE_EASING_RATIO;
@@ -176,7 +178,7 @@ void AgentMotion::updatePosition() {
     
     ofVec2f pos;
     
-    for(int i = 0; i < pShape->node_count; i++) {
+    for(int i = 0; i < nodeNum; i++) {
         //Modulation by CPU
         float nodeX = (pShape->nodes[i].x + velocityX[i] * phase[i % MOD_NUM ] ) * pAg->size * sizeMod * SIZE_FIX;
         float nodeY = (pShape->nodes[i].y + velocityY[i] * phase[i % MOD_NUM ] ) * pAg->size * sizeMod * SIZE_FIX;
@@ -192,14 +194,15 @@ void AgentMotion::updatePosition() {
         //Set position into array
         nodePos[i] = pos;
     }
-    nodeVbo.updateVertexData(nodePos, pShape->node_count);
-    edgeVbo.updateVertexData(nodePos, pShape->node_count);
+    nodeVbo.updateVertexData(nodePos, nodeNum);
+    edgeVbo.updateVertexData(nodePos, edgeNum);
 }
 
 void AgentMotion::updateIndex() {
-    for (int i = 0; i < pShape->edge_count; i++) {
-        if(pShape->edges[i].node_id_a < pShape->node_count && pShape->edges[i].node_id_b < pShape->node_count) {
-            int edge_index = i*2;
+    int edge_index;
+    for (int i = 0; i < edgeNum; i++) {
+        if(pShape->edges[i].node_id_a < edgeNum && pShape->edges[i].node_id_b < edgeNum) {
+            edge_index = i*2;
             
             edgeIndices[edge_index] = pShape->edges[i].node_id_a;
             edgeIndices[edge_index+1] = pShape->edges[i].node_id_b;
@@ -226,6 +229,12 @@ void AgentMotion::update() {
     
    
     //setModValues();
+    
+    nodeNum = pShape->node_count;
+    edgeNum = pShape->edge_count;
+    
+    if(NODE_MAX <= nodeNum) nodeNum = NODE_MAX;
+    if(EDGE_MAX <= edgeNum) edgeNum = EDGE_MAX;
     
     updateStep();
     updateCenter();

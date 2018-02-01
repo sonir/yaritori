@@ -89,6 +89,7 @@
 
 
 
+
 class VSyn : public Event {
  
     public:
@@ -232,6 +233,11 @@ class VSyn : public Event {
         visual_container_t visual;
     
     VboRenderer renderer;
+    
+    int modSelect;
+    
+    void changeModVal(float v);
+    float tremor;
     
 };
 

@@ -174,6 +174,8 @@ int VboCircleRenderer::getResolution(float size) {  //Set resolution depening on
 
 
 void VboCircleRenderer::addVertex(circle_type_e type, ofVec2f pos) {
+    if(VERTICES_MAX <= filledCounter.vertex) filledCounter.vertex = 0;
+    if(VERTICES_MAX <= noFillCounter.vertex) noFillCounter.vertex = 0;
     switch (type) {
         case filled:
             filledCirclePos[filledCounter.vertex] = pos;
@@ -189,6 +191,9 @@ void VboCircleRenderer::addVertex(circle_type_e type, ofVec2f pos) {
 }
 
 void VboCircleRenderer::addColor(circle_type_e type, ofFloatColor color) {
+    if(VERTICES_MAX <= filledCounter.color) filledCounter.color = 0;
+    if(VERTICES_MAX <= noFillCounter.color) noFillCounter.color = 0;
+    
     switch (type) {
         case filled:
             filledCircleColors[filledCounter.color] = color;
@@ -204,6 +209,8 @@ void VboCircleRenderer::addColor(circle_type_e type, ofFloatColor color) {
 }
 
 void VboCircleRenderer::addIndex(circle_type_e type, ofIndexType index) {
+    if(VERTICES_MAX <= filledCounter.index) filledCounter.index = 0;
+    if(VERTICES_MAX <= noFillCounter.index) noFillCounter.index = 0;
     switch (type) {
         case filled:
             filledCircleIndices[filledCounter.index] = index;

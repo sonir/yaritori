@@ -37,17 +37,17 @@ constexpr float SIZE_MOD_FLOOR = 1.0 - SIZE_MOD_STRENGTH;
 constexpr float SIZE_MOD_STEP = 0.03;  //0.8;   //0.04
 
 //Tremble configuration
-constexpr float TREMBLE_TREMOR_RATIO = 0.09f;//180119 MODIFIED BY 137 //0.12f;
+constexpr float TREMBLE_TREMOR_RATIO = 0.12f;//180119 MODIFIED BY 137 //0.12f;
 constexpr float TREMBLE_STAY_RATIO = 1.0 - TREMOR_RATIO;
-constexpr float TREMBLE_STEP_BOOST = 70.3;
+constexpr float TREMBLE_STEP_BOOST = 1.2; //70.3;
 
-constexpr float TREMBLE_RATIO_CENTER = 0.017;    //Center position jumping
+constexpr float TREMBLE_RATIO_CENTER = 0.033;    //Center position jumping
 constexpr float TREMBLE_INTERVAL_CENTER = 50;   
 constexpr float TREMBLE_EASING_RATIO = 0.33;    //Slow easing
 
-constexpr float TREMBLE_SIZE_MOD_STRENGTH = 0.02;
+constexpr float TREMBLE_SIZE_MOD_STRENGTH = 0.23; //0.13;
 constexpr float TREMBLE_SIZE_MOD_FLOOR = 1.0 - TREMBLE_SIZE_MOD_STRENGTH;
-constexpr float TREMBLE_SIZE_MOD_STEP =  4.73;
+constexpr float TREMBLE_SIZE_MOD_STEP =  1.48; //4.73;
 
 //constexpr float dx = 0.0166f;
 constexpr float EASING_RATIO = 0.1;

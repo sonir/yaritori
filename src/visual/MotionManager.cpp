@@ -57,6 +57,55 @@ void MotionManager::setEvents() {
     
     gismo.lambdaAdd("/tremble", trembleEvent);
     
+    //To change tremoro strength
+    auto changeTremor = [&](void* args) {
+        param_u* params = (param_u *)args;
+        float val = params[0].fval;
+        for(int i = 0; i < AG_MAX; i++) {
+            agent[i].tremorRatio += val;
+            agent[i].stayRatio = agent[i].tremorRatio - val;
+        }
+    };
+    gismo.lambdaAdd("/changeTremor", changeTremor);
+    
+    //To change tremoro strength
+    auto changeTremorBoost = [&](void* args) {
+        param_u* params = (param_u *)args;
+        float val = params[0].fval;
+        for(int i = 0; i < AG_MAX; i++) {
+            agent[i].modBoost += val;
+        }
+    };
+    gismo.lambdaAdd("/modBoost", changeTremorBoost);
+    
+    //To change sizemod strength
+    auto changeSizeModStrength = [&](void* args) {
+        param_u* params = (param_u *)args;
+        float val = params[0].fval;
+        for(int i = 0; i < AG_MAX; i++) {
+            agent[i].sizeModStrength += val;
+            agent[i].sizeModFloor = agent[i].sizeModStrength - val;
+        }
+    };
+    gismo.lambdaAdd("/sizeModStrength", changeSizeModStrength);
+    
+    auto changeSizeModStep = [&](void* args) {
+        param_u* params = (param_u *)args;
+        float val = params[0].fval;
+        for(int i = 0; i < AG_MAX; i++) {
+            agent[i].sizeModStep += val;
+        }
+    };
+    gismo.lambdaAdd("/sizeModStep", changeSizeModStep);
+    
+    auto posMod = [&](void* args) {
+        param_u* params = (param_u *)args;
+        float val = params[0].fval;
+        for(int i = 0; i < AG_MAX; i++) {
+            agent[i].posMod += val;
+        }
+    };
+    gismo.lambdaAdd("/posMod", posMod);
 }
 
 void MotionManager::setShapes() {
@@ -185,6 +234,9 @@ void MotionManager::draw() {
     } else {
         drawSolo();
     }
+    
+    
+    
 
 //    ofSetColor(ofFloatColor(color));
 //    nodeVbo.updateVertexData(vbo.nodePos, vbo.nodeNum);

@@ -382,7 +382,7 @@ void VSyn::initShapes(int max_num){
 
 
 void VSyn::draw(){
-    
+
     screen_w = ofGetWidth();
     screen_h = ofGetHeight();
 
@@ -441,6 +441,37 @@ void VSyn::draw(){
         renderer.draw();
     }
     
+    switch (modSelect) {
+        case 0:{
+            ofDrawBitmapString("tremorStrength", 10, 880);
+            break;
+        }
+        case 1: {
+            ofDrawBitmapString("sizeModStrength", 10, 880);
+            break;
+        }
+            
+        case 2: {
+            ofDrawBitmapString("sizeModStep", 10, 880);
+            break;
+        }
+        case 3: {
+            ofDrawBitmapString("tremorBoost", 10, 880);
+            break;
+        }
+        case 4: {
+            ofDrawBitmapString("posMod", 10, 880);
+            break;
+        }
+        default:
+            break;
+    }
+    
+    ofDrawBitmapString("SIZE MOD STRENGTH : " + ofToString(visual.motion.agent[0].sizeModStrength), 10, 900);
+    ofDrawBitmapString("SIZE MOD STEP : " + ofToString(visual.motion.agent[0].sizeModStep), 10, 920);
+    ofDrawBitmapString("TREMOR STRENGTH : " + ofToString(visual.motion.agent[0].tremorRatio), 10, 940);
+    ofDrawBitmapString("TREMOR BOOST : " + ofToString(visual.motion.agent[0].modBoost), 10, 960);
+    ofDrawBitmapString("POSITION MODULATION : " + ofToString(visual.motion.agent[0].posMod), 10, 980);
     renderer.draw();
     scManager.end();
     scManager.draw();
@@ -535,9 +566,29 @@ void VSyn::draw(){
         cam.end();
     }
     
+
+    
 }
 
 void VSyn::keyPressed(int key) {
+    switch (key) {
+        case OF_KEY_RIGHT:
+            this -> changeModVal(0.01);
+            break;
+        case OF_KEY_LEFT:
+            this -> changeModVal(-0.01);
+            break;
+        case OF_KEY_UP:
+            modSelect++;
+            if(4 < modSelect) modSelect = 0;
+            break;
+        case OF_KEY_DOWN:
+            modSelect--;
+            if(modSelect< 0) modSelect = 4;
+            break;
+        default:
+            break;
+    }
     
 }
 
@@ -729,4 +780,43 @@ void VSyn::test(){
 
 
     
+}
+
+void VSyn::changeModVal(float v) {
+    switch (modSelect) {
+        case 0:{
+            param_u params;
+            params.fval = v;
+            gismo.lambdaBang("/changeTremor", &params);
+            break;
+        }
+        case 1: {
+            param_u params;
+            params.fval = v;
+            gismo.lambdaBang("/sizeModStrength", &params);
+            break;
+        }
+
+        case 2: {
+            param_u params;
+            params.fval = v;
+            gismo.lambdaBang("/sizeModStep", &params);
+            break;
+        }
+            
+        case 3: {
+            param_u params;
+            params.fval = v;
+            gismo.lambdaBang("/modBoost", &params);
+            break;
+        }
+        case 4: {
+            param_u params;
+            params.fval = v;
+            gismo.lambdaBang("/posMod", &params);
+            break;
+        }
+        default:
+            break;
+    }
 }

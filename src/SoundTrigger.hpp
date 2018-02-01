@@ -16,8 +16,7 @@
 #include "ag_shape.h"
 
 
-#define SOUND_HOST_FOR_TRIGGER "172.29.9.118"
-//#define SOUND_HOST_FOR_TRIGGER "localhost"
+#define SOUND_HOST_FOR_TRIGGER "localhost"
 #define SOUND_PORT_FOR_TRIGGER 56137
 
 //Define for node to agent

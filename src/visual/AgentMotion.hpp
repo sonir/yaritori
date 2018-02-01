@@ -69,6 +69,16 @@ public:
     TimedInterpolation trembleTimer;
     
     animation_mode_e animationMode;
+    float modBoost;
+    float tremorRatio;
+    float stayRatio;
+    float sizeMod;
+    float sizeModStrength;
+    float sizeModFloor;
+    float sizeModStep;
+    float trembleCenter;
+    float posMod;
+    
 
 private:
     //VBO
@@ -93,18 +103,19 @@ private:
     float modPhase[MOD_NUM];
     float carPhase[MOD_NUM];
     float phase[MOD_NUM];
-    float modBoost;
-    float tremorRatio;
-    float stayRatio;
-    float sizeMod;
-    float sizeModStrength;
-    float sizeModFloor;
-    float sizeModStep;
-    float trembleCenter;
+//    float modBoost;
+//    float tremorRatio;
+//    float stayRatio;
+//    float sizeMod;
+//    float sizeModStrength;
+//    float sizeModFloor;
+//    float sizeModStep;
+//    float trembleCenter;
     float grayScale;
     float t;
     float size_t;
     bool isFirst;
+    int nodeNum, edgeNum;
     
 };
 
