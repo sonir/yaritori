@@ -10,7 +10,10 @@
 #define VSyn_hpp
 
 //Set running mode
-//#define DEBUG_MODE
+#define DEBUG_MODE
+#define DUMMY_AG_A_NUM 0//1000
+#define DUMMY_AG_B_NUM 0//5//1000
+
 #define PERFORMANCE_MODE
 #define GISMO_UPDATE_INTERVAL 0.033
 
@@ -217,7 +220,6 @@ class VSyn : public Event {
             
         }
     
-    
         //Variables for VSyn
         shapeContainer shapes[CONTAINER_MAX];
         ofColor colors[CONTAINER_MAX];
@@ -252,6 +254,11 @@ class VSyn : public Event {
         line_t aLine;
         Bullet *bullet;
         Metro *metro;
+    
+        //Yaritori Core
+        Csv2Buffer csv2buffer;
+        Buffer2Csv buffer2csv;
+
     
     
     private:
